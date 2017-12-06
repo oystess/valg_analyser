@@ -5,7 +5,18 @@ library(lubridate)
 
 source("Alle meningsmålinger.R")
 rm(list = ls())
-data<- read_csv("polls.csv")
+data<- read_csv("polls.csv", col_types = 
+  cols(
+    hvem = col_character(),
+    dag = col_integer(),
+    måned = col_integer(),
+    år = col_integer(),
+    Parti = col_character(),
+    Prosent = col_double(),
+    Mandater = col_integer(),
+    dato = col_date(format = "")
+  )
+)
                  
 data$Parti <- parse_factor(data$Parti, levels = NULL)
 
@@ -70,9 +81,9 @@ snitt_p <- data %>%
   ) 
 
 snitt_p %>% 
-  filter(Parti=="Frp" | Parti == "Høyre" | Parti == "Ap" | Parti == "KrF") %>% 
+  filter(Parti=="Frp" | Parti == "Høyre" | Parti == "Ap" | Parti == "KrF", år>=2013 & år<=2013) %>% 
 ggplot(aes(måned2, snitt_måned))+
-  geom_smooth(aes(color=Parti), se = FALSE)
+  geom_line(aes(color=Parti))
 
 snitt_p %>% 
   filter(år==2017, Parti=="Frp" | Parti == "Høyre" | Parti == "Ap" | Parti == "KrF" | Parti == "Sp" | Parti == "Venstre") %>% 
