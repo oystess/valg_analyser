@@ -16,9 +16,24 @@ valg2013 <- read_csv2("valg2013_parti.csv")
 
 kommune2013 <- valg2013 %>%
   group_by(Kommunenummer, Partikode, Partinavn) %>% 
-  summarise( "stemmer13" = sum(`Antall stemmer totalt`)) %>%
+  summarise( "stemmer13" = sum(`Antall stemmer totalt`))
+
+
+tonsberg <- valg2013 %>% 
+  #Kommuner som ble Tønsberg https://www.ssb.no/offentlig-sektor/kommunekatalog/endringer-i-de-regionale-inndelingene/kommunesammenslainger-og-endringer-i-fylkesinndelingene#Kommunesammenslinger
+  filter(Kommunenummer== "0706"| Kommunenummer=="0719"| Kommunenummer=="0720") %>% 
+  group_by(Partikode, Partinavn) %>% 
+  summarise(stemmer13=sum(`Antall stemmer totalt`)) %>% 
+  mutate(Kommunenummer = "0710") %>% 
+  rekkefølge <- names(kommune2013) %>% 
+  select(rekkefølge[-5])
+
+kommune2013 <- kommune2013 %>% 
+  filter(Kommunenummer!= "0706"| Kommunenummer!="0719"| Kommunenummer!="0720") %>% 
+  rbind(tonsberg) %>% 
   group_by(Kommunenummer) %>% 
   mutate( "prosent13" = stemmer13/sum (stemmer13))
+
 
 
 indeks <- read_xlsx("distriktstall.xlsx") %>% 
@@ -54,8 +69,17 @@ samlet %>%
 
 
 tonsberg <- valg2013 %>% 
+  #Kommuner som ble Tønsberg https://www.ssb.no/offentlig-sektor/kommunekatalog/endringer-i-de-regionale-inndelingene/kommunesammenslainger-og-endringer-i-fylkesinndelingene#Kommunesammenslinger
   filter(Kommunenummer== "0706"| Kommunenummer=="0719"| Kommunenummer=="0720") %>% 
   group_by(Partikode, Partinavn) %>% 
-  summarise(stemmer=sum(`Antall stemmer totalt`))
+  summarise(stemmer13=sum(`Antall stemmer totalt`)) %>% 
+  mutate(Kommunenummer = "0710") %>% 
+  rekkefølge <- names(kommune2013) %>% 
+  select(rekkefølge[-5])
+
+
+
+
+
 
 
