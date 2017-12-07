@@ -48,9 +48,29 @@ samlet <- samlet %>%
   mutate( endring_p = prosent17-prosent13)
 
 samlet %>% 
-  filter( Partikode=="SP"| Partikode=="A"| Partikode=="H") %>%
+  filter( Partikode=="SP"| Partikode=="A") %>%
+  filter( Kommunenummer!= "1871") %>%
+  filter( `B16-O`<=25000) %>% 
+ggplot(aes(befvekst10, prosent13))+
+  geom_point(aes(color=Partinavn))
+
+samlet %>% 
+  filter(Partikode=="H"| Partikode=="FRP") %>%
   filter( Kommunenummer!= "1871") %>% 
-ggplot(aes(befvekst10, endring_p))+
+  ggplot(aes(befvekst10, endring_p))+
+  geom_point(aes(color=Partinavn))
+
+
+samlet %>% 
+  filter( Partikode=="SP"| Partikode=="A") %>%
+  filter( Kommunenummer!= "1871") %>% 
+  ggplot(aes(befvekst10, endring_p))+
+  geom_point(aes(color=Partinavn))
+
+samlet %>% 
+  filter( Partikode=="KRF"| Partikode=="V") %>%
+  filter( Kommunenummer!= "1871") %>% 
+  ggplot(aes(befvekst10, endring_s))+
   geom_point(aes(color=Partinavn))
 
 samlet %>% 
