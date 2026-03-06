@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norske meningsmålinger</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <script src="https://cdn.papaparse.com/papaparse.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface2: #21262d;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --green: #3fb950;
+      --orange: #d29922;
+      --red: #f85149;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 32px;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    header h1 { font-size: 18px; font-weight: 600; color: var(--accent); }
+    header span { color: var(--muted); font-size: 12px; }
+
+    .layout { max-width: 1280px; margin: 0 auto; padding: 24px 32px; display: grid; gap: 20px; }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+    }
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    /* ── Party grid ── */
+    #party-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .pcard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 2px solid var(--border);
+      background: var(--surface2);
+      cursor: pointer;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      min-width: 76px;
+      user-select: none;
+    }
+    .pcard:hover { transform: translateY(-2px); background: #2d333b; }
+    .pcard.selected {
+      border-color: var(--pc, #fff);
+      background: color-mix(in srgb, var(--pc, #fff) 18%, var(--surface2));
+    }
+    .pcard .abbr { font-size: 15px; font-weight: 700; color: var(--pc, #fff); }
+    .pcard .fullname { font-size: 10px; color: var(--muted); text-align: center; max-width: 80px; }
+    .pcard .pct { font-size: 16px; font-weight: 600; }
+
+    /* ── Coalition total ── */
+    #coalition-bar-wrap {
+      display: grid;
+      grid-template-columns: 72px 1fr 140px;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 16px;
+      background: var(--surface2);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+    #total-big {
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--accent);
+      line-height: 1;
+    }
+    #total-label { font-size: 10px; color: var(--muted); text-align: center; margin-top: 3px; }
+    #bar-outer {
+      height: 20px;
+      background: rgba(255,255,255,.06);
+      border-radius: 10px;
+      position: relative;
+      overflow: visible;
+    }
+    #bar-fill {
+      height: 100%;
+      border-radius: 10px;
+      transition: width .25s ease, background .25s ease;
+      background: var(--accent);
+      max-width: 100%;
+    }
+    #bar-50-marker {
+      position: absolute;
+      left: 50%;
+      top: -4px;
+      bottom: -4px;
+      width: 2px;
+      background: rgba(255,255,255,.35);
+      border-radius: 1px;
+    }
+    #bar-50-marker::after {
+      content: '50%';
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    #majority-status { font-size: 13px; font-weight: 600; text-align: right; }
+    #coalition-detail { font-size: 12px; color: var(--muted); min-height: 18px; }
+
+    /* ── Chart controls ── */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .ctrl-label { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    input[type="date"] {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+    .btn {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 5px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background .12s;
+    }
+    .btn:hover { background: #2d333b; }
+
+    /* Chart smoothing toggle */
+    .toggle-wrap { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+    input[type="checkbox"] { accent-color: var(--accent); }
+
+    #chart-wrap { position: relative; height: 460px; }
+    #loading-msg {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 14px; gap: 10px;
+    }
+    .spinner {
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    #error-msg {
+      background: rgba(248,81,73,.1);
+      border: 1px solid rgba(248,81,73,.3);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--red);
+      font-size: 13px;
+      display: none;
+    }
+
+    #data-source-info {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 10px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Norske meningsmålinger</h1>
+  <span>Månedlige gjennomsnitt · Kilde: pollofpolls.no</span>
+</header>
+
+<div class="layout">
+
+  <!-- ── COALITION BUILDER ── -->
+  <div class="card">
+    <div class="card-title">Koalisjonsbygger — klikk partier for å bygge koalisjon</div>
+    <div id="party-grid"></div>
+
+    <div id="coalition-bar-wrap">
+      <div>
+        <div id="total-big">0%</div>
+        <div id="total-label">av stemmene</div>
+      </div>
+      <div id="bar-outer">
+        <div id="bar-50-marker"></div>
+        <div id="bar-fill" style="width:0%"></div>
+      </div>
+      <div id="majority-status" style="color: var(--muted)">Ingen valgt</div>
+    </div>
+    <div id="coalition-detail">Klikk på partier ovenfor for å legge dem til koalisjonen</div>
+  </div>
+
+  <!-- ── CHART ── -->
+  <div class="card">
+    <div class="card-title">Utvikling over tid</div>
+    <div id="error-msg"></div>
+    <div class="controls">
+      <label class="ctrl-label">Fra <input type="date" id="date-from" value="2013-01-01"></label>
+      <label class="ctrl-label">Til <input type="date" id="date-to"></label>
+      <button class="btn" onclick="setAllVisible(true)">Vis alle</button>
+      <button class="btn" onclick="setAllVisible(false)">Skjul alle</button>
+      <label class="toggle-wrap">
+        <input type="checkbox" id="smooth-toggle" checked> Glattet kurve
+      </label>
+    </div>
+    <div id="chart-wrap">
+      <div id="loading-msg"><div class="spinner"></div> Laster data…</div>
+      <canvas id="pollChart"></canvas>
+    </div>
+    <div id="data-source-info"></div>
+  </div>
+
+</div>
+
+<script>
+/* ────────────────────────────────────────────
+   Party definitions
+──────────────────────────────────────────── */
+const PARTIES = [
+  { key: 'Ap',      full: 'Arbeiderpartiet',           color: '#E8112D', bloc: 'left'  },
+  { key: 'Høyre',   full: 'Høyre',                     color: '#0065F1', bloc: 'right' },
+  { key: 'Frp',     full: 'Fremskrittspartiet',        color: '#00327A', bloc: 'right' },
+  { key: 'Sp',      full: 'Senterpartiet',             color: '#1C9E3B', bloc: 'left'  },
+  { key: 'SV',      full: 'Sos. Venstreparti',         color: '#EB4F2E', bloc: 'left'  },
+  { key: 'MDG',     full: 'Miljøpartiet De Grønne',    color: '#3BAB36', bloc: 'left'  },
+  { key: 'KrF',     full: 'Kristelig Folkeparti',      color: '#F4B223', bloc: 'right' },
+  { key: 'Venstre', full: 'Venstre',                   color: '#2AB84A', bloc: 'right' },
+  { key: 'Rødt',    full: 'Rødt',                      color: '#CC0000', bloc: 'left'  },
+];
+const PARTY_MAP = Object.fromEntries(PARTIES.map(p => [p.key, p]));
+
+/* Wide-format aliases: maps column header → our key */
+const WIDE_ALIAS = { H: 'Høyre', V: 'Venstre', R: 'Rødt', Rødt: 'Rødt', Frp: 'Frp', FrP: 'Frp' };
+
+/* ────────────────────────────────────────────
+   State
+──────────────────────────────────────────── */
+let monthlyData = {};   // { 'YYYY-MM': { Ap: 25.3, … } }
+let sortedMonths = [];
+let currentLatest = {};
+let chart = null;
+let selectedParties = new Set();
+
+/* ────────────────────────────────────────────
+   Data loading
+──────────────────────────────────────────── */
+const REMOTE_URL =
+  'https://www.pollofpolls.no/lastned.csv?tabell=gallupsnitttabell&antall=10&type=riks&int=m&kommuneid=0&start=2000-01-01&slutt=2026-03-06';
+const LOCAL_CSV = './polls.csv';
+
+async function loadData() {
+  // 1. Try remote URL
+  try {
+    const res = await fetch(REMOTE_URL);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
+    if (parsed.data.length && processWide(parsed)) {
+      showSource('pollofpolls.no (live)');
+      return;
+    }
+  } catch (_) { /* fall through */ }
+
+  // 2. Try local polls.csv
+  try {
+    const res = await fetch(LOCAL_CSV);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
+    if (parsed.data.length && processLong(parsed)) {
+      showSource('polls.csv (lokal)');
+      return;
+    }
+  } catch (_) { /* fall through */ }
+
+  // 3. Show file picker fallback
+  showError(
+    'Kunne ikke laste data automatisk. ' +
+    'Start en lokal server med: <code>python3 -m http.server 8000</code> ' +
+    'og åpne <strong>http://localhost:8000</strong>, ' +
+    'eller last opp CSV-filen manuelt: ' +
+    '<input type="file" accept=".csv" id="file-input" style="margin-left:8px">'
+  );
+  document.getElementById('loading-msg').style.display = 'none';
+  setTimeout(() => {
+    const fi = document.getElementById('file-input');
+    if (fi) fi.addEventListener('change', e => handleFileUpload(e.target.files[0]));
+  }, 100);
+}
+
+/* Process wide format: one row per date, one column per party */
+function processWide(parsed) {
+  const headers = parsed.meta.fields || [];
+  const dateCol = headers.find(h => /dato|date|aar|mnd/i.test(h)) || headers[0];
+  if (!dateCol) return false;
+
+  const partyHeaders = headers.filter(h => h !== dateCol && h !== 'Andre');
+  if (!partyHeaders.length) return false;
+
+  parsed.data.forEach(row => {
+    const raw = (row[dateCol] || '').trim();
+    if (!raw) return;
+    // Accept YYYY-MM-DD or YYYY-MM
+    const month = raw.substring(0, 7);
+    if (!/^\d{4}-\d{2}/.test(month)) return;
+    if (!monthlyData[month]) monthlyData[month] = {};
+    partyHeaders.forEach(h => {
+      const key = WIDE_ALIAS[h] || (PARTY_MAP[h] ? h : null);
+      if (!key) return;
+      const v = parseFloat((row[h] || '').replace(',', '.'));
+      if (!isNaN(v)) monthlyData[month][key] = v;
+    });
+  });
+
+  finalize();
+  return sortedMonths.length > 0;
+}
+
+/* Process long format: hvem, dag, måned, år, Parti, Prosent, Mandater, dato */
+function processLong(parsed) {
+  const sums = {}; // { 'YYYY-MM': { Ap: [25.3, …] } }
+
+  parsed.data.forEach(row => {
+    const party = (row.Parti || '').trim();
+    if (!PARTY_MAP[party]) return;
+    const dato = (row.dato || '').trim();
+    if (!dato || dato.length < 7) return;
+    const month = dato.substring(0, 7);
+    const pct = parseFloat((row.Prosent || '0').trim());
+    if (isNaN(pct)) return;
+    if (!sums[month]) sums[month] = {};
+    if (!sums[month][party]) sums[month][party] = [];
+    sums[month][party].push(pct);
+  });
+
+  Object.keys(sums).forEach(month => {
+    monthlyData[month] = {};
+    Object.entries(sums[month]).forEach(([p, vals]) => {
+      monthlyData[month][p] = vals.reduce((a, b) => a + b, 0) / vals.length;
+    });
+  });
+
+  finalize();
+  return sortedMonths.length > 0;
+}
+
+function finalize() {
+  sortedMonths = Object.keys(monthlyData).sort();
+
+  // Compute latest available per party
+  for (let i = sortedMonths.length - 1; i >= 0; i--) {
+    const m = sortedMonths[i];
+    Object.entries(monthlyData[m]).forEach(([p, v]) => {
+      if (!(p in currentLatest)) currentLatest[p] = v;
+    });
+    if (Object.keys(currentLatest).length >= PARTIES.length) break;
+  }
+}
+
+function handleFileUpload(file) {
+  Papa.parse(file, {
+    header: true,
+    skipEmptyLines: true,
+    complete(res) {
+      monthlyData = {}; sortedMonths = []; currentLatest = {};
+      const ok = processLong(res) || processWide(res);
+      if (ok) {
+        hideError();
+        buildUI();
+        buildChart();
+      } else {
+        showError('Ukjent CSV-format. Forventet kolonner: hvem, Parti, Prosent, dato');
+      }
+    }
+  });
+}
+
+/* ────────────────────────────────────────────
+   UI helpers
+──────────────────────────────────────────── */
+function showError(html) {
+  const el = document.getElementById('error-msg');
+  el.innerHTML = html;
+  el.style.display = 'block';
+}
+function hideError() { document.getElementById('error-msg').style.display = 'none'; }
+function showSource(src) {
+  document.getElementById('data-source-info').textContent = 'Datakilde: ' + src;
+}
+
+/* ────────────────────────────────────────────
+   Coalition builder UI
+──────────────────────────────────────────── */
+function buildUI() {
+  const grid = document.getElementById('party-grid');
+  grid.innerHTML = '';
+
+  PARTIES.forEach(({ key, full, color }) => {
+    const pct = currentLatest[key] ?? null;
+    const card = document.createElement('div');
+    card.className = 'pcard';
+    card.dataset.party = key;
+    card.style.setProperty('--pc', color);
+    card.innerHTML = `
+      <div class="abbr">${key}</div>
+      <div class="fullname">${full}</div>
+      <div class="pct">${pct !== null ? pct.toFixed(1) + '%' : '—'}</div>
+    `;
+    card.addEventListener('click', () => toggleParty(key));
+    grid.appendChild(card);
+  });
+
+  updateCoalition();
+}
+
+function toggleParty(key) {
+  if (selectedParties.has(key)) selectedParties.delete(key);
+  else selectedParties.add(key);
+
+  document.querySelectorAll('.pcard').forEach(c => {
+    c.classList.toggle('selected', selectedParties.has(c.dataset.party));
+  });
+
+  updateCoalition();
+}
+
+function updateCoalition() {
+  const total = [...selectedParties].reduce((s, p) => s + (currentLatest[p] ?? 0), 0);
+  const pct = total.toFixed(1);
+
+  document.getElementById('total-big').textContent = pct + '%';
+  document.getElementById('bar-fill').style.width = Math.min(total, 100) + '%';
+
+  // Colour bar based on majority
+  const fill = document.getElementById('bar-fill');
+  if (total >= 50) {
+    fill.style.background = 'var(--green)';
+  } else if (total >= 40) {
+    fill.style.background = 'var(--orange)';
+  } else {
+    fill.style.background = 'var(--accent)';
+  }
+
+  const statusEl = document.getElementById('majority-status');
+  if (selectedParties.size === 0) {
+    statusEl.textContent = 'Ingen valgt';
+    statusEl.style.color = 'var(--muted)';
+    document.getElementById('coalition-detail').textContent =
+      'Klikk på partier ovenfor for å legge dem til koalisjonen';
+    return;
+  }
+
+  if (total >= 50) {
+    statusEl.textContent = '✓ Flertall!';
+    statusEl.style.color = 'var(--green)';
+  } else {
+    statusEl.textContent = `Mangler ${(50 - total).toFixed(1)}%`;
+    statusEl.style.color = 'var(--orange)';
+  }
+
+  const parts = [...selectedParties]
+    .map(p => `${p} ${(currentLatest[p] ?? 0).toFixed(1)}%`)
+    .join('  +  ');
+  document.getElementById('coalition-detail').textContent = parts;
+}
+
+/* ────────────────────────────────────────────
+   Chart
+──────────────────────────────────────────── */
+function buildChart() {
+  const fromVal = document.getElementById('date-from').value;
+  const toVal   = document.getElementById('date-to').value;
+  const smooth  = document.getElementById('smooth-toggle').checked;
+
+  const fromM = fromVal ? fromVal.substring(0, 7) : '2000-01';
+  const toM   = toVal   ? toVal.substring(0, 7)   : '9999-12';
+
+  const months = sortedMonths.filter(m => m >= fromM && m <= toM);
+
+  const datasets = PARTIES.map(({ key, full, color }) => {
+    const data = months
+      .map(m => ({ x: m + '-15', y: monthlyData[m]?.[key] ?? null }))
+      .filter(d => d.y !== null);
+    return {
+      label: key,
+      data,
+      borderColor: color,
+      backgroundColor: color + '20',
+      borderWidth: 2,
+      pointRadius: 0,
+      pointHoverRadius: 5,
+      tension: smooth ? 0.35 : 0,
+      spanGaps: false,
+    };
+  });
+
+  // Sperregrense annotation
+  datasets.push({
+    label: 'Sperregrense 4%',
+    data: months.map(m => ({ x: m + '-15', y: 4 })),
+    borderColor: 'rgba(255,255,255,0.18)',
+    borderWidth: 1.5,
+    borderDash: [5, 4],
+    pointRadius: 0,
+    tension: 0,
+    fill: false,
+  });
+
+  if (chart) chart.destroy();
+
+  const ctx = document.getElementById('pollChart').getContext('2d');
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: { datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 200 },
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            color: '#8b949e',
+            usePointStyle: true,
+            pointStyleWidth: 16,
+            boxHeight: 8,
+            padding: 14,
+            font: { size: 12 },
+          },
+        },
+        tooltip: {
+          backgroundColor: '#1c2128',
+          borderColor: '#30363d',
+          borderWidth: 1,
+          titleColor: '#e6edf3',
+          bodyColor: '#8b949e',
+          padding: 10,
+          itemSort: (a, b) => b.parsed.y - a.parsed.y,
+          callbacks: {
+            label: ctx => {
+              if (ctx.parsed.y === null) return null;
+              return `  ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`;
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          type: 'time',
+          time: { unit: 'year', tooltipFormat: 'MMM yyyy' },
+          grid: { color: '#21262d' },
+          ticks: { color: '#8b949e', maxRotation: 0 },
+        },
+        y: {
+          min: 0,
+          suggestedMax: 40,
+          grid: { color: '#21262d' },
+          ticks: { color: '#8b949e', callback: v => v + '%' },
+        },
+      },
+    },
+  });
+}
+
+function setAllVisible(vis) {
+  if (!chart) return;
+  chart.data.datasets.forEach((_, i) => chart.setDatasetVisibility(i, vis));
+  chart.update();
+}
+
+/* ────────────────────────────────────────────
+   Init
+──────────────────────────────────────────── */
+// Set today as default "to" date
+document.getElementById('date-to').value = new Date().toISOString().substring(0, 10);
+
+document.getElementById('date-from').addEventListener('change', rebuildChart);
+document.getElementById('date-to').addEventListener('change', rebuildChart);
+document.getElementById('smooth-toggle').addEventListener('change', rebuildChart);
+
+function rebuildChart() {
+  if (sortedMonths.length) buildChart();
+}
+
+// Boot
+loadData().then(() => {
+  if (sortedMonths.length) {
+    buildUI();
+    buildChart();
+    document.getElementById('loading-msg').style.display = 'none';
+  }
+});
+</script>
+</body>
+</html>
