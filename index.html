@@ -282,7 +282,7 @@ const PARTIES = [
 const PARTY_MAP = Object.fromEntries(PARTIES.map(p => [p.key, p]));
 
 /* Wide-format aliases: maps column header → our key */
-const WIDE_ALIAS = { H: 'Høyre', V: 'Venstre', R: 'Rødt', Rødt: 'Rødt', Frp: 'Frp', FrP: 'Frp' };
+const WIDE_ALIAS = { H: 'Høyre', Høyre: 'Høyre', V: 'Venstre', R: 'Rødt', Rødt: 'Rødt', Frp: 'Frp', FrP: 'Frp' };
 
 /* ────────────────────────────────────────────
    State
@@ -318,8 +318,8 @@ async function loadData() {
     const res = await fetch(LOCAL_CSV);
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const text = await res.text();
-    const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
-    if (parsed.data.length && processLong(parsed)) {
+    const parsed = Papa.parse(text, { header: true, skipEmptyLines: true, delimiter: ';' });
+    if (parsed.data.length && (processWide(parsed) || processLong(parsed))) {
       showSource('polls.csv (lokal)');
       return;
     }
@@ -340,11 +340,25 @@ async function loadData() {
   }, 100);
 }
 
+/* Convert Norwegian month name like "Mars '26" → "2026-03" */
+const NO_MONTHS = {
+  januar:1, februar:2, mars:3, april:4, mai:5, juni:6,
+  juli:7, august:8, september:9, oktober:10, november:11, desember:12
+};
+function parseNorwegianMonth(raw) {
+  const m = raw.trim().toLowerCase().match(/^(\w+)\s+'?(\d{2})$/);
+  if (!m) return null;
+  const mo = NO_MONTHS[m[1]];
+  if (!mo) return null;
+  const yr = parseInt(m[2]) + 2000;
+  return `${yr}-${String(mo).padStart(2,'0')}`;
+}
+
 /* Process wide format: one row per date, one column per party */
 function processWide(parsed) {
   const headers = parsed.meta.fields || [];
   const dateCol = headers.find(h => /dato|date|aar|mnd/i.test(h)) || headers[0];
-  if (!dateCol) return false;
+  if (!dateCol && dateCol !== '') return false;
 
   const partyHeaders = headers.filter(h => h !== dateCol && h !== 'Andre');
   if (!partyHeaders.length) return false;
@@ -353,13 +367,19 @@ function processWide(parsed) {
     const raw = (row[dateCol] || '').trim();
     if (!raw) return;
     // Accept YYYY-MM-DD or YYYY-MM
-    const month = raw.substring(0, 7);
-    if (!/^\d{4}-\d{2}/.test(month)) return;
+    let month = raw.substring(0, 7);
+    if (!/^\d{4}-\d{2}/.test(month)) {
+      // Try Norwegian month format: "Mars '26"
+      month = parseNorwegianMonth(raw);
+      if (!month) return;
+    }
     if (!monthlyData[month]) monthlyData[month] = {};
     partyHeaders.forEach(h => {
       const key = WIDE_ALIAS[h] || (PARTY_MAP[h] ? h : null);
       if (!key) return;
-      const v = parseFloat((row[h] || '').replace(',', '.'));
+      // Strip mandate count in parentheses, e.g. "23,4 (43)" → "23.4"
+      const clean = (row[h] || '').replace(/\s*\(.*?\)/, '').replace(',', '.').trim();
+      const v = parseFloat(clean);
       if (!isNaN(v)) monthlyData[month][key] = v;
     });
   });
@@ -413,15 +433,26 @@ function handleFileUpload(file) {
   Papa.parse(file, {
     header: true,
     skipEmptyLines: true,
+    delimiter: ';',
     complete(res) {
       monthlyData = {}; sortedMonths = []; currentLatest = {};
-      const ok = processLong(res) || processWide(res);
+      const ok = processWide(res) || processLong(res);
       if (ok) {
         hideError();
         buildUI();
         buildChart();
       } else {
-        showError('Ukjent CSV-format. Forventet kolonner: hvem, Parti, Prosent, dato');
+        // Try comma delimiter as fallback
+        Papa.parse(file, {
+          header: true,
+          skipEmptyLines: true,
+          complete(res2) {
+            monthlyData = {}; sortedMonths = []; currentLatest = {};
+            const ok2 = processLong(res2) || processWide(res2);
+            if (ok2) { hideError(); buildUI(); buildChart(); }
+            else showError('Ukjent CSV-format. Forventet kolonner: hvem, Parti, Prosent, dato');
+          }
+        });
       }
     }
   });
