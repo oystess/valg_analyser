@@ -327,16 +327,32 @@ async function loadData() {
 
   // 3. Show file picker fallback
   showError(
-    'Kunne ikke laste data automatisk. ' +
-    'Start en lokal server med: <code>python3 -m http.server 8000</code> ' +
-    'og åpne <strong>http://localhost:8000</strong>, ' +
-    'eller last opp CSV-filen manuelt: ' +
-    '<input type="file" accept=".csv" id="file-input" style="margin-left:8px">'
+    '<strong>Kunne ikke laste data automatisk.</strong><br><br>' +
+    'Last opp <code>polls.csv</code> fra mappen din:<br><br>' +
+    '<input type="file" accept=".csv" id="file-input"> ' +
+    '<button id="file-load-btn" style="margin-left:8px;padding:6px 14px;background:#238636;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px" disabled>Last inn</button>' +
+    '<span id="file-status" style="margin-left:10px;font-size:12px"></span>'
   );
   document.getElementById('loading-msg').style.display = 'none';
   setTimeout(() => {
     const fi = document.getElementById('file-input');
-    if (fi) fi.addEventListener('change', e => handleFileUpload(e.target.files[0]));
+    const btn = document.getElementById('file-load-btn');
+    const status = document.getElementById('file-status');
+    if (fi) {
+      fi.addEventListener('change', () => {
+        btn.disabled = !fi.files.length;
+        status.textContent = fi.files.length ? fi.files[0].name + ' valgt' : '';
+      });
+    }
+    if (btn) {
+      btn.addEventListener('click', () => {
+        if (fi && fi.files.length) {
+          btn.disabled = true;
+          btn.textContent = 'Laster…';
+          handleFileUpload(fi.files[0]);
+        }
+      });
+    }
   }, 100);
 }
 
@@ -441,6 +457,7 @@ function handleFileUpload(file) {
         hideError();
         buildUI();
         buildChart();
+        showSource(file.name + ' (opplastet)');
       } else {
         // Try comma delimiter as fallback
         Papa.parse(file, {
@@ -449,8 +466,14 @@ function handleFileUpload(file) {
           complete(res2) {
             monthlyData = {}; sortedMonths = []; currentLatest = {};
             const ok2 = processLong(res2) || processWide(res2);
-            if (ok2) { hideError(); buildUI(); buildChart(); }
-            else showError('Ukjent CSV-format. Forventet kolonner: hvem, Parti, Prosent, dato');
+            if (ok2) {
+              hideError();
+              buildUI();
+              buildChart();
+              showSource(file.name + ' (opplastet)');
+            } else {
+              showError('Klarte ikke å lese filen. Prøv polls.csv fra samme mappe som index.html.');
+            }
           }
         });
       }
