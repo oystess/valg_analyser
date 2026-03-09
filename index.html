@@ -205,6 +205,16 @@
       font-size: 13px;
       display: none;
     }
+    #success-msg {
+      background: rgba(35,134,54,.15);
+      border: 1px solid rgba(35,134,54,.4);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: #3fb950;
+      font-size: 13px;
+      display: none;
+      margin-bottom: 12px;
+    }
 
     #data-source-info {
       font-size: 11px;
@@ -226,6 +236,7 @@
   <!-- ── COALITION BUILDER ── -->
   <div class="card">
     <div class="card-title">Koalisjonsbygger — klikk partier for å bygge koalisjon</div>
+    <div id="success-msg"></div>
     <div id="party-grid"></div>
 
     <div id="coalition-bar-wrap">
@@ -451,33 +462,42 @@ function handleFileUpload(file) {
     skipEmptyLines: true,
     delimiter: ';',
     complete(res) {
-      monthlyData = {}; sortedMonths = []; currentLatest = {};
-      const ok = processWide(res) || processLong(res);
-      if (ok) {
-        hideError();
-        buildUI();
-        buildChart();
-        showSource(file.name + ' (opplastet)');
-      } else {
-        // Try comma delimiter as fallback
-        Papa.parse(file, {
-          header: true,
-          skipEmptyLines: true,
-          complete(res2) {
-            monthlyData = {}; sortedMonths = []; currentLatest = {};
-            const ok2 = processLong(res2) || processWide(res2);
-            if (ok2) {
-              hideError();
-              buildUI();
-              buildChart();
-              showSource(file.name + ' (opplastet)');
-            } else {
-              showError('Klarte ikke å lese filen. Prøv polls.csv fra samme mappe som index.html.');
+      try {
+        monthlyData = {}; sortedMonths = []; currentLatest = {};
+        const ok = processWide(res) || processLong(res);
+        if (ok) {
+          hideError();
+          buildUI();
+          buildChart();
+          showSource(file.name + ' (opplastet)');
+          showSuccess(`${sortedMonths.length} måneder lastet. Klikk partikortene for å bygge koalisjon.`);
+          document.getElementById('party-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          // Try comma delimiter as fallback
+          Papa.parse(file, {
+            header: true,
+            skipEmptyLines: true,
+            complete(res2) {
+              try {
+                monthlyData = {}; sortedMonths = []; currentLatest = {};
+                const ok2 = processLong(res2) || processWide(res2);
+                if (ok2) {
+                  hideError();
+                  buildUI();
+                  buildChart();
+                  showSource(file.name + ' (opplastet)');
+                  showSuccess(`${sortedMonths.length} måneder lastet. Klikk partikortene for å bygge koalisjon.`);
+                  document.getElementById('party-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                  showError(`Klarte ikke å lese "${file.name}". Kontroller at det er riktig polls.csv-fil.`);
+                }
+              } catch(e) { showError('Feil ved innlesing: ' + e.message); }
             }
-          }
-        });
-      }
-    }
+          });
+        }
+      } catch(e) { showError('Feil ved innlesing: ' + e.message); }
+    },
+    error(err) { showError('Kunne ikke lese filen: ' + err.message); }
   });
 }
 
@@ -490,6 +510,13 @@ function showError(html) {
   el.style.display = 'block';
 }
 function hideError() { document.getElementById('error-msg').style.display = 'none'; }
+function showSuccess(msg) {
+  const el = document.getElementById('success-msg');
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
 function showSource(src) {
   document.getElementById('data-source-info').textContent = 'Datakilde: ' + src;
 }
