@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oda Handlekurv</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      color: #1a1a1a;
+      min-height: 100vh;
+      padding: 24px 16px;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      color: #666;
+      margin-bottom: 28px;
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    .card h2 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-badge {
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #444;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input:focus { border-color: #1a1a1a; }
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+    }
+    button:hover { background: #333; }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .btn-success { background: #16a34a; }
+    .btn-success:hover { background: #15803d; }
+
+    .status {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      padding: 10px 14px;
+      border-radius: 8px;
+      display: none;
+    }
+    .status.ok   { background: #dcfce7; color: #166534; }
+    .status.err  { background: #fee2e2; color: #991b1b; }
+    .status.info { background: #e0f2fe; color: #075985; }
+
+    .ingredient-list {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+    .ingredient-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .ingredient-list li:last-child { border-bottom: none; }
+
+    .ingredient-list input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: #1a1a1a;
+      cursor: pointer;
+    }
+    .ingredient-list .ing-text {
+      flex: 1;
+      font-size: 0.93rem;
+    }
+    .ingredient-list .ing-result {
+      font-size: 0.8rem;
+      color: #888;
+    }
+    .ingredient-list .ok  .ing-result { color: #16a34a; }
+    .ingredient-list .err .ing-result { color: #dc2626; }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: #555;
+    }
+
+    .total-line {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #1a1a1a;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1.5px solid #eee;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .oda-link {
+      display: inline-block;
+      margin-top: 14px;
+      background: #f97316;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .oda-link:hover { background: #ea6c10; }
+
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .dimmed { opacity: 0.4; pointer-events: none; }
+
+    #section-recipe, #section-cart { display: none; }
+    #section-recipe.visible, #section-cart.visible { display: block; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Oda Handlekurv</h1>
+  <p class="subtitle">Logg inn, hent oppskrift fra Google Drive og legg ingredienser i handlekurven automatisk.</p>
+
+  <!-- STEG 1: Logg inn -->
+  <div class="card" id="card-login">
+    <h2><span class="step-badge">1</span> Logg inn på Oda</h2>
+    <label for="username">E-postadresse</label>
+    <input type="email" id="username" placeholder="din@epost.no" autocomplete="email">
+    <label for="password">Passord</label>
+    <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+    <button id="btn-login" onclick="doLogin()">
+      Logg inn
+    </button>
+    <div class="status" id="login-status"></div>
+  </div>
+
+  <!-- STEG 2: Hent oppskrift -->
+  <div class="card dimmed" id="section-recipe">
+    <h2><span class="step-badge">2</span> Hent oppskrift fra Google Drive</h2>
+    <label for="drive-url">Google Drive delingslenkje til .txt-fil</label>
+    <input type="text" id="drive-url" placeholder="https://drive.google.com/file/d/...">
+    <small style="display:block; color:#888; font-size:0.82rem; margin-top:-10px; margin-bottom:14px;">
+      Filen må være delt slik at alle med lenken kan se den.
+    </small>
+    <button id="btn-fetch" onclick="fetchRecipe()">
+      Hent ingredienser
+    </button>
+    <div class="status" id="fetch-status"></div>
+  </div>
+
+  <!-- STEG 3: Legg i handlekurv -->
+  <div class="card dimmed" id="section-cart">
+    <h2><span class="step-badge">3</span> Legg i handlekurv</h2>
+    <ul class="ingredient-list" id="ingredient-list"></ul>
+    <button class="btn-success" id="btn-cart" onclick="addToCart()">
+      Legg valgte i handlekurv
+    </button>
+    <div class="status" id="cart-status"></div>
+    <div id="cart-results" style="margin-top:16px; display:none;"></div>
+  </div>
+</div>
+
+<script>
+  let loggedIn = false;
+
+  function showStatus(id, msg, type) {
+    const el = document.getElementById(id);
+    el.textContent = msg;
+    el.className = 'status ' + type;
+    el.style.display = 'block';
+  }
+
+  function setLoading(btnId, loading) {
+    const btn = document.getElementById(btnId);
+    if (loading) {
+      btn._origText = btn.innerHTML;
+      btn.innerHTML = '<span class="spinner"></span> Venter...';
+      btn.disabled = true;
+    } else {
+      btn.innerHTML = btn._origText || btn.innerHTML;
+      btn.disabled = false;
+    }
+  }
+
+  async function doLogin() {
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value;
+    if (!username || !password) {
+      showStatus('login-status', 'Fyll inn e-post og passord.', 'err');
+      return;
+    }
+    setLoading('btn-login', true);
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        showStatus('login-status', 'Innlogget! Gå videre til steg 2.', 'ok');
+        loggedIn = true;
+        document.getElementById('section-recipe').classList.remove('dimmed');
+        document.getElementById('section-recipe').classList.add('visible');
+      } else {
+        showStatus('login-status', 'Feil: ' + data.error, 'err');
+      }
+    } catch (e) {
+      showStatus('login-status', 'Nettverksfeil: ' + e.message, 'err');
+    }
+    setLoading('btn-login', false);
+  }
+
+  async function fetchRecipe() {
+    const url = document.getElementById('drive-url').value.trim();
+    if (!url) {
+      showStatus('fetch-status', 'Lim inn en Google Drive-lenke.', 'err');
+      return;
+    }
+    setLoading('btn-fetch', true);
+    try {
+      const res = await fetch('/api/fetch-recipe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        showStatus('fetch-status', data.ingredients.length + ' linjer hentet.', 'ok');
+        renderIngredients(data.ingredients);
+        document.getElementById('section-cart').classList.remove('dimmed');
+        document.getElementById('section-cart').classList.add('visible');
+      } else {
+        showStatus('fetch-status', 'Feil: ' + data.error, 'err');
+      }
+    } catch (e) {
+      showStatus('fetch-status', 'Nettverksfeil: ' + e.message, 'err');
+    }
+    setLoading('btn-fetch', false);
+  }
+
+  function renderIngredients(ingredients) {
+    const list = document.getElementById('ingredient-list');
+    list.innerHTML = '';
+    ingredients.forEach((ing, i) => {
+      const li = document.createElement('li');
+      li.id = 'ing-' + i;
+      li.innerHTML = `
+        <input type="checkbox" id="cb-${i}" checked>
+        <label for="cb-${i}" class="ing-text">${escHtml(ing)}</label>
+        <span class="ing-result" id="res-${i}"></span>
+      `;
+      list.appendChild(li);
+    });
+  }
+
+  async function addToCart() {
+    const checkboxes = document.querySelectorAll('#ingredient-list input[type=checkbox]');
+    const selected = [];
+    checkboxes.forEach((cb, i) => {
+      if (cb.checked) {
+        const label = cb.nextElementSibling;
+        selected.push({ index: i, text: label.textContent.trim() });
+      }
+    });
+
+    if (selected.length === 0) {
+      showStatus('cart-status', 'Velg minst en ingrediens.', 'err');
+      return;
+    }
+
+    setLoading('btn-cart', true);
+    showStatus('cart-status', 'Søker og legger i handlekurv...', 'info');
+
+    try {
+      const res = await fetch('/api/add-to-cart', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ingredients: selected.map(s => s.text) }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        let total = 0;
+        let addedCount = 0;
+        data.results.forEach((r, idx) => {
+          const origIdx = selected[idx].index;
+          const li = document.getElementById('ing-' + origIdx);
+          const resSpan = document.getElementById('res-' + origIdx);
+          if (r.ok) {
+            li.classList.add('ok');
+            resSpan.textContent = r.product + (r.price ? ' – kr ' + r.price.toFixed(2) : '');
+            total += r.price || 0;
+            addedCount++;
+          } else {
+            li.classList.add('err');
+            resSpan.textContent = r.error;
+          }
+        });
+
+        showStatus('cart-status', addedCount + '/' + selected.length + ' lagt i handlekurven.', 'ok');
+        const resultsDiv = document.getElementById('cart-results');
+        resultsDiv.style.display = 'block';
+        resultsDiv.innerHTML = `
+          <div class="total-line">
+            <span>Estimert total</span>
+            <span>kr ${total.toFixed(2)}</span>
+          </div>
+          <a class="oda-link" href="https://oda.com/no/cart/" target="_blank">
+            Fullfør bestilling på Oda &rarr;
+          </a>
+        `;
+      } else {
+        showStatus('cart-status', 'Feil: ' + data.error, 'err');
+      }
+    } catch (e) {
+      showStatus('cart-status', 'Nettverksfeil: ' + e.message, 'err');
+    }
+    setLoading('btn-cart', false);
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  // Allow Enter to submit login
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !loggedIn) doLogin();
+  });
+</script>
+</body>
+</html>
