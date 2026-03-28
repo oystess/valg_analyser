@@ -381,7 +381,7 @@ def bygg_html(figs: dict, reg: dict, n_kommuner: int, korr_ap_sp: float,
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <!-- Plotly -->
-<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-3.4.0.min.js"></script>
 
 <script>
   tailwind.config = {{
