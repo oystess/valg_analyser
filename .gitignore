@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+
+__pycache__/
+*.pyc
+data_befolkning.csv
