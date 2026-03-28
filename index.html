@@ -1,729 +1,306 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="no" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Norske meningsmålinger</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-  <script src="https://cdn.papaparse.com/papaparse.min.js"></script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Befolkningsvekst og partioppslutning – Norge</title>
 
-    :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --surface2: #21262d;
-      --border: #30363d;
-      --text: #e6edf3;
-      --muted: #8b949e;
-      --accent: #58a6ff;
-      --green: #3fb950;
-      --orange: #d29922;
-      --red: #f85149;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
-      font-size: 14px;
-      line-height: 1.5;
-      min-height: 100vh;
-    }
-
-    header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 32px;
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-    }
-    header h1 { font-size: 18px; font-weight: 600; color: var(--accent); }
-    header span { color: var(--muted); font-size: 12px; }
-
-    .layout { max-width: 1280px; margin: 0 auto; padding: 24px 32px; display: grid; gap: 20px; }
-
-    /* ── Card ── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 20px 24px;
-    }
-    .card-title {
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--muted);
-      margin-bottom: 16px;
-    }
-
-    /* ── Party grid ── */
-    #party-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .pcard {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 2px solid var(--border);
-      background: var(--surface2);
-      cursor: pointer;
-      transition: transform .12s ease, border-color .12s ease, background .12s ease;
-      min-width: 76px;
-      user-select: none;
-    }
-    .pcard:hover { transform: translateY(-2px); background: #2d333b; }
-    .pcard.selected {
-      border-color: var(--pc, #fff);
-      background: color-mix(in srgb, var(--pc, #fff) 18%, var(--surface2));
-    }
-    .pcard .abbr { font-size: 15px; font-weight: 700; color: var(--pc, #fff); }
-    .pcard .fullname { font-size: 10px; color: var(--muted); text-align: center; max-width: 80px; }
-    .pcard .pct { font-size: 16px; font-weight: 600; }
-
-    /* ── Coalition total ── */
-    #coalition-bar-wrap {
-      display: grid;
-      grid-template-columns: 72px 1fr 140px;
-      align-items: center;
-      gap: 16px;
-      padding: 14px 16px;
-      background: var(--surface2);
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      margin-bottom: 12px;
-    }
-    #total-big {
-      font-size: 28px;
-      font-weight: 700;
-      text-align: center;
-      color: var(--accent);
-      line-height: 1;
-    }
-    #total-label { font-size: 10px; color: var(--muted); text-align: center; margin-top: 3px; }
-    #bar-outer {
-      height: 20px;
-      background: rgba(255,255,255,.06);
-      border-radius: 10px;
-      position: relative;
-      overflow: visible;
-    }
-    #bar-fill {
-      height: 100%;
-      border-radius: 10px;
-      transition: width .25s ease, background .25s ease;
-      background: var(--accent);
-      max-width: 100%;
-    }
-    #bar-50-marker {
-      position: absolute;
-      left: 50%;
-      top: -4px;
-      bottom: -4px;
-      width: 2px;
-      background: rgba(255,255,255,.35);
-      border-radius: 1px;
-    }
-    #bar-50-marker::after {
-      content: '50%';
-      position: absolute;
-      top: -16px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 10px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    #majority-status { font-size: 13px; font-weight: 600; text-align: right; }
-    #coalition-detail { font-size: 12px; color: var(--muted); min-height: 18px; }
-
-    /* ── Chart controls ── */
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    .ctrl-label { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
-    input[type="date"] {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 5px 8px;
-      border-radius: 6px;
-      font-size: 12px;
-    }
-    .btn {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 5px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 12px;
-      transition: background .12s;
-    }
-    .btn:hover { background: #2d333b; }
-
-    /* Chart smoothing toggle */
-    .toggle-wrap { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
-    input[type="checkbox"] { accent-color: var(--accent); }
-
-    #chart-wrap { position: relative; height: 460px; }
-    #loading-msg {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--muted); font-size: 14px; gap: 10px;
-    }
-    .spinner {
-      width: 20px; height: 20px;
-      border: 2px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
-      animation: spin .8s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    #error-msg {
-      background: rgba(248,81,73,.1);
-      border: 1px solid rgba(248,81,73,.3);
-      border-radius: 8px;
-      padding: 12px 16px;
-      color: var(--red);
-      font-size: 13px;
-      display: none;
-    }
-    #success-msg {
-      background: rgba(35,134,54,.15);
-      border: 1px solid rgba(35,134,54,.4);
-      border-radius: 8px;
-      padding: 12px 16px;
-      color: #3fb950;
-      font-size: 13px;
-      display: none;
-      margin-bottom: 12px;
-    }
-
-    #data-source-info {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 10px;
-      text-align: right;
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <h1>Norske meningsmålinger</h1>
-  <span>Månedlige gjennomsnitt · Kilde: pollofpolls.no</span>
-</header>
-
-<div class="layout">
-
-  <!-- ── COALITION BUILDER ── -->
-  <div class="card">
-    <div class="card-title">Koalisjonsbygger — klikk partier for å bygge koalisjon</div>
-    <div id="success-msg"></div>
-    <div id="party-grid"></div>
-
-    <div id="coalition-bar-wrap">
-      <div>
-        <div id="total-big">0%</div>
-        <div id="total-label">av stemmene</div>
-      </div>
-      <div id="bar-outer">
-        <div id="bar-50-marker"></div>
-        <div id="bar-fill" style="width:0%"></div>
-      </div>
-      <div id="majority-status" style="color: var(--muted)">Ingen valgt</div>
-    </div>
-    <div id="coalition-detail">Klikk på partier ovenfor for å legge dem til koalisjonen</div>
-  </div>
-
-  <!-- ── CHART ── -->
-  <div class="card">
-    <div class="card-title">Utvikling over tid</div>
-    <div id="error-msg"></div>
-    <div class="controls">
-      <label class="ctrl-label">Fra <input type="date" id="date-from" value="2013-01-01"></label>
-      <label class="ctrl-label">Til <input type="date" id="date-to"></label>
-      <button class="btn" onclick="setAllVisible(true)">Vis alle</button>
-      <button class="btn" onclick="setAllVisible(false)">Skjul alle</button>
-      <label class="toggle-wrap">
-        <input type="checkbox" id="smooth-toggle" checked> Glattet kurve
-      </label>
-    </div>
-    <div id="chart-wrap">
-      <div id="loading-msg"><div class="spinner"></div> Laster data…</div>
-      <canvas id="pollChart"></canvas>
-    </div>
-    <div id="data-source-info"></div>
-  </div>
-
-</div>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Google Fonts: Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Plotly -->
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 
 <script>
-/* ────────────────────────────────────────────
-   Party definitions
-──────────────────────────────────────────── */
-const PARTIES = [
-  { key: 'Ap',      full: 'Arbeiderpartiet',           color: '#E8112D', bloc: 'left'  },
-  { key: 'Høyre',   full: 'Høyre',                     color: '#0065F1', bloc: 'right' },
-  { key: 'Frp',     full: 'Fremskrittspartiet',        color: '#00327A', bloc: 'right' },
-  { key: 'Sp',      full: 'Senterpartiet',             color: '#1C9E3B', bloc: 'left'  },
-  { key: 'SV',      full: 'Sos. Venstreparti',         color: '#EB4F2E', bloc: 'left'  },
-  { key: 'MDG',     full: 'Miljøpartiet De Grønne',    color: '#3BAB36', bloc: 'left'  },
-  { key: 'KrF',     full: 'Kristelig Folkeparti',      color: '#F4B223', bloc: 'right' },
-  { key: 'Venstre', full: 'Venstre',                   color: '#2AB84A', bloc: 'right' },
-  { key: 'Rødt',    full: 'Rødt',                      color: '#CC0000', bloc: 'left'  },
-];
-const PARTY_MAP = Object.fromEntries(PARTIES.map(p => [p.key, p]));
-
-/* Wide-format aliases: maps column header → our key */
-const WIDE_ALIAS = { H: 'Høyre', Høyre: 'Høyre', V: 'Venstre', R: 'Rødt', Rødt: 'Rødt', Frp: 'Frp', FrP: 'Frp' };
-
-/* ────────────────────────────────────────────
-   State
-──────────────────────────────────────────── */
-let monthlyData = {};   // { 'YYYY-MM': { Ap: 25.3, … } }
-let sortedMonths = [];
-let currentLatest = {};
-let chart = null;
-let selectedParties = new Set();
-
-/* ────────────────────────────────────────────
-   Data loading
-──────────────────────────────────────────── */
-const REMOTE_URL =
-  'https://www.pollofpolls.no/lastned.csv?tabell=gallupsnitttabell&antall=10&type=riks&int=m&kommuneid=0&start=2000-01-01&slutt=2026-03-06';
-const LOCAL_CSV = './polls.csv';
-
-async function loadData() {
-  // 1. Try remote URL
-  try {
-    const res = await fetch(REMOTE_URL);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const text = await res.text();
-    const parsed = Papa.parse(text, { header: true, skipEmptyLines: true });
-    if (parsed.data.length && processWide(parsed)) {
-      showSource('pollofpolls.no (live)');
-      return;
-    }
-  } catch (_) { /* fall through */ }
-
-  // 2. Try local polls.csv
-  try {
-    const res = await fetch(LOCAL_CSV);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const text = await res.text();
-    const parsed = Papa.parse(text, { header: true, skipEmptyLines: true, delimiter: ';' });
-    if (parsed.data.length && (processWide(parsed) || processLong(parsed))) {
-      showSource('polls.csv (lokal)');
-      return;
-    }
-  } catch (_) { /* fall through */ }
-
-  // 3. Show file picker fallback
-  showError(
-    '<strong>Kunne ikke laste data automatisk.</strong><br><br>' +
-    'Last opp <code>polls.csv</code> fra mappen din:<br><br>' +
-    '<input type="file" accept=".csv" id="file-input"> ' +
-    '<button id="file-load-btn" style="margin-left:8px;padding:6px 14px;background:#238636;color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:13px" disabled>Last inn</button>' +
-    '<span id="file-status" style="margin-left:10px;font-size:12px"></span>'
-  );
-  document.getElementById('loading-msg').style.display = 'none';
-  setTimeout(() => {
-    const fi = document.getElementById('file-input');
-    const btn = document.getElementById('file-load-btn');
-    const status = document.getElementById('file-status');
-    if (fi) {
-      fi.addEventListener('change', () => {
-        btn.disabled = !fi.files.length;
-        status.textContent = fi.files.length ? fi.files[0].name + ' valgt' : '';
-      });
-    }
-    if (btn) {
-      btn.addEventListener('click', () => {
-        if (fi && fi.files.length) {
-          btn.disabled = true;
-          btn.textContent = 'Laster…';
-          handleFileUpload(fi.files[0]);
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Inter', 'sans-serif'] },
+        colors: {
+          ap: '#e4202c',
+          sp: '#009900',
+          dark: '#0f172a',
         }
-      });
+      }
     }
-  }, 100);
-}
-
-/* Convert Norwegian month name like "Mars '26" → "2026-03" */
-const NO_MONTHS = {
-  januar:1, februar:2, mars:3, april:4, mai:5, juni:6,
-  juli:7, august:8, september:9, oktober:10, november:11, desember:12
-};
-function parseNorwegianMonth(raw) {
-  const m = raw.trim().toLowerCase().match(/^(\w+)\s+'?(\d{2})$/);
-  if (!m) return null;
-  const mo = NO_MONTHS[m[1]];
-  if (!mo) return null;
-  const yr = parseInt(m[2]) + 2000;
-  return `${yr}-${String(mo).padStart(2,'0')}`;
-}
-
-/* Process wide format: one row per date, one column per party */
-function processWide(parsed) {
-  const headers = parsed.meta.fields || [];
-  const dateCol = headers.find(h => /dato|date|aar|mnd/i.test(h)) || headers[0];
-  if (!dateCol && dateCol !== '') return false;
-
-  const partyHeaders = headers.filter(h => h !== dateCol && h !== 'Andre');
-  if (!partyHeaders.length) return false;
-
-  parsed.data.forEach(row => {
-    const raw = (row[dateCol] || '').trim();
-    if (!raw) return;
-    // Accept YYYY-MM-DD or YYYY-MM
-    let month = raw.substring(0, 7);
-    if (!/^\d{4}-\d{2}/.test(month)) {
-      // Try Norwegian month format: "Mars '26"
-      month = parseNorwegianMonth(raw);
-      if (!month) return;
-    }
-    if (!monthlyData[month]) monthlyData[month] = {};
-    partyHeaders.forEach(h => {
-      const key = WIDE_ALIAS[h] || (PARTY_MAP[h] ? h : null);
-      if (!key) return;
-      // Strip mandate count in parentheses, e.g. "23,4 (43)" → "23.4"
-      const clean = (row[h] || '').replace(/\s*\(.*?\)/, '').replace(',', '.').trim();
-      const v = parseFloat(clean);
-      if (!isNaN(v)) monthlyData[month][key] = v;
-    });
-  });
-
-  finalize();
-  return sortedMonths.length > 0;
-}
-
-/* Process long format: hvem, dag, måned, år, Parti, Prosent, Mandater, dato */
-function processLong(parsed) {
-  const sums = {}; // { 'YYYY-MM': { Ap: [25.3, …] } }
-
-  parsed.data.forEach(row => {
-    const party = (row.Parti || '').trim();
-    if (!PARTY_MAP[party]) return;
-    const dato = (row.dato || '').trim();
-    if (!dato || dato.length < 7) return;
-    const month = dato.substring(0, 7);
-    const pct = parseFloat((row.Prosent || '0').trim());
-    if (isNaN(pct)) return;
-    if (!sums[month]) sums[month] = {};
-    if (!sums[month][party]) sums[month][party] = [];
-    sums[month][party].push(pct);
-  });
-
-  Object.keys(sums).forEach(month => {
-    monthlyData[month] = {};
-    Object.entries(sums[month]).forEach(([p, vals]) => {
-      monthlyData[month][p] = vals.reduce((a, b) => a + b, 0) / vals.length;
-    });
-  });
-
-  finalize();
-  return sortedMonths.length > 0;
-}
-
-function finalize() {
-  sortedMonths = Object.keys(monthlyData).sort();
-
-  // Compute latest available per party
-  for (let i = sortedMonths.length - 1; i >= 0; i--) {
-    const m = sortedMonths[i];
-    Object.entries(monthlyData[m]).forEach(([p, v]) => {
-      if (!(p in currentLatest)) currentLatest[p] = v;
-    });
-    if (Object.keys(currentLatest).length >= PARTIES.length) break;
   }
-}
-
-function handleFileUpload(file) {
-  Papa.parse(file, {
-    header: true,
-    skipEmptyLines: true,
-    delimiter: ';',
-    complete(res) {
-      try {
-        monthlyData = {}; sortedMonths = []; currentLatest = {};
-        const ok = processWide(res) || processLong(res);
-        if (ok) {
-          hideError();
-          buildUI();
-          buildChart();
-          showSource(file.name + ' (opplastet)');
-          showSuccess(`${sortedMonths.length} måneder lastet. Klikk partikortene for å bygge koalisjon.`);
-          document.getElementById('party-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        } else {
-          // Try comma delimiter as fallback
-          Papa.parse(file, {
-            header: true,
-            skipEmptyLines: true,
-            complete(res2) {
-              try {
-                monthlyData = {}; sortedMonths = []; currentLatest = {};
-                const ok2 = processLong(res2) || processWide(res2);
-                if (ok2) {
-                  hideError();
-                  buildUI();
-                  buildChart();
-                  showSource(file.name + ' (opplastet)');
-                  showSuccess(`${sortedMonths.length} måneder lastet. Klikk partikortene for å bygge koalisjon.`);
-                  document.getElementById('party-grid').scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else {
-                  showError(`Klarte ikke å lese "${file.name}". Kontroller at det er riktig polls.csv-fil.`);
-                }
-              } catch(e) { showError('Feil ved innlesing: ' + e.message); }
-            }
-          });
-        }
-      } catch(e) { showError('Feil ved innlesing: ' + e.message); }
-    },
-    error(err) { showError('Kunne ikke lese filen: ' + err.message); }
-  });
-}
-
-/* ────────────────────────────────────────────
-   UI helpers
-──────────────────────────────────────────── */
-function showError(html) {
-  const el = document.getElementById('error-msg');
-  el.innerHTML = html;
-  el.style.display = 'block';
-}
-function hideError() { document.getElementById('error-msg').style.display = 'none'; }
-function showSuccess(msg) {
-  const el = document.getElementById('success-msg');
-  if (!el) return;
-  el.textContent = msg;
-  el.style.display = 'block';
-  setTimeout(() => { el.style.display = 'none'; }, 5000);
-}
-function showSource(src) {
-  document.getElementById('data-source-info').textContent = 'Datakilde: ' + src;
-}
-
-/* ────────────────────────────────────────────
-   Coalition builder UI
-──────────────────────────────────────────── */
-function buildUI() {
-  const grid = document.getElementById('party-grid');
-  grid.innerHTML = '';
-
-  PARTIES.forEach(({ key, full, color }) => {
-    const pct = currentLatest[key] ?? null;
-    const card = document.createElement('div');
-    card.className = 'pcard';
-    card.dataset.party = key;
-    card.style.setProperty('--pc', color);
-    card.innerHTML = `
-      <div class="abbr">${key}</div>
-      <div class="fullname">${full}</div>
-      <div class="pct">${pct !== null ? pct.toFixed(1) + '%' : '—'}</div>
-    `;
-    card.addEventListener('click', () => toggleParty(key));
-    grid.appendChild(card);
-  });
-
-  updateCoalition();
-}
-
-function toggleParty(key) {
-  if (selectedParties.has(key)) selectedParties.delete(key);
-  else selectedParties.add(key);
-
-  document.querySelectorAll('.pcard').forEach(c => {
-    c.classList.toggle('selected', selectedParties.has(c.dataset.party));
-  });
-
-  updateCoalition();
-}
-
-function updateCoalition() {
-  const total = [...selectedParties].reduce((s, p) => s + (currentLatest[p] ?? 0), 0);
-  const pct = total.toFixed(1);
-
-  document.getElementById('total-big').textContent = pct + '%';
-  document.getElementById('bar-fill').style.width = Math.min(total, 100) + '%';
-
-  // Colour bar based on majority
-  const fill = document.getElementById('bar-fill');
-  if (total >= 50) {
-    fill.style.background = 'var(--green)';
-  } else if (total >= 40) {
-    fill.style.background = 'var(--orange)';
-  } else {
-    fill.style.background = 'var(--accent)';
-  }
-
-  const statusEl = document.getElementById('majority-status');
-  if (selectedParties.size === 0) {
-    statusEl.textContent = 'Ingen valgt';
-    statusEl.style.color = 'var(--muted)';
-    document.getElementById('coalition-detail').textContent =
-      'Klikk på partier ovenfor for å legge dem til koalisjonen';
-    return;
-  }
-
-  if (total >= 50) {
-    statusEl.textContent = '✓ Flertall!';
-    statusEl.style.color = 'var(--green)';
-  } else {
-    statusEl.textContent = `Mangler ${(50 - total).toFixed(1)}%`;
-    statusEl.style.color = 'var(--orange)';
-  }
-
-  const parts = [...selectedParties]
-    .map(p => `${p} ${(currentLatest[p] ?? 0).toFixed(1)}%`)
-    .join('  +  ');
-  document.getElementById('coalition-detail').textContent = parts;
-}
-
-/* ────────────────────────────────────────────
-   Chart
-──────────────────────────────────────────── */
-function buildChart() {
-  const fromVal = document.getElementById('date-from').value;
-  const toVal   = document.getElementById('date-to').value;
-  const smooth  = document.getElementById('smooth-toggle').checked;
-
-  const fromM = fromVal ? fromVal.substring(0, 7) : '2000-01';
-  const toM   = toVal   ? toVal.substring(0, 7)   : '9999-12';
-
-  const months = sortedMonths.filter(m => m >= fromM && m <= toM);
-
-  const datasets = PARTIES.map(({ key, full, color }) => {
-    const data = months
-      .map(m => ({ x: m + '-15', y: monthlyData[m]?.[key] ?? null }))
-      .filter(d => d.y !== null);
-    return {
-      label: key,
-      data,
-      borderColor: color,
-      backgroundColor: color + '20',
-      borderWidth: 2,
-      pointRadius: 0,
-      pointHoverRadius: 5,
-      tension: smooth ? 0.35 : 0,
-      spanGaps: false,
-    };
-  });
-
-  // Sperregrense annotation
-  datasets.push({
-    label: 'Sperregrense 4%',
-    data: months.map(m => ({ x: m + '-15', y: 4 })),
-    borderColor: 'rgba(255,255,255,0.18)',
-    borderWidth: 1.5,
-    borderDash: [5, 4],
-    pointRadius: 0,
-    tension: 0,
-    fill: false,
-  });
-
-  if (chart) chart.destroy();
-
-  const ctx = document.getElementById('pollChart').getContext('2d');
-  chart = new Chart(ctx, {
-    type: 'line',
-    data: { datasets },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      animation: { duration: 200 },
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: {
-          position: 'bottom',
-          labels: {
-            color: '#8b949e',
-            usePointStyle: true,
-            pointStyleWidth: 16,
-            boxHeight: 8,
-            padding: 14,
-            font: { size: 12 },
-          },
-        },
-        tooltip: {
-          backgroundColor: '#1c2128',
-          borderColor: '#30363d',
-          borderWidth: 1,
-          titleColor: '#e6edf3',
-          bodyColor: '#8b949e',
-          padding: 10,
-          itemSort: (a, b) => b.parsed.y - a.parsed.y,
-          callbacks: {
-            label: ctx => {
-              if (ctx.parsed.y === null) return null;
-              return `  ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`;
-            },
-          },
-        },
-      },
-      scales: {
-        x: {
-          type: 'time',
-          time: { unit: 'year', tooltipFormat: 'MMM yyyy' },
-          grid: { color: '#21262d' },
-          ticks: { color: '#8b949e', maxRotation: 0 },
-        },
-        y: {
-          min: 0,
-          suggestedMax: 40,
-          grid: { color: '#21262d' },
-          ticks: { color: '#8b949e', callback: v => v + '%' },
-        },
-      },
-    },
-  });
-}
-
-function setAllVisible(vis) {
-  if (!chart) return;
-  chart.data.datasets.forEach((_, i) => chart.setDatasetVisibility(i, vis));
-  chart.update();
-}
-
-/* ────────────────────────────────────────────
-   Init
-──────────────────────────────────────────── */
-// Set today as default "to" date
-document.getElementById('date-to').value = new Date().toISOString().substring(0, 10);
-
-document.getElementById('date-from').addEventListener('change', rebuildChart);
-document.getElementById('date-to').addEventListener('change', rebuildChart);
-document.getElementById('smooth-toggle').addEventListener('change', rebuildChart);
-
-function rebuildChart() {
-  if (sortedMonths.length) buildChart();
-}
-
-// Boot
-loadData().then(() => {
-  if (sortedMonths.length) {
-    buildUI();
-    buildChart();
-    document.getElementById('loading-msg').style.display = 'none';
-  }
-});
 </script>
+
+<style>
+  body { font-family: 'Inter', sans-serif; }
+  .plotly-chart .js-plotly-plot { border-radius: 8px; }
+  .stat-card { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+  .stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.12); }
+  .section-fade { animation: fadeUp 0.4s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+<!-- ── HERO ──────────────────────────────────────────────────────── -->
+<header class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="bg-ap/20 text-ap text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full border border-ap/30">Analyse</span>
+      <span class="text-slate-400 text-sm">Stortingsvalg 2013–2025 · 425 kommuner</span>
+    </div>
+    <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-5 tracking-tight">
+      Befolkningsvekst og<br>
+      <span class="text-ap">politisk oppslutning</span> i norske kommuner
+    </h1>
+    <p class="text-slate-300 text-lg max-w-2xl leading-relaxed mb-8">
+      Der folk flytter fra, skifter de parti. En statistisk analyse av sammenhengen mellom
+      befolkningsvekst og Aps fall – og Sps fremgang – fra 2013 til 2017.
+    </p>
+    <div class="bg-white/10 border border-white/20 rounded-xl px-5 py-4 inline-block backdrop-blur-sm">
+      <p class="text-slate-200 text-sm leading-relaxed">
+        <span class="text-white font-semibold">Hypotese:</span>
+        Ap tapte velgere til Sp i perioden 2013→2017 i kommuner med lavest befolkningsvekst.
+        <span class="text-green-400 font-semibold ml-2">✓ Statistisk bekreftet (p &lt; 0,0001)</span>
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- ── NØKKELTALL-KORT ───────────────────────────────────────────── -->
+<section class="max-w-6xl mx-auto px-6 -mt-8 section-fade">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+    <!-- Kommuner -->
+    <div class="stat-card bg-white rounded-2xl shadow-md p-5 border border-slate-100">
+      <div class="text-3xl font-extrabold text-slate-900 mb-1">425</div>
+      <div class="text-sm text-slate-500 font-medium">Kommuner analysert</div>
+      <div class="text-xs text-slate-400 mt-1">Stabilt grensesett 2013–2017</div>
+    </div>
+
+    <!-- Korrelasjon -->
+    <div class="stat-card bg-white rounded-2xl shadow-md p-5 border border-slate-100">
+      <div class="text-3xl font-extrabold text-slate-900 mb-1">-0.74</div>
+      <div class="text-sm text-slate-500 font-medium">Pearson r (ΔAp vs ΔSp)</div>
+      <div class="text-xs text-slate-400 mt-1">Sterk negativ samvariasjon</div>
+    </div>
+
+    <!-- Ap-regresjon -->
+    <div class="stat-card bg-white rounded-2xl shadow-md p-5 border border-red-50">
+      <div class="flex items-baseline gap-1 mb-1">
+        <div class="text-3xl font-extrabold text-ap">+0.170</div>
+        <div class="text-base text-ap font-semibold">pp/%</div>
+      </div>
+      <div class="text-sm text-slate-500 font-medium">Ap: β (vekst → ΔAp)</div>
+      <div class="text-xs text-slate-400 mt-1">R² = 0.216 &nbsp;·&nbsp; p < 0,0001</div>
+    </div>
+
+    <!-- Sp-regresjon -->
+    <div class="stat-card bg-white rounded-2xl shadow-md p-5 border border-green-50">
+      <div class="flex items-baseline gap-1 mb-1">
+        <div class="text-3xl font-extrabold text-sp">-0.318</div>
+        <div class="text-base text-sp font-semibold">pp/%</div>
+      </div>
+      <div class="text-sm text-slate-500 font-medium">Sp: β (vekst → ΔSp)</div>
+      <div class="text-xs text-slate-400 mt-1">R² = 0.281 &nbsp;·&nbsp; p < 0,0001</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Metodeboks -->
+<section class="max-w-6xl mx-auto px-6 mt-6 section-fade">
+  <div class="bg-blue-50 border border-blue-200 rounded-xl px-5 py-4 text-sm text-blue-900 leading-relaxed">
+    <span class="font-semibold">Datagrunnlag:</span>
+    Valgdata fra SSB tabell 08092 (stortingsvalg 2013–2025). Befolkningsdata fra Distriktsindikatorene
+    (B06/B16, 10-årig vekst 2006–2016). Sentralitet: SSBs kommunale sentralitetsindeks (4 grupper).
+    Ekstremeksempel: <strong>Andøy</strong> – Ap -27.3 pp, Sp +63.3 pp.
+  </div>
+</section>
+
+<!-- ── NAVIGASJON ────────────────────────────────────────────────── -->
+<nav class="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-slate-200 shadow-sm mt-6">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="flex gap-1 overflow-x-auto py-3 text-sm font-medium">
+      <a href="#tidsserie" class="px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 whitespace-nowrap transition-colors">Nasjonal utvikling</a>
+      <a href="#korrelasjon" class="px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 whitespace-nowrap transition-colors">ΔAp vs ΔSp</a>
+      <a href="#ap-scatter" class="px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 whitespace-nowrap transition-colors">Ap og befolkningsvekst</a>
+      <a href="#sp-scatter" class="px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 whitespace-nowrap transition-colors">Sp og befolkningsvekst</a>
+      <a href="#regresjon" class="px-4 py-2 rounded-lg text-slate-600 hover:bg-slate-100 whitespace-nowrap transition-colors">Regresjonsresultater</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── SEKSJONER ──────────────────────────────────────────────────── -->
+<main class="max-w-6xl mx-auto px-6 py-8 space-y-8">
+
+  <!-- Nasjonal tidsserie -->
+  <section id="tidsserie" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 section-fade">
+    <div class="mb-4">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="w-1 h-6 bg-slate-800 rounded-full inline-block"></span>
+        <h2 class="text-xl font-bold text-slate-900">Nasjonal utvikling 2013–2025</h2>
+      </div>
+      <p class="text-slate-500 text-sm leading-relaxed">
+        Gjennomsnittlig kommuneoppslutning per valg. Sp når historisk topp i 2021 mens Ap er på jevnt lavere nivå.
+        Merk at 2021-tallene inkluderer kommuner med 2024-grenser.
+      </p>
+    </div>
+    <div class="plotly-chart"><div>                            <div id="80401291-7735-4bc2-be14-8154189aaac4" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("80401291-7735-4bc2-be14-8154189aaac4")) {                    Plotly.newPlot(                        "80401291-7735-4bc2-be14-8154189aaac4",                        [{"line":{"color":"#e4202c","width":2.5},"marker":{"size":8},"mode":"lines+markers","name":"Ap","x":["2013","2017","2021","2025"],"y":{"dtype":"f8","bdata":"e4VcAHGuP0AFPs42vEk6QIaqUUumozlAghM4gRM4PEA="},"type":"scatter"},{"line":{"color":"#009900","width":2.5},"marker":{"size":8},"mode":"lines+markers","name":"Sp","x":["2013","2017","2021","2025"],"y":{"dtype":"f8","bdata":"aQx9usSbKECrw4LgyhQ1QKtcabM4gjtA7Vo27Vo2KkA="},"type":"scatter"},{"line":{"color":"#0065f1","width":2.5},"marker":{"size":8},"mode":"lines+markers","name":"H\u00f8yre","x":["2013","2017","2021","2025"],"y":{"dtype":"f8","bdata":"NjY2NjY2NUA3cQFq77wzQKbYABY8GitAp8sUp8sUJEA="},"type":"scatter"},{"line":{"color":"#003f7f","width":2.5},"marker":{"size":8},"mode":"lines+markers","name":"FrP","x":["2013","2017","2021","2025"],"y":{"dtype":"f8","bdata":"Qy6AOFdcMEACBo\u002flvVovQL5LsQEs+ChAhfLNhPJNOUA="},"type":"scatter"},{"line":{"color":"#eb4040","width":2.5},"marker":{"size":8},"mode":"lines+markers","name":"SV","x":["2013","2017","2021","2025"],"y":{"dtype":"f8","bdata":"m11TfNhnCkCyiqfvo2YSQPFzxicKCBVAuAGUuAGUEEA="},"type":"scatter"},{"line":{"color":"#aa0000","width":2.5},"marker":{"size":8},"mode":"lines+markers","name":"R\u00f8dt","x":["2013","2017","2021","2025"],"y":{"dtype":"f8","bdata":"346HEsK65T\u002f5PyGcsF72P3BY+4a1bwxA4+Li4uLiFEA="},"type":"scatter"},{"line":{"color":"#3cb371","width":2.5},"marker":{"size":8},"mode":"lines+markers","name":"MDG","x":["2013","2017","2021","2025"],"y":{"dtype":"f8","bdata":"qQnGW9nn\u002fT9IzZocYYwAQEhD1agl0\u002f0\u002frD5jrD5jBEA="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"legend":{"font":{"size":11}},"margin":{"t":30},"xaxis":{"title":{"text":"Valg"}},"yaxis":{"title":{"text":"Gjennomsnittlig kommuneoppslutning (%)"}},"hovermode":"x unified"},                        {"responsive": true}                    )                };            </script>        </div></div>
+  </section>
+
+  <!-- Korrelasjon ΔAp vs ΔSp -->
+  <section id="korrelasjon" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 section-fade">
+    <div class="mb-4">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="w-1 h-6 bg-ap rounded-full inline-block"></span>
+        <h2 class="text-xl font-bold text-slate-900">Aps tap og Sps vekst 2013→2017</h2>
+      </div>
+      <p class="text-slate-500 text-sm leading-relaxed mb-3">
+        Hvert punkt er én kommune. Et tydelig negativt samband: der Ap falt, vokste Sp.
+        Pearson r = <strong class="text-slate-800">-0.743</strong> – sterk negativ korrelasjon.
+      </p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-[#d62728] inline-block"></span><span class="text-slate-600">Minst sentrale</span></div>
+        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-[#ff7f0e] inline-block"></span><span class="text-slate-600">Mindre sentrale</span></div>
+        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-[#2ca02c] inline-block"></span><span class="text-slate-600">Noe sentrale</span></div>
+        <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-[#1f77b4] inline-block"></span><span class="text-slate-600">Sentrale</span></div>
+      </div>
+    </div>
+    <div class="plotly-chart"><div>                            <div id="28c1a652-d2e2-47f3-95e6-3e8d7f21a993" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("28c1a652-d2e2-47f3-95e6-3e8d7f21a993")) {                    Plotly.newPlot(                        "28c1a652-d2e2-47f3-95e6-3e8d7f21a993",                        [{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003e\u0394Ap: %{x:.1f} pp\u003cbr\u003e\u0394Sp: %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#d62728","opacity":0.7,"size":6},"mode":"markers","name":"Minst sentrale","text":["Trysil","Stor-Elvdal","Rendalen","Engerdal","Tolga","Tynset","Alvdal","Folldal","Os","Dovre","Lesja","Skj\u00e5k","Lom","V\u00e5g\u00e5","Nord-Fron","Sel","S\u00f8r-Aurdal","Nord-Aurdal","Vestre Slidre","\u00d8ystre Slidre","Vang","Fl\u00e5","Nes","Gol","Hemsedal","\u00c5l","Hol","Nore og Uvdal","Tinn","Seljord","Kviteseid","Nissedal","Fyresdal","Tokke","Vinje","Valle","Bykle","Hjelmeland","Suldal","Sauda","Utsira","Etne","Kvinnherad","Jondal","Eidfjord","Fedje","Gulen","Solund","Hyllestad","H\u00f8yanger","Vik","Balestrand","Leikanger","Sogndal","Aurland","L\u00e6rdal","\u00c5rdal","Luster","Askvoll","Bremanger","V\u00e5gs\u00f8y","Selje","Eid","Hornindal","Gloppen","Stryn","Vanylven","Norddal","Sand\u00f8y","Sunndal","Surnadal","Rindal","Halsa","Sm\u00f8la","Aure","Hemne","Hitra","Fr\u00f8ya","\u00d8rland","Bjugn","\u00c5fjord","Roan","Osen","Oppdal","R\u00f8ros","Holt\u00e5len","Tydal","Lierne","Raarvihke - R\u00f8yrvik","Namsskogan","Flatanger","Vikna","N\u00e6r\u00f8y","Leka","Bindal","Vega","Her\u00f8y","Aarborte - Hattfjelldal","Lur\u00f8y","Tr\u00e6na","R\u00f8d\u00f8y","Mel\u00f8y","Gildesk\u00e5l","Beiarn","Steigen","Hamar\u00f8y - H\u00e1bmer","Divtasvuodna - Tysfjord","L\u00f8dingen","R\u00f8st","V\u00e6r\u00f8y","Flakstad","Vestv\u00e5g\u00f8y","Hadsel","B\u00f8","\u00d8ksnes","Sortland - Suort\u00e1","And\u00f8y","Moskenes","Ibestad","Loab\u00e1k - Lavangen","Bardu","Salangen","M\u00e5lselv","S\u00f8rreisa","Dyr\u00f8y","Tran\u00f8y","Torsken","Berg","Lenvik","Lyngen","Storfjord - Omasvuotna - Omasvuono","G\u00e1ivuotna - K\u00e5fjord - Kaivuono","Skjerv\u00f8y","Nordreisa - R\u00e1isa - Raisi","Kv\u00e6nangen","Vard\u00f8","Guovdageaidnu - Kautokeino","Loppa","Hasvik","M\u00e5s\u00f8y","Nordkapp","Porsanger - Pors\u00e1ngu - Porsanki","K\u00e1r\u00e1sjohka - Karasjok","Lebesby","Gamvik","Berlev\u00e5g","Deatnu - Tana","B\u00e5tsfjord","S\u00f8r-Varanger"],"x":{"dtype":"f8","bdata":"zczMzMzMIcDNzMzMzMwlwJqZmZmZmSfAZmZmZmZmJ8AzMzMzMzMbwJqZmZmZmRvAAAAAAAAAJsAzMzMzMzMiwM3MzMzMzB7AmpmZmZmZIMAzMzMzMzMHwM3MzMzMzCTAZmZmZmZmI8BmZmZmZmYswGZmZmZmZhTAAAAAAAAAJMAAAAAAAAAiwJqZmZmZmSDAMzMzMzMzI8CamZmZmZknwJqZmZmZmRfAMzMzMzMzJ8AAAAAAAAAiwJqZmZmZmRvAAAAAAAAAEsBmZmZmZmYawDMzMzMzMyDAmpmZmZmZE8AzMzMzMzMswAAAAAAAABzAmpmZmZmZIcDNzMzMzMwawAAAAAAAABzAmpmZmZmZJsBmZmZmZmYowJqZmZmZmRHAzczMzMzMHMAAAAAAAAD4v5qZmZmZmQnAzczMzMzMFsAzMzMzMzMfwJqZmZmZmRPAzczMzMzM\u002fL8zMzMzMzMZwGZmZmZmZhbAAAAAAAAA+L8AAAAAAAAMwM3MzMzMzOy\u002fZmZmZmZmHsDNzMzMzMwWwGZmZmZmZhLAzczMzMzMDMDNzMzMzMwYwGZmZmZmZhrAmpmZmZmZFcAAAAAAAAAQwDMzMzMzMwfAMzMzMzMzH8AzMzMzMzMdwJqZmZmZmfG\u002fMzMzMzMzEcAAAAAAAAAIwGZmZmZmZhBAZmZmZmZmAsCamZmZmZkRQAAAAAAAACDAAAAAAAAAEsCamZmZmZkTwJqZmZmZmQXAAAAAAAAAGMCamZmZmZkJwDMzMzMzMxXAZmZmZmZmEsAAAAAAAAAewAAAAAAAAB7AAAAAAAAAFsAAAAAAAAAUwM3MzMzMzBDAzczMzMzM9L8AAAAAAADwv2ZmZmZmZgrAzczMzMzMFMDNzMzMzMwYwJqZmZmZmRXAmpmZmZmZDcBmZmZmZmYGwGZmZmZmZhrAzczMzMzMJcCamZmZmZkowJqZmZmZmSPAMzMzMzMzJMDNzMzMzMwgwDMzMzMzMyPAzczMzMzMFMDNzMzMzMwrwGZmZmZmZiPAzczMzMzMGMDNzMzMzMwAwAAAAAAAABzAzczMzMzMHsBmZmZmZmYiwM3MzMzMzBbAmpmZmZmZH8AAAAAAAAAowAAAAAAAACHAAAAAAAAAFsCamZmZmZkFwGZmZmZmZgrAzczMzMzML8BmZmZmZmYkwM3MzMzMzCXAmpmZmZmZG8DNzMzMzMwlwDMzMzMzMyfAZmZmZmZmKMCamZmZmZkkwM3MzMzMTDvAzczMzMzMJcDNzMzMzMwSwDMzMzMzMyHAAAAAAAAAJcCamZmZmZkVwM3MzMzMzCXAAAAAAAAAGMBmZmZmZmYewM3MzMzMzBbAzczMzMzMGMAzMzMzMzMtwM3MzMzMzBbAAAAAAAAAGsDNzMzMzMwlwJqZmZmZmRHAZmZmZmZmEsAzMzMzMzMZwGZmZmZmZhLAzczMzMzMIMBmZmZmZmb2vzMzMzMzMwPAAAAAAAAAHsBmZmZmZmb2P5qZmZmZmRPAmpmZmZmZCcAzMzMzMzMnwAAAAAAAAOA\u002fmpmZmZmZDcDNzMzMzMwIwM3MzMzMzBzAAAAAAAAAGsAAAAAAAAAMwA=="},"y":{"dtype":"f8","bdata":"MzMzMzOzNkCamZmZmRkyQJqZmZmZmTRAzczMzMzMNUAzMzMzMzMlQM3MzMzMzC1AMzMzMzMzKUAAAAAAAAArQJqZmZmZmSRAzczMzMzMIEDNzMzMzMwaQAAAAAAAAC9AAAAAAAAALUCamZmZmZkuQM3MzMzMzCFAZmZmZmZmJkBmZmZmZmYoQGZmZmZmZiZAMzMzMzMzKEDNzMzMzEwyQDMzMzMzMyVAzczMzMzMLkDNzMzMzMwoQJqZmZmZmSFAzczMzMzMHkAAAAAAAAAqQGZmZmZmZitAMzMzMzMzJ0AzMzMzMzM8QDMzMzMzMy1AZmZmZmZmJkBmZmZmZmYoQDMzMzMzszRAAAAAAACAM0BmZmZmZmY2QJqZmZmZmRlAmpmZmZmZH0AAAAAAAAASQM3MzMzMzB5AmpmZmZmZKEBmZmZmZmYqQJqZmZmZmRtAzczMzMzMEkAAAAAAAAAgQGZmZmZmZidAAAAAAAAAFECamZmZmZkhQM3MzMzMzBxAMzMzMzMzLkAzMzMzMzMiQJqZmZmZmSZAzczMzMzMJkBmZmZmZmYlQGZmZmZmZiVAMzMzMzMzJ0BmZmZmZmYaQAAAAAAAAB5AzczMzMzMJkCamZmZmZknQJqZmZmZmStAMzMzMzMzIEAzMzMzMzMfQJqZmZmZmck\u002fmpmZmZmZKUAAAAAAAAASQM3MzMzMzClAAAAAAAAADEAAAAAAAAAMQDMzMzMzMwtAAAAAAAAAHEBmZmZmZmYGQGZmZmZmZg5AMzMzMzMzB0AzMzMzMzMmQJqZmZmZmSNAmpmZmZmZI0AzMzMzMzMfQGZmZmZmZhhAAAAAAAAAFkAzMzMzMzMdQAAAAAAAAB5AAAAAAAAAK0DNzMzMzMwqQM3MzMzMzCJAzczMzMzMHEDNzMzMzMwSQJqZmZmZmTFAAAAAAACAMkCamZmZmZkuQJqZmZmZmStAZmZmZmZmI0CamZmZmZkbQAAAAAAAACFAmpmZmZmZKEAAAAAAAAA0QGZmZmZmZi1AmpmZmZmZKECamZmZmZkVQGZmZmZmZilAAAAAAAAAJUAzMzMzMzMsQGZmZmZmZihAzczMzMzMJUAAAAAAAAAsQGZmZmZm5jFAMzMzMzMzK0AzMzMzMzMiQM3MzMzMzC9AAAAAAAAAKUAzMzMzMzMxQDMzMzMzMyhAMzMzMzMzI0BmZmZmZmYzQM3MzMzMzDlAZmZmZmbmM0AAAAAAAIAyQGZmZmZmpk9AzczMzMzMLEBmZmZmZmYjQGZmZmZmZixAZmZmZmbmNkCamZmZmZksQM3MzMzMTDtAZmZmZmZmJkAzMzMzMzMZQAAAAAAAAClAMzMzMzMzJ0BmZmZmZuY6QM3MzMzMzCFAzczMzMzMJEAzMzMzMzMnQAAAAAAAAChAAAAAAAAAJECamZmZmZklQJqZmZmZmSxAmpmZmZmZNECamZmZmZk8QM3MzMzMzClAAAAAAAAAI0AzMzMzMzMdQJqZmZmZmSJAMzMzMzMzJUBmZmZmZuY3QDMzMzMzMyhAzczMzMzMLEDNzMzMzMwgQJqZmZmZmShAmpmZmZmZIUAzMzMzMzMfQA=="},"type":"scatter"},{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003e\u0394Ap: %{x:.1f} pp\u003cbr\u003e\u0394Sp: %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#ff7f0e","opacity":0.7,"size":6},"mode":"markers","name":"Mindre sentrale","text":["Grue","Farsund","Flekkefjord","Kvinesdal","Sirdal","Lund","B\u00f8mlo","Stord","Fitjar","Tysnes","Odda","Ullensvang","Ulvik","Granvin","Voss","Flora","Fjaler","Gaular","J\u00f8lster","F\u00f8rde","Naustdal","Sande","Her\u00f8y","Volda","\u00d8rsta","Steinkjer","Namsos","Verran","Namdalseid","Sn\u00e5ase - Sn\u00e5sa","Grong","H\u00f8ylandet","Overhalla","Fosnes","Inder\u00f8y","S\u00f8mna","Br\u00f8nn\u00f8y","Vevelstad","Alstahaug","Leirfjord","Vefsn","Grane","D\u00f8nna","Saltdal","S\u00f8rfold - Fuolld\u00e1","V\u00e5gan","Vads\u00f8","Hammerfest","Alta","Kvalsund","Unj\u00e1rga - Nesseby"],"x":{"dtype":"f8","bdata":"ZmZmZmZmI8DNzMzMzMwEwM3MzMzMzBLAmpmZmZmZCcBmZmZmZmb+v2ZmZmZmZg7AZmZmZmZmAsDNzMzMzMwAwDMzMzMzM\u002fu\u002fzczMzMzM\u002fL\u002fNzMzMzMwawGZmZmZmZgrAMzMzMzMzEcCamZmZmZm5v2ZmZmZmZhLAzczMzMzM7L8AAAAAAAAcwDMzMzMzMxfAMzMzMzMzE8BmZmZmZmYOwJqZmZmZmQ3AmpmZmZmZ8b\u002fNzMzMzMz8v2ZmZmZmZua\u002fAAAAAAAAEMBmZmZmZmYhwAAAAAAAABzAmpmZmZmZG8AAAAAAAAAkwJqZmZmZmRXAAAAAAAAAIsDNzMzMzMwgwAAAAAAAACbAmpmZmZmZLcAzMzMzMzMjwJqZmZmZmSTAZmZmZmZmJMCamZmZmZkhwJqZmZmZmSXAzczMzMzMGsCamZmZmZkfwM3MzMzMzBbAMzMzMzMzLsAzMzMzMzMlwM3MzMzMzCfAmpmZmZmZIsAAAAAAAAASwDMzMzMzMw\u002fAzczMzMxMMMBmZmZmZmYawGZmZmZmZhDA"},"y":{"dtype":"f8","bdata":"MzMzMzMzL0AzMzMzMzMDQAAAAAAAABpAZmZmZmZmGEAAAAAAAAAUQGZmZmZmZhBAmpmZmZmZCUAzMzMzMzMDQAAAAAAAABJAzczMzMzMGkAAAAAAAAAmQAAAAAAAACVAzczMzMzMLUCamZmZmZkpQJqZmZmZmShAmpmZmZmZIEAAAAAAAAAvQM3MzMzMzCFAmpmZmZmZF0DNzMzMzMwhQDMzMzMzMyNAAAAAAAAAAECamZmZmZkJQGZmZmZmZhhAzczMzMzMHkAAAAAAAAAjQAAAAAAAAB5AzczMzMzMKkAzMzMzMzMtQDMzMzMzMyJAAAAAAAAAIUAAAAAAAAApQAAAAAAAACtAMzMzMzMz479mZmZmZmYYQDMzMzMzszFAZmZmZmZmJkAzMzMzM7MxQGZmZmZmZihAAAAAAAAAIEDNzMzMzMwmQDMzMzMzMyVAMzMzMzMzLUAzMzMzM7MwQDMzMzMzMy5AzczMzMzMJkDNzMzMzMwkQAAAAAAAABJAmpmZmZmZJ0AzMzMzMzMlQDMzMzMzMyNA"},"type":"scatter"},{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003e\u0394Ap: %{x:.1f} pp\u003cbr\u003e\u0394Sp: %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#2ca02c","opacity":0.7,"size":6},"mode":"markers","name":"Noe sentrale","text":["Hvaler","Aremark","Ringsaker","\u00c5snes","V\u00e5ler","Elverum","\u00c5mot","Lillehammer","Gj\u00f8vik","S\u00f8r-Fron","Ringebu","\u00d8yer","Gausdal","\u00d8stre Toten","Vestre Toten","S\u00f8ndre Land","Nordre Land","Etnedal","Rollag","Larvik","Tj\u00f8me","Porsgrunn","Skien","Notodden","Siljan","Bamble","Krager\u00f8","Drangedal","Nome","B\u00f8","Sauherad","Hjartdal","Ris\u00f8r","Gjerstad","Veg\u00e5rshei","Tvedestrand","\u00c5mli","Haugesund","Tysv\u00e6r","Karm\u00f8y","Vindafjord","Sveio","Molde","\u00c5lesund","Kristiansund","Ulstein","Hareid","\u00d8rskog","Stranda","Stordal","Sykkylven","Skodje","Sula","Giske","Haram","Vestnes","Rauma","Nesset","Midsund","Aukra","Fr\u00e6na","Eide","Aver\u00f8y","Gjemnes","Tingvoll","Bod\u00f8","Narvik","Nesna","Hemnes","Rana - Raane","Fauske - Fuossko","Tjeldsund","Evenes - Even\u00e1ssi","Ballangen","Harstad - H\u00e1rstt\u00e1k","Kv\u00e6fjord","Sk\u00e5nland","Gratangen"],"x":{"dtype":"f8","bdata":"MzMzMzMzB8DNzMzMzMwiwAAAAAAAABrAmpmZmZmZJsAzMzMzMzMkwJqZmZmZmRvAAAAAAAAAKsAzMzMzMzMLwGZmZmZmZhLAmpmZmZmZGcAzMzMzMzMVwGZmZmZmZhbAMzMzMzMzIcAzMzMzMzMXwGZmZmZmZhrAMzMzMzMzH8BmZmZmZmYhwDMzMzMzMyHAAAAAAAAAHsAAAAAAAAD4v5qZmZmZmQHAzczMzMzM\u002fL+amZmZmZkFwDMzMzMzMx\u002fAAAAAAAAAFsAzMzMzMzMLwM3MzMzMzBjAZmZmZmZmJcCamZmZmZkZwM3MzMzMzB7AMzMzMzMzFcBmZmZmZmYqwDMzMzMzMwvAzczMzMzMFMAAAAAAAAASwM3MzMzMzATAmpmZmZmZG8CamZmZmZnxv5qZmZmZmfm\u002fAAAAAAAAAMAzMzMzMzMLwJqZmZmZmQXAAAAAAAAAAMAAAAAAAAAAwJqZmZmZmSbAmpmZmZmZAcCamZmZmZkBwDMzMzMzMxPAZmZmZmZmEsAzMzMzMzMRwJqZmZmZmQXAzczMzMzMBMCamZmZmZnxv83MzMzMzATAzczMzMzM9L8AAAAAAAAMwAAAAAAAABrAmpmZmZmZH8AAAAAAAADgPwAAAAAAAAzAAAAAAAAADMAAAAAAAAAIwJqZmZmZmQnAMzMzMzMzH8AAAAAAAAASwAAAAAAAABzAMzMzMzMzE8CamZmZmZkNwDMzMzMzMyLAAAAAAAAAK8DNzMzMzMwhwGZmZmZmZg7AZmZmZmZmFsCamZmZmZkVwM3MzMzMzBTAAAAAAAAABMBmZmZmZmYUwM3MzMzMzBzA"},"y":{"dtype":"f8","bdata":"AAAAAAAAFEAAAAAAAAAxQM3MzMzMzCFAZmZmZmbmNEAAAAAAAIAzQGZmZmZmZitAzczMzMxMNUDNzMzMzMwaQM3MzMzMzBpAZmZmZmZmJEBmZmZmZmYmQDMzMzMzMyJAAAAAAAAAKUCamZmZmZkkQJqZmZmZmR1AAAAAAAAAI0CamZmZmZknQJqZmZmZmSVAZmZmZmZmKUDNzMzMzMwMQDMzMzMzMw9AzczMzMzMEEBmZmZmZmYUQAAAAAAAACRAAAAAAAAAKkAzMzMzMzMbQAAAAAAAAB5AMzMzMzMzMkCamZmZmZknQGZmZmZmZiNAMzMzMzMzIkBmZmZmZmYwQJqZmZmZmQ1AmpmZmZmZJkAAAAAAAAAWQDMzMzMzMxNAzczMzMzMFEDNzMzMzMz8P2ZmZmZmZg5AmpmZmZmZBUDNzMzMzMwWQM3MzMzMzAxAMzMzMzMz4z8zMzMzMzMDQGZmZmZmZitAMzMzMzMzB0BmZmZmZmYQQAAAAAAAAAhAZmZmZmZmIECamZmZmZkVQDMzMzMzMxNAmpmZmZmZEUAzMzMzMzMDQGZmZmZmZv4\u002fmpmZmZmZH0DNzMzMzMwEQDMzMzMzMwtAMzMzMzMzD0CamZmZmZkXQGZmZmZmZhBAzczMzMzMCEDNzMzMzMwMQM3MzMzMzCBAmpmZmZmZHUDNzMzMzMwkQJqZmZmZmRdAMzMzMzMzGUAAAAAAAAAqQGZmZmZmZiFAzczMzMzMIUDNzMzMzMwgQAAAAAAAAARAAAAAAAAAGECamZmZmZkpQJqZmZmZmRVAMzMzMzMzG0DNzMzMzMwYQDMzMzMzMxlA"},"type":"scatter"},{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003e\u0394Ap: %{x:.1f} pp\u003cbr\u003e\u0394Sp: %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#1f77b4","opacity":0.7,"size":6},"mode":"markers","name":"Sentrale","text":["Halden","Moss","Sarpsborg","Fredrikstad","Marker","R\u00f8mskog","Tr\u00f8gstad","Spydeberg","Askim","Eidsberg","Skiptvet","Rakkestad","R\u00e5de","Rygge","V\u00e5ler","Hob\u00f8l","Vestby","Ski","\u00c5s","Frogn","Nesodden","Oppeg\u00e5rd","B\u00e6rum","Asker","Aurskog-H\u00f8land","S\u00f8rum","Fet","R\u00e6lingen","Enebakk","L\u00f8renskog","Skedsmo","Nittedal","Gjerdrum","Ullensaker","Nes","Eidsvoll","Nannestad","Hurdal","Oslo - Oslove","Kongsvinger","Hamar","L\u00f8ten","Stange","Nord-Odal","S\u00f8r-Odal","Eidskog","Jevnaker","Lunner","Gran","Drammen","Kongsberg","Ringerike","Hole","Sigdal","Kr\u00f8dsherad","Modum","\u00d8vre Eiker","Nedre Eiker","Lier","R\u00f8yken","Hurum","Flesberg","Horten","Holmestrand","T\u00f8nsberg","Svelvik","Sande","Hof","Re","N\u00f8tter\u00f8y","Lardal","Grimstad","Arendal","Froland","Lillesand","Birkenes","Iveland","Evje og Hornnes","Bygland","Kristiansand","Mandal","Vennesla","Songdalen","S\u00f8gne","Marnardal","\u00c5seral","Audnedal","Lindesnes","Lyngdal","H\u00e6gebostad","Eigersund","Sandnes","Stavanger","Sokndal","Bjerkreim","H\u00e5","Klepp","Time","Gjesdal","Sola","Randaberg","Forsand","Strand","Finn\u00f8y","Rennes\u00f8y","Kvits\u00f8y","Bokn","Bergen","Kvam","Fusa","Samnanger","Os","Austevoll","Sund","Fjell","Ask\u00f8y","Vaksdal","Modalen","Oster\u00f8y","Meland","\u00d8ygarden","Rad\u00f8y","Lind\u00e5s","Austrheim","Masfjorden","Trondheim","Snillfjord","Agdenes","Rissa","Rennebu","Meldal","Orkdal","Midtre Gauldal","Melhus","Skaun","Kl\u00e6bu","Malvik","Selbu","Mer\u00e5ker","Stj\u00f8rdal","Frosta","Leksvik","Levanger","Verdal","Troms\u00f8","Balsfjord","Karls\u00f8y"],"x":{"dtype":"f8","bdata":"ZmZmZmZmEMDNzMzMzMwEwM3MzMzMzADAmpmZmZmZAcAzMzMzMzMVwAAAAAAAABzAzczMzMzMFsAAAAAAAAASwDMzMzMzMwfAZmZmZmZmEMAzMzMzMzMXwJqZmZmZmRnAmpmZmZmZCcCamZmZmZnZP2ZmZmZmZg7AMzMzMzMzC8DNzMzMzMwAwGZmZmZmZgLAmpmZmZmZAcAAAAAAAAAAwAAAAAAAAADAMzMzMzMz878AAAAAAADgvzMzMzMzM+O\u002fmpmZmZmZGcAzMzMzMzMRwGZmZmZmZhTAAAAAAAAABMAzMzMzMzMTwJqZmZmZmem\u002fmpmZmZmZ+b8AAAAAAAAIwM3MzMzMzBLAAAAAAAAABMBmZmZmZmYSwM3MzMzMzBjAZmZmZmZmEMDNzMzMzMwawAAAAAAAAADAmpmZmZmZDcDNzMzMzMwawDMzMzMzMyTAzczMzMzMIMDNzMzMzMwlwDMzMzMzMx3AMzMzMzMzG8AAAAAAAAAWwDMzMzMzMw\u002fAZmZmZmZmCsDNzMzMzMz0v83MzMzMzATAAAAAAAAAEMCamZmZmZkJwDMzMzMzMxfAMzMzMzMzIcAzMzMzMzMXwJqZmZmZmQ3AZmZmZmZmEsAAAAAAAAAEwM3MzMzMzAzAzczMzMzMBMAzMzMzMzMPwAAAAAAAAPC\u002fMzMzMzMzE8DNzMzMzMzsvzMzMzMzMxHAmpmZmZmZEcAzMzMzMzMXwJqZmZmZmQHAmpmZmZmZyb\u002fNzMzMzMwQwJqZmZmZmfG\u002fzczMzMzMAMAzMzMzMzMbwDMzMzMzM\u002fO\u002fmpmZmZmZuT9mZmZmZmYQwAAAAAAAABjAMzMzMzMzFcDNzMzMzMz8vzMzMzMzMwvAAAAAAAAAEsDNzMzMzMwIwGZmZmZmZgbAAAAAAAAAIMDNzMzMzMwWwGZmZmZmZhjAZmZmZmZmBsAAAAAAAAAIwGZmZmZmZhTAMzMzMzMz+7\u002fNzMzMzMz0P5qZmZmZmfE\u002fAAAAAAAAEMAzMzMzMzMHwDMzMzMzM\u002fO\u002fmpmZmZmZyT+amZmZmZnxv83MzMzMzPQ\u002fAAAAAAAA8D\u002fNzMzMzMzsvzMzMzMzMw\u002fAMzMzMzMz878zMzMzMzMDwJqZmZmZmdk\u002fAAAAAAAA4L8zMzMzMzPTvzMzMzMzM\u002fO\u002fMzMzMzMzA8BmZmZmZmb2vzMzMzMzMxnAZmZmZmZm9r+amZmZmZkFwAAAAAAAAAzAzczMzMzMAMCamZmZmZkTwAAAAAAAABjAAAAAAAAADMAzMzMzMzMPwJqZmZmZmfG\u002fAAAAAAAA+L\u002fNzMzMzMz0v2ZmZmZmZva\u002fAAAAAAAADMAAAAAAAAAMwJqZmZmZmQ3AzczMzMzMFsAAAAAAAAAUwJqZmZmZmRXAMzMzMzMzEcAAAAAAAAAcwGZmZmZmZhTAAAAAAAAAEsBmZmZmZmYKwM3MzMzMzBbAAAAAAAAABMCamZmZmZkTwAAAAAAAAADAMzMzMzMzH8DNzMzMzMwUwJqZmZmZmRXAmpmZmZmZEcAAAAAAAAAWwM3MzMzMzCbAAAAAAAAAHsDNzMzMzMwhwAAAAAAAACTA"},"y":{"dtype":"f8","bdata":"MzMzMzMzFUCamZmZmZkFQAAAAAAAABBAAAAAAAAACEAzMzMzMzMkQGZmZmZmZidAMzMzMzMzJUAAAAAAAAAcQAAAAAAAABBAMzMzMzMzIUDNzMzMzMwgQGZmZmZmZiJAMzMzMzMzGUCamZmZmZkRQJqZmZmZmSBAMzMzMzMzD0BmZmZmZmYKQJqZmZmZmQlAZmZmZmZmCkCamZmZmZkBQGZmZmZmZgJAAAAAAAAAAEBmZmZmZmb2P83MzMzMzPw\u002fzczMzMzMIUAzMzMzMzMbQM3MzMzMzBRAZmZmZmZmCkAzMzMzMzMdQDMzMzMzMwNAzczMzMzMCEDNzMzMzMwMQDMzMzMzMxVAMzMzMzMzEUDNzMzMzMwgQDMzMzMzMyBAMzMzMzMzGUBmZmZmZmYtQM3MzMzMzPQ\u002fzczMzMzMI0AzMzMzMzMVQGZmZmZmZi5AzczMzMzMJUBmZmZmZmYuQDMzMzMzMylAZmZmZmZmK0CamZmZmZkgQAAAAAAAABhAmpmZmZmZHUDNzMzMzMwEQJqZmZmZmQlAmpmZmZmZFUBmZmZmZmYQQDMzMzMzMyNAZmZmZmZmK0DNzMzMzMwcQM3MzMzMzBRAAAAAAAAAEEDNzMzMzMwIQDMzMzMzMwdAMzMzMzMzB0DNzMzMzMwnQAAAAAAAAAxAMzMzMzMzD0DNzMzMzMwEQGZmZmZmZhZAzczMzMzMEEBmZmZmZmYWQM3MzMzMzAxAZmZmZmZmAkCamZmZmZkfQJqZmZmZmQlAzczMzMzMCEAzMzMzMzMTQGZmZmZmZgJAZmZmZmZmFECamZmZmZkgQJqZmZmZmRlAMzMzMzMzHUBmZmZmZmb+P83MzMzMzAhAzczMzMzMEkCamZmZmZkRQGZmZmZmZhpAZmZmZmZmL0AzMzMzMzMXQM3MzMzMzBhAzczMzMzMFEAzMzMzMzMHQJqZmZmZmR1AMzMzMzMzC0AAAAAAAAAAQAAAAAAAAPg\u002fAAAAAAAABEAAAAAAAADgP5qZmZmZmfE\u002fZmZmZmZm9j\u002fNzMzMzMz0P2ZmZmZmZgpAZmZmZmZmAkCamZmZmZkBQM3MzMzMzBhAMzMzMzMzC0CamZmZmZkBQGZmZmZmZgZAAAAAAAAACEBmZmZmZmYUQM3MzMzMzABAzczMzMzMGkCamZmZmZkBQJqZmZmZmRlAZmZmZmZmBkCamZmZmZkFQAAAAAAAAAxAZmZmZmZm\u002fj8zMzMzMzMDQGZmZmZmZiBAAAAAAAAAFEAzMzMzMzMVQM3MzMzMzARAAAAAAAAACEBmZmZmZmYSQM3MzMzMzBBAZmZmZmZmEkDNzMzMzMwiQJqZmZmZmQVAMzMzMzMzH0AAAAAAAAAeQGZmZmZmZhZAmpmZmZmZIkDNzMzMzMweQGZmZmZmZhZAMzMzMzMzI0BmZmZmZmYYQDMzMzMzMxNAMzMzMzMzEUAAAAAAAAAQQDMzMzMzMx9AMzMzMzMzJUDNzMzMzMwMQGZmZmZmZg5AAAAAAAAAGkCamZmZmZkVQGZmZmZmZiZAzczMzMzMFkAzMzMzMzMmQJqZmZmZmSxA"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"annotations":[{"bgcolor":"white","bordercolor":"gray","font":{"size":13},"showarrow":false,"text":"Pearson r = -0.743","x":0.05,"xref":"paper","y":0.95,"yref":"paper"}],"legend":{"font":{"size":11}},"margin":{"t":30},"xaxis":{"title":{"text":"Endring Ap 2013\u21922017 (pp)"}},"yaxis":{"title":{"text":"Endring Sp 2013\u21922017 (pp)"}},"hovermode":"closest"},                        {"responsive": true}                    )                };            </script>        </div></div>
+    <p class="text-xs text-slate-400 mt-3">Farger viser SSBs sentralitetsindeks. Kommuner med størst Ap-fall hadde gjennomgående stor Sp-vekst.</p>
+  </section>
+
+  <!-- AP scatter -->
+  <section id="ap-scatter" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 section-fade">
+    <div class="mb-4">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="w-1 h-6 bg-ap rounded-full inline-block"></span>
+        <h2 class="text-xl font-bold text-slate-900">Befolkningsvekst og endring i Ap-oppslutning</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4 text-sm mb-3">
+        <div class="bg-red-50 rounded-xl p-4">
+          <div class="text-ap font-bold text-2xl">+0.170 pp/%</div>
+          <div class="text-red-700 text-xs mt-1">Regresjonskoeffisient β</div>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4">
+          <div class="text-slate-800 font-bold text-2xl">0.216</div>
+          <div class="text-slate-500 text-xs mt-1">Forklaringsgrad R²</div>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4">
+          <div class="text-slate-800 font-bold text-2xl">p < 0,0001</div>
+          <div class="text-slate-500 text-xs mt-1">Statistisk signifikans</div>
+        </div>
+      </div>
+      <p class="text-slate-500 text-sm leading-relaxed">
+        Kommuner med lavere befolkningsvekst opplevde større fall i Ap-oppslutning.
+        Punktstørrelse = innbyggertall 2016. Stiplet linje = OLS med 95 % KI.
+      </p>
+    </div>
+    <div class="plotly-chart"><div>                            <div id="e9628be2-f5db-4338-8b6d-89312669f0f5" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("e9628be2-f5db-4338-8b6d-89312669f0f5")) {                    Plotly.newPlot(                        "e9628be2-f5db-4338-8b6d-89312669f0f5",                        [{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003eBefolkningsvekst 2006\u20132016 (%): %{x:.1f}%\u003cbr\u003eEndring Ap (pp): %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#d62728","line":{"color":"white","width":0.4},"opacity":0.75,"size":{"dtype":"f8","bdata":"xsXwykxOEUAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQFFyhBY6YhBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQLJdDQwxjBBANHta8MC9EEAAAAAAAAAQQCLA7hlTPhFAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEECVuKJbBL8QQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAU0S78vgvFkAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQL5piXQfdBJAAAAAAAAAEEAAAAAAAAAQQFZ6RkZSJxBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAzoTumKPZEEAAAAAAAAAQQIePO43i0RBAAAAAAAAAEECabAITRZcQQL5x60p14hFAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAEZ7ZR6vgEUCjfSu1VMYQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQHSS6kmXohFACWZMb6ZwEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQKazx8VuQRFAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAjpMfCynoFEAvDru13qYSQAAAAAAAABBAAAAAAAAAEEADUVUTnD4UQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQKhYLIMWgRFAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQGl1na2ULRVAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAesoza6kAUQA=="}},"mode":"markers","name":"Minst sentrale","text":["Trysil","Stor-Elvdal","Rendalen","Engerdal","Tolga","Tynset","Alvdal","Folldal","Os","Dovre","Lesja","Skj\u00e5k","Lom","V\u00e5g\u00e5","Nord-Fron","Sel","S\u00f8r-Aurdal","Nord-Aurdal","Vestre Slidre","\u00d8ystre Slidre","Vang","Fl\u00e5","Nes","Gol","Hemsedal","\u00c5l","Hol","Nore og Uvdal","Tinn","Seljord","Kviteseid","Nissedal","Fyresdal","Tokke","Vinje","Valle","Bykle","Hjelmeland","Suldal","Sauda","Utsira","Etne","Kvinnherad","Jondal","Eidfjord","Fedje","Gulen","Solund","Hyllestad","H\u00f8yanger","Vik","Balestrand","Leikanger","Sogndal","Aurland","L\u00e6rdal","\u00c5rdal","Luster","Askvoll","Bremanger","V\u00e5gs\u00f8y","Selje","Eid","Hornindal","Gloppen","Stryn","Vanylven","Norddal","Sand\u00f8y","Sunndal","Surnadal","Rindal","Halsa","Sm\u00f8la","Aure","Hemne","Hitra","Fr\u00f8ya","\u00d8rland","Bjugn","\u00c5fjord","Roan","Osen","Oppdal","R\u00f8ros","Holt\u00e5len","Tydal","Lierne","Raarvihke - R\u00f8yrvik","Namsskogan","Flatanger","Vikna","N\u00e6r\u00f8y","Leka","Bindal","Vega","Her\u00f8y","Aarborte - Hattfjelldal","Lur\u00f8y","Tr\u00e6na","R\u00f8d\u00f8y","Mel\u00f8y","Gildesk\u00e5l","Beiarn","Steigen","Hamar\u00f8y - H\u00e1bmer","Divtasvuodna - Tysfjord","L\u00f8dingen","R\u00f8st","V\u00e6r\u00f8y","Flakstad","Vestv\u00e5g\u00f8y","Hadsel","B\u00f8","\u00d8ksnes","Sortland - Suort\u00e1","And\u00f8y","Moskenes","Ibestad","Loab\u00e1k - Lavangen","Bardu","Salangen","M\u00e5lselv","S\u00f8rreisa","Dyr\u00f8y","Tran\u00f8y","Torsken","Berg","Lenvik","Lyngen","Storfjord - Omasvuotna - Omasvuono","G\u00e1ivuotna - K\u00e5fjord - Kaivuono","Skjerv\u00f8y","Nordreisa - R\u00e1isa - Raisi","Kv\u00e6nangen","Vard\u00f8","Guovdageaidnu - Kautokeino","Loppa","Hasvik","M\u00e5s\u00f8y","Nordkapp","Porsanger - Pors\u00e1ngu - Porsanki","K\u00e1r\u00e1sjohka - Karasjok","Lebesby","Gamvik","Berlev\u00e5g","Deatnu - Tana","B\u00e5tsfjord","S\u00f8r-Varanger"],"x":{"dtype":"f8","bdata":"fGms1iSzEsAyGiqETCwcwFIp2IHwTiPAqi19xLumKcBJ7MRO7MQewED8tf05mA9AqPwL1hK+9j\u002fKcpa+izIewIJcVgyU8BbALuEhwV6xEcBVNE+oBYwVwNJ9vmvL9BzAq31tCsSYEcCFhGOs5KoFwPzsRaxM7vu\u002fYPgm9s12A8AiIDs5gdEWwKhvkG+Qb+A\u002fl7AvK3quAcAoWAcmrioFQKxoZ0qvvwDAQaZU+f51HkDkf8guzycHwCp1KJqNmw9AgQIXg4FlOEAkDSvoGtHwPyASEREREbG\u002frOxzSE0w\u002fr94ZYyyTagTwEQLtEALtAVAst9qY2i6E8Ben2zVFXgEQKfXl\u002fSE4QrAocdT+a5MHMDg6ALtPpbsP9zNobs5dB\u002fAdHBAikQ\u002fIEDo4dU\u002f03PgP3gkdgBre+A\u002fimjkwWTL87\u002f2h8HCkTkRwGI9OwRuLBhAUDj8Lk97+D\u002fFW9nnkJoQQM7+q4wGIwdAfuFZcIxvI8AmiYFJ6hz\u002fv1vAAaIJ+yTABvGTks5+HMD4rgO6Mc8ZwC1jL+\u002fkMhbA0P15jwrdH8Coy41yGAISQGGDP7g6WC1A5L2yjvKe\u002fD9wU8zYXT7pPz9euUZvZAvA\u002fhDzjsawEEAWnHoqyPwTwBxjjDHGmAjAVg+wZ\u002fAe9L8U0EKSteEYwO5\u002fzHYcgw1AOBRwaD7X379ABpqpAqTQPwKc1GYH9BZAC3xx9YOOIsAuGzT5skEhwAAAAAAAAAAA9dzwopHOAcDgP+Sh3hMCwHQblBVi7APANg6Ke1s\u002fIcDK2Cyo9pwCwDCIXSB2gfi\u002flDLjhiKZ6L+mdHisn+QtQJA3Xc4oOzJA+IcWroMK\u002fj80ISRdSQgJQMAPwdQPwfS\u002fZDOB5yazI8CyUXpCr1kfwBKjZzOt0RdAwBqqe8Qosr8NqnooWncFwNFQXkN5DQXAw4\u002fMkVgIIcDQ0tLS0pIrwLYLmsEfohbA+Mw+UNgwGMD37H3hmb8iQEQoyj1yYuG\u002f6VMv5lMvFsD2qI\u002frtrQvwCI5EcZlkhPAGFnIQhay8D+26iIt6TkEwLg34d6EewPA4kwY0TYTFkBcU9aUNWUfwIWj2ju6EQ3ADgaKsMlMCMBDMRdxAJIlwNQOzLUDcx\u002fAoOzyQFoWxT9KViknCjIbwABPn3DnYh3AmFXUGClwH8Aquuiiiy4CQFl9xH4oOyDAvPXK0EK2DUDoc5WBrjLwP5jJeIkpUSXAcGS1BDSg6r\u002fnoKN5hNwXQD5HPHGwNRTAZALr\u002ftp0JMCrRhGHTtorwMSWmg37u\u002fg\u002fc6twSPspF0DIIvvM9FT3v8IZPQfb0gNA0Dn9+XJOD0CG0rlshiglwL8mmZ7PiAvAhNimFfdOIsDfaOr82kMgwG0+aETlhRRA8rybxTj7IsDGidQFR74LwAAN2fcnoxPABHk5\u002fyp3+7\u002fgMlv\u002fyp4EQOpnp5+dfibAHqUu+7UxIcBk\u002f0u5OWr2v23WqGBumTXAhC9AVWhDAEAsa8qasmYnwAqfdYMp8vm\u002fAvuWHfQdF8Bm4t14TJkewBMUHb75\u002fRTAVb4Y\u002folrF0DswFw7MNciwKV8XD\u002f0WgbAiEeTrcB6\u002fT+gCtGGzx8gQA=="},"y":{"dtype":"f8","bdata":"zczMzMzMIcDNzMzMzMwlwJqZmZmZmSfAZmZmZmZmJ8AzMzMzMzMbwJqZmZmZmRvAAAAAAAAAJsAzMzMzMzMiwM3MzMzMzB7AmpmZmZmZIMAzMzMzMzMHwM3MzMzMzCTAZmZmZmZmI8BmZmZmZmYswGZmZmZmZhTAAAAAAAAAJMAAAAAAAAAiwJqZmZmZmSDAMzMzMzMzI8CamZmZmZknwJqZmZmZmRfAMzMzMzMzJ8AAAAAAAAAiwJqZmZmZmRvAAAAAAAAAEsBmZmZmZmYawDMzMzMzMyDAmpmZmZmZE8AzMzMzMzMswAAAAAAAABzAmpmZmZmZIcDNzMzMzMwawAAAAAAAABzAmpmZmZmZJsBmZmZmZmYowJqZmZmZmRHAzczMzMzMHMAAAAAAAAD4v5qZmZmZmQnAzczMzMzMFsAzMzMzMzMfwJqZmZmZmRPAzczMzMzM\u002fL8zMzMzMzMZwGZmZmZmZhbAAAAAAAAA+L8AAAAAAAAMwM3MzMzMzOy\u002fZmZmZmZmHsDNzMzMzMwWwGZmZmZmZhLAzczMzMzMDMDNzMzMzMwYwGZmZmZmZhrAmpmZmZmZFcAAAAAAAAAQwDMzMzMzMwfAMzMzMzMzH8AzMzMzMzMdwJqZmZmZmfG\u002fMzMzMzMzEcAAAAAAAAAIwGZmZmZmZhBAZmZmZmZmAsCamZmZmZkRQAAAAAAAACDAAAAAAAAAEsCamZmZmZkTwJqZmZmZmQXAAAAAAAAAGMCamZmZmZkJwDMzMzMzMxXAZmZmZmZmEsAAAAAAAAAewAAAAAAAAB7AAAAAAAAAFsAAAAAAAAAUwM3MzMzMzBDAzczMzMzM9L8AAAAAAADwv2ZmZmZmZgrAzczMzMzMFMDNzMzMzMwYwJqZmZmZmRXAmpmZmZmZDcBmZmZmZmYGwGZmZmZmZhrAzczMzMzMJcCamZmZmZkowJqZmZmZmSPAMzMzMzMzJMDNzMzMzMwgwDMzMzMzMyPAzczMzMzMFMDNzMzMzMwrwGZmZmZmZiPAzczMzMzMGMDNzMzMzMwAwAAAAAAAABzAzczMzMzMHsBmZmZmZmYiwM3MzMzMzBbAmpmZmZmZH8AAAAAAAAAowAAAAAAAACHAAAAAAAAAFsCamZmZmZkFwGZmZmZmZgrAzczMzMzML8BmZmZmZmYkwM3MzMzMzCXAmpmZmZmZG8DNzMzMzMwlwDMzMzMzMyfAZmZmZmZmKMCamZmZmZkkwM3MzMzMTDvAzczMzMzMJcDNzMzMzMwSwDMzMzMzMyHAAAAAAAAAJcCamZmZmZkVwM3MzMzMzCXAAAAAAAAAGMBmZmZmZmYewM3MzMzMzBbAzczMzMzMGMAzMzMzMzMtwM3MzMzMzBbAAAAAAAAAGsDNzMzMzMwlwJqZmZmZmRHAZmZmZmZmEsAzMzMzMzMZwGZmZmZmZhLAzczMzMzMIMBmZmZmZmb2vzMzMzMzMwPAAAAAAAAAHsBmZmZmZmb2P5qZmZmZmRPAmpmZmZmZCcAzMzMzMzMnwAAAAAAAAOA\u002fmpmZmZmZDcDNzMzMzMwIwM3MzMzMzBzAAAAAAAAAGsAAAAAAAAAMwA=="},"type":"scatter"},{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003eBefolkningsvekst 2006\u20132016 (%): %{x:.1f}%\u003cbr\u003eEndring Ap (pp): %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#ff7f0e","line":{"color":"white","width":0.4},"opacity":0.75,"size":{"dtype":"f8","bdata":"AAAAAAAAEEAXTnTcteITQFz1+ZCKcBNAKR9avlnJEEAAAAAAAAAQQAAAAAAAABBAzvCy55hHFUDfEPsBUg0ZQAAAAAAAABBAAAAAAAAAEECiOsOmqqwRQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQGQ2jT8t2BZAlSG2H\u002fpeFUAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEDexAVL4vcVQAAAAAAAABBAAAAAAAAAEEDT1fPIsFgTQPiOOjA4ZRNAxVQ2+KaPFED4UTXDfmMaQMqAMEOfCBZAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEC8gXj+l4cRQAAAAAAAABBA6ulefe+NEkAAAAAAAAAQQI6Kgl\u002fgHRJAAAAAAAAAEEBgFuWiQEcWQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAP2hIsL6gE0CqJhgQ7\u002fUQQGhl5sYVaRRAK+cP5OOnGUAAAAAAAAAQQAAAAAAAABBA"}},"mode":"markers","name":"Mindre sentrale","text":["Grue","Farsund","Flekkefjord","Kvinesdal","Sirdal","Lund","B\u00f8mlo","Stord","Fitjar","Tysnes","Odda","Ullensvang","Ulvik","Granvin","Voss","Flora","Fjaler","Gaular","J\u00f8lster","F\u00f8rde","Naustdal","Sande","Her\u00f8y","Volda","\u00d8rsta","Steinkjer","Namsos","Verran","Namdalseid","Sn\u00e5ase - Sn\u00e5sa","Grong","H\u00f8ylandet","Overhalla","Fosnes","Inder\u00f8y","S\u00f8mna","Br\u00f8nn\u00f8y","Vevelstad","Alstahaug","Leirfjord","Vefsn","Grane","D\u00f8nna","Saltdal","S\u00f8rfold - Fuolld\u00e1","V\u00e5gan","Vads\u00f8","Hammerfest","Alta","Kvalsund","Unj\u00e1rga - Nesseby"],"x":{"dtype":"f8","bdata":"nqa+uYtwIcCemm\u002f3ae8FQE7T2QEwDQZAV8Igknr6HUAHZFK8QCYVQAex1f\u002fEuBJArCLvXh3zIUAD5fI+yRcpQD6FsrUheiBAgKPCWYRRsj8UVTmHNH8RwA1wCbgEXADAHYUVcLI2AsAszxVuXMYawElM\u002fMt+NRFA29nBIPb7EUA8ff7Q0FL8v2F7c6oprxhAMErDPeD2C0BL5LVwO8YrQI6NBHCJ5RRAcJ9wKe806T9J73ZWpJ0cQPRSvEvxLiFAbR5e9QlhEEA5iyuJ9HgZQMxTO0FivQtAAZKr8VCzEcB2DH8skAsdwJ6+3OH65hPAtjnSHGmOAEDJv765oCMCwEgNLyZrAiNARWewQmewJsDsflbERwvtvwAAAAAAkOq\u002faQbK5sz9FEAIg76gL+j7vywbTNpRsPw\u002fJOmPg3FDBkDgDMMwDMO4v8rmp5SA\u002fxTAsHz2Z7TeG8BqyJmG4izxvwrJgHqmch3A6tbHViYtDUCoR1uebRPoP15CtVyiXydAPGNL7ICvKEDa4Ga\u002fECsKwFVQhtV6Cx5A"},"y":{"dtype":"f8","bdata":"ZmZmZmZmI8DNzMzMzMwEwM3MzMzMzBLAmpmZmZmZCcBmZmZmZmb+v2ZmZmZmZg7AZmZmZmZmAsDNzMzMzMwAwDMzMzMzM\u002fu\u002fzczMzMzM\u002fL\u002fNzMzMzMwawGZmZmZmZgrAMzMzMzMzEcCamZmZmZm5v2ZmZmZmZhLAzczMzMzM7L8AAAAAAAAcwDMzMzMzMxfAMzMzMzMzE8BmZmZmZmYOwJqZmZmZmQ3AmpmZmZmZ8b\u002fNzMzMzMz8v2ZmZmZmZua\u002fAAAAAAAAEMBmZmZmZmYhwAAAAAAAABzAmpmZmZmZG8AAAAAAAAAkwJqZmZmZmRXAAAAAAAAAIsDNzMzMzMwgwAAAAAAAACbAmpmZmZmZLcAzMzMzMzMjwJqZmZmZmSTAZmZmZmZmJMCamZmZmZkhwJqZmZmZmSXAzczMzMzMGsCamZmZmZkfwM3MzMzMzBbAMzMzMzMzLsAzMzMzMzMlwM3MzMzMzCfAmpmZmZmZIsAAAAAAAAASwDMzMzMzMw\u002fAzczMzMxMMMBmZmZmZmYawGZmZmZmZhDA"},"type":"scatter"},{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003eBefolkningsvekst 2006\u20132016 (%): %{x:.1f}%\u003cbr\u003eEndring Ap (pp): %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#2ca02c","line":{"color":"white","width":0.4},"opacity":0.75,"size":{"dtype":"f8","bdata":"AAAAAAAAEEAAAAAAAAAQQE28t6wJth5ASeOWJQUiEkAAAAAAAAAQQEPS1R4KERpAAAAAAAAAEED2LE3roZ8cQA0UTvKWkB1AAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAQJEgm2cGEUAuLhPnsxsXQEOUEmlPIhZAhb526ZOQEEAGyLHXaYMRQAAAAAAAABBAAAAAAAAAEECSL2iIq9sgQAAAAAAAABBAyLdxcOxyH0Bkbv7t1R8iQK7oNbrU2xVAAAAAAAAAEEBnIgBd\u002facWQJ8qRVOMgxRAAAAAAAAAEECWhEoScFARQN2s2TtV5xBAAAAAAAAAEEAAAAAAAAAQQETtk15hqhFAAAAAAAAAEEAAAAAAAAAQQJTLSGii0RBAAAAAAAAAEEA929roScAfQG5BOPEfuhRAGhtUKRahIECpKsar5jQTQGm6s\u002fOkZRBAi67jwJBZHEDzLCGPyzwhQOsmxaINghtAHavwj9jtEkAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAjpQA5LURJAAAAAAAAAEEBZ6qna0lQTQHSPj6JZqRJAXJaP9WGEE0By8ENwpmIRQDEitjnaKRJAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAVa0loOnkE0AAAAAAAAAQQFdkmfIJohBAAAAAAAAAEEAAAAAAAAAQQI+ComtQtSFAfesLNcEOGUAAAAAAAAAQQAAAAAAAABBAAJva3SYXHEC+WSjKGtATQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQK5olrb\u002fkhtAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBA"}},"mode":"markers","name":"Noe sentrale","text":["Hvaler","Aremark","Ringsaker","\u00c5snes","V\u00e5ler","Elverum","\u00c5mot","Lillehammer","Gj\u00f8vik","S\u00f8r-Fron","Ringebu","\u00d8yer","Gausdal","\u00d8stre Toten","Vestre Toten","S\u00f8ndre Land","Nordre Land","Etnedal","Rollag","Larvik","Tj\u00f8me","Porsgrunn","Skien","Notodden","Siljan","Bamble","Krager\u00f8","Drangedal","Nome","B\u00f8","Sauherad","Hjartdal","Ris\u00f8r","Gjerstad","Veg\u00e5rshei","Tvedestrand","\u00c5mli","Haugesund","Tysv\u00e6r","Karm\u00f8y","Vindafjord","Sveio","Molde","\u00c5lesund","Kristiansund","Ulstein","Hareid","\u00d8rskog","Stranda","Stordal","Sykkylven","Skodje","Sula","Giske","Haram","Vestnes","Rauma","Nesset","Midsund","Aukra","Fr\u00e6na","Eide","Aver\u00f8y","Gjemnes","Tingvoll","Bod\u00f8","Narvik","Nesna","Hemnes","Rana - Raane","Fauske - Fuossko","Tjeldsund","Evenes - Even\u00e1ssi","Ballangen","Harstad - H\u00e1rstt\u00e1k","Kv\u00e6fjord","Sk\u00e5nland","Gratangen"],"x":{"dtype":"f8","bdata":"SX7Po98OMkAhSZIkSZIMwIY8Toy4+RRAEuGxCK3BCsBpnPc\u002fGOcNwNuM8eAvdiVAsJeE84rO\u002fT9SMwdc2hQhQAxAbeA0qiBAFW+60bcQA8BEmuBHvTgCwHZDgMDt9hFAoN9KOVLM2T\u002fUhemAChMJQEFUog0nchJAq8JXF\u002fdPDcAgsEy+cJnKP9b6C1salRPAXFPeXn6h5r\u002fTxFvxjscZQIWCXJVkvSFAnMK+dHKsHEB7TQCkMSUZQDqmaid8LgpAgKK6PyJK8r8A2wihmQq9v5ykzvNe2vM\u002fBNbjbRfB5L8oHvrEwATiv8fHyes47C1ATG0e1mmG8T8o6Xlv5bfXv8hpmNbJk+o\u002fXi16YsYR9b8dSXB9JjokQPaXDVMrHghAcoDJW4DJC0BQ66m302wwQLXOZ71\u002f2zBASQHI6FV1JkD41Es92HogQJThG1Fg0jFAYBCcQHFrJUBbwnzUdiUtQALddNcMhiJA1G\u002fg5+m7N0AbXKym+c4nQKDA3XdcvCRAmCDRCpsD8z9uVgyU8EYDQHD4YKm6YQtA1KzcoCv+OkA7CoaMA1QzQMnZFMbZFDZASS4iqjDHGUDyoWLLvfwEQHijuP\u002fXk\u002f8\u002fOAVA5ReJFcDi1ua+IikhQDjVcbp9CitA8Mn47VKvG0CcgL9yFewNQFjObuFXYyFAI7Gl2yrQCMCAFnpOfoXAP+v2JqtWbihA4CLVvv5hAkDU1hTwPTQPQPZmcS4cuvO\u002flvp18d+UBUAInFWa3sHhPzlPpKBpMCDAIEiDNEiDBECOV\u002fQmOXkVwDzKFJ55Tg9APL0sOO3S87+PsKaOYdwQQFTn1x5yWSHA"},"y":{"dtype":"f8","bdata":"MzMzMzMzB8DNzMzMzMwiwAAAAAAAABrAmpmZmZmZJsAzMzMzMzMkwJqZmZmZmRvAAAAAAAAAKsAzMzMzMzMLwGZmZmZmZhLAmpmZmZmZGcAzMzMzMzMVwGZmZmZmZhbAMzMzMzMzIcAzMzMzMzMXwGZmZmZmZhrAMzMzMzMzH8BmZmZmZmYhwDMzMzMzMyHAAAAAAAAAHsAAAAAAAAD4v5qZmZmZmQHAzczMzMzM\u002fL+amZmZmZkFwDMzMzMzMx\u002fAAAAAAAAAFsAzMzMzMzMLwM3MzMzMzBjAZmZmZmZmJcCamZmZmZkZwM3MzMzMzB7AMzMzMzMzFcBmZmZmZmYqwDMzMzMzMwvAzczMzMzMFMAAAAAAAAASwM3MzMzMzATAmpmZmZmZG8CamZmZmZnxv5qZmZmZmfm\u002fAAAAAAAAAMAzMzMzMzMLwJqZmZmZmQXAAAAAAAAAAMAAAAAAAAAAwJqZmZmZmSbAmpmZmZmZAcCamZmZmZkBwDMzMzMzMxPAZmZmZmZmEsAzMzMzMzMRwJqZmZmZmQXAzczMzMzMBMCamZmZmZnxv83MzMzMzATAzczMzMzM9L8AAAAAAAAMwAAAAAAAABrAmpmZmZmZH8AAAAAAAADgPwAAAAAAAAzAAAAAAAAADMAAAAAAAAAIwJqZmZmZmQnAMzMzMzMzH8AAAAAAAAASwAAAAAAAABzAMzMzMzMzE8CamZmZmZkNwDMzMzMzMyLAAAAAAAAAK8DNzMzMzMwhwGZmZmZmZg7AZmZmZmZmFsCamZmZmZkVwM3MzMzMzBTAAAAAAAAABMBmZmZmZmYUwM3MzMzMzBzA"},"type":"scatter"},{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003eBefolkningsvekst 2006\u20132016 (%): %{x:.1f}%\u003cbr\u003eEndring Ap (pp): %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#1f77b4","line":{"color":"white","width":0.4},"opacity":0.75,"size":{"dtype":"f8","bdata":"GL3bZTW0HUAC7EYnhUAeQEajk92XNSJAADnPY5a1JEAAAAAAAAAQQAAAAAAAABBAXf7h8v4iEEAh7Kdh5ooQQOoAhpmzfBdAJGb1HhgJFUAAAAAAAAAQQLDzwZJIpxJAL421h1oMEkAaWSUYeWcXQAAAAAAAABBAVzH5S4YtEEB2GoBI3w8YQGDGxHt5mx1A0qJwySonGUA7fkcfd4cXQOCdkI0Z+xhAAiJJPUNfHECzHCIhlCMoQHwHJYKa0iJAzzed9r+kF0D4dR\u002fqP2oYQCnjZA90BRVAuvQs8R1oGEAgVWaNwrAUQF47FbErkx9A3qNTrmr0IUDSmiZFedYaQEDdRSHOHRFAhX\u002fZ6j\u002fmHkA4pZ2tgPUZQB51GhCCORtAwB6ztbaVFUAAAAAAAAAQQAAAAAAAADJAkLQqmw6bGECuwTpXGI8dQCafgaqePhJAYwVh3meqGUAAAAAAAAAQQKeaR7EqgRJAOX4vL33xEEB1RSM\u002f42YRQP9korSQZhNAMYuP3dZuFkAmQOYEjqQjQFbFSxctdBxAiv9zrfJyHUCWNwIuIYcRQAAAAAAAABBAAAAAAAAAEEAWcTzcVX0WQN76\u002fFd9yBhAJZUjiX54G0C4+VECRPkbQMKcEZb8QxpAo1NonpGsE0AAAAAAAAAQQHpUcca3gxxA3Bwre6yaFEBbZm5OOqQgQAZy3QwAYRFA4lR+8MGWE0AAAAAAAAAQQITjRyfQohNABoxOtxVSGkAAAAAAAAAQQMKacqcIthpAF7VnEfrqIEBSM8asM2wQQIRx\u002fENYfhRAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAe7ioUMIwlQMAZyygXcRdAupSH5ofHFkApxqfS+TQRQMbxBG2D8hRAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEBiiguHSvsSQAAAAAAAABBApGm4CLMgF0AewvLLbVIkQKNfxpDU1ChAAAAAAAAAEEAAAAAAAAAQQORUfGlA9xhAGN0BNY4kGUCCZYn29vQYQDr+gaa2UxVAkCHsT6gcHEBhmRF1\u002fJkUQAAAAAAAABBAF6SPnpy0FUAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQJTJE27VEjBACjARSOL2EkAAAAAAAAAQQAAAAAAAABBAl9xzeAx\u002fGUAAAAAAAAAQQHXRF6btthFAjpYhhHekG0Bd8KyoIPMcQAAAAAAAABBAAAAAAAAAEEBWvVQr5IwSQP+zoudrbhJAAAAAAAAAEEAAAAAAAAAQQFH2DoufexdAAAAAAAAAEEAAAAAAAAAQQMpm2FiABSxAAAAAAAAAEEAAAAAAAAAQQAoHrsppahFAAAAAAAAAEEAAAAAAAAAQQFGXk1jCRxVAM1up0rsXEUAx2q5a47wXQLuoMNRXYhJAPNnAjODeEECNL7zYJHUWQAAAAAAAABBAAAAAAAAAEECANYK8ngUbQAAAAAAAABBAAAAAAAAAEEBzgPKpvW8ZQOmVqtDIGBdAP8yXW6AxJECFyKp11oEQQAAAAAAAABBA"}},"mode":"markers","name":"Sentrale","text":["Halden","Moss","Sarpsborg","Fredrikstad","Marker","R\u00f8mskog","Tr\u00f8gstad","Spydeberg","Askim","Eidsberg","Skiptvet","Rakkestad","R\u00e5de","Rygge","V\u00e5ler","Hob\u00f8l","Vestby","Ski","\u00c5s","Frogn","Nesodden","Oppeg\u00e5rd","B\u00e6rum","Asker","Aurskog-H\u00f8land","S\u00f8rum","Fet","R\u00e6lingen","Enebakk","L\u00f8renskog","Skedsmo","Nittedal","Gjerdrum","Ullensaker","Nes","Eidsvoll","Nannestad","Hurdal","Oslo - Oslove","Kongsvinger","Hamar","L\u00f8ten","Stange","Nord-Odal","S\u00f8r-Odal","Eidskog","Jevnaker","Lunner","Gran","Drammen","Kongsberg","Ringerike","Hole","Sigdal","Kr\u00f8dsherad","Modum","\u00d8vre Eiker","Nedre Eiker","Lier","R\u00f8yken","Hurum","Flesberg","Horten","Holmestrand","T\u00f8nsberg","Svelvik","Sande","Hof","Re","N\u00f8tter\u00f8y","Lardal","Grimstad","Arendal","Froland","Lillesand","Birkenes","Iveland","Evje og Hornnes","Bygland","Kristiansand","Mandal","Vennesla","Songdalen","S\u00f8gne","Marnardal","\u00c5seral","Audnedal","Lindesnes","Lyngdal","H\u00e6gebostad","Eigersund","Sandnes","Stavanger","Sokndal","Bjerkreim","H\u00e5","Klepp","Time","Gjesdal","Sola","Randaberg","Forsand","Strand","Finn\u00f8y","Rennes\u00f8y","Kvits\u00f8y","Bokn","Bergen","Kvam","Fusa","Samnanger","Os","Austevoll","Sund","Fjell","Ask\u00f8y","Vaksdal","Modalen","Oster\u00f8y","Meland","\u00d8ygarden","Rad\u00f8y","Lind\u00e5s","Austrheim","Masfjorden","Trondheim","Snillfjord","Agdenes","Rissa","Rennebu","Meldal","Orkdal","Midtre Gauldal","Melhus","Skaun","Kl\u00e6bu","Malvik","Selbu","Mer\u00e5ker","Stj\u00f8rdal","Frosta","Leksvik","Levanger","Verdal","Troms\u00f8","Balsfjord","Karls\u00f8y"],"x":{"dtype":"f8","bdata":"1oNG3vlbJEB4UZfFDGMsQMQ1yjXKNSJAHtgn2lYZJ0AIE7xBPPcHQBBydgu\u002fGtM\u002fmoWorN9UGkCxw9CPNR8yQHSip3N7LSRAcUM9pSf+JUAeHh4eHh4kQGrrt862fiNA4K9\u002fVOHYKED8hDUt6AYnQP2rB4qLYztATrezg0HsMUDAI15\u002fCyc7QCjBsqqTEihApiFlCnm1PkDcNoLiTBAvQLgX1Nh+LClAgv6CnJ46KEC+O+eIjwAvQFBwByY4vzBAuameNJbyMkA8ZxeWNX4+QJozuRUh2TBAalvPjqBKMUBf+yS2cT8uQFcPUz3flTFA5P2kfW2TNUDsBWxzusovQAsuxVgIRTVAdoHh+WumQUA\u002fGViR7KMuQD5b+F681DlAGqD5sNHaMkBMLNREtk8hQOnNwAyuSDZAXpEqigZhDEDdVYMU9VAiQC38ggPmWRBAHBAxyyRwIEAUUp2gbVf5P27+9cOXjgdA6Ya7hSFHE8A\u002fBOdYthYUQNC5JL9csxhAnjPfwI5BE0BT+TzdfIwxQHnltGfZuC9A2RLB1hLBFkD+I+IQxoI7QOBpBU7JG9Q\u002f7G66HSfVG0BeJwkOnjYjQO6xiJ44FC5A42\u002foZMWoKUDWOySU\u002f6ExQFoRnHHAJzZABuJxE2twFkDz+AVlWuMaQId3jvk9jSJAA1x73ueEJkBCTmaSMQUtQHgLXnlHMwFAStwRd8QdNEBAgo7CRNMFQKottpJEICtAmrqoVoGnHkAkwGnGPfryPyf3UFghTTFATH+06HOIJkCA\u002fqC1Fe0xQMcb8oa8ITFAb5An3utSMUAN0iAN0iApQGNEXrIDDB9AplvzwyJlHMBk8jpt+fotQERqzes9wSRAlUfUeK6wLEAAr+kBvmQsQGTILgSLLjFAbfBLtOXsFUA8eFKQ\u002fHkVQCIqwCyM7yhAAnE2Id9fJEDhPoL7CHYwQOIzcfzJER5AaBiAtzu3JkAkg2\u002fRde06QLr3Ye\u002fmXi5A0HGMaQNE1z+fITFvZ0gsQNLr5qUR6jhAvEGu1y3mO0CoAgqLWm05QEt+M2x4vzlA3Lg1w\u002fqVPUDunIUD0M0uQNVrvdZrvSpA8fF1apn2MUAnu60kUQcyQDDRK7YdKUVAcNrrIBVt4j+Is\u002fIT4qwoQICAmRFkGS1AhlU9BQNHAECiEN+fQhcPQFOyzduubRFA8vX5lfNePUCxL4LhfI4wQNrOHs4T6ThABAY00qf1NUB72lj03yc6QGD17yIVwsU\u002fp+7LYyuCHkBURDmaIEskQNVxmdf3tj9A9bNGwlICM0B2\u002f72wgBIjQDs0Ir11ejFAxAm9oSYFLkDgdr0X\u002fz3eP63kymecHjJAzh+dnfoAGsA45Houj68EwFbw2pDBTAxA3XIiV81wC8BogKTMMOj0P2jg4zGNkyVAFaT7oy7yHEAyBfWIiRYrQPZq\u002fCr8LTpArpNwnjetKkBEk7MFMPkoQHlUs\u002f4MfhNAGKaRIKo61L9Ix8U2OCwxQMnWDttLlxpAYJZjvq8E8D\u002fgywZNvuwgQIAo\u002fiJnWBxALmCxaG4VL0BqaKLzTPYCQPHGD+4lYQ3A"},"y":{"dtype":"f8","bdata":"ZmZmZmZmEMDNzMzMzMwEwM3MzMzMzADAmpmZmZmZAcAzMzMzMzMVwAAAAAAAABzAzczMzMzMFsAAAAAAAAASwDMzMzMzMwfAZmZmZmZmEMAzMzMzMzMXwJqZmZmZmRnAmpmZmZmZCcCamZmZmZnZP2ZmZmZmZg7AMzMzMzMzC8DNzMzMzMwAwGZmZmZmZgLAmpmZmZmZAcAAAAAAAAAAwAAAAAAAAADAMzMzMzMz878AAAAAAADgvzMzMzMzM+O\u002fmpmZmZmZGcAzMzMzMzMRwGZmZmZmZhTAAAAAAAAABMAzMzMzMzMTwJqZmZmZmem\u002fmpmZmZmZ+b8AAAAAAAAIwM3MzMzMzBLAAAAAAAAABMBmZmZmZmYSwM3MzMzMzBjAZmZmZmZmEMDNzMzMzMwawAAAAAAAAADAmpmZmZmZDcDNzMzMzMwawDMzMzMzMyTAzczMzMzMIMDNzMzMzMwlwDMzMzMzMx3AMzMzMzMzG8AAAAAAAAAWwDMzMzMzMw\u002fAZmZmZmZmCsDNzMzMzMz0v83MzMzMzATAAAAAAAAAEMCamZmZmZkJwDMzMzMzMxfAMzMzMzMzIcAzMzMzMzMXwJqZmZmZmQ3AZmZmZmZmEsAAAAAAAAAEwM3MzMzMzAzAzczMzMzMBMAzMzMzMzMPwAAAAAAAAPC\u002fMzMzMzMzE8DNzMzMzMzsvzMzMzMzMxHAmpmZmZmZEcAzMzMzMzMXwJqZmZmZmQHAmpmZmZmZyb\u002fNzMzMzMwQwJqZmZmZmfG\u002fzczMzMzMAMAzMzMzMzMbwDMzMzMzM\u002fO\u002fmpmZmZmZuT9mZmZmZmYQwAAAAAAAABjAMzMzMzMzFcDNzMzMzMz8vzMzMzMzMwvAAAAAAAAAEsDNzMzMzMwIwGZmZmZmZgbAAAAAAAAAIMDNzMzMzMwWwGZmZmZmZhjAZmZmZmZmBsAAAAAAAAAIwGZmZmZmZhTAMzMzMzMz+7\u002fNzMzMzMz0P5qZmZmZmfE\u002fAAAAAAAAEMAzMzMzMzMHwDMzMzMzM\u002fO\u002fmpmZmZmZyT+amZmZmZnxv83MzMzMzPQ\u002fAAAAAAAA8D\u002fNzMzMzMzsvzMzMzMzMw\u002fAMzMzMzMz878zMzMzMzMDwJqZmZmZmdk\u002fAAAAAAAA4L8zMzMzMzPTvzMzMzMzM\u002fO\u002fMzMzMzMzA8BmZmZmZmb2vzMzMzMzMxnAZmZmZmZm9r+amZmZmZkFwAAAAAAAAAzAzczMzMzMAMCamZmZmZkTwAAAAAAAABjAAAAAAAAADMAzMzMzMzMPwJqZmZmZmfG\u002fAAAAAAAA+L\u002fNzMzMzMz0v2ZmZmZmZva\u002fAAAAAAAADMAAAAAAAAAMwJqZmZmZmQ3AzczMzMzMFsAAAAAAAAAUwJqZmZmZmRXAMzMzMzMzEcAAAAAAAAAcwGZmZmZmZhTAAAAAAAAAEsBmZmZmZmYKwM3MzMzMzBbAAAAAAAAABMCamZmZmZkTwAAAAAAAAADAMzMzMzMzH8DNzMzMzMwUwJqZmZmZmRXAmpmZmZmZEcAAAAAAAAAWwM3MzMzMzCbAAAAAAAAAHsDNzMzMzMwhwAAAAAAAACTA"},"type":"scatter"},{"fill":"toself","fillcolor":"rgba(0,0,0,0.08)","line":{"color":"rgba(0,0,0,0)"},"showlegend":false,"x":{"dtype":"f8","bdata":"06LhIHwcKcBhWnhmSa4owO8RD6wWQCjAfMml8ePRJ8AKgTw3sWMnwJg403x+9SbAJvBpwkuHJsC0pwAIGRkmwEFfl03mqiXAzxYuk7M8JcBdzsTYgM4kwOqFWx5OYCTAeD3yYxvyI8AG9Yip6IMjwJSsH++1FSPAImS2NIOnIsCwG016UDkiwD3T478dyyHAy4p6BetcIcBZQhFLuO4gwOb5p5CFgCDAdLE+1lISIMAE0qo3QEgfwCBB2MLaax7APLAFTnWPHcBXHzPZD7McwHOOYGSq1hvAjv2N70T6GsCqbLt63x0awMXb6AV6QRnA4UoWkRRlGMD8uUMcr4gXwBgpcadJrBbANJieMuTPFcBPB8y9fvMUwGt2+UgZFxTAhuUm1LM6E8CiVFRfTl4SwL7DgerogRHA2DKvdYOlEMDoQ7kBPJIPwCAiFBhx2Q3AWABvLqYgDMCQ3slE22cKwMS8JFsQrwjA\u002fJp\u002fcUX2BsA0edqHej0FwGxXNZ6vhAPApDWQtOTLAcDYE+vKGRMAwCDki8KdtPy\u002fkKBB7wdD+b8AXfcbctH1v2gZrUjcX\u002fK\u002fsKvF6ozc7b+QJDFEYfnmv3CdnJ01FuC\u002foCwQ7hNm0r8AeZyD8n6yvwDgg1g1TcI\u002fQP5q+fHs1j9ABkqjpFniP3CN3knQPOk\u002fSIo5+P0P8D\u002fYzYPLk4HzP2gRzp4p8\u002fY\u002f+FQYcr9k+j+QmGJFVdb9PxBuVoz1owBA2I\u002f7dcBcAkCgsaBfixUEQGzTRUlWzgVANPXqMiGHB0D8FpAc7D8JQMQ4NQa3+ApAjFra74GxDEBUfH\u002fZTGoOQA5PkuGLERBA9t9kVvHtEEDacDfLVsoRQL4BCkC8phJAopLctCGDE0CGI68ph18UQGq0gZ7sOxVATkVUE1IYFkAy1iaIt\u002fQWQBZn+fwc0RdA\u002fvfLcYKtGEDiiJ7m54kZQMYZcVtNZhpAqqpD0LJCG0COOxZFGB8cQHLM6Ll9+xxAVl27LuPXHUA67o2jSLQeQB5\u002fYBiukB9AAYiZxok2IEB10AKBvKQgQOcYbDvvEiFAWWHV9SGBIUDLqT6wVO8hQD3yp2qHXSJArzoRJbrLIkAhg3rf7DkjQJPL45kfqCNABRRNVFIWJEB5XLYOhYQkQOukH8m38iRAXe2Ig+pgJUDPNfI9Hc8lQEF+W\u002fhPPSZAs8bEsoKrJkAlDy5ttRknQJdXlyfohydACaAA4hr2J0B96GmcTWQoQO8w01aA0ihAYXk8EbNAKUDTwaXL5a4pQEUKD4YYHSpAt1J4QEuLKkApm+H6ffkqQJvjSrWwZytADSy0b+PVK0CBdB0qFkQsQPO8huRIsixAZQXwnnsgLUDXTVlZro4tQEmWwhPh\u002fC1Au94rzhNrLkAtJ5WIRtkuQJ9v\u002fkJ5Ry9AEbhn\u002fau1L0BCgOhb7xEwQHwkHbkISTBAtMhRFiKAMEDubIZzO7cwQCYRu9BU7jBAYLXvLW4lMUCYWSSLh1wxQNL9WOigkzFACqKNRbrKMUBERsKi0wEyQH7q9v\u002fsODJAto4rXQZwMkDwMmC6H6cyQCjXlBc53jJAYnvJdFIVM0CaH\u002f7Ra0wzQNTDMi+FgzNADGhnjJ66M0BGDJzpt\u002fEzQH6w0EbRKDRAuFQFpOpfNEDw+DkBBJc0QCqdbl4dzjRAZEGjuzYFNUCc5dcYUDw1QNaJDHZpczVADi5B04KqNUBI0nUwnOE1QIB2qo21GDZAuhrf6s5PNkDyvhNI6IY2QCxjSKUBvjZAZgd9Ahv1NkCeq7FfNCw3QNhP5rxNYzdAEPQaGmeaN0BKmE93gNE3QII8hNSZCDhAvOC4MbM\u002fOED0hO2OzHY4QC4pIuzlrThAaM1WSf\u002fkOECgcYumGBw5QNoVwAMyUzlAErr0YEuKOUBMXim+ZME5QIQCXht++DlAvqaSeJcvOkD2SsfVsGY6QDDv+zLKnTpAapMwkOPUOkCiN2Xt\u002fAs7QNzbmUoWQztAFIDOpy96O0BOJAMFSbE7QIbIN2Ji6DtAwGxsv3sfPED4EKEclVY8QDK11XmujTxAalkK18fEPECk\u002fT404fs8QN6hc5H6Mj1AFkao7hNqPUBQ6txLLaE9QIiOEalG2D1AwjJGBmAPPkD61npjeUY+QPrWemN5Rj5AwjJGBmAPPkCIjhGpRtg9QFDq3EstoT1AFkao7hNqPUDeoXOR+jI9QKT9PjTh+zxAalkK18fEPEAytdV5ro08QPgQoRyVVjxAwGxsv3sfPECGyDdiYug7QE4kAwVJsTtAFIDOpy96O0Dc25lKFkM7QKI3Ze38CztAapMwkOPUOkAw7\u002fsyyp06QPZKx9WwZjpAvqaSeJcvOkCEAl4bfvg5QExeKb5kwTlAErr0YEuKOUDaFcADMlM5QKBxi6YYHDlAaM1WSf\u002fkOEAuKSLs5a04QPSE7Y7MdjhAvOC4MbM\u002fOECCPITUmQg4QEqYT3eA0TdAEPQaGmeaN0DYT+a8TWM3QJ6rsV80LDdAZgd9Ahv1NkAsY0ilAb42QPK+E0johjZAuhrf6s5PNkCAdqqNtRg2QEjSdTCc4TVADi5B04KqNUDWiQx2aXM1QJzl1xhQPDVAZEGjuzYFNUAqnW5eHc40QPD4OQEElzRAuFQFpOpfNEB+sNBG0Sg0QEYMnOm38TNADGhnjJ66M0DUwzIvhYMzQJof\u002ftFrTDNAYnvJdFIVM0Ao15QXOd4yQPAyYLofpzJAto4rXQZwMkB+6vb\u002f7DgyQERGwqLTATJACqKNRbrKMUDS\u002fVjooJMxQJhZJIuHXDFAYLXvLW4lMUAmEbvQVO4wQO5shnM7tzBAtMhRFiKAMEB8JB25CEkwQEKA6FvvETBAEbhn\u002fau1L0Cfb\u002f5CeUcvQC0nlYhG2S5Au94rzhNrLkBJlsIT4fwtQNdNWVmuji1AZQXwnnsgLUDzvIbkSLIsQIF0HSoWRCxADSy0b+PVK0Cb40q1sGcrQCmb4fp9+SpAt1J4QEuLKkBFCg+GGB0qQNPBpcvlrilAYXk8EbNAKUDvMNNWgNIoQH3oaZxNZChACaAA4hr2J0CXV5cn6IcnQCUPLm21GSdAs8bEsoKrJkBBflv4Tz0mQM818j0dzyVAXe2Ig+pgJUDrpB\u002fJt\u002fIkQHlctg6FhCRABRRNVFIWJECTy+OZH6gjQCGDet\u002fsOSNArzoRJbrLIkA98qdqh10iQMupPrBU7yFAWWHV9SGBIUDnGGw77xIhQHXQAoG8pCBAAYiZxok2IEAef2AYrpAfQDrujaNItB5AVl27LuPXHUByzOi5ffscQI47FkUYHxxAqqpD0LJCG0DGGXFbTWYaQOKInubniRlA\u002fvfLcYKtGEAWZ\u002fn8HNEXQDLWJoi39BZATkVUE1IYFkBqtIGe7DsVQIYjrymHXxRAopLctCGDE0C+AQpAvKYSQNpwN8tWyhFA9t9kVvHtEEAOT5LhixEQQFR8f9lMag5AjFra74GxDEDEODUGt\u002fgKQPwWkBzsPwlANPXqMiGHB0Bs00VJVs4FQKCxoF+LFQRA2I\u002f7dcBcAkAQblaM9aMAQJCYYkVV1v0\u002f+FQYcr9k+j9oEc6eKfP2P9jNg8uTgfM\u002fSIo5+P0P8D9wjd5J0DzpP0AGSqOkWeI\u002fQP5q+fHs1j8A4INYNU3CPwB5nIPyfrK\u002foCwQ7hNm0r9wnZydNRbgv5AkMURh+ea\u002fsKvF6ozc7b9oGa1I3F\u002fyvwBd9xty0fW\u002fkKBB7wdD+b8g5IvCnbT8v9gT68oZEwDApDWQtOTLAcBsVzWer4QDwDR52od6PQXA\u002fJp\u002fcUX2BsDEvCRbEK8IwJDeyUTbZwrAWABvLqYgDMAgIhQYcdkNwOhDuQE8kg\u002fA2DKvdYOlEMC+w4Hq6IERwKJUVF9OXhLAhuUm1LM6E8BrdvlIGRcUwE8HzL1+8xTANJieMuTPFcAYKXGnSawWwPy5QxyviBfA4UoWkRRlGMDF2+gFekEZwKpsu3rfHRrAjv2N70T6GsBzjmBkqtYbwFcfM9kPsxzAPLAFTnWPHcAgQdjC2msewATSqjdASB\u002fAdLE+1lISIMDm+aeQhYAgwFlCEUu47iDAy4p6BetcIcA90+O\u002fHcshwLAbTXpQOSLAImS2NIOnIsCUrB\u002fvtRUjwAb1iKnogyPAeD3yYxvyI8DqhVseTmAkwF3OxNiAziTAzxYuk7M8JcBBX5dN5qolwLSnAAgZGSbAJvBpwkuHJsCYONN8fvUmwAqBPDexYyfAfMml8ePRJ8DvEQ+sFkAowGFaeGZJrijA06LhIHwcKcA="},"y":{"dtype":"f8","bdata":"yP\u002fBtNTRHsCNF8uwWrIewExoQOvbkh7AfBThQFhzHsDYhSuNz1MewM+7UKpBNB7AFRsnca4UHsACuxy5FfUdwEstKVh31R3AKr2+ItO1HcAMI7vrKJYdwFCqV4R4dh3ABccYvMFWHcDZGb1gBDcdwFnhKz5AFx3A0NdiHnX3HMA+fmPJotccwH3VHwXJtxzAzodmleeXHMAZhs47\u002fnccwKgdorcMWBzAb4zJxRI4HMDkG7UgEBgcwDzMRoAE+BvABpy7me\u002fXG8C9epQf0bcbwG\u002f3fsGolxvAx789LHZ3G8AeB5EJOVcbwOLwHgDxNhvA3h1cs50WG8AsgHTDPvYawNSeNM3T1RrAEXfzaVy1GsA5L30v2JQawELV\u002fq9GdBrAhGnzeadTGsBMfRIY+jIawCy0QBE+EhrApn6C6HLxGcCnbPEcmNAZwHh+tCmtrxnA8uL7hbGOGcDJmQClpG0ZwLt4CPaFTBnA6xlv5FQrGcBsQLTXEAoZwPVFkDO56BjAlykPWE3HGMAw2rKhzKUYwO1YnWk2hBjA907DBYpiGMC3rSfJxkAYwEDqIATsHhjA2lmoBPn8F8AjJ7QW7doXwE5EnITHuBfAOaeKl4eWF8A6\u002f\u002faXLHQXwKryLc61URfAqsrjgiIvF8BrR9L\u002fcQwXwP8lYZCj6RbALqtYgrbGFsDpTZ0mqqMWwIdg89F9gBbAUFvJ3TBdFsCWLgepwjkWwHjI4JgyFhbA\u002fMOpGYDyFcAyB6ifqs4VwG\u002ft4qexqhXA6nzsuJSGFcBFFKJjU2IVwAH44UPtPRXAnTEzAWIZFcBmS11PsfQUwE6d7e7azxTAlheord6qFMAsv+FmvIUUwKhjwwN0YBTAv3VzewU7FMAjTCbTcBUUwDCRFB627xPAcwJYfdXJE8AuGK8fz6MTwBmUKEGjfRPApVe4KlJXE8BFObcx3DATwNjaT7dBChPAsL\u002faJ4PjEsDtDSz6oLwSwHCE1a6blRLARDxfz3NuEsB\u002fy3ntKUcSwHZQLKK+HxLA29AAjTL4EcCTMjFThtARwKfl1p66qBHAzSEfHtCAEcCjYIWCx1gRwOOBFYChMBHA8Mm2zF4IEcCWr4AfAOAQwL0zGjCGtxDAr0cktvGOEMAIlK9oQ2YQwKzEvf17PRDAllXOKZwUEMDuce0+SdcPwIMhCx4shQ\u002fA3TlhTOIyD8D81pkfbeAOwPOOIefNjQ7A5bG96wU7DsDRvzNvFugNwF\u002ffAKwAlQ3AUx0g1cVBDcC8Pd4VZ+4MwIbtuZHlmgzAtytPZEJHDMDezEyhfvMLwKAIc1SbnwvA0A+agZlLC8Aqub8kevcKwOFiGzI+owrAjjc3luZOCsBVFQ42dPoJwOtlLe\u002fnpQnA10Xal0JRCcDpZzn\u002fhPwIwC4wee2vpwjABo\u002f9I8RSCMBqMY1dwv0HwEynf06rqAfAqyvspH9TB8D+w9gIQP4GwAh2aRztqAbA4loPfIdTBsCwXre+D\u002f4FwC6C+HWGqAXAsHpBLuxSBcDJkQVvQf0EwK+r6LqGpwTAVF\u002fqj7xRBMBqD5Bn4\u002fsDwFT3Dbf7pQPAgiFv7wVQA8BOQLx9AvoCwPhjIcvxowLAUIsSPdRNAsCjDW81qvcBwOreoxJ0oQHAnq\u002fMLzJLAcCy69Pk5PQAwFSckYaMngDAmjHpZilIAMCScsypd+P\u002fv70RsDmINv+\u002f2MLYEIWJ\u002fr+VJ5K9btz9vwhZSclFL\u002f2\u002fmFy8uAqC\u002fL+uxScMvtT7v+iRcj9gJ\u002fu\u002fkk9YyvF5+r+inJEgc8z5v+0M+7HkHvm\u002fjYa66kZx+L\u002f7IWMzmsP3v6+cF\u002fHeFfe\u002fRWurhRVo9r8wecJPPrr1v2ii76pZDPW\u002fbPTR72de9L9lwjB0abDzv2CYFoteAvO\u002f9BnrhEdU8r8x1ouvJKbxv\u002f0cZFb29\u002fC\u002fRt+DwrxJ8L+VSWt18DbvvyNBJwdS2u2\u002fzds3v5597L\u002fL\u002fIce1yDrv62DFqL7w+m\u002fpSAawwxn6L88vCP3CgrnvyODP7D2rOW\u002fx6IUXdBP5L8mxwNpmPLiv5hkRDxPleG\u002f4NwAPPU34L\u002fgE+OUFbXdvyp37Y0g+tq\u002fumRjHAw\u002f2L\u002fSRTn02IPVv9CYQ8SHyNK\u002fclZjNhkN0L8ASWHfG6PKv9C1fX0CY\u002f6\u002fTFWj8SLf\u002fr+0kP2TSlv\u002fv2xx0o151\u002f+\u002f2RrNBNgpAMCH\u002foQZ92cAwPBwjxsapgDANMIUIkHkAMBCBu1EbCIBwJ5TppybYAHAskKLQs+eAcCfsKlQB90BwFHI2eFDGwLAO1XFEYVZAsB1Yu\u002f8ypcCwC0qvMAV1gLAaVh5e2UUA8ATpWZMulIDwPfIvlMUkQPAtdHAsnPPA8Da2LmL2A0EwDwiDwJDTATAWqZIOrOKBMAgDRxaKckEwCIeeIilBwXAFquQ7SdGBcAc+uqysIQFwLi0agNAwwXAqmFfC9YBBsD0bpL4ckAGwErSVfoWfwbAAkaTQcK9BsDOKNwAdfwGwPUGemwvOwfAd9N\u002fuvF5B8BO2NsivLgHwGtkat+O9wfA8j4JLGo2CMC85qtGTnUIwHClcG87tAjA0H226DHzCMBa\u002fDP3MTIJwO\u002fxDuI7cQnAmh\u002f18k+wCcDi2jV2bu8JwISx3LqXLgrAlBPNEsxtCsBICt\u002fSC60KwIsB\u002fVJX7ArA4KlC7q4rC8Ay9xwDE2sLwN5Aa\u002fODqgvApoWhJALqC8DU1ev\u002fjSkMwLrjUvInaQzA0LnhbNCoDMBxk8zkh+gMwFnTmNNOKA3AchBGtyVoDcDwLngSDagNwG54omwF6A3AOKIzUg8oDsAUrcJUK2gOwBiFPAtaqA7AbUMSEpzoDsDI7WcL8igPwKqJQ59caQ\u002fADlK8e9ypD8Dk1ilVcuoPwJRiKXOPFRDAm4ZNePE1EMCRiRieX1YQwNzEHEzadhDAvsZ87WGXEMAURP\u002fw9rcQwO6rIcmZ2BDAnBMp7Er5EMAzKjHUChoRwBPbOP\u002fZOhHApj4s77hbEcC9cOspqHwRwKLbTTmonRHA1H4hq7m+EcDNsCUR3d8RwJTTAAETARLAiW0wFFwiEsACEvPnuEMSwP6AKx0qZRLAi2I8WLCGEsC5AdxATKgSwIFs34H+yRLA4mL8yMfrEsDMhoHGqA0TwG5KBC2iLxPAxykEsbRRE8C50III4XMTwN7nkOonlhPAhGDPDoq4E8CRO+UsCNsTwM\u002fv6fui\u002fRPApcHEMVsgFMDJkIGCMUMUwN3Wm58mZhTAlctANzuJFMD63onzb6wUwO\u002f2sHnFzxTAKhlAaTzzFMD8Yz5b1RYVwH9tXOGQOhXAvE4ihW9eFcCSxiHHcYIVwCX7Lh6YphXAw2+i9uLKFcBPxqaxUu8VwDrVlKTnExbA9X1gGKI4FsA2ghhJgl0WwENae2WIghbApcOijrSnFsC8aMfXBs0WwDagHUZ\u002f8hbAzNrL0B0YF8AU6Ppg4j0XwPzM\u002f9HMYxfAw3me8dyJF8BfRmSAErAXwBu9GDJt1hfAdOdCruz8F8DvCcGQkCMYwCyDcGpYShjAYFnjwUNxGMDk5yAUUpgYwMQUb9WCvxjACnshctXmGMDTCGxPSQ4ZwG+uNszdNRnAKuTvQZJdGcBX\u002fFsFZoUZwOttX2dYrRnArH3CtWjVGcCq6Ow7lv0ZwBpvmEPgJRrAG1p5FUZOGsAEUNz5xnYawC8AOTlinxrAeGC5HBfIGsAQY7Xu5PAawJkyI\u002fvKGRvAWST8j8hCG8BhrZb93GsbwB6\u002f9ZYHlRvAtwIOske+G8BXeQGonOcbwOARUtUFERzAX8sLmoI6HMCP\u002f+ZZEmQcwIFxY3y0jRzAVrvcbGi3HMDQspiaLeEcwKFX0HgDCx3AoNizfuk0HcAaNmon314dwPr\u002fDPLjiB3AwKagYfeyHcACzgn9GN0dwAsHAE9IBx7AMVL+5YQxHsBuvTFUzlsewBRvZi8khh7AYmTzEIawHsBeJKWV89oewCKhp11sBR\u002fAd3tvDPAvH8DP1qJIflofwH\u002fmAbwWhR\u002fANlhPE7mvH8AAuzj+ZNofwCt\u002fnxeNAiDAZZDPLewXIMBIkZ2dTy0gwI+mQUS3QiDANe8vACNYIMDdkQ2xkm0gwPwGpjcGgyDAs6PgdX2YIMBtaLZO+K0gwK0VKKZ2wyDAmIg0YfjYIMBxYM9lfe4gwJPt15oFBCHAA2oQ6JAZIcByexU2Hy8hwBf+VW6wRCHAjhcLe0RaIcCwkDBH228hwCp1fb50hSHAWPdczRCbIcDwludgr7AhwNCI3GZQxiHAMl6bzfPbIcA="},"type":"scatter"},{"line":{"color":"black","dash":"dash","width":2},"mode":"lines","name":"OLS  R\u00b2=0.216  p=0.0000","x":{"dtype":"f8","bdata":"06LhIHwcKcBhWnhmSa4owO8RD6wWQCjAfMml8ePRJ8AKgTw3sWMnwJg403x+9SbAJvBpwkuHJsC0pwAIGRkmwEFfl03mqiXAzxYuk7M8JcBdzsTYgM4kwOqFWx5OYCTAeD3yYxvyI8AG9Yip6IMjwJSsH++1FSPAImS2NIOnIsCwG016UDkiwD3T478dyyHAy4p6BetcIcBZQhFLuO4gwOb5p5CFgCDAdLE+1lISIMAE0qo3QEgfwCBB2MLaax7APLAFTnWPHcBXHzPZD7McwHOOYGSq1hvAjv2N70T6GsCqbLt63x0awMXb6AV6QRnA4UoWkRRlGMD8uUMcr4gXwBgpcadJrBbANJieMuTPFcBPB8y9fvMUwGt2+UgZFxTAhuUm1LM6E8CiVFRfTl4SwL7DgerogRHA2DKvdYOlEMDoQ7kBPJIPwCAiFBhx2Q3AWABvLqYgDMCQ3slE22cKwMS8JFsQrwjA\u002fJp\u002fcUX2BsA0edqHej0FwGxXNZ6vhAPApDWQtOTLAcDYE+vKGRMAwCDki8KdtPy\u002fkKBB7wdD+b8AXfcbctH1v2gZrUjcX\u002fK\u002fsKvF6ozc7b+QJDFEYfnmv3CdnJ01FuC\u002foCwQ7hNm0r8AeZyD8n6yvwDgg1g1TcI\u002fQP5q+fHs1j9ABkqjpFniP3CN3knQPOk\u002fSIo5+P0P8D\u002fYzYPLk4HzP2gRzp4p8\u002fY\u002f+FQYcr9k+j+QmGJFVdb9PxBuVoz1owBA2I\u002f7dcBcAkCgsaBfixUEQGzTRUlWzgVANPXqMiGHB0D8FpAc7D8JQMQ4NQa3+ApAjFra74GxDEBUfH\u002fZTGoOQA5PkuGLERBA9t9kVvHtEEDacDfLVsoRQL4BCkC8phJAopLctCGDE0CGI68ph18UQGq0gZ7sOxVATkVUE1IYFkAy1iaIt\u002fQWQBZn+fwc0RdA\u002fvfLcYKtGEDiiJ7m54kZQMYZcVtNZhpAqqpD0LJCG0COOxZFGB8cQHLM6Ll9+xxAVl27LuPXHUA67o2jSLQeQB5\u002fYBiukB9AAYiZxok2IEB10AKBvKQgQOcYbDvvEiFAWWHV9SGBIUDLqT6wVO8hQD3yp2qHXSJArzoRJbrLIkAhg3rf7DkjQJPL45kfqCNABRRNVFIWJEB5XLYOhYQkQOukH8m38iRAXe2Ig+pgJUDPNfI9Hc8lQEF+W\u002fhPPSZAs8bEsoKrJkAlDy5ttRknQJdXlyfohydACaAA4hr2J0B96GmcTWQoQO8w01aA0ihAYXk8EbNAKUDTwaXL5a4pQEUKD4YYHSpAt1J4QEuLKkApm+H6ffkqQJvjSrWwZytADSy0b+PVK0CBdB0qFkQsQPO8huRIsixAZQXwnnsgLUDXTVlZro4tQEmWwhPh\u002fC1Au94rzhNrLkAtJ5WIRtkuQJ9v\u002fkJ5Ry9AEbhn\u002fau1L0BCgOhb7xEwQHwkHbkISTBAtMhRFiKAMEDubIZzO7cwQCYRu9BU7jBAYLXvLW4lMUCYWSSLh1wxQNL9WOigkzFACqKNRbrKMUBERsKi0wEyQH7q9v\u002fsODJAto4rXQZwMkDwMmC6H6cyQCjXlBc53jJAYnvJdFIVM0CaH\u002f7Ra0wzQNTDMi+FgzNADGhnjJ66M0BGDJzpt\u002fEzQH6w0EbRKDRAuFQFpOpfNEDw+DkBBJc0QCqdbl4dzjRAZEGjuzYFNUCc5dcYUDw1QNaJDHZpczVADi5B04KqNUBI0nUwnOE1QIB2qo21GDZAuhrf6s5PNkDyvhNI6IY2QCxjSKUBvjZAZgd9Ahv1NkCeq7FfNCw3QNhP5rxNYzdAEPQaGmeaN0BKmE93gNE3QII8hNSZCDhAvOC4MbM\u002fOED0hO2OzHY4QC4pIuzlrThAaM1WSf\u002fkOECgcYumGBw5QNoVwAMyUzlAErr0YEuKOUBMXim+ZME5QIQCXht++DlAvqaSeJcvOkD2SsfVsGY6QDDv+zLKnTpAapMwkOPUOkCiN2Xt\u002fAs7QNzbmUoWQztAFIDOpy96O0BOJAMFSbE7QIbIN2Ji6DtAwGxsv3sfPED4EKEclVY8QDK11XmujTxAalkK18fEPECk\u002fT404fs8QN6hc5H6Mj1AFkao7hNqPUBQ6txLLaE9QIiOEalG2D1AwjJGBmAPPkD61npjeUY+QA=="},"y":{"dtype":"f8","bdata":"Cy\u002f+E2+iIMBLCqHfvo8gwIvlQ6sOfSDAy8Dmdl5qIMALnIlCrlcgwEx3LA7+RCDAjFLP2U0yIMDMLXKlnR8gwAwJFXHtDCDAmMhveXr0H8AZf7UQGs8fwJk1+6e5qR\u002fAGuxAP1mEH8CaoobW+F4fwBpZzG2YOR\u002fAmw8SBTgUH8Abxlec1+4ewJt8nTN3yR7AHDPjyhakHsCc6Shitn4ewBygbvlVWR7AnVa0kPUzHsAdDfonlQ4ewJ7DP7806R3AHnqFVtTDHcCeMMvtc54dwB\u002fnEIUTeR3An51WHLNTHcAgVJyzUi4dwKAK4kryCB3AIMEn4pHjHMCgd215Mb4cwCEusxDRmBzAoeT4p3BzHMAimz4\u002fEE4cwKJRhNavKBzAIgjKbU8DHMCjvg8F790bwCN1VZyOuBvAoyubMy6TG8Ak4uDKzW0bwKSYJmJtSBvAJE9s+QwjG8ClBbKQrP0awCW89ydM2BrApXI9v+uyGsAmKYNWi40awKbfyO0qaBrAJ5YOhcpCGsCnTFQcah0awCcDmrMJ+BnAqLnfSqnSGcAocCXiSK0ZwKgma3nohxnAKd2wEIhiGcCpk\u002fanJz0ZwClKPD\u002fHFxnAqgCC1mbyGMAqt8dtBs0YwKptDQWmpxjAKyRTnEWCGMCr2pgz5VwYwCuR3sqENxjArEckYiQSGMAs\u002fmn5w+wXwK20r5BjxxfALWv1JwOiF8CtITu\u002fonwXwC7YgFZCVxfAro7G7eExF8AvRQyFgQwXwK\u002f7URwh5xbAL7KXs8DBFsCwaN1KYJwWwDAfI+L\u002fdhbAsNVoeZ9RFsAxjK4QPywWwLFC9KfeBhbAMfk5P37hFcCxr3\u002fWHbwVwDJmxW29lhXAshwLBV1xFcAz01Cc\u002fEsVwLOJljOcJhXANEDcyjsBFcC09iFi29sUwDStZ\u002fl6thTAtGOtkBqRFMA1GvMnumsUwLXQOL9ZRhTANod+VvkgFMC2PcTtmPsTwDb0CYU41hPAt6pPHNiwE8A3YZWzd4sTwLgX20oXZhPAOM4g4rZAE8C4hGZ5VhsTwDg7rBD29RLAufHxp5XQEsA5qDc\u002fNasSwLpefdbUhRLAOhXDbXRgEsC6ywgFFDsSwDuCTpyzFRLAuziUM1PwEcA779nK8soRwLylH2KSpRHAPFxl+TGAEcC8EquQ0VoRwD3J8CdxNRHAvX82vxAQEcA+NnxWsOoQwL7swe1PxRDAPqMHhe+fEMC+WU0cj3oQwD4Qk7MuVRDAv8bYSs4vEMBAfR7ibQoQwIBnyPIayg\u002fAgdRTIVp\u002fD8CCQd9PmTQPwIOuan7Y6Q7AhBv2rBefDsCDiIHbVlQOwIT1DAqWCQ7AhWKYONW+DcCGzyNnFHQNwIc8r5VTKQ3Ah6k6xJLeDMCIFsby0ZMMwImDUSERSQzAivDcT1D+C8CKXWh+j7MLwIrK86zOaAvAjDd\u002f2w0eC8CLpAoKTdMKwI4RljiMiArAjX4hZ8s9CsCP66yVCvMJwI9YOMRJqAnAkcXD8ohdCcCRMk8hyBIJwJCf2k8HyAjAkgxmfkZ9CMCSefGshTIIwJTmfNvE5wfAlFMICgSdB8CWwJM4Q1IHwJUtH2eCBwfAmJqqlcG8BsCXBzbEAHIGwJl0wfI\u002fJwbAmeFMIX\u002fcBcCbTthPvpEFwJu7Y379RgXAmijvrDz8BMCclXrbe7EEwJwCBgq7ZgTAnm+ROPobBMCd3BxnOdEDwKBJqJV4hgPAn7YzxLc7A8ChI7\u002fy9vACwKGQSiE2pgLAoP3VT3VbAsCjamF+tBACwKLX7KzzxQHApER42zJ7AcCksQMKcjABwKYejzix5QDAposaZ\u002fCaAMCo+KWVL1AAwKhlMcRuBQDATKV55Vt1\u002f79Uf5BC2t\u002f+v1BZp59YSv6\u002fVDO+\u002fNa0\u002fb9UDdVZVR\u002f9v1jn67bTify\u002fWMECFFL0+79cmxlx0F77v1x1MM5Oyfq\u002fXE9HK80z+r9gKV6IS575v2ADdeXJCPm\u002fZN2LQkhz+L9gt6Kfxt33v2iRufxESPe\u002fZGvQWcOy9r9oRee2QR32v2gf\u002fhPAh\u002fW\u002fbPkUcT7y9L9s0yvOvFz0v2ytQis7x\u002fO\u002fcIdZiLkx879wYXDlN5zyv3Q7h0K2BvK\u002fdBWenzRx8b9477T8stvwvw=="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"legend":{"font":{"size":11}},"margin":{"t":30,"b":40},"xaxis":{"title":{"text":"Befolkningsvekst 2006\u20132016 (%)"}},"yaxis":{"title":{"text":"Endring Ap (pp)"}},"hovermode":"closest"},                        {"responsive": true}                    )                };            </script>        </div></div>
+  </section>
+
+  <!-- SP scatter -->
+  <section id="sp-scatter" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 section-fade">
+    <div class="mb-4">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="w-1 h-6 bg-sp rounded-full inline-block"></span>
+        <h2 class="text-xl font-bold text-slate-900">Befolkningsvekst og endring i Sp-oppslutning</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4 text-sm mb-3">
+        <div class="bg-green-50 rounded-xl p-4">
+          <div class="text-sp font-bold text-2xl">-0.318 pp/%</div>
+          <div class="text-green-700 text-xs mt-1">Regresjonskoeffisient β</div>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4">
+          <div class="text-slate-800 font-bold text-2xl">0.281</div>
+          <div class="text-slate-500 text-xs mt-1">Forklaringsgrad R²</div>
+        </div>
+        <div class="bg-slate-50 rounded-xl p-4">
+          <div class="text-slate-800 font-bold text-2xl">p < 0,0001</div>
+          <div class="text-slate-500 text-xs mt-1">Statistisk signifikans</div>
+        </div>
+      </div>
+      <p class="text-slate-500 text-sm leading-relaxed">
+        Sp vokste sterkest i kommuner med svak eller negativ befolkningsutvikling.
+        Negativt β bekrefter at fraflyttingskommunene var Sps vekstområder.
+      </p>
+    </div>
+    <div class="plotly-chart"><div>                            <div id="8016a80f-89f8-4ad8-8cb9-534264f88bcd" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("8016a80f-89f8-4ad8-8cb9-534264f88bcd")) {                    Plotly.newPlot(                        "8016a80f-89f8-4ad8-8cb9-534264f88bcd",                        [{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003eBefolkningsvekst 2006\u20132016 (%): %{x:.1f}%\u003cbr\u003eEndring Sp (pp): %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#d62728","line":{"color":"white","width":0.4},"opacity":0.75,"size":{"dtype":"f8","bdata":"xsXwykxOEUAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQFFyhBY6YhBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQLJdDQwxjBBANHta8MC9EEAAAAAAAAAQQCLA7hlTPhFAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEECVuKJbBL8QQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAU0S78vgvFkAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQL5piXQfdBJAAAAAAAAAEEAAAAAAAAAQQFZ6RkZSJxBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAzoTumKPZEEAAAAAAAAAQQIePO43i0RBAAAAAAAAAEECabAITRZcQQL5x60p14hFAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAEZ7ZR6vgEUCjfSu1VMYQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQHSS6kmXohFACWZMb6ZwEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQKazx8VuQRFAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAjpMfCynoFEAvDru13qYSQAAAAAAAABBAAAAAAAAAEEADUVUTnD4UQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQKhYLIMWgRFAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQGl1na2ULRVAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAesoza6kAUQA=="}},"mode":"markers","name":"Minst sentrale","text":["Trysil","Stor-Elvdal","Rendalen","Engerdal","Tolga","Tynset","Alvdal","Folldal","Os","Dovre","Lesja","Skj\u00e5k","Lom","V\u00e5g\u00e5","Nord-Fron","Sel","S\u00f8r-Aurdal","Nord-Aurdal","Vestre Slidre","\u00d8ystre Slidre","Vang","Fl\u00e5","Nes","Gol","Hemsedal","\u00c5l","Hol","Nore og Uvdal","Tinn","Seljord","Kviteseid","Nissedal","Fyresdal","Tokke","Vinje","Valle","Bykle","Hjelmeland","Suldal","Sauda","Utsira","Etne","Kvinnherad","Jondal","Eidfjord","Fedje","Gulen","Solund","Hyllestad","H\u00f8yanger","Vik","Balestrand","Leikanger","Sogndal","Aurland","L\u00e6rdal","\u00c5rdal","Luster","Askvoll","Bremanger","V\u00e5gs\u00f8y","Selje","Eid","Hornindal","Gloppen","Stryn","Vanylven","Norddal","Sand\u00f8y","Sunndal","Surnadal","Rindal","Halsa","Sm\u00f8la","Aure","Hemne","Hitra","Fr\u00f8ya","\u00d8rland","Bjugn","\u00c5fjord","Roan","Osen","Oppdal","R\u00f8ros","Holt\u00e5len","Tydal","Lierne","Raarvihke - R\u00f8yrvik","Namsskogan","Flatanger","Vikna","N\u00e6r\u00f8y","Leka","Bindal","Vega","Her\u00f8y","Aarborte - Hattfjelldal","Lur\u00f8y","Tr\u00e6na","R\u00f8d\u00f8y","Mel\u00f8y","Gildesk\u00e5l","Beiarn","Steigen","Hamar\u00f8y - H\u00e1bmer","Divtasvuodna - Tysfjord","L\u00f8dingen","R\u00f8st","V\u00e6r\u00f8y","Flakstad","Vestv\u00e5g\u00f8y","Hadsel","B\u00f8","\u00d8ksnes","Sortland - Suort\u00e1","And\u00f8y","Moskenes","Ibestad","Loab\u00e1k - Lavangen","Bardu","Salangen","M\u00e5lselv","S\u00f8rreisa","Dyr\u00f8y","Tran\u00f8y","Torsken","Berg","Lenvik","Lyngen","Storfjord - Omasvuotna - Omasvuono","G\u00e1ivuotna - K\u00e5fjord - Kaivuono","Skjerv\u00f8y","Nordreisa - R\u00e1isa - Raisi","Kv\u00e6nangen","Vard\u00f8","Guovdageaidnu - Kautokeino","Loppa","Hasvik","M\u00e5s\u00f8y","Nordkapp","Porsanger - Pors\u00e1ngu - Porsanki","K\u00e1r\u00e1sjohka - Karasjok","Lebesby","Gamvik","Berlev\u00e5g","Deatnu - Tana","B\u00e5tsfjord","S\u00f8r-Varanger"],"x":{"dtype":"f8","bdata":"fGms1iSzEsAyGiqETCwcwFIp2IHwTiPAqi19xLumKcBJ7MRO7MQewED8tf05mA9AqPwL1hK+9j\u002fKcpa+izIewIJcVgyU8BbALuEhwV6xEcBVNE+oBYwVwNJ9vmvL9BzAq31tCsSYEcCFhGOs5KoFwPzsRaxM7vu\u002fYPgm9s12A8AiIDs5gdEWwKhvkG+Qb+A\u002fl7AvK3quAcAoWAcmrioFQKxoZ0qvvwDAQaZU+f51HkDkf8guzycHwCp1KJqNmw9AgQIXg4FlOEAkDSvoGtHwPyASEREREbG\u002frOxzSE0w\u002fr94ZYyyTagTwEQLtEALtAVAst9qY2i6E8Ben2zVFXgEQKfXl\u002fSE4QrAocdT+a5MHMDg6ALtPpbsP9zNobs5dB\u002fAdHBAikQ\u002fIEDo4dU\u002f03PgP3gkdgBre+A\u002fimjkwWTL87\u002f2h8HCkTkRwGI9OwRuLBhAUDj8Lk97+D\u002fFW9nnkJoQQM7+q4wGIwdAfuFZcIxvI8AmiYFJ6hz\u002fv1vAAaIJ+yTABvGTks5+HMD4rgO6Mc8ZwC1jL+\u002fkMhbA0P15jwrdH8Coy41yGAISQGGDP7g6WC1A5L2yjvKe\u002fD9wU8zYXT7pPz9euUZvZAvA\u002fhDzjsawEEAWnHoqyPwTwBxjjDHGmAjAVg+wZ\u002fAe9L8U0EKSteEYwO5\u002fzHYcgw1AOBRwaD7X379ABpqpAqTQPwKc1GYH9BZAC3xx9YOOIsAuGzT5skEhwAAAAAAAAAAA9dzwopHOAcDgP+Sh3hMCwHQblBVi7APANg6Ke1s\u002fIcDK2Cyo9pwCwDCIXSB2gfi\u002flDLjhiKZ6L+mdHisn+QtQJA3Xc4oOzJA+IcWroMK\u002fj80ISRdSQgJQMAPwdQPwfS\u002fZDOB5yazI8CyUXpCr1kfwBKjZzOt0RdAwBqqe8Qosr8NqnooWncFwNFQXkN5DQXAw4\u002fMkVgIIcDQ0tLS0pIrwLYLmsEfohbA+Mw+UNgwGMD37H3hmb8iQEQoyj1yYuG\u002f6VMv5lMvFsD2qI\u002frtrQvwCI5EcZlkhPAGFnIQhay8D+26iIt6TkEwLg34d6EewPA4kwY0TYTFkBcU9aUNWUfwIWj2ju6EQ3ADgaKsMlMCMBDMRdxAJIlwNQOzLUDcx\u002fAoOzyQFoWxT9KViknCjIbwABPn3DnYh3AmFXUGClwH8Aquuiiiy4CQFl9xH4oOyDAvPXK0EK2DUDoc5WBrjLwP5jJeIkpUSXAcGS1BDSg6r\u002fnoKN5hNwXQD5HPHGwNRTAZALr\u002ftp0JMCrRhGHTtorwMSWmg37u\u002fg\u002fc6twSPspF0DIIvvM9FT3v8IZPQfb0gNA0Dn9+XJOD0CG0rlshiglwL8mmZ7PiAvAhNimFfdOIsDfaOr82kMgwG0+aETlhRRA8rybxTj7IsDGidQFR74LwAAN2fcnoxPABHk5\u002fyp3+7\u002fgMlv\u002fyp4EQOpnp5+dfibAHqUu+7UxIcBk\u002f0u5OWr2v23WqGBumTXAhC9AVWhDAEAsa8qasmYnwAqfdYMp8vm\u002fAvuWHfQdF8Bm4t14TJkewBMUHb75\u002fRTAVb4Y\u002folrF0DswFw7MNciwKV8XD\u002f0WgbAiEeTrcB6\u002fT+gCtGGzx8gQA=="},"y":{"dtype":"f8","bdata":"MzMzMzOzNkCamZmZmRkyQJqZmZmZmTRAzczMzMzMNUAzMzMzMzMlQM3MzMzMzC1AMzMzMzMzKUAAAAAAAAArQJqZmZmZmSRAzczMzMzMIEDNzMzMzMwaQAAAAAAAAC9AAAAAAAAALUCamZmZmZkuQM3MzMzMzCFAZmZmZmZmJkBmZmZmZmYoQGZmZmZmZiZAMzMzMzMzKEDNzMzMzEwyQDMzMzMzMyVAzczMzMzMLkDNzMzMzMwoQJqZmZmZmSFAzczMzMzMHkAAAAAAAAAqQGZmZmZmZitAMzMzMzMzJ0AzMzMzMzM8QDMzMzMzMy1AZmZmZmZmJkBmZmZmZmYoQDMzMzMzszRAAAAAAACAM0BmZmZmZmY2QJqZmZmZmRlAmpmZmZmZH0AAAAAAAAASQM3MzMzMzB5AmpmZmZmZKEBmZmZmZmYqQJqZmZmZmRtAzczMzMzMEkAAAAAAAAAgQGZmZmZmZidAAAAAAAAAFECamZmZmZkhQM3MzMzMzBxAMzMzMzMzLkAzMzMzMzMiQJqZmZmZmSZAzczMzMzMJkBmZmZmZmYlQGZmZmZmZiVAMzMzMzMzJ0BmZmZmZmYaQAAAAAAAAB5AzczMzMzMJkCamZmZmZknQJqZmZmZmStAMzMzMzMzIEAzMzMzMzMfQJqZmZmZmck\u002fmpmZmZmZKUAAAAAAAAASQM3MzMzMzClAAAAAAAAADEAAAAAAAAAMQDMzMzMzMwtAAAAAAAAAHEBmZmZmZmYGQGZmZmZmZg5AMzMzMzMzB0AzMzMzMzMmQJqZmZmZmSNAmpmZmZmZI0AzMzMzMzMfQGZmZmZmZhhAAAAAAAAAFkAzMzMzMzMdQAAAAAAAAB5AAAAAAAAAK0DNzMzMzMwqQM3MzMzMzCJAzczMzMzMHEDNzMzMzMwSQJqZmZmZmTFAAAAAAACAMkCamZmZmZkuQJqZmZmZmStAZmZmZmZmI0CamZmZmZkbQAAAAAAAACFAmpmZmZmZKEAAAAAAAAA0QGZmZmZmZi1AmpmZmZmZKECamZmZmZkVQGZmZmZmZilAAAAAAAAAJUAzMzMzMzMsQGZmZmZmZihAzczMzMzMJUAAAAAAAAAsQGZmZmZm5jFAMzMzMzMzK0AzMzMzMzMiQM3MzMzMzC9AAAAAAAAAKUAzMzMzMzMxQDMzMzMzMyhAMzMzMzMzI0BmZmZmZmYzQM3MzMzMzDlAZmZmZmbmM0AAAAAAAIAyQGZmZmZmpk9AzczMzMzMLEBmZmZmZmYjQGZmZmZmZixAZmZmZmbmNkCamZmZmZksQM3MzMzMTDtAZmZmZmZmJkAzMzMzMzMZQAAAAAAAAClAMzMzMzMzJ0BmZmZmZuY6QM3MzMzMzCFAzczMzMzMJEAzMzMzMzMnQAAAAAAAAChAAAAAAAAAJECamZmZmZklQJqZmZmZmSxAmpmZmZmZNECamZmZmZk8QM3MzMzMzClAAAAAAAAAI0AzMzMzMzMdQJqZmZmZmSJAMzMzMzMzJUBmZmZmZuY3QDMzMzMzMyhAzczMzMzMLEDNzMzMzMwgQJqZmZmZmShAmpmZmZmZIUAzMzMzMzMfQA=="},"type":"scatter"},{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003eBefolkningsvekst 2006\u20132016 (%): %{x:.1f}%\u003cbr\u003eEndring Sp (pp): %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#ff7f0e","line":{"color":"white","width":0.4},"opacity":0.75,"size":{"dtype":"f8","bdata":"AAAAAAAAEEAXTnTcteITQFz1+ZCKcBNAKR9avlnJEEAAAAAAAAAQQAAAAAAAABBAzvCy55hHFUDfEPsBUg0ZQAAAAAAAABBAAAAAAAAAEECiOsOmqqwRQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQGQ2jT8t2BZAlSG2H\u002fpeFUAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEDexAVL4vcVQAAAAAAAABBAAAAAAAAAEEDT1fPIsFgTQPiOOjA4ZRNAxVQ2+KaPFED4UTXDfmMaQMqAMEOfCBZAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEC8gXj+l4cRQAAAAAAAABBA6ulefe+NEkAAAAAAAAAQQI6Kgl\u002fgHRJAAAAAAAAAEEBgFuWiQEcWQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAP2hIsL6gE0CqJhgQ7\u002fUQQGhl5sYVaRRAK+cP5OOnGUAAAAAAAAAQQAAAAAAAABBA"}},"mode":"markers","name":"Mindre sentrale","text":["Grue","Farsund","Flekkefjord","Kvinesdal","Sirdal","Lund","B\u00f8mlo","Stord","Fitjar","Tysnes","Odda","Ullensvang","Ulvik","Granvin","Voss","Flora","Fjaler","Gaular","J\u00f8lster","F\u00f8rde","Naustdal","Sande","Her\u00f8y","Volda","\u00d8rsta","Steinkjer","Namsos","Verran","Namdalseid","Sn\u00e5ase - Sn\u00e5sa","Grong","H\u00f8ylandet","Overhalla","Fosnes","Inder\u00f8y","S\u00f8mna","Br\u00f8nn\u00f8y","Vevelstad","Alstahaug","Leirfjord","Vefsn","Grane","D\u00f8nna","Saltdal","S\u00f8rfold - Fuolld\u00e1","V\u00e5gan","Vads\u00f8","Hammerfest","Alta","Kvalsund","Unj\u00e1rga - Nesseby"],"x":{"dtype":"f8","bdata":"nqa+uYtwIcCemm\u002f3ae8FQE7T2QEwDQZAV8Igknr6HUAHZFK8QCYVQAex1f\u002fEuBJArCLvXh3zIUAD5fI+yRcpQD6FsrUheiBAgKPCWYRRsj8UVTmHNH8RwA1wCbgEXADAHYUVcLI2AsAszxVuXMYawElM\u002fMt+NRFA29nBIPb7EUA8ff7Q0FL8v2F7c6oprxhAMErDPeD2C0BL5LVwO8YrQI6NBHCJ5RRAcJ9wKe806T9J73ZWpJ0cQPRSvEvxLiFAbR5e9QlhEEA5iyuJ9HgZQMxTO0FivQtAAZKr8VCzEcB2DH8skAsdwJ6+3OH65hPAtjnSHGmOAEDJv765oCMCwEgNLyZrAiNARWewQmewJsDsflbERwvtvwAAAAAAkOq\u002faQbK5sz9FEAIg76gL+j7vywbTNpRsPw\u002fJOmPg3FDBkDgDMMwDMO4v8rmp5SA\u002fxTAsHz2Z7TeG8BqyJmG4izxvwrJgHqmch3A6tbHViYtDUCoR1uebRPoP15CtVyiXydAPGNL7ICvKEDa4Ga\u002fECsKwFVQhtV6Cx5A"},"y":{"dtype":"f8","bdata":"MzMzMzMzL0AzMzMzMzMDQAAAAAAAABpAZmZmZmZmGEAAAAAAAAAUQGZmZmZmZhBAmpmZmZmZCUAzMzMzMzMDQAAAAAAAABJAzczMzMzMGkAAAAAAAAAmQAAAAAAAACVAzczMzMzMLUCamZmZmZkpQJqZmZmZmShAmpmZmZmZIEAAAAAAAAAvQM3MzMzMzCFAmpmZmZmZF0DNzMzMzMwhQDMzMzMzMyNAAAAAAAAAAECamZmZmZkJQGZmZmZmZhhAzczMzMzMHkAAAAAAAAAjQAAAAAAAAB5AzczMzMzMKkAzMzMzMzMtQDMzMzMzMyJAAAAAAAAAIUAAAAAAAAApQAAAAAAAACtAMzMzMzMz479mZmZmZmYYQDMzMzMzszFAZmZmZmZmJkAzMzMzM7MxQGZmZmZmZihAAAAAAAAAIEDNzMzMzMwmQDMzMzMzMyVAMzMzMzMzLUAzMzMzM7MwQDMzMzMzMy5AzczMzMzMJkDNzMzMzMwkQAAAAAAAABJAmpmZmZmZJ0AzMzMzMzMlQDMzMzMzMyNA"},"type":"scatter"},{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003eBefolkningsvekst 2006\u20132016 (%): %{x:.1f}%\u003cbr\u003eEndring Sp (pp): %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#2ca02c","line":{"color":"white","width":0.4},"opacity":0.75,"size":{"dtype":"f8","bdata":"AAAAAAAAEEAAAAAAAAAQQE28t6wJth5ASeOWJQUiEkAAAAAAAAAQQEPS1R4KERpAAAAAAAAAEED2LE3roZ8cQA0UTvKWkB1AAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAQJEgm2cGEUAuLhPnsxsXQEOUEmlPIhZAhb526ZOQEEAGyLHXaYMRQAAAAAAAABBAAAAAAAAAEECSL2iIq9sgQAAAAAAAABBAyLdxcOxyH0Bkbv7t1R8iQK7oNbrU2xVAAAAAAAAAEEBnIgBd\u002facWQJ8qRVOMgxRAAAAAAAAAEECWhEoScFARQN2s2TtV5xBAAAAAAAAAEEAAAAAAAAAQQETtk15hqhFAAAAAAAAAEEAAAAAAAAAQQJTLSGii0RBAAAAAAAAAEEA929roScAfQG5BOPEfuhRAGhtUKRahIECpKsar5jQTQGm6s\u002fOkZRBAi67jwJBZHEDzLCGPyzwhQOsmxaINghtAHavwj9jtEkAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQAjpQA5LURJAAAAAAAAAEEBZ6qna0lQTQHSPj6JZqRJAXJaP9WGEE0By8ENwpmIRQDEitjnaKRJAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAVa0loOnkE0AAAAAAAAAQQFdkmfIJohBAAAAAAAAAEEAAAAAAAAAQQI+ComtQtSFAfesLNcEOGUAAAAAAAAAQQAAAAAAAABBAAJva3SYXHEC+WSjKGtATQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQK5olrb\u002fkhtAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBA"}},"mode":"markers","name":"Noe sentrale","text":["Hvaler","Aremark","Ringsaker","\u00c5snes","V\u00e5ler","Elverum","\u00c5mot","Lillehammer","Gj\u00f8vik","S\u00f8r-Fron","Ringebu","\u00d8yer","Gausdal","\u00d8stre Toten","Vestre Toten","S\u00f8ndre Land","Nordre Land","Etnedal","Rollag","Larvik","Tj\u00f8me","Porsgrunn","Skien","Notodden","Siljan","Bamble","Krager\u00f8","Drangedal","Nome","B\u00f8","Sauherad","Hjartdal","Ris\u00f8r","Gjerstad","Veg\u00e5rshei","Tvedestrand","\u00c5mli","Haugesund","Tysv\u00e6r","Karm\u00f8y","Vindafjord","Sveio","Molde","\u00c5lesund","Kristiansund","Ulstein","Hareid","\u00d8rskog","Stranda","Stordal","Sykkylven","Skodje","Sula","Giske","Haram","Vestnes","Rauma","Nesset","Midsund","Aukra","Fr\u00e6na","Eide","Aver\u00f8y","Gjemnes","Tingvoll","Bod\u00f8","Narvik","Nesna","Hemnes","Rana - Raane","Fauske - Fuossko","Tjeldsund","Evenes - Even\u00e1ssi","Ballangen","Harstad - H\u00e1rstt\u00e1k","Kv\u00e6fjord","Sk\u00e5nland","Gratangen"],"x":{"dtype":"f8","bdata":"SX7Po98OMkAhSZIkSZIMwIY8Toy4+RRAEuGxCK3BCsBpnPc\u002fGOcNwNuM8eAvdiVAsJeE84rO\u002fT9SMwdc2hQhQAxAbeA0qiBAFW+60bcQA8BEmuBHvTgCwHZDgMDt9hFAoN9KOVLM2T\u002fUhemAChMJQEFUog0nchJAq8JXF\u002fdPDcAgsEy+cJnKP9b6C1salRPAXFPeXn6h5r\u002fTxFvxjscZQIWCXJVkvSFAnMK+dHKsHEB7TQCkMSUZQDqmaid8LgpAgKK6PyJK8r8A2wihmQq9v5ykzvNe2vM\u002fBNbjbRfB5L8oHvrEwATiv8fHyes47C1ATG0e1mmG8T8o6Xlv5bfXv8hpmNbJk+o\u002fXi16YsYR9b8dSXB9JjokQPaXDVMrHghAcoDJW4DJC0BQ66m302wwQLXOZ71\u002f2zBASQHI6FV1JkD41Es92HogQJThG1Fg0jFAYBCcQHFrJUBbwnzUdiUtQALddNcMhiJA1G\u002fg5+m7N0AbXKym+c4nQKDA3XdcvCRAmCDRCpsD8z9uVgyU8EYDQHD4YKm6YQtA1KzcoCv+OkA7CoaMA1QzQMnZFMbZFDZASS4iqjDHGUDyoWLLvfwEQHijuP\u002fXk\u002f8\u002fOAVA5ReJFcDi1ua+IikhQDjVcbp9CitA8Mn47VKvG0CcgL9yFewNQFjObuFXYyFAI7Gl2yrQCMCAFnpOfoXAP+v2JqtWbihA4CLVvv5hAkDU1hTwPTQPQPZmcS4cuvO\u002flvp18d+UBUAInFWa3sHhPzlPpKBpMCDAIEiDNEiDBECOV\u002fQmOXkVwDzKFJ55Tg9APL0sOO3S87+PsKaOYdwQQFTn1x5yWSHA"},"y":{"dtype":"f8","bdata":"AAAAAAAAFEAAAAAAAAAxQM3MzMzMzCFAZmZmZmbmNEAAAAAAAIAzQGZmZmZmZitAzczMzMxMNUDNzMzMzMwaQM3MzMzMzBpAZmZmZmZmJEBmZmZmZmYmQDMzMzMzMyJAAAAAAAAAKUCamZmZmZkkQJqZmZmZmR1AAAAAAAAAI0CamZmZmZknQJqZmZmZmSVAZmZmZmZmKUDNzMzMzMwMQDMzMzMzMw9AzczMzMzMEEBmZmZmZmYUQAAAAAAAACRAAAAAAAAAKkAzMzMzMzMbQAAAAAAAAB5AMzMzMzMzMkCamZmZmZknQGZmZmZmZiNAMzMzMzMzIkBmZmZmZmYwQJqZmZmZmQ1AmpmZmZmZJkAAAAAAAAAWQDMzMzMzMxNAzczMzMzMFEDNzMzMzMz8P2ZmZmZmZg5AmpmZmZmZBUDNzMzMzMwWQM3MzMzMzAxAMzMzMzMz4z8zMzMzMzMDQGZmZmZmZitAMzMzMzMzB0BmZmZmZmYQQAAAAAAAAAhAZmZmZmZmIECamZmZmZkVQDMzMzMzMxNAmpmZmZmZEUAzMzMzMzMDQGZmZmZmZv4\u002fmpmZmZmZH0DNzMzMzMwEQDMzMzMzMwtAMzMzMzMzD0CamZmZmZkXQGZmZmZmZhBAzczMzMzMCEDNzMzMzMwMQM3MzMzMzCBAmpmZmZmZHUDNzMzMzMwkQJqZmZmZmRdAMzMzMzMzGUAAAAAAAAAqQGZmZmZmZiFAzczMzMzMIUDNzMzMzMwgQAAAAAAAAARAAAAAAAAAGECamZmZmZkpQJqZmZmZmRVAMzMzMzMzG0DNzMzMzMwYQDMzMzMzMxlA"},"type":"scatter"},{"hovertemplate":"\u003cb\u003e%{text}\u003c\u002fb\u003e\u003cbr\u003eBefolkningsvekst 2006\u20132016 (%): %{x:.1f}%\u003cbr\u003eEndring Sp (pp): %{y:.1f} pp\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#1f77b4","line":{"color":"white","width":0.4},"opacity":0.75,"size":{"dtype":"f8","bdata":"GL3bZTW0HUAC7EYnhUAeQEajk92XNSJAADnPY5a1JEAAAAAAAAAQQAAAAAAAABBAXf7h8v4iEEAh7Kdh5ooQQOoAhpmzfBdAJGb1HhgJFUAAAAAAAAAQQLDzwZJIpxJAL421h1oMEkAaWSUYeWcXQAAAAAAAABBAVzH5S4YtEEB2GoBI3w8YQGDGxHt5mx1A0qJwySonGUA7fkcfd4cXQOCdkI0Z+xhAAiJJPUNfHECzHCIhlCMoQHwHJYKa0iJAzzed9r+kF0D4dR\u002fqP2oYQCnjZA90BRVAuvQs8R1oGEAgVWaNwrAUQF47FbErkx9A3qNTrmr0IUDSmiZFedYaQEDdRSHOHRFAhX\u002fZ6j\u002fmHkA4pZ2tgPUZQB51GhCCORtAwB6ztbaVFUAAAAAAAAAQQAAAAAAAADJAkLQqmw6bGECuwTpXGI8dQCafgaqePhJAYwVh3meqGUAAAAAAAAAQQKeaR7EqgRJAOX4vL33xEEB1RSM\u002f42YRQP9korSQZhNAMYuP3dZuFkAmQOYEjqQjQFbFSxctdBxAiv9zrfJyHUCWNwIuIYcRQAAAAAAAABBAAAAAAAAAEEAWcTzcVX0WQN76\u002fFd9yBhAJZUjiX54G0C4+VECRPkbQMKcEZb8QxpAo1NonpGsE0AAAAAAAAAQQHpUcca3gxxA3Bwre6yaFEBbZm5OOqQgQAZy3QwAYRFA4lR+8MGWE0AAAAAAAAAQQITjRyfQohNABoxOtxVSGkAAAAAAAAAQQMKacqcIthpAF7VnEfrqIEBSM8asM2wQQIRx\u002fENYfhRAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAe7ioUMIwlQMAZyygXcRdAupSH5ofHFkApxqfS+TQRQMbxBG2D8hRAAAAAAAAAEEAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEBiiguHSvsSQAAAAAAAABBApGm4CLMgF0AewvLLbVIkQKNfxpDU1ChAAAAAAAAAEEAAAAAAAAAQQORUfGlA9xhAGN0BNY4kGUCCZYn29vQYQDr+gaa2UxVAkCHsT6gcHEBhmRF1\u002fJkUQAAAAAAAABBAF6SPnpy0FUAAAAAAAAAQQAAAAAAAABBAAAAAAAAAEEAAAAAAAAAQQJTJE27VEjBACjARSOL2EkAAAAAAAAAQQAAAAAAAABBAl9xzeAx\u002fGUAAAAAAAAAQQHXRF6btthFAjpYhhHekG0Bd8KyoIPMcQAAAAAAAABBAAAAAAAAAEEBWvVQr5IwSQP+zoudrbhJAAAAAAAAAEEAAAAAAAAAQQFH2DoufexdAAAAAAAAAEEAAAAAAAAAQQMpm2FiABSxAAAAAAAAAEEAAAAAAAAAQQAoHrsppahFAAAAAAAAAEEAAAAAAAAAQQFGXk1jCRxVAM1up0rsXEUAx2q5a47wXQLuoMNRXYhJAPNnAjODeEECNL7zYJHUWQAAAAAAAABBAAAAAAAAAEECANYK8ngUbQAAAAAAAABBAAAAAAAAAEEBzgPKpvW8ZQOmVqtDIGBdAP8yXW6AxJECFyKp11oEQQAAAAAAAABBA"}},"mode":"markers","name":"Sentrale","text":["Halden","Moss","Sarpsborg","Fredrikstad","Marker","R\u00f8mskog","Tr\u00f8gstad","Spydeberg","Askim","Eidsberg","Skiptvet","Rakkestad","R\u00e5de","Rygge","V\u00e5ler","Hob\u00f8l","Vestby","Ski","\u00c5s","Frogn","Nesodden","Oppeg\u00e5rd","B\u00e6rum","Asker","Aurskog-H\u00f8land","S\u00f8rum","Fet","R\u00e6lingen","Enebakk","L\u00f8renskog","Skedsmo","Nittedal","Gjerdrum","Ullensaker","Nes","Eidsvoll","Nannestad","Hurdal","Oslo - Oslove","Kongsvinger","Hamar","L\u00f8ten","Stange","Nord-Odal","S\u00f8r-Odal","Eidskog","Jevnaker","Lunner","Gran","Drammen","Kongsberg","Ringerike","Hole","Sigdal","Kr\u00f8dsherad","Modum","\u00d8vre Eiker","Nedre Eiker","Lier","R\u00f8yken","Hurum","Flesberg","Horten","Holmestrand","T\u00f8nsberg","Svelvik","Sande","Hof","Re","N\u00f8tter\u00f8y","Lardal","Grimstad","Arendal","Froland","Lillesand","Birkenes","Iveland","Evje og Hornnes","Bygland","Kristiansand","Mandal","Vennesla","Songdalen","S\u00f8gne","Marnardal","\u00c5seral","Audnedal","Lindesnes","Lyngdal","H\u00e6gebostad","Eigersund","Sandnes","Stavanger","Sokndal","Bjerkreim","H\u00e5","Klepp","Time","Gjesdal","Sola","Randaberg","Forsand","Strand","Finn\u00f8y","Rennes\u00f8y","Kvits\u00f8y","Bokn","Bergen","Kvam","Fusa","Samnanger","Os","Austevoll","Sund","Fjell","Ask\u00f8y","Vaksdal","Modalen","Oster\u00f8y","Meland","\u00d8ygarden","Rad\u00f8y","Lind\u00e5s","Austrheim","Masfjorden","Trondheim","Snillfjord","Agdenes","Rissa","Rennebu","Meldal","Orkdal","Midtre Gauldal","Melhus","Skaun","Kl\u00e6bu","Malvik","Selbu","Mer\u00e5ker","Stj\u00f8rdal","Frosta","Leksvik","Levanger","Verdal","Troms\u00f8","Balsfjord","Karls\u00f8y"],"x":{"dtype":"f8","bdata":"1oNG3vlbJEB4UZfFDGMsQMQ1yjXKNSJAHtgn2lYZJ0AIE7xBPPcHQBBydgu\u002fGtM\u002fmoWorN9UGkCxw9CPNR8yQHSip3N7LSRAcUM9pSf+JUAeHh4eHh4kQGrrt862fiNA4K9\u002fVOHYKED8hDUt6AYnQP2rB4qLYztATrezg0HsMUDAI15\u002fCyc7QCjBsqqTEihApiFlCnm1PkDcNoLiTBAvQLgX1Nh+LClAgv6CnJ46KEC+O+eIjwAvQFBwByY4vzBAuameNJbyMkA8ZxeWNX4+QJozuRUh2TBAalvPjqBKMUBf+yS2cT8uQFcPUz3flTFA5P2kfW2TNUDsBWxzusovQAsuxVgIRTVAdoHh+WumQUA\u002fGViR7KMuQD5b+F681DlAGqD5sNHaMkBMLNREtk8hQOnNwAyuSDZAXpEqigZhDEDdVYMU9VAiQC38ggPmWRBAHBAxyyRwIEAUUp2gbVf5P27+9cOXjgdA6Ya7hSFHE8A\u002fBOdYthYUQNC5JL9csxhAnjPfwI5BE0BT+TzdfIwxQHnltGfZuC9A2RLB1hLBFkD+I+IQxoI7QOBpBU7JG9Q\u002f7G66HSfVG0BeJwkOnjYjQO6xiJ44FC5A42\u002foZMWoKUDWOySU\u002f6ExQFoRnHHAJzZABuJxE2twFkDz+AVlWuMaQId3jvk9jSJAA1x73ueEJkBCTmaSMQUtQHgLXnlHMwFAStwRd8QdNEBAgo7CRNMFQKottpJEICtAmrqoVoGnHkAkwGnGPfryPyf3UFghTTFATH+06HOIJkCA\u002fqC1Fe0xQMcb8oa8ITFAb5An3utSMUAN0iAN0iApQGNEXrIDDB9AplvzwyJlHMBk8jpt+fotQERqzes9wSRAlUfUeK6wLEAAr+kBvmQsQGTILgSLLjFAbfBLtOXsFUA8eFKQ\u002fHkVQCIqwCyM7yhAAnE2Id9fJEDhPoL7CHYwQOIzcfzJER5AaBiAtzu3JkAkg2\u002fRde06QLr3Ye\u002fmXi5A0HGMaQNE1z+fITFvZ0gsQNLr5qUR6jhAvEGu1y3mO0CoAgqLWm05QEt+M2x4vzlA3Lg1w\u002fqVPUDunIUD0M0uQNVrvdZrvSpA8fF1apn2MUAnu60kUQcyQDDRK7YdKUVAcNrrIBVt4j+Is\u002fIT4qwoQICAmRFkGS1AhlU9BQNHAECiEN+fQhcPQFOyzduubRFA8vX5lfNePUCxL4LhfI4wQNrOHs4T6ThABAY00qf1NUB72lj03yc6QGD17yIVwsU\u002fp+7LYyuCHkBURDmaIEskQNVxmdf3tj9A9bNGwlICM0B2\u002f72wgBIjQDs0Ir11ejFAxAm9oSYFLkDgdr0X\u002fz3eP63kymecHjJAzh+dnfoAGsA45Houj68EwFbw2pDBTAxA3XIiV81wC8BogKTMMOj0P2jg4zGNkyVAFaT7oy7yHEAyBfWIiRYrQPZq\u002fCr8LTpArpNwnjetKkBEk7MFMPkoQHlUs\u002f4MfhNAGKaRIKo61L9Ix8U2OCwxQMnWDttLlxpAYJZjvq8E8D\u002fgywZNvuwgQIAo\u002fiJnWBxALmCxaG4VL0BqaKLzTPYCQPHGD+4lYQ3A"},"y":{"dtype":"f8","bdata":"MzMzMzMzFUCamZmZmZkFQAAAAAAAABBAAAAAAAAACEAzMzMzMzMkQGZmZmZmZidAMzMzMzMzJUAAAAAAAAAcQAAAAAAAABBAMzMzMzMzIUDNzMzMzMwgQGZmZmZmZiJAMzMzMzMzGUCamZmZmZkRQJqZmZmZmSBAMzMzMzMzD0BmZmZmZmYKQJqZmZmZmQlAZmZmZmZmCkCamZmZmZkBQGZmZmZmZgJAAAAAAAAAAEBmZmZmZmb2P83MzMzMzPw\u002fzczMzMzMIUAzMzMzMzMbQM3MzMzMzBRAZmZmZmZmCkAzMzMzMzMdQDMzMzMzMwNAzczMzMzMCEDNzMzMzMwMQDMzMzMzMxVAMzMzMzMzEUDNzMzMzMwgQDMzMzMzMyBAMzMzMzMzGUBmZmZmZmYtQM3MzMzMzPQ\u002fzczMzMzMI0AzMzMzMzMVQGZmZmZmZi5AzczMzMzMJUBmZmZmZmYuQDMzMzMzMylAZmZmZmZmK0CamZmZmZkgQAAAAAAAABhAmpmZmZmZHUDNzMzMzMwEQJqZmZmZmQlAmpmZmZmZFUBmZmZmZmYQQDMzMzMzMyNAZmZmZmZmK0DNzMzMzMwcQM3MzMzMzBRAAAAAAAAAEEDNzMzMzMwIQDMzMzMzMwdAMzMzMzMzB0DNzMzMzMwnQAAAAAAAAAxAMzMzMzMzD0DNzMzMzMwEQGZmZmZmZhZAzczMzMzMEEBmZmZmZmYWQM3MzMzMzAxAZmZmZmZmAkCamZmZmZkfQJqZmZmZmQlAzczMzMzMCEAzMzMzMzMTQGZmZmZmZgJAZmZmZmZmFECamZmZmZkgQJqZmZmZmRlAMzMzMzMzHUBmZmZmZmb+P83MzMzMzAhAzczMzMzMEkCamZmZmZkRQGZmZmZmZhpAZmZmZmZmL0AzMzMzMzMXQM3MzMzMzBhAzczMzMzMFEAzMzMzMzMHQJqZmZmZmR1AMzMzMzMzC0AAAAAAAAAAQAAAAAAAAPg\u002fAAAAAAAABEAAAAAAAADgP5qZmZmZmfE\u002fZmZmZmZm9j\u002fNzMzMzMz0P2ZmZmZmZgpAZmZmZmZmAkCamZmZmZkBQM3MzMzMzBhAMzMzMzMzC0CamZmZmZkBQGZmZmZmZgZAAAAAAAAACEBmZmZmZmYUQM3MzMzMzABAzczMzMzMGkCamZmZmZkBQJqZmZmZmRlAZmZmZmZmBkCamZmZmZkFQAAAAAAAAAxAZmZmZmZm\u002fj8zMzMzMzMDQGZmZmZmZiBAAAAAAAAAFEAzMzMzMzMVQM3MzMzMzARAAAAAAAAACEBmZmZmZmYSQM3MzMzMzBBAZmZmZmZmEkDNzMzMzMwiQJqZmZmZmQVAMzMzMzMzH0AAAAAAAAAeQGZmZmZmZhZAmpmZmZmZIkDNzMzMzMweQGZmZmZmZhZAMzMzMzMzI0BmZmZmZmYYQDMzMzMzMxNAMzMzMzMzEUAAAAAAAAAQQDMzMzMzMx9AMzMzMzMzJUDNzMzMzMwMQGZmZmZmZg5AAAAAAAAAGkCamZmZmZkVQGZmZmZmZiZAzczMzMzMFkAzMzMzMzMmQJqZmZmZmSxA"},"type":"scatter"},{"fill":"toself","fillcolor":"rgba(0,0,0,0.08)","line":{"color":"rgba(0,0,0,0)"},"showlegend":false,"x":{"dtype":"f8","bdata":"06LhIHwcKcBhWnhmSa4owO8RD6wWQCjAfMml8ePRJ8AKgTw3sWMnwJg403x+9SbAJvBpwkuHJsC0pwAIGRkmwEFfl03mqiXAzxYuk7M8JcBdzsTYgM4kwOqFWx5OYCTAeD3yYxvyI8AG9Yip6IMjwJSsH++1FSPAImS2NIOnIsCwG016UDkiwD3T478dyyHAy4p6BetcIcBZQhFLuO4gwOb5p5CFgCDAdLE+1lISIMAE0qo3QEgfwCBB2MLaax7APLAFTnWPHcBXHzPZD7McwHOOYGSq1hvAjv2N70T6GsCqbLt63x0awMXb6AV6QRnA4UoWkRRlGMD8uUMcr4gXwBgpcadJrBbANJieMuTPFcBPB8y9fvMUwGt2+UgZFxTAhuUm1LM6E8CiVFRfTl4SwL7DgerogRHA2DKvdYOlEMDoQ7kBPJIPwCAiFBhx2Q3AWABvLqYgDMCQ3slE22cKwMS8JFsQrwjA\u002fJp\u002fcUX2BsA0edqHej0FwGxXNZ6vhAPApDWQtOTLAcDYE+vKGRMAwCDki8KdtPy\u002fkKBB7wdD+b8AXfcbctH1v2gZrUjcX\u002fK\u002fsKvF6ozc7b+QJDFEYfnmv3CdnJ01FuC\u002foCwQ7hNm0r8AeZyD8n6yvwDgg1g1TcI\u002fQP5q+fHs1j9ABkqjpFniP3CN3knQPOk\u002fSIo5+P0P8D\u002fYzYPLk4HzP2gRzp4p8\u002fY\u002f+FQYcr9k+j+QmGJFVdb9PxBuVoz1owBA2I\u002f7dcBcAkCgsaBfixUEQGzTRUlWzgVANPXqMiGHB0D8FpAc7D8JQMQ4NQa3+ApAjFra74GxDEBUfH\u002fZTGoOQA5PkuGLERBA9t9kVvHtEEDacDfLVsoRQL4BCkC8phJAopLctCGDE0CGI68ph18UQGq0gZ7sOxVATkVUE1IYFkAy1iaIt\u002fQWQBZn+fwc0RdA\u002fvfLcYKtGEDiiJ7m54kZQMYZcVtNZhpAqqpD0LJCG0COOxZFGB8cQHLM6Ll9+xxAVl27LuPXHUA67o2jSLQeQB5\u002fYBiukB9AAYiZxok2IEB10AKBvKQgQOcYbDvvEiFAWWHV9SGBIUDLqT6wVO8hQD3yp2qHXSJArzoRJbrLIkAhg3rf7DkjQJPL45kfqCNABRRNVFIWJEB5XLYOhYQkQOukH8m38iRAXe2Ig+pgJUDPNfI9Hc8lQEF+W\u002fhPPSZAs8bEsoKrJkAlDy5ttRknQJdXlyfohydACaAA4hr2J0B96GmcTWQoQO8w01aA0ihAYXk8EbNAKUDTwaXL5a4pQEUKD4YYHSpAt1J4QEuLKkApm+H6ffkqQJvjSrWwZytADSy0b+PVK0CBdB0qFkQsQPO8huRIsixAZQXwnnsgLUDXTVlZro4tQEmWwhPh\u002fC1Au94rzhNrLkAtJ5WIRtkuQJ9v\u002fkJ5Ry9AEbhn\u002fau1L0BCgOhb7xEwQHwkHbkISTBAtMhRFiKAMEDubIZzO7cwQCYRu9BU7jBAYLXvLW4lMUCYWSSLh1wxQNL9WOigkzFACqKNRbrKMUBERsKi0wEyQH7q9v\u002fsODJAto4rXQZwMkDwMmC6H6cyQCjXlBc53jJAYnvJdFIVM0CaH\u002f7Ra0wzQNTDMi+FgzNADGhnjJ66M0BGDJzpt\u002fEzQH6w0EbRKDRAuFQFpOpfNEDw+DkBBJc0QCqdbl4dzjRAZEGjuzYFNUCc5dcYUDw1QNaJDHZpczVADi5B04KqNUBI0nUwnOE1QIB2qo21GDZAuhrf6s5PNkDyvhNI6IY2QCxjSKUBvjZAZgd9Ahv1NkCeq7FfNCw3QNhP5rxNYzdAEPQaGmeaN0BKmE93gNE3QII8hNSZCDhAvOC4MbM\u002fOED0hO2OzHY4QC4pIuzlrThAaM1WSf\u002fkOECgcYumGBw5QNoVwAMyUzlAErr0YEuKOUBMXim+ZME5QIQCXht++DlAvqaSeJcvOkD2SsfVsGY6QDDv+zLKnTpAapMwkOPUOkCiN2Xt\u002fAs7QNzbmUoWQztAFIDOpy96O0BOJAMFSbE7QIbIN2Ji6DtAwGxsv3sfPED4EKEclVY8QDK11XmujTxAalkK18fEPECk\u002fT404fs8QN6hc5H6Mj1AFkao7hNqPUBQ6txLLaE9QIiOEalG2D1AwjJGBmAPPkD61npjeUY+QPrWemN5Rj5AwjJGBmAPPkCIjhGpRtg9QFDq3EstoT1AFkao7hNqPUDeoXOR+jI9QKT9PjTh+zxAalkK18fEPEAytdV5ro08QPgQoRyVVjxAwGxsv3sfPECGyDdiYug7QE4kAwVJsTtAFIDOpy96O0Dc25lKFkM7QKI3Ze38CztAapMwkOPUOkAw7\u002fsyyp06QPZKx9WwZjpAvqaSeJcvOkCEAl4bfvg5QExeKb5kwTlAErr0YEuKOUDaFcADMlM5QKBxi6YYHDlAaM1WSf\u002fkOEAuKSLs5a04QPSE7Y7MdjhAvOC4MbM\u002fOECCPITUmQg4QEqYT3eA0TdAEPQaGmeaN0DYT+a8TWM3QJ6rsV80LDdAZgd9Ahv1NkAsY0ilAb42QPK+E0johjZAuhrf6s5PNkCAdqqNtRg2QEjSdTCc4TVADi5B04KqNUDWiQx2aXM1QJzl1xhQPDVAZEGjuzYFNUAqnW5eHc40QPD4OQEElzRAuFQFpOpfNEB+sNBG0Sg0QEYMnOm38TNADGhnjJ66M0DUwzIvhYMzQJof\u002ftFrTDNAYnvJdFIVM0Ao15QXOd4yQPAyYLofpzJAto4rXQZwMkB+6vb\u002f7DgyQERGwqLTATJACqKNRbrKMUDS\u002fVjooJMxQJhZJIuHXDFAYLXvLW4lMUAmEbvQVO4wQO5shnM7tzBAtMhRFiKAMEB8JB25CEkwQEKA6FvvETBAEbhn\u002fau1L0Cfb\u002f5CeUcvQC0nlYhG2S5Au94rzhNrLkBJlsIT4fwtQNdNWVmuji1AZQXwnnsgLUDzvIbkSLIsQIF0HSoWRCxADSy0b+PVK0Cb40q1sGcrQCmb4fp9+SpAt1J4QEuLKkBFCg+GGB0qQNPBpcvlrilAYXk8EbNAKUDvMNNWgNIoQH3oaZxNZChACaAA4hr2J0CXV5cn6IcnQCUPLm21GSdAs8bEsoKrJkBBflv4Tz0mQM818j0dzyVAXe2Ig+pgJUDrpB\u002fJt\u002fIkQHlctg6FhCRABRRNVFIWJECTy+OZH6gjQCGDet\u002fsOSNArzoRJbrLIkA98qdqh10iQMupPrBU7yFAWWHV9SGBIUDnGGw77xIhQHXQAoG8pCBAAYiZxok2IEAef2AYrpAfQDrujaNItB5AVl27LuPXHUByzOi5ffscQI47FkUYHxxAqqpD0LJCG0DGGXFbTWYaQOKInubniRlA\u002fvfLcYKtGEAWZ\u002fn8HNEXQDLWJoi39BZATkVUE1IYFkBqtIGe7DsVQIYjrymHXxRAopLctCGDE0C+AQpAvKYSQNpwN8tWyhFA9t9kVvHtEEAOT5LhixEQQFR8f9lMag5AjFra74GxDEDEODUGt\u002fgKQPwWkBzsPwlANPXqMiGHB0Bs00VJVs4FQKCxoF+LFQRA2I\u002f7dcBcAkAQblaM9aMAQJCYYkVV1v0\u002f+FQYcr9k+j9oEc6eKfP2P9jNg8uTgfM\u002fSIo5+P0P8D9wjd5J0DzpP0AGSqOkWeI\u002fQP5q+fHs1j8A4INYNU3CPwB5nIPyfrK\u002foCwQ7hNm0r9wnZydNRbgv5AkMURh+ea\u002fsKvF6ozc7b9oGa1I3F\u002fyvwBd9xty0fW\u002fkKBB7wdD+b8g5IvCnbT8v9gT68oZEwDApDWQtOTLAcBsVzWer4QDwDR52od6PQXA\u002fJp\u002fcUX2BsDEvCRbEK8IwJDeyUTbZwrAWABvLqYgDMAgIhQYcdkNwOhDuQE8kg\u002fA2DKvdYOlEMC+w4Hq6IERwKJUVF9OXhLAhuUm1LM6E8BrdvlIGRcUwE8HzL1+8xTANJieMuTPFcAYKXGnSawWwPy5QxyviBfA4UoWkRRlGMDF2+gFekEZwKpsu3rfHRrAjv2N70T6GsBzjmBkqtYbwFcfM9kPsxzAPLAFTnWPHcAgQdjC2msewATSqjdASB\u002fAdLE+1lISIMDm+aeQhYAgwFlCEUu47iDAy4p6BetcIcA90+O\u002fHcshwLAbTXpQOSLAImS2NIOnIsCUrB\u002fvtRUjwAb1iKnogyPAeD3yYxvyI8DqhVseTmAkwF3OxNiAziTAzxYuk7M8JcBBX5dN5qolwLSnAAgZGSbAJvBpwkuHJsCYONN8fvUmwAqBPDexYyfAfMml8ePRJ8DvEQ+sFkAowGFaeGZJrijA06LhIHwcKcA="},"y":{"dtype":"f8","bdata":"rc8XlLmBLkBPaHI0F1ouQAZRuJJ4Mi5Ad8elyt0KLkCLXPP4RuMtQPbwXzu0uy1AmxW7sCWULUBm0u94m2wtQDPWD7UVRS1ARBJfh5QdLUBVw18TGPYsQG\u002fq3n2gzixABDcB7S2nLEC1Y1CIwH8sQIwGyXhYWCxAJdXo6PUwLEBrXL0EmQksQAUr8\u002flB4itA0mzl9\u002fC6K0Cr9K0vppMrQNiwNdRhbCtAWIVFGiRFK0ClhZc47R0rQGKG6Ge99ipATP0J45TPKkAuJPTmc6gqQDBR2LJagSpAoXQziElaKkCoqeCqQDMqQELEK2FADCpA4cPj80jlKUBjDm2uWr4pQEJT0951lylAoPLa1ZpwKUB\u002fvxHnyUkpQGLv3mgDIylAigSStEf8KECFenAml9UoQPL2wR3yrihATbra\u002fFiIKECOBiQpzGEoQKwqIgtMOyhAD9x3DtkUKEA+gOahc+4nQC8DSzccyCdAhNCWQ9OhJ0DAgMQ+mXsnQNjGx6NuVSdAqyZ48FMvJ0Cl+nWlSQknQIlNCUZQ4yZAZg76V2i9JkCGJ2FjkpcmQLUGcvLOcSZAXy08kR5MJkCLamTNgSYmQLxv1TX5ACZAKoRnWoXbJUDGMH\u002fLJrYlQBLaohnekCVAqVsH1atrJUCF3BONkEYlQIg53c+MISVA\u002fI2ZKaH8JECNjgwkztckQACa7UUUsyRAipJIEnSOJEAuwtoH7mkkQEU6baCCRSRAEEkuUDIhJEAQxguF\u002ffwjQMAVEKbk2CNA1dzDEui0I0DCaZYiCJEjQO3eTiRFbSNAaCCIXZ9JI0DWczkKFyYjQPygTVysAiNA2zRKe1\u002ffIkBLUQiEMLwiQAUxgIgfmSJAQD2ojyx2IkAOQWiVV1MiQBTxoIqgMCJAiadHVQcOIkAc3pXQi+shQDidS80tySFAPssDEu2mIUAbAplbyYQhQK5WmV3CYiFABE7HwtdAIUDiGKYtCR8hQNkWDzlW\u002fSBAQ5fOeL7bIEB1z0V6QbogQDAJEMXemCBA3SGp25V3IEDWkBM8ZlYgQI9PfGBPNSBA9ifbv1AUIEBiNRyd0+YfQIN73f0zpR9AQUjBg8FjH0B0G7AOeyIfQIGZsH1f4R5AP\u002fDSr22gHkDOVAqFpF8eQDJh9N4CHx5AKViOoYfeHUC8jdizMZ4dQCRiaAAAXh1AQWTpdfEdHUCdUI4HBd4cQGC6cq05nhxAGj7uZI5eHEAoKtowAh8cQO6PyhmU3xtAZbM7LkOgG0DbzbSCDmEbQOYT4TH1IRtAMOifXPbiGkByGw0qEaQaQPYPgsdEZRpAB4uQaJAmGkDN8vdG8+cZQCSqlaJsqRlALi9RwftqGUC\u002flATvnywZQP3hYX1Y7hhAe9fVwySwGEBzjWgfBHIYQHpTnPL1MxhAuS9Lpfn1F0CoUYOkDrgXQDDDYmI0ehdAopryVWo8F0DM5wH7r\u002f4WQLmPANIEwRZAakPaX2iDFkCVuNEt2kUWQCtFXMlZCBZAYvr9w+bKFUC7ViazgI0VQEKjDTAnUBVAEgyT19kSFUCPgRtKmNUUQLNscStimBRAPD6lIjdbFEDN3u7ZFh4UQJgDkP4A4RNADWq3QPWjE0Av+2RT82YTQEvWTuz6KRNAXkHHwwvtEkAHfaOUJbASQJ94IxxIcxJA6GLaGXM2EkDQEphPpvkRQKxDU4HhvBFA3J8UdSSAEUBVlOLybkMRQMXnrcTABhFAYQ8\u002fthnKEEDXOySVeY0QQEMYoDDgUBBAsjWZWU0UEEDyORTFga8PQNMC5D51Ng9AJB2My3S9DkCwlsYYgEQOQDsaAteWyw1AkepHubhSDUBo6CJ15dkMQCqYh8IcYQxASh69W17oC0ADKEf9qW8LQDC30GX\u002f9gpAZsgXVl5+CkASytmQxgUKQJTcwNo3jQlAs9JR+rEUCUDu6tq3NJwIQKI5Y92\u002fIwhAML2aNlOrB0CGFMuQ7jIHQLrRyLqRugZAIGLlhDxCBkBQheHA7skFQKZN4EGoUQVA36Na3GjZBED1SBNmMGEEQExQC7b+6ANAvg13pNNwA0AqcrMKr\u002fgCQEXSO8OQgAJA9hKgqXgIAkAQN3uaZpABQIhKanNaGAFAyqYDE1SgAEAojc5YUygAQN4+a6SNhOS\u002faKw44c0E4r88hJhtSQrfv4T2EU4lC9q\u002fcOMqbzAM1b\u002fo6\u002frjaw3Qv6DxU4+xHca\u002fwIzj9uBBuL8AWtAktySRv8A6CSxjXa8\u002fEISoFtzSwT+YzGlu8M3LP\u002fwaOZdJ5NI\u002fxCYoz2Dh1z\u002fsmxp4PN7cP+Y7C5Bt7eA\u002fPpLTpJ1r4z+Wmbi1renlP6jN4PecZ+g\u002flCcMmmrl6j8u+VbEFWPtPzY8+ped4O8\u002fA56ElwAv8T\u002fvPBbOn23yP9rXLPUrrPM\u002fzGdEjqTq9D+k8LIWCSn2P7fMfwdZZ\u002fc\u002f5kQ51ZOl+D8qYsjvuOP5P7\u002flQsLHIfs\u002faVW7sr9f\u002fD+KBg8ioJ39P+QUsmto2\u002f4\u002fQZe88osMAEBmkLDvVqsAQIsHqtEUSgFAsh52OsXoAUA2LJrIZ4cCQFaRMhf8JQNAkDjQvYHEA0Awr1RQ+GIEQDTPzF5fAQVARO1JdbafBUAegLkb\u002fT0GQJk1u9Uy3AZALGt1Ild6B0Ca\u002f2d8aRgIQBJ0PVlptghAolSaKVZUCUDM3+pYL\u002fIJQKnnLk30jwpADOfDZqQtC0BmSC0AP8sLQO3c2m3DaAxANIbt\u002fTAGDUAVFvr3hqMNQGptypzEQA5AaOQcJundDkAWDWLG83oPQEVyPNTxCxBAkMa091taEEBnWQ\u002fbt6gQQHTgjgcF9xBAwgwfAkNFEUBUwy9LcZMRQAIUkF6P4RFAExVJs5wvEkB20Hi7mH0SQJ91LeSCyxJAuQpBlVoZE0BZ3zUxH2cTQLkLFBXQtBNAblBImGwCFECatIQM9E8UQBNLo71lnRRA\u002f5GL8cDqFEAy7BroBDgVQNi\u002fENswhRVAPNL+\u002fUPSFUCohT5+PR8WQNeq64IcbBZAb6TlLOC4FkAIp9eWhwUXQPDrSNURUhdAJLe19n2eF0AAGrIDy+oXQOViF\u002f\u002f3NhhAYy495gODGECkDz+x7c4YQC7DT1O0GhlA49cau1ZmGUD+rTXT07EZQIKZoIIq\u002fRlAN91YrVlIGkAXE\u002fw0YJMaQEhwffk83hpAmyLt2e4oG0B9zlG1dHMbQMDzk2vNvRtAV7h63vcHHEBKSLny8lEcQNykC5G9mxxA9GFhp1blHEBxchQqvS4dQArFKRXwdx1AjxSZbe7AHUCF9JhCtwkeQJfP665JUh5AdUQq2qSaHkBDEgf6x+IeQIqaiFOyKh9AaeczPGNyH0CZIiUb2rkfQPq\u002fCDWLACBAH2YX2wskIEAkjH7QbkcgQLyrd\u002fCzaiBAGh\u002f4INuNIEDnmuBS5LAgQDHqGILP0yBAM3aXtZz2IECkeVT\u002fSxkhQFwWKXzdOyFAXNmaU1FeIUBnipS3p4AhQCRvDeTgoiFAoWugHv3EIUBIohS2\u002fOYhQIph2QHgCCJAHE53YacqIkB3zPg7U0wiQCC0S\u002f\u002fjbSJAVlOeH1qPIkBwu7kWtrAiQHU2W2P40SJAmKaOiCHzIkCcagsNMhQjQDE3lXoqNSNAnydiXQtWI0DGGIdD1XYjQKQxa7yIlyNA0k1DWCa4I0DQ0ZWnrtgjQJNGxzoi+SNAUfOvoYEZJECLiTprzTkkQEzYCyUGWiRA\u002fmAzWyx6JEBrkeSXQJokQOFTOGNDuiRAbZf2QjXaJEDSZme6FvokQHocK0roGSVASDwZcKo5JUAteSWnXVklQLBrSmcCeSVAcX95JZmYJUBkoI9TIrglQBQ0TmCe1yVA5+9Xtw33JUDUIjHBcBYmQNEOQ+PHNSZAXvThfxNVJkAYeVX2U3QmQIsY46KJkyZA\u002fFTa3rSyJkDsY6IA1tEmQFsYyVvt8CZAb9ISQfsPJ0CeQYv+\u002fy4nQMrLlt\u002f7TSdAY3AELe9sJ0BmAyAt2osnQPifxCO9qidAbDZvUpjJJ0DoHFH4a+gnQDWNYlI4ByhAFP10m\u002f0lKEAkQUUMvEQoQOVsjdtzYyhATmQWPiWCKECtFclm0KAoQNlTv4Z1vyhAr0pUzRTeKEDaiDRorvwoQEObbYNCGylAhDd9SdE5KUCr81\u002fjWlgpQFeKn3jfdilA+KpgL1+VKUCbVnAs2rMpQPrJUJNQ0ilAVfZFhsLwKUCMimEmMA8qQImOjpOZLSpALZOc7P5LKkAweUpPYGoqQHnRUNi9iCpAq9lroxenKkA="},"type":"scatter"},{"line":{"color":"black","dash":"dash","width":2},"mode":"lines","name":"OLS  R\u00b2=0.281  p=0.0000","x":{"dtype":"f8","bdata":"06LhIHwcKcBhWnhmSa4owO8RD6wWQCjAfMml8ePRJ8AKgTw3sWMnwJg403x+9SbAJvBpwkuHJsC0pwAIGRkmwEFfl03mqiXAzxYuk7M8JcBdzsTYgM4kwOqFWx5OYCTAeD3yYxvyI8AG9Yip6IMjwJSsH++1FSPAImS2NIOnIsCwG016UDkiwD3T478dyyHAy4p6BetcIcBZQhFLuO4gwOb5p5CFgCDAdLE+1lISIMAE0qo3QEgfwCBB2MLaax7APLAFTnWPHcBXHzPZD7McwHOOYGSq1hvAjv2N70T6GsCqbLt63x0awMXb6AV6QRnA4UoWkRRlGMD8uUMcr4gXwBgpcadJrBbANJieMuTPFcBPB8y9fvMUwGt2+UgZFxTAhuUm1LM6E8CiVFRfTl4SwL7DgerogRHA2DKvdYOlEMDoQ7kBPJIPwCAiFBhx2Q3AWABvLqYgDMCQ3slE22cKwMS8JFsQrwjA\u002fJp\u002fcUX2BsA0edqHej0FwGxXNZ6vhAPApDWQtOTLAcDYE+vKGRMAwCDki8KdtPy\u002fkKBB7wdD+b8AXfcbctH1v2gZrUjcX\u002fK\u002fsKvF6ozc7b+QJDFEYfnmv3CdnJ01FuC\u002foCwQ7hNm0r8AeZyD8n6yvwDgg1g1TcI\u002fQP5q+fHs1j9ABkqjpFniP3CN3knQPOk\u002fSIo5+P0P8D\u002fYzYPLk4HzP2gRzp4p8\u002fY\u002f+FQYcr9k+j+QmGJFVdb9PxBuVoz1owBA2I\u002f7dcBcAkCgsaBfixUEQGzTRUlWzgVANPXqMiGHB0D8FpAc7D8JQMQ4NQa3+ApAjFra74GxDEBUfH\u002fZTGoOQA5PkuGLERBA9t9kVvHtEEDacDfLVsoRQL4BCkC8phJAopLctCGDE0CGI68ph18UQGq0gZ7sOxVATkVUE1IYFkAy1iaIt\u002fQWQBZn+fwc0RdA\u002fvfLcYKtGEDiiJ7m54kZQMYZcVtNZhpAqqpD0LJCG0COOxZFGB8cQHLM6Ll9+xxAVl27LuPXHUA67o2jSLQeQB5\u002fYBiukB9AAYiZxok2IEB10AKBvKQgQOcYbDvvEiFAWWHV9SGBIUDLqT6wVO8hQD3yp2qHXSJArzoRJbrLIkAhg3rf7DkjQJPL45kfqCNABRRNVFIWJEB5XLYOhYQkQOukH8m38iRAXe2Ig+pgJUDPNfI9Hc8lQEF+W\u002fhPPSZAs8bEsoKrJkAlDy5ttRknQJdXlyfohydACaAA4hr2J0B96GmcTWQoQO8w01aA0ihAYXk8EbNAKUDTwaXL5a4pQEUKD4YYHSpAt1J4QEuLKkApm+H6ffkqQJvjSrWwZytADSy0b+PVK0CBdB0qFkQsQPO8huRIsixAZQXwnnsgLUDXTVlZro4tQEmWwhPh\u002fC1Au94rzhNrLkAtJ5WIRtkuQJ9v\u002fkJ5Ry9AEbhn\u002fau1L0BCgOhb7xEwQHwkHbkISTBAtMhRFiKAMEDubIZzO7cwQCYRu9BU7jBAYLXvLW4lMUCYWSSLh1wxQNL9WOigkzFACqKNRbrKMUBERsKi0wEyQH7q9v\u002fsODJAto4rXQZwMkDwMmC6H6cyQCjXlBc53jJAYnvJdFIVM0CaH\u002f7Ra0wzQNTDMi+FgzNADGhnjJ66M0BGDJzpt\u002fEzQH6w0EbRKDRAuFQFpOpfNEDw+DkBBJc0QCqdbl4dzjRAZEGjuzYFNUCc5dcYUDw1QNaJDHZpczVADi5B04KqNUBI0nUwnOE1QIB2qo21GDZAuhrf6s5PNkDyvhNI6IY2QCxjSKUBvjZAZgd9Ahv1NkCeq7FfNCw3QNhP5rxNYzdAEPQaGmeaN0BKmE93gNE3QII8hNSZCDhAvOC4MbM\u002fOED0hO2OzHY4QC4pIuzlrThAaM1WSf\u002fkOECgcYumGBw5QNoVwAMyUzlAErr0YEuKOUBMXim+ZME5QIQCXht++DlAvqaSeJcvOkD2SsfVsGY6QDDv+zLKnTpAapMwkOPUOkCiN2Xt\u002fAs7QNzbmUoWQztAFIDOpy96O0BOJAMFSbE7QIbIN2Ji6DtAwGxsv3sfPED4EKEclVY8QDK11XmujTxAalkK18fEPECk\u002fT404fs8QN6hc5H6Mj1AFkao7hNqPUBQ6txLLaE9QIiOEalG2D1AwjJGBmAPPkD61npjeUY+QA=="},"y":{"dtype":"f8","bdata":"rNTBm2iULEDknGGGanEsQBtlAXFsTixAUi2hW24rLECK9UBGcAgsQMG94DBy5StA+IWAG3TCK0AwTiAGdp8rQGcWwPB3fCtAnt5f23lZK0DWpv\u002fFezYrQA1vn7B9EytARDc\u002fm3\u002fwKkB8\u002f96Fgc0qQLPHfnCDqipA6o8eW4WHKkAiWL5Fh2QqQFkgXjCJQSpAkOj9GoseKkDIsJ0FjfspQP54PfCO2ClANkHd2pC1KUBtCX3FkpIpQKXRHLCUbylA3Jm8mpZMKUATYlyFmCkpQEsq\u002fG+aBilAgvKbWpzjKEC5ujtFnsAoQPCC2y+gnShAKEt7GqJ6KEBfExsFpFcoQJfbuu+lNChAzqNa2qcRKEAFbPrEqe4nQD00mq+ryydAdPw5mq2oJ0CrxNmEr4UnQOOMeW+xYidAGlUZWrM\u002fJ0BRHblEtRwnQIjlWC+3+SZAwK34GbnWJkD3dZgEu7MmQC4+OO+8kCZAZgbY2b5tJkCdznfEwEomQNWWF6\u002fCJyZADF+3mcQEJkBDJ1eExuElQHrv9m7IviVAsreWWcqbJUDpfzZEzHglQCBI1i7OVSVAWBB2GdAyJUCP2BUE0g8lQMagte7T7CRA\u002fmhV2dXJJEA1MfXD16YkQGz5lK7ZgyRApME0mdtgJEDbidSD3T0kQBJSdG7fGiRAShoUWeH3I0CB4rND49QjQLiqUy7lsSNA8HLzGOeOI0AnO5MD6WsjQF4DM+7qSCNAlsvS2OwlI0DNk3LD7gIjQARcEq7w3yJAOySymPK8IkBz7FGD9JkiQKq08W32diJA4nyRWPhTIkAZRTFD+jAiQFAN0S38DSJAh9VwGP7qIUC+nRADAMghQPZlsO0BpSFALS5Q2AOCIUBl9u\u002fCBV8hQJy+j60HPCFA1IYvmAkZIUALT8+CC\u002fYgQEIXb20N0yBAed8OWA+wIECwp65CEY0gQOhvTi0TaiBAHzjuFxVHIEBXAI4CFyQgQI7ILe0YASBAiyGbrzW8H0D6sdqEOXYfQGhCGlo9MB9A19JZL0HqHkBEY5kERaQeQLTz2NlIXh5AIoQYr0wYHkCRFFiEUNIdQACll1lUjB1AbjXXLlhGHUDexRYEXAAdQExWVtlfuhxAu+aVrmN0HEAod9WDZy4cQJgHFVlr6BtABphULm+iG0B1KJQDc1wbQOS409h2FhtAUkkTrnrQGkDB2VKDfooaQDBqkliCRBpAn\u002frRLYb+GUAMixEDirgZQHsbUdiNchlA6quQrZEsGUBZPNCCleYYQMfMD1iZoBhANl1PLZ1aGECl7Y4CoRQYQBR+ztekzhdAgw4OraiIF0Dwnk2CrEIXQF8vjVew\u002fBZAzr\u002fMLLS2FkA8UAwCuHAWQKvgS9e7KhZAGnGLrL\u002fkFUCJAcuBw54VQPiRClfHWBVAZiJKLMsSFUDVsokBz8wUQEJDydbShhRAstMIrNZAFEAgZEiB2voTQJD0h1betBNA\u002fYTHK+JuE0BtFQcB5igTQNulRtbp4hJASzaGq+2cEkC4xsWA8VYSQCZXBVb1EBJAludEK\u002fnKEUADeIQA\u002fYQRQHMIxNUAPxFA4ZgDqwT5EEBRKUOACLMQQL+5glUMbRBAL0rCKhAnEEA4tQMAKMIPQBjWgqovNg9A9PYBVTeqDkDUF4H\u002fPh4OQK44AKpGkg1Aill\u002fVE4GDUBqev7+VXoMQESbfald7gtAJLz8U2ViC0AA3Xv+bNYKQOD9+qh0SgpAuh56U3y+CUCcP\u002fn9gzIJQHZgeKiLpghAUoH3UpMaCEAyonb9mo4HQAzD9aeiAgdA7ON0Uqp2BkDIBPT8seoFQKglc6e5XgVAgkbyUcHSBEBiZ3H8yEYEQD6I8KbQugNAGKlvUdguA0D4ye7736ICQNTqbabnFgJAtAvtUO+KAUCQLGz79v4AQHBN66X+cgBAmNzUoAzO\u002fz9YHtP1G7b+Pwhg0Uornv0\u002fwKHPnzqG\u002fD+A4830SW77PzglzElZVvo\u002f+GbKnmg++T+wqMjzdyb4P3DqxkiHDvc\u002fICzFnZb29T\u002fgbcPypd70P5ivwUe1xvM\u002fWPG\u002fnMSu8j8QM77x05bxP8h0vEbjfvA\u002fEG11N+XN7j+A8HHhA57sPwB0bosibuo\u002fYPdqNUE+6D\u002fgemffXw7mPw=="},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"legend":{"font":{"size":11}},"margin":{"t":30,"b":40},"xaxis":{"title":{"text":"Befolkningsvekst 2006\u20132016 (%)"}},"yaxis":{"title":{"text":"Endring Sp (pp)"}},"hovermode":"closest"},                        {"responsive": true}                    )                };            </script>        </div></div>
+  </section>
+
+  <!-- Regresjonstabeller -->
+  <section id="regresjon" class="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 section-fade">
+    <div class="flex items-center gap-2 mb-4">
+      <span class="w-1 h-6 bg-slate-800 rounded-full inline-block"></span>
+      <h2 class="text-xl font-bold text-slate-900">Regresjonsresultater (OLS bivariat)</h2>
+    </div>
+    <div class="overflow-x-auto rounded-xl border border-slate-200">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-800 text-white text-left">
+            <th class="py-3 px-4 font-semibold rounded-tl-xl">Avhengig variabel</th>
+            <th class="py-3 px-4 font-semibold">Uavhengig variabel</th>
+            <th class="py-3 px-4 font-semibold">Koeffisient (β)</th>
+            <th class="py-3 px-4 font-semibold">R²</th>
+            <th class="py-3 px-4 font-semibold">p-verdi</th>
+            <th class="py-3 px-4 font-semibold rounded-tr-xl">N</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="py-3 px-4 font-semibold text-slate-800">ΔAp 2013→2017</td>
+          <td class="py-3 px-4 text-slate-600">Befolkningsvekst 2006–2016 (%)</td>
+          <td class="py-3 px-4 font-mono font-bold text-green-700">+0.170***</td>
+          <td class="py-3 px-4 font-mono text-slate-700">0.216</td>
+          <td class="py-3 px-4 font-mono text-slate-600">< 0,0001</td>
+          <td class="py-3 px-4 text-slate-600">425</td>
+        </tr>
+
+        <tr class="border-b border-slate-100 hover:bg-slate-50 transition-colors">
+          <td class="py-3 px-4 font-semibold text-slate-800">ΔSp 2013→2017</td>
+          <td class="py-3 px-4 text-slate-600">Befolkningsvekst 2006–2016 (%)</td>
+          <td class="py-3 px-4 font-mono font-bold text-red-700">-0.318***</td>
+          <td class="py-3 px-4 font-mono text-slate-700">0.281</td>
+          <td class="py-3 px-4 font-mono text-slate-600">< 0,0001</td>
+          <td class="py-3 px-4 text-slate-600">425</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-400 mt-3">
+      *** p &lt; 0,001 &nbsp;·&nbsp; ** p &lt; 0,01 &nbsp;·&nbsp; * p &lt; 0,05.
+      Koeffisient = prosentpoeng endring i partioppslutning per 1 % endring i befolkningsvekst.
+      Multivariate modeller (kontrollert for sentralitet) gir tilsvarende resultater.
+    </p>
+  </section>
+
+  <!-- Konklusjon -->
+  <section class="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-8 section-fade">
+    <h2 class="text-2xl font-bold mb-4">Konklusjon</h2>
+    <div class="grid md:grid-cols-2 gap-6 text-sm leading-relaxed text-slate-300">
+      <div>
+        <h3 class="text-white font-semibold mb-2">Hypotesen bekreftes</h3>
+        <p>Kommuner med lavest befolkningsvekst 2006–2016 hadde signifikant større fall i Ap-oppslutning
+        og signifikant større vekst i Sp-oppslutning fra 2013 til 2017. Sammenhengen er robust og
+        gjelder uavhengig av sentralitetsgrad.</p>
+      </div>
+      <div>
+        <h3 class="text-white font-semibold mb-2">Tolkning</h3>
+        <p>Funnene er forenlig med teorien om at distriktsvelgere i fraflyttingskommuner forflyttet
+        partitilhørighet fra Ap mot Sp i takt med opplevd nedprioritering av distriktspolitikk.
+        Sterk negativ korrelasjon mellom ΔAp og ΔSp (r = -0.74) indikerer direkte
+        velgervandring.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="max-w-6xl mx-auto px-6 py-6 text-center text-xs text-slate-400 border-t border-slate-200 mt-4">
+  Datakilder: SSB tabell 08092 (valgdata), Distriktsindikatorene (befolkning), SSBs sentralitetsindeks.
+  Analyse utført med Python (pandas, statsmodels, plotly). Sist oppdatert 2026.
+</footer>
+
 </body>
 </html>
