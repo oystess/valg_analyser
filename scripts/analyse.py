@@ -59,19 +59,19 @@ SENT_FARGER = {
 
 # ── DATAHENTING ───────────────────────────────────────────────────────────────
 
-def hent_valgdata_1317(path="data_valg_1317.csv") -> pd.DataFrame:
+def hent_valgdata_1317(path="data/raw/data_valg_1317.csv") -> pd.DataFrame:
     """Les 2013/2017 valgdata fra lokal CSV (SSB 08092, pre-2020 koder)."""
     print(f"  Leser {path}...")
     return pd.read_csv(path)
 
 
-def hent_valgdata_2125(path="data_valg_2125.csv") -> pd.DataFrame:
+def hent_valgdata_2125(path="data/raw/data_valg_2125.csv") -> pd.DataFrame:
     """Les 2021/2025 valgdata fra lokal CSV (SSB 08092, 2024-koder)."""
     print(f"  Leser {path}...")
     return pd.read_csv(path)
 
 
-def hent_befolkning(path="distriktstall.xlsx") -> pd.DataFrame:
+def hent_befolkning(path="data/raw/distriktstall.xlsx") -> pd.DataFrame:
     """Les befolkningsdata fra lokalt Excel-ark."""
     print(f"  Leser {path}...")
     df = pd.read_excel(path, sheet_name="Ark1")
@@ -147,7 +147,7 @@ def prosesser_befolkning(df_raw: pd.DataFrame) -> pd.DataFrame:
     return df[["komm_nr", "vekst_10yr", "folkemengde_2016"]].copy()
 
 
-def last_sentralitet(path="sentralitet.csv") -> pd.DataFrame:
+def last_sentralitet(path="data/raw/sentralitet.csv") -> pd.DataFrame:
     df = pd.read_csv(path, sep=";", quotechar='"', encoding="latin1")
     # Kolonner: sourceCode, sourceName, targetCode, targetName
     df = df.rename(columns={

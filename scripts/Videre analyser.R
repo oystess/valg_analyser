@@ -3,9 +3,9 @@ library(dplyr)
 library(RCurl)
 library(lubridate)
 
-source("Alle meningsmålinger.R")
+source("scripts/Alle meningsmålinger.R")
 rm(list = ls())
-data<- read_csv("polls.csv", col_types = 
+data<- read_csv("data/processed/polls.csv", col_types =
   cols(
     hvem = col_character(),
     dag = col_integer(),
