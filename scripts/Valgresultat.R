@@ -4,7 +4,7 @@ library(stringr)
 
 ###Valgersultat
 
-valg2017 <- read_csv2("valg2017_parti.csv")
+valg2017 <- read_csv2("data/raw/valg2017_parti.csv")
 
 kommune2017 <- valg2017 %>%
   group_by(Fylkenavn, Kommunenavn, Kommunenummer, Partikode, Partinavn) %>% 
@@ -12,7 +12,7 @@ kommune2017 <- valg2017 %>%
   group_by(Fylkenavn, Kommunenavn, Kommunenummer) %>% 
   mutate( "prosent17" = stemmer17/sum (stemmer17))
 
-valg2013 <- read_csv2("valg2013_parti.csv")
+valg2013 <- read_csv2("data/raw/valg2013_parti.csv")
 
 kommune2013 <- valg2013 %>%
   group_by(Kommunenummer, Partikode, Partinavn) %>% 
@@ -36,7 +36,7 @@ kommune2013 <- kommune2013 %>%
 
 
 
-indeks <- read_xlsx("distriktstall.xlsx") %>% 
+indeks <- read_xlsx("data/raw/distriktstall.xlsx") %>%
   separate(Kommunenavn, c("Kommunenummer", "Kommunenavn"), sep = " ", extra = "merge")
 
 

@@ -61,7 +61,7 @@ samlet <- samlet %>%
   )
 samlet$Mandater <- str_replace(samlet$Mandater,"\\)","") 
 samlet$Prosent <- str_replace(samlet$Prosent,",",".") 
-write_csv(samlet, "polls.csv")
+write_csv(samlet, "data/processed/polls.csv")
 
 guess_parser(data$Prosent)
 
