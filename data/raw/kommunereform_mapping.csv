@@ -1,0 +1,124 @@
+gammelt_nr,nytt_nr,navn_gammelt,navn_nytt,aar,kommentar
+0121,3226,Rømskog,Aurskog-Høland,2020,Rømskog inn i Aurskog-Høland
+0122,3118,Trøgstad,Indre Østfold,2020,del av ny Indre Østfold
+0123,3118,Spydeberg,Indre Østfold,2020,del av ny Indre Østfold
+0124,3118,Askim,Indre Østfold,2020,del av ny Indre Østfold
+0125,3118,Eidsberg,Indre Østfold,2020,del av ny Indre Østfold
+0136,3103,Rygge,Moss,2020,Rygge inn i ny Moss
+0138,3118,Hobøl,Indre Østfold,2020,del av ny Indre Østfold
+0213,3207,Ski,Nordre Follo,2020,Ski inn i ny Nordre Follo
+0217,3207,Oppegård,Nordre Follo,2020,Oppegård inn i ny Nordre Follo
+0226,3205,Sørum,Lillestrøm,2020,Sørum inn i ny Lillestrøm
+0227,3205,Fet,Lillestrøm,2020,Fet inn i ny Lillestrøm
+0231,3205,Skedsmo,Lillestrøm,2020,Skedsmo inn i ny Lillestrøm
+0625,3301,Nedre Eiker,Drammen,2020,Nedre Eiker inn i ny Drammen
+0627,3203,Røyken,Asker,2020,Røyken inn i ny Asker
+0628,3203,Hurum,Asker,2020,Hurum inn i ny Asker
+0711,3301,Svelvik,Drammen,2020,Svelvik inn i ny Drammen
+0713,3903,Sande,Holmestrand,2020,Sande (Vestfold) inn i ny Holmestrand
+0714,3903,Hof,Holmestrand,2017,Hof inn i ny Holmestrand
+0716,3903,Re,Holmestrand,2020,Re inn i ny Holmestrand
+0718,3903,Ramnes,Holmestrand,2002,Ramnes+Våle→Re→Holmestrand (2002+2020)
+0719,3907,Andebu,Sandefjord,2017,Andebu inn i ny Sandefjord
+0720,3907,Stokke,Sandefjord,2017,Stokke inn i ny Sandefjord
+0722,3911,Nøtterøy,Færder,2018,Nøtterøy+Tjøme → Færder
+0723,3911,Tjøme,Færder,2018,Tjøme+Nøtterøy → Færder
+0728,3909,Lardal,Larvik,2017,Lardal inn i ny Larvik
+0821,4020,Bø (Telemark),Midt-Telemark,2020,Bø+Sauherad → Midt-Telemark
+0822,4020,Sauherad,Midt-Telemark,2020,Sauherad+Bø → Midt-Telemark
+1002,4205,Mandal,Lindesnes,2020,del av ny Lindesnes
+1017,4204,Songdalen,Kristiansand,2020,Songdalen inn i ny Kristiansand
+1018,4204,Søgne,Kristiansand,2020,Søgne inn i ny Kristiansand
+1021,4205,Marnardal,Lindesnes,2020,del av ny Lindesnes
+1027,4205,Audnedal,Lindesnes,2020,del av ny Lindesnes
+1129,1108,Forsand,Sandnes,2020,Forsand inn i ny Sandnes
+1141,1103,Finnøy,Stavanger,2020,Finnøy inn i ny Stavanger
+1142,1103,Rennesøy,Stavanger,2020,Rennesøy inn i ny Stavanger
+1159,1160,Ølen,Vindafjord,2006,Ølen (Rogaland)+Vindafjord → ny Vindafjord
+1214,1160,Ølen,Vindafjord,2006,Ølen (Hordaland)+Vindafjord → ny Vindafjord
+1227,4618,Jondal,Ullensvang,2020,Jondal+Odda+Ullensvang → ny Ullensvang
+1228,4618,Odda,Ullensvang,2020,Odda+Ullensvang+Jondal → ny Ullensvang
+1234,4621,Granvin,Voss,2020,Granvin inn i ny Voss
+1241,4624,Fusa,Bjørnafjorden,2020,Fusa+Os → Bjørnafjorden
+1243,4624,Os,Bjørnafjorden,2020,Os+Fusa → Bjørnafjorden
+1245,4626,Sund,Øygarden,2020,Sund+Fjell+Øygarden → ny Øygarden
+1246,4626,Fjell,Øygarden,2020,Fjell+Sund+Øygarden → ny Øygarden
+1256,4631,Meland,Alver,2020,Meland+Radøy+Lindås → Alver
+1260,4631,Radøy,Alver,2020,Radøy+Meland+Lindås → Alver
+1263,4631,Lindås,Alver,2020,Lindås+Meland+Radøy → Alver
+1401,4602,Flora,Kinn,2020,Flora+Vågsøy → Kinn
+1418,4640,Balestrand,Sogndal,2020,Balestrand inn i ny Sogndal
+1430,4646,Gaular,Fjaler,2020,Gaular+Fjaler → ny Fjaler
+1431,4647,Jølster,Sunnfjord,2020,Jølster+Gaular+Naustdal+Førde → Sunnfjord
+1432,4647,Førde,Sunnfjord,2020,Førde+Jølster+Gaular+Naustdal → Sunnfjord
+1433,4647,Naustdal,Sunnfjord,2020,Naustdal+Førde+Jølster+Gaular → Sunnfjord
+1439,4602,Vågsøy,Kinn,2020,Vågsøy+Flora → Kinn
+1441,4649,Selje,Stad,2020,Selje+Eid → Stad
+1443,4649,Eid,Stad,2020,Eid+Selje → Stad
+1444,4650,Hornindal,Gloppen,2020,Hornindal inn i ny Gloppen
+1523,1508,Ørskog,Ålesund,2020,Ørskog inn i ny Ålesund
+1524,1578,Norddal,Fjord,2020,Norddal+Stordal → Fjord
+1526,1578,Stordal,Fjord,2020,Stordal+Norddal → Fjord
+1529,1508,Skodje,Ålesund,2020,Skodje inn i ny Ålesund
+1543,1506,Nesset,Molde,2020,Nesset inn i ny Molde
+1545,1506,Midsund,Molde,2020,Midsund inn i ny Molde
+1546,1506,Sandøy,Molde,2020,Sandøy inn i ny Molde
+1548,1579,Fræna,Hustadvika,2020,Fræna+Eide → Hustadvika
+1551,1579,Eide,Hustadvika,2020,Eide+Fræna → Hustadvika
+1556,1505,Frei,Kristiansund,2008,Frei inn i Kristiansund
+1571,1576,Halsa,Aure,2020,Halsa inn i ny Aure
+1572,1576,Tustna,Aure,2006,Tustna inn i Aure
+1601,5001,Trondheim,Trondheim,2018,Trondheim → ny Trøndelag-kode
+1612,5055,Hemne,Heim,2020,Hemne+Snillfjord → Heim (via 5011)
+1613,5055,Snillfjord,Heim,2020,Snillfjord+Hemne → Heim (via 5012)
+1622,5059,Agdenes,Orkland,2020,Agdenes inn i Orkland (via 5016)
+1624,5054,Rissa,Indre Fosen,2018,Rissa → Indre Fosen
+1627,5057,Bjugn,Ørland,2020,Bjugn inn i ny Ørland (via 5017)
+1632,5020,Roan,Osen,2020,Roan inn i Osen (via 5019)
+1636,5059,Meldal,Orkland,2020,Meldal inn i Orkland (via 5023)
+1638,5059,Orkdal,Orkland,2020,Orkdal inn i Orkland (via 5024)
+1662,5001,Klæbu,Trondheim,2020,Klæbu inn i Trondheim (via 5030)
+1702,5006,Steinkjer,Steinkjer,2018,Steinkjer → ny Trøndelag-kode (5006 etter merger)
+1703,5007,Namsos,Namsos,2018,Namsos → ny Trøndelag-kode
+1718,5053,Leksvik,Inderøy,2020,Leksvik inn i ny Inderøy
+1719,5037,Levanger,Levanger,2018,Levanger → ny Trøndelag-kode
+1723,5053,Mosvik,Inderøy,2012,Mosvik inn i Inderøy
+1724,5006,Verran,Steinkjer,2020,Verran inn i ny Steinkjer (via 5039)
+1725,5006,Namdalseid,Steinkjer,2020,Namdalseid inn i ny Steinkjer (via 5040)
+1748,5007,Fosnes,Namsos,2020,Fosnes inn i ny Namsos (via 5048)
+1750,5060,Vikna,Nærøysund,2020,Vikna+Nærøy → Nærøysund (via 5050)
+1751,5060,Nærøy,Nærøysund,2020,Nærøy+Vikna → Nærøysund (via 5051)
+1842,1841,Skjerstad,Fauske,2005,Skjerstad inn i Fauske
+1849,1875,Hamarøy,Hamarøy,2020,Hamarøy renumbering (Sami navn omordnet)
+1850,1875,Tysfjord,Hamarøy,2020,Del av Tysfjord → Hamarøy
+1852,5512,Tjeldsund,Tjeldsund,2020,Tjeldsund ny Troms-kommune
+1854,1806,Ballangen,Narvik,2020,Ballangen inn i ny Narvik
+1901,5503,Harstad,Harstad,2013,Harstad renumbering (Sami navn)
+1913,5512,Skånland,Tjeldsund,2020,Skånland inn i ny Tjeldsund-kommune
+1915,5503,Bjarkøy,Harstad,2013,Bjarkøy inn i Harstad
+1919,5516,Gratangen,Gratangen,2020,Gratangen renaming
+1927,5530,Tranøy,Senja,2020,Tranøy inn i ny Senja
+1928,5530,Torsken,Senja,2020,Torsken inn i ny Senja
+1929,5530,Berg,Senja,2020,Berg inn i ny Senja
+1931,5530,Lenvik,Senja,2020,Lenvik inn i ny Senja
+2004,5603,Hammerfest,Hammerfest,2020,Hammerfest+Kvalsund → ny Hammerfest
+2017,5603,Kvalsund,Hammerfest,2020,Kvalsund inn i ny Hammerfest
+0616,3322,Nes (Hallingdal),Nesbyen,2020,Nes (Hallingdal) renamed til Nesbyen og fikk Viken-kode 3322
+3018,3419,Våler,Våler,2024,Våler (Viken) → Våler (Innlandet)
+5004,5006,Steinkjer,Steinkjer,2020,gammel Steinkjer (5004) inn i ny Steinkjer (5006)
+5005,5007,Namsos,Namsos,2020,gammel Namsos inn i ny Namsos
+5011,5055,Hemne,Heim,2020,Hemne inn i Heim
+5012,5055,Snillfjord,Heim,2020,Snillfjord inn i Heim
+5016,5059,Agdenes,Orkland,2020,Agdenes inn i Orkland
+5017,5057,Bjugn,Ørland,2020,Bjugn inn i ny Ørland
+5019,5020,Roan,Osen,2020,Roan inn i Osen
+5023,5059,Meldal,Orkland,2020,Meldal inn i Orkland
+5024,5059,Orkdal,Orkland,2020,Orkdal inn i Orkland
+5030,5001,Klæbu,Trondheim,2020,Klæbu inn i Trondheim
+5039,5006,Verran,Steinkjer,2020,Verran inn i ny Steinkjer
+5040,5006,Namdalseid,Steinkjer,2020,Namdalseid inn i ny Steinkjer
+5048,5007,Fosnes,Namsos,2020,Fosnes inn i ny Namsos
+5050,5060,Vikna,Nærøysund,2020,Vikna+Nærøy → Nærøysund
+5051,5060,Nærøy,Nærøysund,2020,Nærøy+Vikna → Nærøysund
+5414,5516,Gratangen,Gratangen,2024,Gratangen (Troms og Finnmark) → Gratangen (Troms)
+5424,5536,Lyngen,Lyngen,2024,Lyngen (Troms og Finnmark) → Lyngen (Troms)
