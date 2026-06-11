@@ -506,16 +506,15 @@ def add_totals_and_pct(rows: list) -> list:
 # ─── Population ───────────────────────────────────────────────────────────────
 
 def process_population(pop_rows: list) -> list:
-    """Population data is already aggregated to 2024 codes by agg_KommSummer."""
-    rows = []
+    """Population data is already aggregated to 2024 codes by agg_KommSummer.
+    Deduplicate in case multiple SSB downloads covered overlapping years."""
+    seen = {}
     for r in pop_rows:
-        rows.append({
-            "kom2024": r["code"],
-            "navn": r["name"],
-            "aar": r["year"],
-            "befolkning": r["befolkning"],
-        })
-    return sorted(rows, key=lambda r: (r["kom2024"], r["aar"]))
+        key = (r["code"], r["year"])
+        if key not in seen:
+            seen[key] = {"kom2024": r["code"], "navn": r["name"],
+                         "aar": r["year"], "befolkning": r["befolkning"]}
+    return sorted(seen.values(), key=lambda r: (r["kom2024"], r["aar"]))
 
 
 # ─── CSV output ───────────────────────────────────────────────────────────────
