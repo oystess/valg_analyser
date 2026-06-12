@@ -35,6 +35,8 @@ TRANSITIONS = [
      "label": "↑ 89→93", "opp": True},
     {"key": "93→97", "y1": 1993, "y2": 1997, "pop_fra": 1987, "pop_til": 1993,
      "label": "↓ 93→97", "opp": False},
+    {"key": "13→17", "y1": 2013, "y2": 2017, "pop_fra": 2007, "pop_til": 2017,
+     "label": "↑ 13→17", "opp": True},
     {"key": "17→21", "y1": 2017, "y2": 2021, "pop_fra": 2011, "pop_til": 2021,
      "label": "↑ 17→21", "opp": True},
     {"key": "21→25", "y1": 2021, "y2": 2025, "pop_fra": 2015, "pop_til": 2021,
@@ -254,7 +256,8 @@ def fig_bidrag_vs_rate(alle):
     Scatter per overgang: x = velger_andel, y = ΔSp_w (rate),
     boble = bidrag. Viser at Sentral+Vekst dominerer.
     """
-    fig = make_subplots(rows=1, cols=4,
+    n_tr = len(TRANSITIONS)
+    fig = make_subplots(rows=1, cols=n_tr,
                         subplot_titles=[tr["label"] for tr in TRANSITIONS],
                         shared_yaxes=True)
     for col, tr in enumerate(TRANSITIONS, 1):
