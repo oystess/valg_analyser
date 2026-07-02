@@ -53,12 +53,7 @@ python scripts/analyse.py      # kjør fra repo-roten
 ```
 
 **Merk om filstier:** Funksjonene bruker relative stier fra repo-roten
-(f.eks. `data/raw/data_valg_1317.csv`). Men i `main()` kalles
-`last_sentralitet("sentralitet.csv")` med en sti som **ikke** matcher den
-faktiske plasseringen `data/raw/sentralitet.csv`. Standardargumentet i
-funksjonsdefinisjonen er riktig, men kallet i `main()` overstyrer det.
-**Dette er en kjent bug å rydde opp i** (skriptet vil feile på sentralitet-lasting
-slik det står nå).
+(f.eks. `data/raw/data_valg_1317.csv`), så skriptet må kjøres fra repo-roten.
 
 **Flyt i skriptet:**
 1. `hent_*` – leser rå CSV/Excel.
@@ -94,8 +89,6 @@ Det finnes en `SSB_MCP`-server tilgjengelig i miljøet for å hente ferske SSB-d
 
 ## Status og aktuelle oppgaver for Fable
 
-- **Bug:** feil sti i `last_sentralitet("sentralitet.csv")`-kallet i `main()` –
-  bør være `data/raw/sentralitet.csv` (eller bare bruke standardargumentet).
 - R-skriptene er en eldre arbeidsflyt; Python-skriptet er den aktive analysen.
   Meningsmålingsdataene (`polls.csv`) brukes foreløpig ikke av `analyse.py` – kun
   valg-/befolkningsdata. Mulig utvidelse: koble polls inn i rapporten.
