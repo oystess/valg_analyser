@@ -225,6 +225,48 @@ bølgeregresjoner (korrigert 1989-baseline i minnet), implementert i
 NB: 1993-radene bygger på minne-korreksjonen av Ap-1989 (pkt. 1.1) og er robuste i
 fortegn og størrelsesorden, men skal reberegnes når datafiksen er gjort permanent.
 
+### 5.1 Oppfølging (2026-07-02): Ble left behind-mekanismen avterritorialisert i 2025?
+
+Hypotese (fra prosjekteier): 2017 fanget den *geografisk konsentrerte* gruppen som
+fikk det verre; i 2022–2025 rammet samme mekanisme (opplevd tap → protest) gjennom
+renter og kjøpekraft — som ikke følger kommunegrenser. Testet med SSB-data hentet
+via MCP: medianinntekt etter skatt per kommune (tabell 06944, vekst 2021→2024) og
+andel 25–44 år (tabell 07459, 2021) som renteeksponerings-proxy.
+
+Resultater (n=349, standardiserte koeffisienter, ΔFrP 2021→2025):
+
+| Prediktor | Bivariat | I full modell (m/ sentralitet) |
+|---|---:|---:|
+| Medianinntektsvekst 2021→24 | −0,05 n.s. | −0,07 n.s. |
+| **Andel 25–44 år** | **+0,24***​ | **+0,20**​ |
+| Befolkningsvekst (dpop10) | +0,17** | −0,07 n.s. |
+
+- **Kommunal inntektsklemme predikerer ingenting** — men mest fordi den knapt
+  varierer geografisk: IQR for nominell inntektsvekst 2021→24 er bare 17,0–19,8 %.
+  Kjøpekraftssjokket var *nasjonalt uniformt* på kommunenivå. (NB: målet fanger
+  heller ikke renteutgifter, som ikke trekkes fra i «inntekt etter skatt».)
+- **Andelen 25–44 år er den sterkeste prediktoren for FrP-vekst** og absorberer
+  hele «vekstkommune-dreiningen» fra §5 — den skyldtes alderssammensetning.
+  FrP vokste mest der den renteeksponerte generasjonen bor (+14,6 pp i øverste
+  kvintil mot +12,2 i nederste).
+- Sps fall var størst der det er *få* unge og befolkningsnedgang (−15,9 pp mot
+  −10,2) — 2017/2021-gevinstene fordampet mest i de eldste fraflyttingskommunene.
+
+**Tolkning:** Hypotesen støttes i presisert form. Mekanismen (relativ deprivasjon →
+protest) består, men tapet er **avterritorialisert**: i 2017 var «de som fikk det
+verre» definert av *sted* (fraflytting, tjenestetap → Sp), i 2022–25 av *livsfase og
+balanse* (unge huseiere med gjeld → FrP), spredt på tvers av kommuner. Derfor finnes
+det ingen geografisk gradient å måle — protesten har flyttet fra kartet til
+husholdningsregnskapet. Dette forklarer også hvorfor Sp ikke kunne fange den:
+Sps merkevare kanaliserer *stedstap*, FrPs kanaliserer *husholdningsøkonomi*
+(avgifter, drivstoff, strøm, renter).
+
+**Forbehold:** Økologisk slutning — alderssammensetning på kommunenivå beviser ikke
+individatferd; bør valideres mot Valgundersøkelsen 2025. Direkte gjeldsdata per
+kommune (gjeldsgrad, andel med gjeld > 3× inntekt) ble ikke funnet i SSB-MCP-indeksen
+— finnes i SSBs inntekts- og formuesstatistikk på ssb.no og bør hentes (nytt punkt
+i tiltakslisten).
+
 ## 6. Prioritert tiltaksliste
 
 | # | Tiltak | Omfang |
@@ -237,6 +279,7 @@ fortegn og størrelsesorden, men skal reberegnes når datafiksen er gjort perman
 | 6 | Valider grensemappingen systematisk mot navnebror-kommuner | Liten |
 | 7 | Hent inntekt (SSB 12558) og alder (07459) → H2-moderatorer og H7 | Middels |
 | 8 | Befolkningsvektet robusthetsvariant av hovedregresjonene | Liten |
+| 9 | Hent gjeldsgrad per kommune (SSB inntekts-/formuesstatistikk) → direkte test av rentesmerten bak FrP-2025; valider aldersfunnet (§5.1) mot Valgundersøkelsen 2025 | Middels |
 
 ---
 
