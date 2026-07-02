@@ -670,7 +670,7 @@ def main():
     valg_1317 = prosesser_valg(raw_1317)
     bred_1317 = lag_bred_valgtabell(valg_1317)
     pop       = prosesser_befolkning(raw_bef)
-    sent      = last_sentralitet("sentralitet.csv")
+    sent      = last_sentralitet()
 
     df = bygg_analysedata(bred_1317, pop, sent)
     print(f"  Analysedata: {len(df)} kommuner")
