@@ -24,6 +24,11 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
   befolkningsforvitring bar effekten, og gevinsten varte; 2021 var nasjonal metning
   uten gradient; 2025-kollapsen var brattest der oppturen var størst, mens FrPs
   samtidige bølge *ikke* var geografisk gradert. Se `scripts/analyse_mekanismer.py`.
+- **2025: protesten avterritorialisert.** Kjøpekraftssjokket 2021–24 var geografisk
+  uniformt (IQR 17,0–19,8 % inntektsvekst) og predikerer ikke ΔFrP; sterkeste
+  prediktor er andelen 25–44-åringer (renteeksponert generasjon), som absorberer
+  hele vekstkommune-dreiningen. Tapet fulgte livsfase/gjeld, ikke sted — Sp
+  kanaliserer stedstap, FrP husholdningsøkonomi.
 
 > ⚠️ **Kjent datafeil:** Ap-stemmene for 1989 i `stortingsvalg_2024.csv` er dobbelttalt
 > (se «Kjente feil» under). 1989-baserte tall (inkl. Senteropprøret-regresjonen β=−0,69)
@@ -55,6 +60,7 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
 │       ├── befolkning_2024.csv       # SSB 07459, 1986–2026
 │       ├── kom_mapping.csv           # Historisk kommunekode → 2024-kode
 │       ├── panel_resultater.csv      # Koeffisienter fra analyse_panel.py
+│       ├── kjopekraft_2124.csv       # SSB 06944/07459: medianinntekt 2021/2024 + antall 25–44 år
 │       ├── polls.csv                 # pollofpolls gallupsnitt — auto-oppdatert ukentlig
 │       └── *.html                    # Genererte figurfragmenter
 └── .github/workflows/       # update-polls (cron), deploy + jekyll-gh-pages (Pages)

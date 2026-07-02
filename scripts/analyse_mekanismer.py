@@ -15,6 +15,13 @@ NB: 1989-baselinen korrigeres i minnet (Ap-stemmer halveres, total/prosent
 rekonstrueres) pga. kjent dobbelttelling — se gjennomgang_analyse.md pkt. 1.1.
 Vang (3454) og Hamar (3403) utelates pga. mappingkollisjon.
 
+Del 2 — avterritorialiserings-testen (2025): tester om FrP-bølgen følger
+kjøpekraftsklemma (medianinntektsvekst 2021→2024) eller renteeksponering
+(andel 25–44 år) i stedet for befolkningsnedgang. Data: data/processed/
+kjopekraft_2124.csv (SSB 06944 medianinntekt etter skatt per husholdning,
+2021-tall hentet med 2020-kodeliste og mappet til 2024-koder; SSB 07459
+antall 25–44 år, 2021; hentet via SSB MCP 2026-07-02).
+
 Injiserer seksjon i index.html mellom egne merker (idempotent):
   <!-- === START MEKANISMER === --> ... <!-- === SLUTT MEKANISMER === -->
 
@@ -106,6 +113,41 @@ def analyser_bolge(dser: pd.Series, bpiv, sent, p0: int, p1: int) -> dict:
             "per_sent": per_sent, "kvintil": kvintil}
 
 
+def analyser_kanal_2025(sp, frp, bpiv, sent) -> dict:
+    """
+    Avterritorialiserings-testen: ΔFrP og ΔSp 2021→2025 mot
+    (a) medianinntektsvekst 2021→2024, (b) andel 25–44 år, (c) dpop10.
+    """
+    kk = pd.read_csv(f"{PROCESSED}/kjopekraft_2124.csv", dtype={"kom2024": str}).set_index("kom2024")
+    df = pd.DataFrame({
+        "dfrp": frp[2025] - frp[2021],
+        "dsp":  sp[2025] - sp[2021],
+        "dpop10": (bpiv[2025] - bpiv[2015]) / bpiv[2015] * 100,
+    }).join(kk).join(sent)
+    df["inntvekst"] = (df["medianinntekt_2024"] / df["medianinntekt_2021"] - 1) * 100
+    df["andel2544"] = df["antall_25_44_2021"] / bpiv[2021] * 100
+    df = df.replace([np.inf, -np.inf], np.nan).dropna(
+        subset=["dfrp", "dsp", "dpop10", "inntvekst", "andel2544", "sent"])
+
+    D = pd.get_dummies(df["sent"], prefix="s", drop_first=True).astype(float)
+    res = {"n": len(df), "data": df,
+           "iqr_innt": (df["inntvekst"].quantile(0.25), df["inntvekst"].quantile(0.75))}
+    for y in ["dfrp", "dsp"]:
+        res[y] = {}
+        for lab, Xv, med_sent in [("biv_innt", ["inntvekst"], False),
+                                  ("biv_alder", ["andel2544"], False),
+                                  ("biv_dpop", ["dpop10"], False),
+                                  ("full", ["inntvekst", "andel2544", "dpop10"], True)]:
+            X = pd.concat([_z(df[v]).rename(v) for v in Xv], axis=1)
+            if med_sent:
+                X = pd.concat([X, D], axis=1)
+            m = sm.OLS(_z(df[y]), sm.add_constant(X)).fit()
+            res[y][lab] = {v: (m.params[v], m.pvalues[v]) for v in Xv}
+        res[y]["kvintil_alder"] = df.groupby(
+            pd.qcut(df["andel2544"], 5, labels=False))[y].mean()
+    return res
+
+
 # ── FIGURER ──────────────────────────────────────────────────────────────────
 
 def fig_sp_niva(sp: pd.DataFrame, sent) -> go.Figure:
@@ -176,10 +218,31 @@ def fig_2025(b_sp: dict, b_frp: dict) -> go.Figure:
     return fig
 
 
+def fig_kanal(kanal: dict) -> go.Figure:
+    """ΔFrP og ΔSp 2021→2025 per kvintil av andel 25–44 år."""
+    labels = ["Færrest<br>25–44", "2", "3", "4", "Flest<br>25–44"]
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=labels, y=kanal["dfrp"]["kvintil_alder"].round(1).tolist(),
+                         name="ΔFrP 2021→2025", marker_color="#003f7f",
+                         hovertemplate="ΔFrP: %{y:.1f} pp<extra></extra>"))
+    fig.add_trace(go.Bar(x=labels, y=kanal["dsp"]["kvintil_alder"].round(1).tolist(),
+                         name="ΔSp 2021→2025", marker_color="#009900",
+                         hovertemplate="ΔSp: %{y:.1f} pp<extra></extra>"))
+    fig.add_hline(y=0, line_color="rgba(0,0,0,0.4)", line_width=1)
+    fig.update_layout(
+        barmode="group",
+        xaxis_title="Kommuner etter andel 25–44-åringer (2021), kvintiler",
+        yaxis_title="Endring 2021→2025 (pp)", template="plotly_white",
+        legend=dict(font_size=11, orientation="h", x=0.5, xanchor="center", y=-0.25),
+        margin=dict(t=30, b=90),
+    )
+    return fig
+
+
 # ── HTML-SEKSJON ─────────────────────────────────────────────────────────────
 
 def bygg_seksjon(bolger, pers_93, snitt_93_97, pers_17, snitt_17_21,
-                 korr_opp_ned, korr_sp_frp, niva21_periferi, figs) -> str:
+                 korr_opp_ned, korr_sp_frp, niva21_periferi, kanal, figs) -> str:
     b93, b17, b21, b25sp, b25frp = (bolger[k] for k in
         ["1993", "2017", "2021", "2025 (Sp-fall)", "2025 (FrP)"])
     andel93 = abs(b93["beta_kontroll"] / b93["beta_alene"]) * 100
@@ -256,14 +319,34 @@ def bygg_seksjon(bolger, pers_93, snitt_93_97, pers_17, snitt_17_21,
     </p>
     <div class="plotly-chart">{plots["b2025"]}</div>
 
+    <h3 class="font-semibold text-slate-800 mb-1 mt-6">2025: Protesten flyttet fra kartet til husholdningsregnskapet</h3>
+    <p class="text-slate-500 text-sm leading-relaxed mb-2">
+      Hvorfor er FrP-bølgen geografisk flat, hvis samme protestmekanisme virker? Fordi tapet i 2022–2025
+      (renter, priser) ikke fulgte kommunegrenser: nominell medianinntektsvekst 2021→2024 varierer knapt
+      mellom kommuner (IQR {kanal["iqr_innt"][0]:.1f}–{kanal["iqr_innt"][1]:.1f} %) og predikerer ikke
+      ΔFrP (std-β={kanal["dfrp"]["biv_innt"]["inntvekst"][0]:+.2f}, n.s.). Den sterkeste prediktoren er i
+      stedet <strong>andelen 25–44-åringer</strong> — den renteeksponerte generasjonen —
+      (std-β={kanal["dfrp"]["biv_alder"]["andel2544"][0]:+.2f}, p&lt;0,001), som også absorberer hele den
+      svake vekstkommune-dreiningen (dpop10 → {kanal["dfrp"]["full"]["dpop10"][0]:+.2f} n.s. i full modell).
+      Sp-fallet er speilbildet: størst der det er få unge og befolkningsnedgang.
+    </p>
+    <div class="plotly-chart">{plots["kanal"]}</div>
+    <p class="text-xs text-slate-400 mt-2">
+      Data: SSB 06944 (medianinntekt etter skatt) og 07459 (alder), n={kanal["n"]} kommuner.
+      Merk: «inntekt etter skatt» fanger ikke renteutgifter — den reelle klemma er mer husholdningsspesifikk
+      enn inntektstallene viser. Økologisk slutning; bør valideres mot Valgundersøkelsen 2025.
+    </p>
+
     <div class="bg-blue-50 border border-blue-200 rounded-xl px-5 py-4 text-sm text-blue-900 leading-relaxed mt-5">
       <span class="font-semibold">Tolkning:</span>
-      Left behind-<em>følelsen</em> forsvant neppe i 2025 — men kanalen gjorde det. Sp gikk i regjering i 2021
-      og kunne ikke lenger bære protesten; velgerne som ble mobilisert i 2017/2021 trakk seg tilbake, bratest
-      der mobiliseringen var sterkest. FrPs fremgang er nasjonal og svakt <em>sentralt</em> dreid — den plukket
-      ikke opp left behind-protesten geografisk. Grunnkløften består (nivåfiguren), slik at potensialet for en
-      ny distriktsmobilisering ligger der — uten en tydelig kanal per 2025. Jf. Auerbach (2024) om Sp som
-      «trygg» periferikanal og Sánchez-García et al. (2025) om anti-etablissement-logikken: et parti i regjering
+      Left behind-<em>følelsen</em> forsvant neppe i 2025 — men både kanalen og tapets geografi endret seg.
+      Sp gikk i regjering i 2021 og kunne ikke lenger bære protesten; velgerne som ble mobilisert i 2017/2021
+      trakk seg tilbake, brattest der mobiliseringen var sterkest. Samtidig ble deprivasjonen
+      <em>avterritorialisert</em>: i 2017 var «de som fikk det verre» definert av sted (fraflytting,
+      tjenestetap → Sp, som kanaliserer stedstap); i 2022–25 av livsfase og gjeld (unge huseiere → FrP,
+      som kanaliserer husholdningsøkonomi). Grunnkløften består (nivåfiguren) — potensialet for en ny
+      distriktsmobilisering ligger der, uten tydelig kanal per 2025. Jf. Auerbach (2024) om Sp som «trygg»
+      periferikanal og Sánchez-García et al. (2025) om anti-etablissement-logikken: et parti i regjering
       kan per definisjon ikke være protestkanal.
     </div>
   </section>
@@ -336,15 +419,23 @@ def main():
     korr_sp_frp = sf["dsp"].corr(sf["dfrp"])
     print(f"  Opptur 13→21 vs fall 21→25: r={korr_opp_ned:+.2f} | ΔSp vs ΔFrP 21→25: r={korr_sp_frp:+.2f}")
 
+    print("=== Kanal-analyse 2025 (avterritorialisering) ===")
+    kanal = analyser_kanal_2025(sp, frp, bpiv, sent)
+    for y, navn in [("dfrp", "ΔFrP"), ("dsp", "ΔSp")]:
+        f = kanal[y]["full"]
+        print(f"  {navn} full modell: " + "  ".join(
+            f"{v}={b:+.3f}(p={p:.3f})" for v, (b, p) in f.items()))
+
     print("=== Bygger figurer og injiserer ===")
     figs = {
         "niva":  fig_sp_niva(sp, sent),
         "beta":  fig_beta_bolger(bolger),
         "b2025": fig_2025(bolger["2025 (Sp-fall)"], bolger["2025 (FrP)"]),
+        "kanal": fig_kanal(kanal),
     }
     niva21_periferi = sp[2021].to_frame().join(sent).groupby("sent")[2021].mean().get(0, float("nan"))
     seksjon = bygg_seksjon(bolger, pers_93, snitt_93_97, pers_17, snitt_17_21,
-                           korr_opp_ned, korr_sp_frp, niva21_periferi, figs)
+                           korr_opp_ned, korr_sp_frp, niva21_periferi, kanal, figs)
     injiser(seksjon)
     print("Ferdig.")
 
