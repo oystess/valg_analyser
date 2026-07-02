@@ -19,6 +19,11 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
   2021-bølgen var det *ikke* (β≈0, p=0,95) — den var bred og nasjonal.
 - **Kommunevalg leder stortingsvalg:** KV-oppslutning predikerer STV-oppslutning to år
   senere (Sp: +0,156***), kontrollert for kommune- og år-effekter.
+- **Fire bølger, tre mekanismer:** 1993 var sak-mobilisering gradert etter *statisk*
+  periferi (og kollapset innen 1997); 2017 var left behind-gradert — faktisk
+  befolkningsforvitring bar effekten, og gevinsten varte; 2021 var nasjonal metning
+  uten gradient; 2025-kollapsen var brattest der oppturen var størst, mens FrPs
+  samtidige bølge *ikke* var geografisk gradert. Se `scripts/analyse_mekanismer.py`.
 
 > ⚠️ **Kjent datafeil:** Ap-stemmene for 1989 i `stortingsvalg_2024.csv` er dobbelttalt
 > (se «Kjente feil» under). 1989-baserte tall (inkl. Senteropprøret-regresjonen β=−0,69)
@@ -37,6 +42,7 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
 │   ├── analyse_2017.py      # Dybde 2013→2017 + tre-bølge-sammenligning (injiserer)
 │   ├── analyse_2021.py      # Dybde 2017→2021 + år-for-år β-tabell (injiserer)
 │   ├── matrise.py           # 2×2 sentralitet × befolkningsretning, velgervektet (injiserer)
+│   ├── analyse_mekanismer.py # Fire bølger, tre mekanismer: 1993/2017/2021/2025 (injiserer, idempotent)
 │   ├── analyse_panel.py     # FE/between-panel 1987–2025 + timing-test (→ panel_plot.html)
 │   ├── grenser.py           # Kommunegrense-mapping 1987–1998 fra SSB-PDF (Claude API)
 │   ├── les_grenser_pdf.py   # PDF-ekstraksjon med Claude Haiku
@@ -63,6 +69,7 @@ python scripts/analyse.py        # ⚠️ se advarsel under
 python scripts/analyse_2017.py
 python scripts/analyse_2021.py
 python scripts/matrise.py
+python scripts/analyse_mekanismer.py  # injiserer m/ egne merker — trygg å rekjøre
 python scripts/analyse_panel.py  # → panel_plot.html + panel_resultater.csv
 ```
 

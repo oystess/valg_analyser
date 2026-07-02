@@ -190,7 +190,42 @@ Ap-dobbelttellingen (pkt. 1.1) forplantet seg rett inn i alle partiers nasjonale
 
 ---
 
-## 5. Prioritert tiltaksliste
+## 5. Tilleggsanalyse (2026-07-02): Proteststemmens livssyklus
+
+Hypotesen «1993 = distrikt/sak, 2017 = left behind» ble testet med standardiserte
+bølgeregresjoner (korrigert 1989-baseline i minnet), implementert i
+`scripts/analyse_mekanismer.py` og injisert i rapporten. Hovedtall:
+
+| Bølge | Std-β(vekst) alene | ...m/ sentralitetskontroll | R² sentralitet alene | Etterspill |
+|-------|-------------------:|---------------------------:|---------------------:|------------|
+| 1993 | −0,40*** | −0,24 (60 % består) | 0,21 (> vekst 0,16) | Kollaps: −12 pp innen 1997, r=−0,65 |
+| 2017 | −0,54*** | −0,39 (74 % består) | 0,23 (< vekst 0,29) | Varte: +5,1 pp videre til 2021 |
+| 2021 | −0,00 n.s. | — | 0,03 | Metning: bred nasjonal bølge |
+| 2025 (Sp-fall) | +0,37*** | +0,25 | 0,15 | Brattest fall der oppturen var størst (r=−0,75) |
+| 2025 (FrP) | +0,17** | +0,06 n.s. | 0,07 | FrP-bølgen er IKKE left behind-gradert |
+
+**Tolkninger med konsekvens for hypotesene:**
+- **H1/H2 presiseres:** 1993 var gradert etter *statisk* periferi (sentralitet slår
+  vekst), 2017 etter *faktisk forvitring* (vekst slår sentralitet og overlever
+  kontroll). To distinkte mekanismer, begge innenfor Rokkan-rammen.
+- **H3 ytterligere nyansert:** «akselerasjon etter 2015» stemmer for 2017, men 2021
+  var ikke-gradert (metning + nasjonalisering) og 2025 reverserte gradienten.
+- **H6 svekkes i sin geografiske form:** FrPs 2025-bølge er nasjonal og svakt
+  *sentralt* dreid (β≈0 etter kontroll; korr ΔSp/ΔFrP per kommune bare −0,17).
+  Kanalbyttet Sp→FrP skjedde altså ikke kommune-for-kommune i periferien —
+  Auerbach-mekanismen («party supply») må eventuelt virke via nasjonal
+  dagsorden, ikke via lokal left behind-erfaring. Left behind-potensialet står
+  uten tydelig kanal per 2025: det strukturelle distriktsforspranget til Sp er
+  intakt (nivåforskjellen minst–mest sentral er som i 2013).
+- Regjeringsdeltakelsen 2021–2025 som forklaring på kollapsen er konsistent med
+  anti-etablissement-logikken i Sánchez-García: et regjeringsparti kan ikke bære
+  protest. (Ikke direkte testet — krever f.eks. sammenligning med Sps fall etter
+  regjeringsdeltakelsen 2005–2013.)
+
+NB: 1993-radene bygger på minne-korreksjonen av Ap-1989 (pkt. 1.1) og er robuste i
+fortegn og størrelsesorden, men skal reberegnes når datafiksen er gjort permanent.
+
+## 6. Prioritert tiltaksliste
 
 | # | Tiltak | Omfang |
 |---|--------|--------|
