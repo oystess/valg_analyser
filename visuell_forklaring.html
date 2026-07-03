@@ -1,0 +1,856 @@
+<title>Proteststemmens anatomi — valganalyse 1987–2025</title>
+<style>
+  :root{
+    color-scheme: light dark;
+    --paper:#e8eaee;
+    --surface:#f6f7f9;
+    --surface-2:#eef0f3;
+    --ink:#15181c;
+    --ink-2:#49535e;
+    --muted:#79838e;
+    --hairline:#d4d8df;
+    --hairline-2:#c1c7d0;
+    --accent:#a9741f;
+    --accent-ink:#8a5f19;
+    --ap:#d23f3f;
+    --sp:#1f8a3b;
+    --frp:#2a6fd0;
+    --bygd:#a9741f;
+    --neutral:#8a94a0;
+    --neg:#3f6079;
+    --pos:#a9741f;
+    --zero:#c1c7d0;
+    --good:#0f7a34;
+    --warn:#b8791a;
+    --serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Times New Roman", serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "SFMono-Regular", "SF Mono", "Cascadia Code", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#0c0e10;
+      --surface:#15181b;
+      --surface-2:#1b1f23;
+      --ink:#eef1f4;
+      --ink-2:#adb7c0;
+      --muted:#7e8892;
+      --hairline:#252a2f;
+      --hairline-2:#333a41;
+      --accent:#d8a24a;
+      --accent-ink:#e2b060;
+      --ap:#dd5a5a;
+      --sp:#2a9c52;
+      --frp:#4a90e8;
+      --bygd:#c69138;
+      --neutral:#8a94a0;
+      --neg:#7c9bb8;
+      --pos:#d8a24a;
+      --zero:#333a41;
+      --good:#38b25c;
+      --warn:#d8a24a;
+    }
+  }
+  :root[data-theme="light"]{
+    color-scheme: light;
+    --paper:#e8eaee; --surface:#f6f7f9; --surface-2:#eef0f3;
+    --ink:#15181c; --ink-2:#49535e; --muted:#79838e;
+    --hairline:#d4d8df; --hairline-2:#c1c7d0;
+    --accent:#a9741f; --accent-ink:#8a5f19;
+    --ap:#d23f3f; --sp:#1f8a3b; --frp:#2a6fd0; --bygd:#a9741f;
+    --neg:#3f6079; --pos:#a9741f; --zero:#c1c7d0;
+    --good:#0f7a34; --warn:#b8791a;
+  }
+  :root[data-theme="dark"]{
+    color-scheme: dark;
+    --paper:#0c0e10; --surface:#15181b; --surface-2:#1b1f23;
+    --ink:#eef1f4; --ink-2:#adb7c0; --muted:#7e8892;
+    --hairline:#252a2f; --hairline-2:#333a41;
+    --accent:#d8a24a; --accent-ink:#e2b060;
+    --ap:#dd5a5a; --sp:#2a9c52; --frp:#4a90e8; --bygd:#c69138;
+    --neg:#7c9bb8; --pos:#d8a24a; --zero:#333a41;
+    --good:#38b25c; --warn:#d8a24a;
+  }
+
+  *{ box-sizing:border-box; }
+  body{ margin:0; }
+  .page{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{ max-width:880px; margin:0 auto; padding:0 24px; }
+  .wide{ max-width:1060px; }
+
+  h1,h2,h3{ font-family:var(--serif); font-weight:600; text-wrap:balance; line-height:1.12; margin:0; }
+  p{ margin:0 0 1em; }
+  strong{ font-weight:650; color:var(--ink); }
+  a{ color:var(--accent-ink); }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--accent-ink);
+    margin:0 0 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{ content:""; width:26px; height:1px; background:var(--accent); display:inline-block; }
+  .num{ font-variant-numeric:tabular-nums; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--hairline);
+    background:
+      radial-gradient(120% 90% at 78% -10%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 60%),
+      var(--paper);
+  }
+  .hero-contour{ position:absolute; inset:0; width:100%; height:100%; opacity:.5; pointer-events:none; }
+  .hero-inner{ position:relative; padding:88px 0 64px; }
+  .hero .kicker{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--muted); margin:0 0 22px;
+  }
+  .hero h1{
+    font-size:clamp(40px, 8.2vw, 78px);
+    letter-spacing:-.015em;
+    margin:0 0 8px;
+  }
+  .hero h1 .em{ color:var(--accent-ink); font-style:italic; }
+  .hero .dek{
+    font-size:clamp(18px,2.4vw,22px);
+    color:var(--ink-2);
+    max-width:40ch;
+    margin:18px 0 0;
+    line-height:1.45;
+  }
+  .hero .scope{
+    margin-top:30px; padding-top:22px; border-top:1px solid var(--hairline);
+    display:flex; flex-wrap:wrap; gap:26px 40px;
+  }
+  .scope .item{ font-size:14.5px; color:var(--ink-2); max-width:26ch; }
+  .scope .item b{ display:block; font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+  .scope .item .big{ font-family:var(--serif); font-size:26px; color:var(--ink); font-variant-numeric:tabular-nums; }
+
+  /* ---------- section rhythm ---------- */
+  section{ padding:66px 0; border-bottom:1px solid var(--hairline); }
+  section.tight{ padding:52px 0; }
+  .lede{ font-size:20px; line-height:1.5; color:var(--ink-2); max-width:42ch; }
+  h2.title{ font-size:clamp(27px,4.4vw,40px); letter-spacing:-.01em; margin:0 0 16px; }
+  h3.sub{ font-size:22px; margin:0 0 8px; }
+  .body{ max-width:64ch; color:var(--ink-2); }
+  .body strong{ color:var(--ink); }
+
+  /* ---------- figure frame ---------- */
+  figure{ margin:26px 0 0; }
+  .panel{
+    background:var(--surface);
+    border:1px solid var(--hairline);
+    border-radius:4px;
+    padding:22px 22px 18px;
+  }
+  .panel .figttl{ font-family:var(--sans); font-weight:650; font-size:15px; color:var(--ink); margin:0 0 2px; letter-spacing:.005em; }
+  .panel .figsub{ font-size:13px; color:var(--muted); margin:0 0 16px; }
+  figcaption{ font-size:13.5px; color:var(--muted); margin-top:12px; line-height:1.5; }
+  .scroll{ overflow-x:auto; overflow-y:hidden; }
+  .scroll svg{ display:block; }
+  .chart{ width:100%; height:auto; }
+  .minw{ min-width:560px; }
+
+  /* svg text roles */
+  .t-ink{ fill:var(--ink); }
+  .t-ink2{ fill:var(--ink-2); }
+  .t-mut{ fill:var(--muted); }
+  .s-axis{ stroke:var(--hairline-2); }
+  .s-grid{ stroke:var(--hairline); }
+  .lbl{ font-family:var(--sans); font-size:13px; }
+  .val{ font-family:var(--sans); font-size:13px; font-variant-numeric:tabular-nums; font-weight:650; }
+  .tick{ font-family:var(--mono); font-size:11px; fill:var(--muted); }
+  .anno{ font-family:var(--sans); font-size:12.5px; fill:var(--ink-2); }
+  .annoi{ font-family:var(--serif); font-style:italic; font-size:14px; fill:var(--ink-2); }
+
+  /* legend */
+  .legend{ display:flex; flex-wrap:wrap; gap:6px 18px; margin:14px 0 0; font-size:13px; color:var(--ink-2); }
+  .legend span{ display:inline-flex; align-items:center; gap:7px; }
+  .legend i{ width:12px; height:12px; border-radius:3px; display:inline-block; }
+  .k-ap{ background:var(--ap); } .k-sp{ background:var(--sp); } .k-frp{ background:var(--frp); } .k-bygd{ background:var(--bygd); }
+
+  /* ---------- method timeline ---------- */
+  .timeline{ margin-top:34px; display:flex; flex-direction:column; gap:0; }
+  .step{ position:relative; padding:0 0 40px 60px; border-left:2px solid var(--hairline); }
+  .step:last-child{ border-left-color:transparent; padding-bottom:0; }
+  .step .dot{
+    position:absolute; left:-16px; top:-2px; width:30px; height:30px; border-radius:50%;
+    background:var(--surface); border:2px solid var(--accent);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:13px; font-weight:700; color:var(--accent-ink);
+  }
+  .step h3{ font-family:var(--sans); font-size:18px; font-weight:650; margin:0 0 6px; color:var(--ink); }
+  .step .st-tag{ font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:6px; }
+  .step p{ color:var(--ink-2); font-size:15.5px; max-width:58ch; margin:0; }
+
+  /* stat row */
+  .stats{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:var(--hairline); border:1px solid var(--hairline); border-radius:4px; overflow:hidden; margin-top:22px; }
+  .stat{ background:var(--surface); padding:18px 18px 16px; }
+  .stat .v{ font-family:var(--serif); font-size:34px; line-height:1; color:var(--ink); font-variant-numeric:tabular-nums; }
+  .stat .v.pos{ color:var(--good); } .stat .v.neg{ color:var(--ap); }
+  .stat .k{ font-size:13px; color:var(--ink-2); margin-top:8px; line-height:1.35; }
+  .stat .u{ font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-top:3px; }
+
+  /* mechanism cards */
+  .cards{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:24px; }
+  .card{ background:var(--surface); border:1px solid var(--hairline); border-radius:4px; padding:18px; border-top:3px solid var(--accent); }
+  .card.c-ap{ border-top-color:var(--ap); } .card.c-sp{ border-top-color:var(--sp); }
+  .card.c-frp{ border-top-color:var(--frp); } .card.c-bygd{ border-top-color:var(--bygd); }
+  .card .yr{ font-family:var(--mono); font-size:12px; letter-spacing:.1em; color:var(--muted); }
+  .card h4{ font-family:var(--serif); font-size:19px; margin:4px 0 8px; font-weight:600; color:var(--ink); }
+  .card p{ font-size:14px; color:var(--ink-2); margin:0; }
+  .card .stat-inline{ font-family:var(--mono); font-variant-numeric:tabular-nums; color:var(--ink); font-weight:600; }
+
+  /* mini bar figs */
+  .minirow{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; margin-top:24px; }
+  .mini{ background:var(--surface); border:1px solid var(--hairline); border-radius:4px; padding:18px; }
+  .mini .mt{ font-size:14px; font-weight:650; color:var(--ink); margin:0 0 4px; }
+  .mini .ms{ font-size:12.5px; color:var(--muted); margin:0 0 14px; line-height:1.4; }
+  .bar-line{ display:flex; align-items:center; gap:10px; margin:9px 0; font-size:13px; }
+  .bar-line .bl-lab{ width:96px; flex:none; color:var(--ink-2); }
+  .bar-line .bl-track{ flex:1; height:14px; background:var(--surface-2); border-radius:3px; overflow:hidden; }
+  .bar-line .bl-fill{ height:100%; border-radius:3px; }
+  .bar-line .bl-val{ width:56px; flex:none; text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; font-weight:650; color:var(--ink); font-size:12.5px; }
+
+  /* honesty box */
+  .honesty{ background:var(--surface-2); border:1px solid var(--hairline); border-radius:4px; padding:26px 28px; margin-top:30px; }
+  .honesty h3{ font-family:var(--sans); font-size:16px; font-weight:700; margin:0 0 14px; color:var(--ink); display:flex; align-items:center; gap:10px; }
+  .honesty h3::before{ content:""; width:8px; height:8px; border-radius:50%; background:var(--warn); flex:none; }
+  .honesty ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px; }
+  .honesty li{ font-size:14.5px; color:var(--ink-2); padding-left:20px; position:relative; line-height:1.5; }
+  .honesty li::before{ content:"—"; position:absolute; left:0; color:var(--muted); }
+
+  /* synthesis flow */
+  .synth-note{ font-family:var(--serif); font-style:italic; font-size:19px; color:var(--ink); max-width:44ch; margin:22px auto 0; text-align:center; line-height:1.4; }
+
+  /* footnote */
+  footer{ padding:48px 0 72px; }
+  .fn{ font-size:13px; color:var(--muted); line-height:1.7; max-width:70ch; }
+  .fn h4{ font-family:var(--mono); font-size:11px; letter-spacing:.15em; text-transform:uppercase; color:var(--ink-2); margin:0 0 8px; }
+  .fn .grp{ margin-bottom:20px; }
+  .fn code{ font-family:var(--mono); font-size:12px; color:var(--ink-2); background:var(--surface-2); padding:1px 5px; border-radius:3px; }
+
+  .pull{ font-family:var(--serif); font-size:clamp(22px,3.4vw,30px); line-height:1.32; color:var(--ink); max-width:20ch; margin:0; text-wrap:balance; }
+
+  @media (max-width:640px){
+    .page{ font-size:16px; }
+    .hero-inner{ padding:64px 0 48px; }
+    .step{ padding-left:44px; }
+    .step .dot{ left:-15px; width:28px; height:28px; }
+  }
+
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(14px);} to{ opacity:1; transform:none;} }
+  .reveal{ animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) both; }
+  .d1{ animation-delay:.05s; } .d2{ animation-delay:.14s; } .d3{ animation-delay:.24s; }
+  @media (prefers-reduced-motion:reduce){ .reveal{ animation:none; } }
+</style>
+
+<div class="page">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <svg class="hero-contour" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g fill="none" stroke="var(--accent)" stroke-width="1" opacity="0.5">
+        <path d="M-40,120 C220,60 380,180 620,150 C860,120 1000,40 1260,90"/>
+        <path d="M-40,175 C210,120 400,230 640,200 C880,170 1010,100 1260,150"/>
+        <path d="M-40,235 C200,185 410,285 650,255 C890,225 1020,165 1260,215"/>
+        <path d="M-40,300 C190,255 420,345 660,315 C900,285 1030,230 1260,285"/>
+        <path d="M-40,368 C180,325 430,410 670,380 C910,350 1040,300 1260,358"/>
+        <path d="M-40,440 C170,400 440,478 680,448 C920,420 1050,372 1260,432"/>
+      </g>
+      <g fill="none" stroke="var(--ink)" stroke-width="1" opacity="0.06">
+        <path d="M-40,150 C220,95 380,205 620,178 C860,150 1000,72 1260,120"/>
+        <path d="M-40,265 C200,215 410,312 650,285 C890,255 1020,196 1260,246"/>
+        <path d="M-40,405 C180,362 430,445 670,415 C910,386 1040,335 1260,394"/>
+      </g>
+    </svg>
+    <div class="wrap hero-inner">
+      <p class="kicker reveal">Valganalyse · Norske kommuner 1987–2025</p>
+      <h1 class="reveal d1">Proteststemmens <span class="em">anatomi</span></h1>
+      <p class="dek reveal d2">Hvordan distriktsopprøret løsnet fra Arbeiderpartiet, gikk via Senterpartiet — og til slutt flyttet fra kartet til husholdningsregnskapet.</p>
+      <div class="scope reveal d3">
+        <div class="item">
+          <b>Datagrunnlag</b>
+          Stortingsvalg 1989–2025 og kommunevalg 1987–2023, koblet mot befolkning, inntekt, alder og gjeld — per kommune.
+        </div>
+        <div class="item">
+          <b>Kommuner</b>
+          <span class="big num">357</span> — alle årganger aggregert til 2024-strukturen.
+        </div>
+        <div class="item">
+          <b>Metode</b>
+          Reproduserbare OLS/FE-paneler, standardiserte koeffisienter, kvalitetssikret i to instanser.
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ METODEREISEN ============ -->
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Hva vi gjorde</p>
+      <h2 class="title">Metodereisen</h2>
+      <p class="lede">Prosjektet ble overtatt og revidert. Første jobb var ikke å analysere, men å stole på tallene — og der lå den første overraskelsen.</p>
+
+      <div class="timeline">
+
+        <!-- STEP A -->
+        <div class="step">
+          <div class="dot">A</div>
+          <span class="st-tag">Revisjon av dataene</span>
+          <h3>Vi fant én feil som veltet forsidefunnet</h3>
+          <p>Da vi sjekket de nasjonale stemmesummene mot offisiell fasit, traff alle partier nesten eksakt — bortsett fra Arbeiderpartiet i 1989, som var <strong>nøyaktig dobbelttalt</strong>. En duplisert nedlastingsfil hadde talt Ap-stemmene to ganger. I tillegg var Vang i Hedmarks stemmer feilmappet til navnebroren Vang i Valdres (10&nbsp;900 mot reelt ~950), slik at Hamar manglet sine.</p>
+
+          <figure>
+            <div class="panel">
+              <p class="figttl">Fasit-sjekk 1989: forholdet mellom talte og offisielle stemmer</p>
+              <p class="figsub">Ratio = stemmer i datasettet ÷ offisielt resultat. Alt som treffer «×1,0» er rent.</p>
+              <div class="scroll">
+                <svg class="chart minw" viewBox="0 0 800 300" role="img" aria-label="Alle partier har ratio nær 1,0, unntatt Arbeiderpartiet som ligger på 1,99 — nøyaktig dobbelt.">
+                  <!-- fasit reference line at r=1 => x=410 -->
+                  <line x1="410" y1="24" x2="410" y2="264" stroke="var(--accent)" stroke-width="1.5"/>
+                  <text x="414" y="20" class="tick" fill="var(--accent-ink)">FASIT ×1,0</text>
+                  <!-- x ticks -->
+                  <g class="tick" text-anchor="middle">
+                    <text x="110" y="284">0,0</text>
+                    <text x="260" y="284">0,5</text>
+                    <text x="410" y="284">1,0</text>
+                    <text x="560" y="284">1,5</text>
+                    <text x="710" y="284">2,0</text>
+                  </g>
+                  <line x1="110" y1="264" x2="740" y2="264" class="s-axis" stroke-width="1"/>
+
+                  <!-- rows: baseline x=110, unit 300px -->
+                  <!-- Ap 1.99 -->
+                  <text x="100" y="42" text-anchor="end" class="lbl t-ink">Ap</text>
+                  <rect x="110" y="32" width="597" height="12" rx="4" fill="var(--ap)"/>
+                  <text x="713" y="42" class="val" fill="var(--ap)">1,99</text>
+                  <!-- Høyre 1.00 -->
+                  <text x="100" y="72" text-anchor="end" class="lbl t-ink2">Høyre</text>
+                  <rect x="110" y="62" width="300" height="12" rx="4" fill="var(--neutral)"/>
+                  <text x="416" y="72" class="val t-ink2">1,00</text>
+                  <!-- FrP 1.00 -->
+                  <text x="100" y="102" text-anchor="end" class="lbl t-ink2">FrP</text>
+                  <rect x="110" y="92" width="300" height="12" rx="4" fill="var(--neutral)"/>
+                  <text x="416" y="102" class="val t-ink2">1,00</text>
+                  <!-- SV 1.00 -->
+                  <text x="100" y="132" text-anchor="end" class="lbl t-ink2">SV</text>
+                  <rect x="110" y="122" width="300" height="12" rx="4" fill="var(--neutral)"/>
+                  <text x="416" y="132" class="val t-ink2">1,00</text>
+                  <!-- KrF 1.00 -->
+                  <text x="100" y="162" text-anchor="end" class="lbl t-ink2">KrF</text>
+                  <rect x="110" y="152" width="300" height="12" rx="4" fill="var(--neutral)"/>
+                  <text x="416" y="162" class="val t-ink2">1,00</text>
+                  <!-- Sp 0.99 -->
+                  <text x="100" y="192" text-anchor="end" class="lbl t-ink2">Sp</text>
+                  <rect x="110" y="182" width="297" height="12" rx="4" fill="var(--neutral)"/>
+                  <text x="416" y="192" class="val t-ink2">0,99</text>
+                  <!-- Venstre 1.00 -->
+                  <text x="100" y="222" text-anchor="end" class="lbl t-ink2">Venstre</text>
+                  <rect x="110" y="212" width="300" height="12" rx="4" fill="var(--neutral)"/>
+                  <text x="416" y="222" class="val t-ink2">1,00</text>
+                  <!-- Rødt 0.00 -->
+                  <text x="100" y="252" text-anchor="end" class="lbl t-ink2">Rødt/RV</text>
+                  <circle cx="112" cy="246" r="4" fill="none" stroke="var(--muted)" stroke-width="1.5"/>
+                  <text x="124" y="252" class="anno">mangler i uttrekket (~21 000 stemmer)</text>
+                </svg>
+              </div>
+              <figcaption>Ap talt: <span class="num">1&nbsp;814&nbsp;786</span> · reelt: <span class="num">909&nbsp;979</span> — differansen er ikke støy, den er en eksakt dobling. Alle 1989-prosenter (og forsidefunnet β=−0,69) måtte reberegnes på korrigert grunnlag.</figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <!-- STEP B -->
+        <div class="step">
+          <div class="dot">B</div>
+          <span class="st-tag">Reproduserbarhet</span>
+          <h3>Analysene bygget om, med kvalitetssikring i to instanser</h3>
+          <p>Alt ble skrevet som skript som kan kjøres på nytt fra rådata. Arbeidet ble delt: én modell henter og aggregerer dataene, en <strong>annen, uavhengig instans</strong> reviderer dem etterpå. Alle SSB-uttrekk lagres nå som CSV med kildehenvisning — nettopp det som manglet da 1989-feilen først slapp gjennom.</p>
+        </div>
+
+        <!-- STEP C -->
+        <div class="step">
+          <div class="dot">C</div>
+          <span class="st-tag">Fasit-sjekk av kommunevalget</span>
+          <h3>Kommunedataene var rene — men prosentene var skjeve</h3>
+          <p>Samme fasit-metode ble kjørt på kommunevalgene 1987–2023. Ingen dobling denne gangen. Men den avdekket en systematisk skjevhet: der lokale <strong>bygdelister</strong> er store, regnes partiprosentene av en for liten nevner — verst i nettopp de småkommunene i periferien som analysene handler om. Prosentene ble korrigert før bruk.</p>
+          <div class="stats">
+            <div class="stat">
+              <div class="v num">83/83</div>
+              <div class="k">parti × år innenfor ±3&nbsp;% av offisiell fasit</div>
+              <div class="u">Ingen dobling i KV</div>
+            </div>
+            <div class="stat">
+              <div class="v num">6</div>
+              <div class="k">automatiske kontroller i QA-skriptet, kjørbart på nytt etter enhver fiks</div>
+              <div class="u">Reproduserbar QA</div>
+            </div>
+            <div class="stat">
+              <div class="v num">+83<span style="font-size:20px"> pp</span></div>
+              <div class="k">største bygdeliste-skjevhet i én kommunes Sp-prosent</div>
+              <div class="u">Korrigert nevner</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP D -->
+        <div class="step">
+          <div class="dot">D</div>
+          <span class="st-tag">Hypotesetesting</span>
+          <h3>Hver hypotese testet — flere ble snudd</h3>
+          <p>De teoretiske hypotesene ble testet én for én mot dataene, ikke antatt. Noen holdt, andre falt: effekten er <strong>ikke</strong> sterkere i kommunevalg (H4 falt), og «kommunevalg forutser stortingsvalg» viste seg å være persistens forkledd som ledelse — riksvalg leder lokalvalg (H5 snudd). Nullfunn med god teoriforankring teller som funn.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FUNNENE intro ============ -->
+  <section class="tight">
+    <div class="wrap">
+      <p class="eyebrow">Hva vi fant</p>
+      <h2 class="title">Seks funn om et opprør på vandring</h2>
+      <p class="lede">Det strukturelle distriktsforspranget har ligget der hele tiden. Det som forandrer seg, er hvilken kanal misnøyen finner — og i 2025 forlot den geografien.</p>
+    </div>
+  </section>
+
+  <!-- FUNN 1: fire bølger -->
+  <section>
+    <div class="wrap">
+      <h3 class="sub">1 — Fire bølger, tre mekanismer</h3>
+      <p class="body">Senterpartiet fikk fire distriktsbølger, men de var ikke like. Målt som hvor sterkt oppslutningen henger sammen med <strong>befolkningsvekst</strong> (standardisert β — jo mer negativ, jo tydeligere «left behind»-gradient), forteller de tre ulike historier. 2021 hadde ingen gradient i det hele tatt, og 2025 snudde fortegnet: fallet ble brattest der oppturen hadde vært størst.</p>
+
+      <figure>
+        <div class="panel">
+          <p class="figttl">Befolkningsgradient per bølge</p>
+          <p class="figsub">Standardisert β for sammenhengen vekst ↔ Sp-endring. Negativt = sterkest der folketallet faller.</p>
+          <div class="scroll">
+            <svg class="chart minw" viewBox="0 0 820 340" role="img" aria-label="1993 hadde β minus 0,40, 2017 minus 0,54, 2021 null, 2025 pluss 0,37.">
+              <!-- zero axis at x=430 ; scale 380px per unit -> x = 430 + b*380 -->
+              <line x1="430" y1="34" x2="430" y2="300" stroke="var(--zero)" stroke-width="1.5"/>
+              <text x="430" y="26" text-anchor="middle" class="tick">β = 0</text>
+              <!-- scale ticks -->
+              <g class="tick" text-anchor="middle">
+                <text x="240" y="320">−0,50</text>
+                <text x="335" y="320">−0,25</text>
+                <text x="525" y="320">+0,25</text>
+                <text x="620" y="320">+0,50</text>
+              </g>
+              <line x1="150" y1="300" x2="700" y2="300" class="s-axis"/>
+
+              <!-- 1993: b=-0.40 -> x=430-152=278 ; row y=54 -->
+              <text x="150" y="58" class="lbl t-ink" font-weight="650">1993</text>
+              <rect x="278" y="46" width="152" height="16" rx="4" fill="var(--neg)"/>
+              <text x="268" y="58" text-anchor="end" class="val t-ink2">−0,40</text>
+              <text x="150" y="76" class="anno">Sak/EU-mobilisering, statisk periferi</text>
+
+              <!-- 2017: b=-0.54 -> x=430-205=225 ; row y=118 -->
+              <text x="150" y="122" class="lbl t-ink" font-weight="650">2017</text>
+              <rect x="225" y="110" width="205" height="16" rx="4" fill="var(--neg)"/>
+              <text x="215" y="122" text-anchor="end" class="val t-ink2">−0,54</text>
+              <text x="150" y="140" class="anno">«Left behind» — faktisk forvitring</text>
+
+              <!-- 2021: b~0 -> dot at zero ; row y=182 -->
+              <text x="150" y="186" class="lbl t-ink" font-weight="650">2021</text>
+              <circle cx="430" cy="180" r="7" fill="var(--surface)" stroke="var(--muted)" stroke-width="2.5"/>
+              <text x="444" y="185" class="val t-ink2">−0,00</text>
+              <text x="150" y="204" class="anno">Nasjonal metning — ingen gradient (p=0,95)</text>
+
+              <!-- 2025: b=+0.37 -> x=430..430+141=571 ; row y=246 -->
+              <text x="150" y="250" class="lbl t-ink" font-weight="650">2025</text>
+              <rect x="430" y="238" width="141" height="16" rx="4" fill="var(--pos)"/>
+              <text x="581" y="250" class="val t-ink2">+0,37</text>
+              <text x="150" y="268" class="anno">Sp-fallet: brattest der oppturen var størst</text>
+            </svg>
+          </div>
+          <figcaption>1993-bølgen kollapset innen 1997 (−12 pp). 2017-gevinsten varte og vokste videre til 2021. FrPs samtidige 2025-bølge var derimot <strong>ikke</strong> geografisk gradert (β≈0 etter kontroll) — den fulgte ikke distriktskartet.</figcaption>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- FUNN 2: bastioner -->
+  <section>
+    <div class="wrap wide">
+      <h3 class="sub">2 — Aps bastioner var elastiske, ikke stabile</h3>
+      <p class="body" style="max-width:64ch">Arbeiderpartiets distriktsbastioner ser stabile ut på avstand. De er det ikke. De ble kraftig rystet i <strong>1993</strong> og <strong>2001</strong> — og hentet alt tilbake begge ganger. «Stabiliteten fra 2005» var hjemvending, ikke ro. 2017 er den første rystelsen <em>uten</em> hjemvending: den manglende V-en i kurven.</p>
+
+      <figure>
+        <div class="panel">
+          <p class="figttl">Ap-oppslutning i egne distriktsbastioner, 1989–2025</p>
+          <p class="figsub">Gjennomsnittlig prosent. To fall som ble hentet inn igjen — og ett som ikke ble det.</p>
+          <div class="scroll">
+            <svg class="chart minw" viewBox="0 0 900 400" role="img" aria-label="Ap faller i 1993 og 2001 men henter seg inn til 2005; etter fallet i 2017 kommer ingen tilsvarende gjenreisning.">
+              <!-- plot x 70..820 (9 intervals, 83.33) ; y: v28->320, v48->50 (13.5px/pp) -->
+              <!-- gridlines -->
+              <g class="s-grid">
+                <line x1="70" y1="320" x2="820" y2="320"/>
+                <line x1="70" y1="252.5" x2="820" y2="252.5"/>
+                <line x1="70" y1="185" x2="820" y2="185"/>
+                <line x1="70" y1="117.5" x2="820" y2="117.5"/>
+                <line x1="70" y1="50" x2="820" y2="50"/>
+              </g>
+              <g class="tick" text-anchor="end">
+                <text x="60" y="324">30&nbsp;%</text>
+                <text x="60" y="256.5">35&nbsp;%</text>
+                <text x="60" y="189">40&nbsp;%</text>
+                <text x="60" y="121.5">45&nbsp;%</text>
+              </g>
+              <!-- x labels -->
+              <g class="tick" text-anchor="middle">
+                <text x="70" y="340">1989</text>
+                <text x="153" y="340">1993</text>
+                <text x="237" y="340">1997</text>
+                <text x="320" y="340">2001</text>
+                <text x="403" y="340">2005</text>
+                <text x="487" y="340">2009</text>
+                <text x="570" y="340">2013</text>
+                <text x="653" y="340">2017</text>
+                <text x="737" y="340">2021</text>
+                <text x="820" y="340">2025</text>
+              </g>
+
+              <!-- line path -->
+              <polyline fill="none" stroke="var(--ap)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"
+                points="70,85.1 153,162.05 237,154.1 320,261.95 403,120.2 487,106.7 570,160.7 653,267.35 737,266 820,244.4"/>
+
+              <!-- V markers 1993 & 2001 (recovered) -->
+              <g stroke="var(--surface)" stroke-width="2">
+                <circle cx="70" cy="85.1" r="4.5" fill="var(--ap)"/>
+                <circle cx="153" cy="162.05" r="4.5" fill="var(--ap)"/>
+                <circle cx="237" cy="154.1" r="4.5" fill="var(--ap)"/>
+                <circle cx="320" cy="261.95" r="4.5" fill="var(--ap)"/>
+                <circle cx="403" cy="120.2" r="4.5" fill="var(--ap)"/>
+                <circle cx="487" cy="106.7" r="4.5" fill="var(--ap)"/>
+                <circle cx="570" cy="160.7" r="4.5" fill="var(--ap)"/>
+                <circle cx="653" cy="267.35" r="4.5" fill="var(--ap)"/>
+                <circle cx="737" cy="266" r="4.5" fill="var(--ap)"/>
+                <circle cx="820" cy="244.4" r="5.5" fill="var(--ap)"/>
+              </g>
+
+              <!-- annotations: recovered dips -->
+              <text x="153" y="182" text-anchor="middle" class="anno">−5,7 pp</text>
+              <text x="320" y="282" text-anchor="middle" class="anno">−8,0 pp</text>
+              <!-- recovery arc note -->
+              <text x="360" y="98" text-anchor="middle" class="annoi">…begge hentet inn til 42,8 % i 2005</text>
+              <path d="M300,104 C340,88 380,88 405,110" fill="none" stroke="var(--muted)" stroke-width="1" opacity="0.6"/>
+
+              <!-- the missing V after 2017 -->
+              <text x="700" y="300" text-anchor="middle" class="annoi" fill="var(--warn)">V-en som aldri kom</text>
+              <text x="700" y="318" text-anchor="middle" class="anno">−6,2 pp under 2013-nivå fortsatt i 2025</text>
+              <!-- endpoint value labels -->
+              <text x="70" y="76" text-anchor="middle" class="val t-ink2">45,4</text>
+              <text x="820" y="235" text-anchor="middle" class="val t-ink2">33,6</text>
+            </svg>
+          </div>
+          <figcaption>Kartet er konstant — rekkefølgen av Ap-kommuner er nær uforandret gjennom hele perioden. Det er <strong>nivået</strong> som ikke er stabilt. Aps strukturelle problem etter 2017 er spesifikt erosjon i egne bastioner.</figcaption>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- FUNN 3: kaskaden -->
+  <section>
+    <div class="wrap wide">
+      <h3 class="sub">3 — Kaskaden: Ap → Sp → FrP</h3>
+      <p class="body" style="max-width:64ch">Velgerne fulgte et mønster. I bastionene lakk Ap til Sp i 2017 (FrP falt til og med). Da Sp så kollapset i 2025, gikk velgerne <strong>ikke hjem til Ap</strong> — de gikk videre til FrP. Løsrevne velgere forblir bevegelige.</p>
+
+      <figure>
+        <div class="panel">
+          <p class="figttl">Endring i partioppslutning i Aps bastioner (prosentpoeng)</p>
+          <p class="figsub">To overganger. Legg merke til hvem som mottar, og hvem som ikke får velgerne tilbake.</p>
+          <div class="scroll">
+            <svg class="chart minw" viewBox="0 0 820 420" role="img" aria-label="2013 til 2017: Ap minus 7,9, Sp pluss 13,4, FrP minus 1,5. 2021 til 2025: Ap pluss 1,6, Sp minus 16,3, FrP pluss 13,5.">
+              <!-- zero line y=200 ; scale 9px/pp -->
+              <line x1="60" y1="200" x2="770" y2="200" stroke="var(--zero)" stroke-width="1.5"/>
+              <text x="52" y="204" text-anchor="end" class="tick">0</text>
+              <text x="52" y="115" text-anchor="end" class="tick">+10</text>
+              <text x="52" y="290" text-anchor="end" class="tick">−10</text>
+              <g class="s-grid">
+                <line x1="60" y1="110" x2="770" y2="110" stroke-dasharray="0"/>
+                <line x1="60" y1="290" x2="770" y2="290"/>
+              </g>
+
+              <!-- group 1: 2013->17  center x~240 ; cols Ap x=150,Sp x=225,Frp x=300 (width 44) -->
+              <!-- Ap -7.9 -> down 71.1 -->
+              <rect x="150" y="200" width="44" height="71.1" rx="4" fill="var(--ap)"/>
+              <text x="172" y="286" text-anchor="middle" class="val t-ink2">−7,9</text>
+              <!-- Sp +13.4 -> up 120.6 -->
+              <rect x="225" y="79.4" width="44" height="120.6" rx="4" fill="var(--sp)"/>
+              <text x="247" y="71" text-anchor="middle" class="val t-ink2">+13,4</text>
+              <!-- Frp -1.5 -> down 13.5 -->
+              <rect x="300" y="200" width="44" height="13.5" rx="4" fill="var(--frp)"/>
+              <text x="322" y="228" text-anchor="middle" class="val t-ink2">−1,5</text>
+              <text x="247" y="360" text-anchor="middle" class="lbl t-ink" font-weight="650">2013 → 2017</text>
+              <text x="247" y="380" text-anchor="middle" class="anno">Ap lekker; Sp høster</text>
+
+              <!-- group 2: 2021->25  cols Ap x=470,Sp x=545,Frp x=620 -->
+              <!-- Ap +1.6 -> up 14.4 -->
+              <rect x="470" y="185.6" width="44" height="14.4" rx="4" fill="var(--ap)"/>
+              <text x="492" y="178" text-anchor="middle" class="val t-ink2">+1,6</text>
+              <!-- Sp -16.3 -> down 146.7 -->
+              <rect x="545" y="200" width="44" height="146.7" rx="4" fill="var(--sp)"/>
+              <text x="567" y="362" text-anchor="middle" class="val t-ink2">−16,3</text>
+              <!-- Frp +13.5 -> up 121.5 -->
+              <rect x="620" y="78.5" width="44" height="121.5" rx="4" fill="var(--frp)"/>
+              <text x="642" y="70" text-anchor="middle" class="val t-ink2">+13,5</text>
+              <text x="567" y="392" text-anchor="middle" class="lbl t-ink" font-weight="650">2021 → 2025</text>
+              <text x="567" y="412" text-anchor="middle" class="anno">Sp kollapser; FrP mottar</text>
+            </svg>
+          </div>
+          <div class="legend">
+            <span><i class="k-ap"></i>Arbeiderpartiet</span>
+            <span><i class="k-sp"></i>Senterpartiet</span>
+            <span><i class="k-frp"></i>Fremskrittspartiet</span>
+          </div>
+          <figcaption>Velgeren gikk fra stedslojalitet (Ap) via stedsprotest (Sp) til økonomiprotest (FrP). Bare en liten del vendte hjem: korrelasjonen mellom Ap-oppgang og Sp-fall i 2025 var svak i nivå.</figcaption>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- FUNN 4: avterritorialisering -->
+  <section>
+    <div class="wrap">
+      <h3 class="sub">4 — I 2025 forlot protesten kartet</h3>
+      <p class="body">Dette er vendepunktet. I 2017 var «de som fikk det verre» definert av <strong>sted</strong> — fraflytting og tjenestetap, som gikk til Sp. I 2022–2025 rammet samme mekanisme via renter og kjøpekraft, som ikke følger kommunegrenser. Protesten fulgte ikke lenger kartet, men <strong>livsfasen</strong>.</p>
+
+      <div class="minirow">
+        <div class="mini">
+          <p class="mt">FrP-vekst fulgte alder, ikke geografi</p>
+          <p class="ms">Etter andel 25–44 år (den renteeksponerte generasjonen), øverste mot nederste kvintil</p>
+          <div class="bar-line">
+            <span class="bl-lab">Flest unge</span>
+            <span class="bl-track"><span class="bl-fill" style="width:97%;background:var(--frp)"></span></span>
+            <span class="bl-val">+14,6</span>
+          </div>
+          <div class="bar-line">
+            <span class="bl-lab">Færrest unge</span>
+            <span class="bl-track"><span class="bl-fill" style="width:81%;background:var(--frp)"></span></span>
+            <span class="bl-val">+12,2</span>
+          </div>
+          <p class="ms" style="margin:12px 0 0">Andelen 25–44 år er den <strong style="color:var(--ink)">sterkeste</strong> prediktoren — den absorberer hele «vekstkommune»-dreiningen.</p>
+        </div>
+
+        <div class="mini">
+          <p class="mt">Inntektssjokket var geografisk uniformt</p>
+          <p class="ms">Nominell inntektsvekst 2021→2024 per kommune — nesten ingen spredning</p>
+          <svg viewBox="0 0 300 96" class="chart" role="img" aria-label="Inntektsveksten varierer bare mellom 17 og 20 prosent mellom kommuner, en svært smal spredning på en skala fra 0 til 30 prosent.">
+            <line x1="14" y1="60" x2="286" y2="60" class="s-axis"/>
+            <g class="tick" text-anchor="middle">
+              <text x="14" y="78">0&nbsp;%</text>
+              <text x="150" y="78">15&nbsp;%</text>
+              <text x="286" y="78">30&nbsp;%</text>
+            </g>
+            <!-- band 17.0-19.8% on 0-30 scale, x=14+ (v/30)*272 -->
+            <rect x="168.1" y="40" width="25.4" height="20" rx="3" fill="var(--pos)" opacity="0.9"/>
+            <text x="180.8" y="32" text-anchor="middle" class="anno">17–20&nbsp;%</text>
+            <text x="180.8" y="20" text-anchor="middle" class="tick">IQR mellom alle kommuner</text>
+          </svg>
+          <p class="ms" style="margin:8px 0 0">Kjøpekraftsklemmen predikerer ingenting geografisk — fordi den knapt varierer geografisk.</p>
+        </div>
+
+        <div class="mini">
+          <p class="mt">Gikk velgerne bare hjem til sofaen?</p>
+          <p class="ms">Differensiell hjemmesitting vs. differensielt Sp-fall der Sp falt mest</p>
+          <div class="bar-line">
+            <span class="bl-lab">Til sofaen</span>
+            <span class="bl-track"><span class="bl-fill" style="width:12%;background:var(--neutral)"></span></span>
+            <span class="bl-val">1–2,5</span>
+          </div>
+          <div class="bar-line">
+            <span class="bl-lab">Sp-fallet</span>
+            <span class="bl-track"><span class="bl-fill" style="width:100%;background:var(--sp)"></span></span>
+            <span class="bl-val">16–21</span>
+          </div>
+          <p class="ms" style="margin:12px 0 0">Hjemmesitting er en reell, men <strong style="color:var(--ink)">liten</strong> kanal. Hoveddelen av kollapsen gikk til andre partier — kaskaden består.</p>
+        </div>
+      </div>
+      <figcaption style="max-width:64ch">Sp kanaliserer <strong>stedstap</strong>; FrP kanaliserer <strong>husholdningsøkonomi</strong> (avgifter, drivstoff, strøm, renter). Derfor kunne ikke Sp fange den nye protesten — den hadde flyttet fra kartet til husholdningsregnskapet.</figcaption>
+    </div>
+  </section>
+
+  <!-- FUNN 5: bygdelistene -->
+  <section>
+    <div class="wrap">
+      <h3 class="sub">5 — Bygdelistene: den tredje protestkanalen</h3>
+      <p class="body">Lokale bygdelister er en egen protestkanal som de ni rikspartiene ikke fanger. De er <strong>«left behind»-graderte</strong> akkurat som Sp, Sp høstet der de sto sterkt, og i 2023 vokste de mest der Sp falt mest. Lokalt går protesten til bygdelista; nasjonalt går den til FrP.</p>
+
+      <div class="cards">
+        <div class="card c-bygd">
+          <span class="yr">Struktur</span>
+          <h4>Graderte etter forvitring</h4>
+          <p>Bygdelistene er sterkest der folketallet faller: <span class="stat-inline">β = −0,28</span> (vekst → bygdelisteandel, med sentralitetskontroll).</p>
+        </div>
+        <div class="card c-sp">
+          <span class="yr">1993</span>
+          <h4>Sp høstet lokallistevelgerne</h4>
+          <p>Sp vokste mest der bygdelistene sto sterkt i 1991: <span class="stat-inline">β = +0,20</span>. Lokallistevelgere trenger en rikskanal — Sp var den.</p>
+        </div>
+        <div class="card c-bygd">
+          <span class="yr">2023</span>
+          <h4>Vokste der Sp falt</h4>
+          <p>I kommunevalget vokste bygdelistene mest der Sp falt mest: <span class="stat-inline">r = −0,31</span>. Den lokale reserven har sin egen kanal.</p>
+        </div>
+      </div>
+      <figcaption style="max-width:64ch">To arenaer for samme misnøye: <strong>lokalt</strong> går den til bygdelista (2023), <strong>nasjonalt</strong> til FrP (2025). Ingen av dem tilbake til de gamle kanalene.</figcaption>
+    </div>
+  </section>
+
+  <!-- FUNN 6: H5 snudd -->
+  <section>
+    <div class="wrap">
+      <h3 class="sub">6 — Riksvalg leder lokalvalg (H5 snudd)</h3>
+      <p class="body">Den opprinnelige konklusjonen var at kommunevalg «forutser» stortingsvalg. Med en strengere test — lagget utfallsvariabel og reverstest i begge retninger — viser det seg motsatt: informasjonen flyter fra <strong>riksvalg til lokalvalg</strong>, tre ganger sterkere. Den gamle konklusjonen var persistens forkledd som ledelse.</p>
+
+      <figure>
+        <div class="panel">
+          <p class="figttl">Hvilken vei flyter informasjonen mellom valgene?</p>
+          <p class="figsub">Standardisert β, symmetrisk design med korrigerte prosenter. Pilens tykkelse = effektstyrken.</p>
+          <div class="scroll">
+            <svg class="chart minw" viewBox="0 0 800 260" role="img" aria-label="Fra stortingsvalg til kommunevalg er effekten pluss 0,33, en tykk pil. Fra kommunevalg til stortingsvalg pluss 0,11, en tynn pil. Riksvalget leder.">
+              <defs>
+                <marker id="ah-strong" markerWidth="12" markerHeight="12" refX="8" refY="4" orient="auto">
+                  <path d="M0,0 L9,4 L0,8 Z" fill="var(--frp)"/>
+                </marker>
+                <marker id="ah-weak" markerWidth="12" markerHeight="12" refX="8" refY="4" orient="auto">
+                  <path d="M0,0 L9,4 L0,8 Z" fill="var(--muted)"/>
+                </marker>
+              </defs>
+              <!-- nodes -->
+              <rect x="70" y="96" width="180" height="68" rx="6" fill="var(--surface-2)" stroke="var(--hairline-2)"/>
+              <text x="160" y="126" text-anchor="middle" class="lbl t-ink" font-weight="650" font-size="15">Stortingsvalg</text>
+              <text x="160" y="146" text-anchor="middle" class="anno">riksnivå</text>
+
+              <rect x="550" y="96" width="180" height="68" rx="6" fill="var(--surface-2)" stroke="var(--hairline-2)"/>
+              <text x="640" y="126" text-anchor="middle" class="lbl t-ink" font-weight="650" font-size="15">Kommunevalg</text>
+              <text x="640" y="146" text-anchor="middle" class="anno">lokalnivå</text>
+
+              <!-- strong arrow STV->KV (top) thick -->
+              <line x1="255" y1="112" x2="540" y2="112" stroke="var(--frp)" stroke-width="20" stroke-linecap="round" marker-end="url(#ah-strong)"/>
+              <text x="397" y="88" text-anchor="middle" class="val t-ink" font-size="17">+0,33</text>
+              <text x="397" y="70" text-anchor="middle" class="anno">STV → KV</text>
+
+              <!-- weak arrow KV->STV (bottom) thin -->
+              <line x1="540" y1="150" x2="265" y2="150" stroke="var(--muted)" stroke-width="7" stroke-linecap="round" marker-end="url(#ah-weak)"/>
+              <text x="402" y="182" text-anchor="middle" class="val t-ink2" font-size="15">+0,11</text>
+              <text x="402" y="200" text-anchor="middle" class="anno">KV → STV</text>
+            </svg>
+          </div>
+          <figcaption>Effekten fra riksvalg til lokalvalg (+0,33) er rundt tre ganger sterkere enn motsatt vei (+0,11) — i tråd med rikspolitiseringen av lokalvalgene. Periferiprotesten er først og fremst riksvalg-atferd (H4 falt også: effekten er ikke sterkere i kommunevalg).</figcaption>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ SYNTESEN ============ -->
+  <section>
+    <div class="wrap wide">
+      <p class="eyebrow">Syntesen</p>
+      <h2 class="title">Proteststemmens livssyklus</h2>
+      <p class="lede" style="max-width:46ch">Én velgergruppe, løsrevet fra sitt gamle parti, på vandring gjennom fire tiår — mens grunnkløften mellom sentrum og periferi består.</p>
+
+      <figure>
+        <div class="panel">
+          <div class="scroll">
+            <svg class="chart minw" viewBox="0 0 940 340" role="img" aria-label="Velgeren løsner fra Arbeiderpartiet i 2017, går via Senterpartiet 2017 til 2021, og videre til Fremskrittspartiet nasjonalt i 2025 og bygdelista lokalt i 2023.">
+              <defs>
+                <marker id="fl" markerWidth="11" markerHeight="11" refX="7" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="var(--muted)"/>
+                </marker>
+              </defs>
+
+              <!-- node Ap -->
+              <circle cx="110" cy="150" r="52" fill="none" stroke="var(--ap)" stroke-width="3"/>
+              <text x="110" y="146" text-anchor="middle" class="lbl t-ink" font-weight="650" font-size="16">Ap</text>
+              <text x="110" y="164" text-anchor="middle" class="anno" font-size="11">stedslojalitet</text>
+              <text x="110" y="230" text-anchor="middle" class="tick">Til 2017</text>
+
+              <!-- arrow Ap->Sp -->
+              <line x1="166" y1="150" x2="288" y2="150" stroke="var(--muted)" stroke-width="2" marker-end="url(#fl)"/>
+              <text x="227" y="140" text-anchor="middle" class="anno" font-size="11">løsnet 2017</text>
+
+              <!-- node Sp -->
+              <circle cx="350" cy="150" r="52" fill="none" stroke="var(--sp)" stroke-width="3"/>
+              <text x="350" y="146" text-anchor="middle" class="lbl t-ink" font-weight="650" font-size="16">Sp</text>
+              <text x="350" y="164" text-anchor="middle" class="anno" font-size="11">stedsprotest</text>
+              <text x="350" y="230" text-anchor="middle" class="tick">2017–2021</text>
+
+              <!-- split from Sp -->
+              <!-- upper to Frp -->
+              <path d="M406,132 C480,96 540,88 610,92" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#fl)"/>
+              <text x="512" y="78" text-anchor="middle" class="anno" font-size="11">nasjonalt · 2025</text>
+              <!-- lower to bygdeliste -->
+              <path d="M406,168 C480,204 540,214 610,214" fill="none" stroke="var(--muted)" stroke-width="2" marker-end="url(#fl)"/>
+              <text x="512" y="232" text-anchor="middle" class="anno" font-size="11">lokalt · 2023</text>
+
+              <!-- node Frp -->
+              <circle cx="672" cy="92" r="50" fill="none" stroke="var(--frp)" stroke-width="3"/>
+              <text x="672" y="88" text-anchor="middle" class="lbl t-ink" font-weight="650" font-size="15">FrP</text>
+              <text x="672" y="105" text-anchor="middle" class="anno" font-size="10.5">økonomiprotest</text>
+
+              <!-- node bygdeliste -->
+              <circle cx="672" cy="214" r="50" fill="none" stroke="var(--bygd)" stroke-width="3"/>
+              <text x="672" y="208" text-anchor="middle" class="lbl t-ink" font-weight="650" font-size="14">Bygdeliste</text>
+              <text x="672" y="225" text-anchor="middle" class="anno" font-size="10.5">lokal protest</text>
+
+              <!-- reserve without channel -->
+              <line x1="748" y1="150" x2="812" y2="150" stroke="var(--hairline-2)" stroke-width="2" stroke-dasharray="4 4"/>
+              <text x="878" y="140" text-anchor="middle" class="annoi" fill="var(--warn)" font-size="13">reserven</text>
+              <text x="878" y="158" text-anchor="middle" class="anno" font-size="11">uten fast kanal</text>
+              <text x="878" y="174" text-anchor="middle" class="anno" font-size="11">per 2025</text>
+
+              <!-- grunnkløft baseline -->
+              <line x1="70" y1="300" x2="812" y2="300" stroke="var(--zero)" stroke-width="1.5"/>
+              <text x="70" y="292" class="tick">Grunnkløften sentrum ↔ periferi består — det strukturelle distriktsforspranget er intakt</text>
+            </svg>
+          </div>
+          <p class="synth-note">Velgeren gikk fra å tilhøre et sted til å tilhøre et husholdningsregnskap. Reserven står igjen — mobil, misfornøyd, uten fast kanal.</p>
+        </div>
+      </figure>
+
+      <div class="honesty">
+        <h3>Det vi ikke kan si — ærlig talt</h3>
+        <ul>
+          <li>Alle sammenhenger er målt på <strong>kommunenivå</strong>. Det viser samvariasjon, ikke individatferd — at FrP vokser der de unge bor, beviser ikke at det er de unge som stemmer FrP (økologisk slutning).</li>
+          <li>Gjeld og livsfase kan ikke skilles på kommunenivå — de er samme fenomen i disse dataene. «Renteeksponert generasjon» er riktig nivå å konkludere på; en påstand om gjeld <em>i seg selv</em> krever individdata.</li>
+          <li>1993-tallene bygger på en midlertidig korreksjon av 1989-feilen i minnet. De er robuste i fortegn og størrelsesorden, men skal reberegnes når datafiksen er gjort permanent.</li>
+          <li>Neste steg er å validere funnene mot <strong>Valgundersøkelsen 2025</strong> (individdata) — det gjenstår.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTNOTE ============ -->
+  <footer>
+    <div class="wrap">
+      <div class="fn">
+        <div class="grp">
+          <h4>Datakilder — SSB</h4>
+          Stortingsvalg <code>08092</code> · kommunestyrevalg <code>01180</code> · befolkning <code>07459</code> · medianinntekt <code>06944</code> · gjeld <code>05946</code> · akvakultur <code>13470</code> · stemmerett <code>13448</code> · valgdeltakelse KV <code>09475</code>. Alle årganger aggregert til 2024-kommunestrukturen (357 kommuner).
+        </div>
+        <div class="grp">
+          <h4>Metode</h4>
+          OLS med kommune- og år-faste effekter (between/within-panel), standardiserte koeffisienter for sammenlignbarhet mellom bølger. Kvalitetssikring i to uavhengige instanser: én modell henter og aggregerer, en annen reviderer. Signifikans, n, R² og konfidensintervall er oppgitt i de underliggende skriptene.
+        </div>
+        <div class="grp">
+          <h4>Reproduserbarhet</h4>
+          Hele analysen kan kjøres på nytt fra skriptene i prosjektrepoet; alle SSB-uttrekk er lagret som CSV med kildehenvisning.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
