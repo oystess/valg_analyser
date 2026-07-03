@@ -343,6 +343,31 @@ differensiell deltakelse mot 16–21 pp differensielt Sp-fall. Hoveddelen av
 Sp-kollapsen gikk til andre partier, ikke til sofaen. Kaskade-tolkningen
 består; begge kronikkversjonene har fått en defensiv setning om dette.
 
+### 5.5 Gjeldsdata på plass (2026-07-03): livsfase og gjeld kan ikke skilles på kommunenivå
+
+Avklaring av hva økonomitallene måler: **alle person-/husholdningsstørrelser,
+ikke kommuneøkonomi.** Inntekt (§5.1) = median husholdningsinntekt etter skatt
+(SSB 06944). Gjeld (ny): gjennomsnittlig gjeld fra skattemeldingen for bosatte
+17 år+ per kommune (SSB 05946), committet som `data/processed/gjeld_2021.csv`.
+Gjeldsgrad = snittgjeld/snittbruttoinntekt 2021 (median 1,28, IQR 1,08–1,56).
+Kommunens egen økonomi (kommunekassa) inngår ikke i noen av analysene —
+Havbruksfond-sporet (§5.2 fase 2) blir det første som måler den kanalen.
+
+**Den skarpe testen (ΔFrP 2021→25, n=349):**
+- Gjeldsgrad alene: +0,11 (p=0,04) — svakt positiv.
+- Med sentralitetskontroll: 0 (n.s.). I kappløp med alders-proxyen snur
+  gjeldsgraden negativ mens andel 25–44 består (+0,28***) — men korrelasjonen
+  mellom de to er +0,69, så kappløpet er ikke tolkbart (multikollinearitet).
+- ΔSp: gjeldsgrad +0,39*** — Sp falt minst der gjelden er høy (= yngre,
+  voksende kommuner), mest i lavgjelds-/fraflyttingskommunene.
+
+**Konklusjon:** Gjeld og livsfase er samme fenomen på kommunenivå og kan ikke
+skilles med økologiske data. Formuleringen «renteeksponert generasjon» (25–44 +
+gjeld) er riktig nivå å konkludere på; en påstand om at gjeld *i seg selv*
+driver FrP-vekst uavhengig av alder krever individdata (Valgundersøkelsen
+2025 / mikrodata). Tiltak 9 er dermed delvis løst: gjeldsdataene er hentet,
+individvalideringen gjenstår.
+
 ## 6. Prioritert tiltaksliste
 
 | # | Tiltak | Omfang |
