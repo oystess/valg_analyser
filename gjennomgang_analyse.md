@@ -324,6 +324,25 @@ parti-identitet (klasse × sted), og løsrevne velgere forblir bevegelige.
 Knytter §5 (livssyklus) og §5.1 (avterritorialisering) sammen: bastionvelgeren
 gikk fra stedslojalitet (Ap) via stedsprotest (Sp) til økonomiprotest (FrP).
 
+### 5.4 Robusthetssjekk (2026-07-03): Hjemmesitter-alternativet
+
+Innvending mot kaskaden Ap→Sp→Frp: Sp-kollapsen 2025 kunne skyldes at
+2017/2021-velgerne satte seg hjemme, ikke at de gikk videre. Testet med
+personer med stemmerett per kommune (SSB 13448, committet som
+`data/processed/stemmerett_2125.csv`); deltakelse-proxy = 9-partistemmer /
+stemmeberettigede (nivået undervurderes pga. «Andre», men endringen 2021→25
+er sammenlignbar på tvers av kommuner).
+
+**Funn (n=354):** Deltakelsen steg nasjonalt (proxy 73,4 → 75,5 %). Den
+utviklet seg svakest der Sp falt mest — korr(ΔSp, Δdeltakelse) = +0,35;
+kvintilen med størst Sp-fall hadde −0,7 pp deltakelse mot +1,8 i kvintilen
+med minst; bastionene −0,3 mot +1,4 i sentrale kommuner.
+
+**Konklusjon:** Hjemmesitting er en reell, men liten kanal: 1–2,5 pp
+differensiell deltakelse mot 16–21 pp differensielt Sp-fall. Hoveddelen av
+Sp-kollapsen gikk til andre partier, ikke til sofaen. Kaskade-tolkningen
+består; begge kronikkversjonene har fått en defensiv setning om dette.
+
 ## 6. Prioritert tiltaksliste
 
 | # | Tiltak | Omfang |
