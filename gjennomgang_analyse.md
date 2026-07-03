@@ -267,6 +267,35 @@ kommune (gjeldsgrad, andel med gjeld > 3× inntekt) ble ikke funnet i SSB-MCP-in
 — finnes i SSBs inntekts- og formuesstatistikk på ssb.no og bør hentes (nytt punkt
 i tiltakslisten).
 
+### 5.2 Ny delanalyse (2026-07-03): Velstående periferi — havbruk som demper
+
+Hypotese (prosjekteier): Havbruksfondet er en velstandsindikator langs kysten;
+mye havbrukspenger bør være en *motsatt* indikator på Sp-vekst i 2017. Fase 1
+testet med proxy (andel sysselsatte i akvakultur, SN2007 03.2, SSB 13470,
+4. kv 2017 — committet som `data/processed/akvakultur_syss_2017.csv`;
+skript: `scripts/analyse_havbruk.py`).
+
+**Funn (ΔSp 2013→2017, n=350):**
+- Ukontrollert: ingen effekt (+0,05 n.s.) — havbrukskommuner *er* periferi,
+  og de to effektene maskerer hverandre.
+- Med kontroll for befolkningsvekst 2007–17 og sentralitet: **std-β=−0,12 (p=0,013)**.
+- Innad i periferien (sentralitet 0–1, n=173): −0,14 (p=0,061).
+- Deskriptivt i periferien: uten akvakultur +14,0 pp Sp; med mye (>2 % av
+  sysselsettingen) +11,5 pp — ved identisk befolkningsnedgang (−1,4 mot −1,2 %).
+
+**Tolkning:** Støtter og skjerper left behind-lesningen av 2017: mekanismen er
+opplevd forvitring, ikke fraflytting per se. Lokal velstand fra havbruk
+(arbeidsplasser, eiendomsskatt, optimisme) demper protesten selv der folketallet
+faller. Konsistent med Sánchez-Garcías moderator-funn (effekten sterkest ved lav
+inntekt/høy ledighet) — dette er samme moderator med motsatt fortegn.
+
+**Status/fase 2:** Havbruksfondets faktiske utbetalinger per kommune
+(fiskeridir.no) er blokkert av sesjonens nettverkspolicy; filene lastes opp
+manuelt. Da testes kr per innbygger direkte mot ΔSp 2017, 2021-nivået og
+2025-fallet. Forbehold fase 1: sysselsettingsandel måler aktivitet, ikke
+kommuneinntekt; havbrukskommuner kan avvike også på fiskeritradisjon og
+EU-historikk (1994-nei-kysten).
+
 ## 6. Prioritert tiltaksliste
 
 | # | Tiltak | Omfang |

@@ -48,6 +48,7 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
 │   ├── analyse_2021.py      # Dybde 2017→2021 + år-for-år β-tabell (injiserer)
 │   ├── matrise.py           # 2×2 sentralitet × befolkningsretning, velgervektet (injiserer)
 │   ├── analyse_mekanismer.py # Fire bølger, tre mekanismer: 1993/2017/2021/2025 (injiserer, idempotent)
+│   ├── analyse_havbruk.py   # Velstående periferi: akvakultur demper Sp-byks 2017 (fase 2 venter på Havbruksfond-data)
 │   ├── analyse_panel.py     # FE/between-panel 1987–2025 + timing-test (→ panel_plot.html)
 │   ├── grenser.py           # Kommunegrense-mapping 1987–1998 fra SSB-PDF (Claude API)
 │   ├── les_grenser_pdf.py   # PDF-ekstraksjon med Claude Haiku
@@ -61,6 +62,7 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
 │       ├── kom_mapping.csv           # Historisk kommunekode → 2024-kode
 │       ├── panel_resultater.csv      # Koeffisienter fra analyse_panel.py
 │       ├── kjopekraft_2124.csv       # SSB 06944/07459: medianinntekt 2021/2024 + antall 25–44 år
+│       ├── akvakultur_syss_2017.csv  # SSB 13470: sysselsatte i akvakultur per kommune, 4. kv 2017
 │       ├── polls.csv                 # pollofpolls gallupsnitt — auto-oppdatert ukentlig
 │       └── *.html                    # Genererte figurfragmenter
 └── .github/workflows/       # update-polls (cron), deploy + jekyll-gh-pages (Pages)
