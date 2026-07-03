@@ -100,7 +100,7 @@ Bø, Os, Sande, Nes …). Merk at Våler-forvekslingen allerede er fikset i comm
 | H2 | Befolkningsnedgang forsterker, interaksjon m/ sentralitet + inntektskontroll | **Delvis testet** | Split-sample per sentralitet i stedet for interaksjonsledd; inntekt/ledighet mangler (erkjent i notatets tabell 8). Mekanismeseparasjonen (tjeneste/identitet/deprivasjon) er ikke mulig med disse dataene. |
 | H3 | Episodisk sterkere: 1993, 2019–2021 | **Testet — delvis AVKREFTET** | År-β-tabellen viser 1993*** og 2017***, men **2021 ≈ 0 (p=0,95)**. 2021-bølgen var ikke befolkningsgradert. Dette er et reelt teorifunn som fortjener mer plass — se pkt. 4.2. |
 | H4 | Sterkere effekt i kommunevalg | **Testet — IKKE støttet** | FE: Sp KV β=−0,047 n.s.; between: KV ≈ STV (−0,20 vs −0,22). Rapporten sier ikke eksplisitt at H4 falt — bør sies. |
-| H5 | Kommunevalg leder stortingsvalg | **Svakt testet** | Se pkt. 3.1 — designet kan ikke skille «ledelse» fra ren persistens. |
+| H5 | Kommunevalg leder stortingsvalg | **Testet på nytt — SNUDD** (§5.7) | Med lagget avh. variabel og reverstest: STV→KV (~+0,33) er ~3× sterkere enn KV→STV (~+0,11). Riksvalg leder lokalvalg. |
 | H6 | Sp–FrP-konkurranse om periferivelgerne | **Ikke testet** (kun deskriptiv tidsserie i 2021-analysen) | Ingen regresjonstest av «svak-FrP-år → sterk geografisk Sp-effekt». Testbar med eksisterende data — se pkt. 3.2. |
 | H7 | Aldersseleksjon (unge flytter, eldre blir) | **Ikke testet** | Krever alderssammensetning (SSB 07459/05803, ikke hentet). |
 
@@ -398,6 +398,28 @@ lister (SSB 01180). QA (`scripts/qa_kommunevalg.py`, seks kontroller, rapport i
 
 **Ny ressurs for H6/velgerreserven:** `kv_andre_lister.csv` gir bygdeliste-
 andelen per kommune-år 1987–2023 — en egen, hittil umålt protestkanal.
+
+### 5.7 Tiltak 10 gjennomført (2026-07-03): H5 snudd, bygdelistene kartlagt
+
+`scripts/analyse_kv_revidert.py` (injiserer egen rapportseksjon). Tre resultater:
+
+1. **H5 SNUS.** Med lagget avhengig variabel og reverstest (symmetrisk design,
+   korrigerte KV-prosenter): KV→STV β=+0,11 (Sp) / +0,08 (Ap), men STV→KV
+   β=+0,33 / +0,35. Informasjonen flyter fra riksvalg til lokalvalg — i tråd
+   med rikspolitiseringen av lokalvalgene. Panel-seksjonens opprinnelige
+   «kommunevalg forutser stortingsvalg» var persistens forkledd som ledelse
+   (som varslet i pkt. 3.1). Nickell-skjevhet ved kort T gjelder begge
+   retninger likt; sammenligningen står seg.
+2. **H4 fortsatt ikke støttet** med korrigert nevner: Sp between
+   β(dpop10) = −0,46 i KV mot −0,58 i STV. Periferiprotesten er riksvalg-atferd.
+3. **Bygdelistene som tredje protestkanal:**
+   - Left behind-gradert: std-β(vekst→bygdelisteandel) = −0,28*** (m/ sentralitet).
+   - 1993: Sp høstet mest der bygdelistene sto sterkt i KV 1991 (+0,20***) —
+     lokallistevelgere trenger en rikskanal, og Sp var den.
+   - 2023: der Sp falt mest i KV, vokste bygdelistene mest (r=−0,31).
+     Sammen med §5/§5.1: protesten har to arenaer — lokalt går den til
+     bygdelista (2023), nasjonalt til Frp (2025). Ingen av dem tilbake til
+     de gamle kanalene.
 
 ## 6. Prioritert tiltaksliste
 
