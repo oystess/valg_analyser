@@ -368,6 +368,37 @@ driver FrP-vekst uavhengig av alder krever individdata (Valgundersøkelsen
 2025 / mikrodata). Tiltak 9 er dermed delvis løst: gjeldsdataene er hentet,
 individvalideringen gjenstår.
 
+### 5.6 KV-data revidert og utvidet (2026-07-03)
+
+Plan_kommunevalg.md gjennomført: Sonnet hentet fasitfil (nasjonale KV-resultater
+1987–2023, uavhengig vei), valgdeltakelse per kommune (SSB 09475) og lokale
+lister (SSB 01180). QA (`scripts/qa_kommunevalg.py`, seks kontroller, rapport i
+`qa_kv_rapport.csv`):
+
+**Rene kontroller:**
+- **Fasit-sjekk 83/83 parti×år innenfor ±3 %** — ingen Ap-1989-type dobling i
+  KV-dataene. Nevner konsistent (total = 9-partisum overalt). Deltakelse
+  matcher offisielle tall (1987: 69,4 → 2023: 62,5).
+
+**Funn som IKKE er datafeil, men metodisk viktige:**
+1. **Bygdeliste-effekten:** Alle 14 navnebror-flagg (Moskenes, Kvitsøy, Flå,
+   Bindal m.fl.) skyldes lokale lister som svinger mellom 0 og 89 % av
+   stemmene — 9-partisummen kollapser/hopper tilsvarende. Bindal-varianten:
+   flagget år er når bygdelista IKKE stilte.
+2. **KV-prosentene i panelet er skjeve:** `prosent` i
+   `kommunestyrevalg_2024.csv` er andel av 9-partisummen, ikke av alle
+   godkjente stemmer. Skjevheten (Sp: snitt +1,6 pp, >5 pp i 321 kommune-år,
+   maks +83 pp) er konsentrert i småkommuner i periferien — nettopp der
+   analysene våre bor. **Korrigert prosent (alle-stemmer-nevner) ligger i
+   `kv_prosent_korrigert.csv`** — panel-analysene (H4/H5) bør reestimeres med
+   den (nytt tiltak 10).
+3. Haram (1580) mangler helt i KV 2019 (ekte hull i SSBs kilde).
+4. Befolknings-/kryss-flaggene (117 + 97) er gjennomgående småkommune- og
+   bygdeliste-artefakter av samme rot; ingen mappingfeil identifisert i KV.
+
+**Ny ressurs for H6/velgerreserven:** `kv_andre_lister.csv` gir bygdeliste-
+andelen per kommune-år 1987–2023 — en egen, hittil umålt protestkanal.
+
 ## 6. Prioritert tiltaksliste
 
 | # | Tiltak | Omfang |
@@ -380,7 +411,8 @@ individvalideringen gjenstår.
 | 6 | Valider grensemappingen systematisk mot navnebror-kommuner | Liten |
 | 7 | Hent inntekt (SSB 12558) og alder (07459) → H2-moderatorer og H7 | Middels |
 | 8 | Befolkningsvektet robusthetsvariant av hovedregresjonene | Liten |
-| 9 | Hent gjeldsgrad per kommune (SSB inntekts-/formuesstatistikk) → direkte test av rentesmerten bak FrP-2025; valider aldersfunnet (§5.1) mot Valgundersøkelsen 2025 | Middels |
+| 9 | Hent gjeldsgrad per kommune (SSB inntekts-/formuesstatistikk) → direkte test av rentesmerten bak FrP-2025; valider aldersfunnet (§5.1) mot Valgundersøkelsen 2025 | Middels — gjeldsdata hentet (§5.5), individvalidering gjenstår |
+| 10 | Reestimer panel-analysene (H4/H5) med korrigerte KV-prosenter (`kv_prosent_korrigert.csv`) og lagget avhengig variabel; analyser bygdeliste-andelen (`kv_andre_lister.csv`) som egen protestkanal | Middels |
 
 ---
 
