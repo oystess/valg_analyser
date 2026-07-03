@@ -29,6 +29,10 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
   prediktor er andelen 25–44-åringer (renteeksponert generasjon), som absorberer
   hele vekstkommune-dreiningen. Tapet fulgte livsfase/gjeld, ikke sted — Sp
   kanaliserer stedstap, FrP husholdningsøkonomi.
+- **Aps bastioner var elastiske, ikke stabile:** rystelsene i 1993 og 2001 ble
+  fullt gjenopprettet; 2017 er den første uten hjemvending (−6,2 pp under
+  2013-nivå fortsatt i 2025). Da Sp kollapset i 2025 gikk bastionvelgerne videre
+  til FrP (+13,5 pp), ikke hjem til Ap (+1,6). Kaskaden Ap → Sp → FrP.
 
 > ⚠️ **Kjent datafeil:** Ap-stemmene for 1989 i `stortingsvalg_2024.csv` er dobbelttalt
 > (se «Kjente feil» under). 1989-baserte tall (inkl. Senteropprøret-regresjonen β=−0,69)
@@ -49,6 +53,7 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
 │   ├── matrise.py           # 2×2 sentralitet × befolkningsretning, velgervektet (injiserer)
 │   ├── analyse_mekanismer.py # Fire bølger, tre mekanismer: 1993/2017/2021/2025 (injiserer, idempotent)
 │   ├── analyse_havbruk.py   # Velstående periferi: akvakultur demper Sp-byks 2017 (fase 2 venter på Havbruksfond-data)
+│   ├── analyse_bastioner.py # Aps distriktsbastioner 1989–2025: elastiske til 2017, så kaskaden Ap→Sp→FrP (injiserer)
 │   ├── analyse_panel.py     # FE/between-panel 1987–2025 + timing-test (→ panel_plot.html)
 │   ├── grenser.py           # Kommunegrense-mapping 1987–1998 fra SSB-PDF (Claude API)
 │   ├── les_grenser_pdf.py   # PDF-ekstraksjon med Claude Haiku

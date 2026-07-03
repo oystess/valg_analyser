@@ -296,6 +296,34 @@ manuelt. Da testes kr per innbygger direkte mot ΔSp 2017, 2021-nivået og
 kommuneinntekt; havbrukskommuner kan avvike også på fiskeritradisjon og
 EU-historikk (1994-nei-kysten).
 
+### 5.3 Ny delanalyse (2026-07-03): Aps distriktsbastioner — elastiske, ikke stabile
+
+Spørsmål (prosjekteier): Har Aps distriktsbastioner vært stabile hele tiden,
+eventuelt mer stabile enn andre steder? Skript: `scripts/analyse_bastioner.py`
+(injiserer egen rapportseksjon). Definisjon: sentralitet 0–1 og Ap ≥
+periferimedianen i 2005; fire grupper (bastion × sentralitet), korrigert
+1989-baseline, n=355.
+
+**Funn:**
+1. **Elastisitet, ikke stabilitet:** Bastionene ble rystet i 1993 (−5,7 pp) og
+   2001 (−8,0 pp), men hentet alt tilbake begge ganger (tilbake på 42,8 % i
+   2005). «Stabiliteten fra 2005» er hjemvending, ikke ro.
+2. **Ikke mer stabile enn andre:** within-kommune-std er høyest i bastionene i
+   alle epoker. Det stabile er *rangeringen* (Spearman ≈ +0,91 mellom alle
+   valgpar — selv over 2017-skjelvet). Ap-kartet er konstant; nivået er det ikke.
+3. **2017 er unik som rystelsen uten hjemvending:** 2021 ±0,0, 2025 +1,6;
+   fortsatt −6,2 pp under 2013-nivået i 2025, mot −0,8 i ikke-bastionene.
+   Aps strukturelle problem etter 2017 er spesifikt bastion-erosjon.
+4. **Kaskaden Ap → Sp → FrP:** I bastionene: 2013→17 ΔAp −7,9 / ΔSp +13,4 /
+   ΔFrP −1,5 (FrP falt!); 2021→25 ΔSp −16,3 / ΔAp +1,6 / ΔFrP +13,5.
+   Velgerne Sp ristet løs vendte ikke hjem — de gikk videre til FrP.
+   korr(ΔAp,ΔSp) 2021→25 = −0,53: noe direkte hjemvending, marginal i nivå.
+
+**Tolkning:** Konsistent med dealignment-perspektivet: 2017 brøt en langvarig
+parti-identitet (klasse × sted), og løsrevne velgere forblir bevegelige.
+Knytter §5 (livssyklus) og §5.1 (avterritorialisering) sammen: bastionvelgeren
+gikk fra stedslojalitet (Ap) via stedsprotest (Sp) til økonomiprotest (FrP).
+
 ## 6. Prioritert tiltaksliste
 
 | # | Tiltak | Omfang |
