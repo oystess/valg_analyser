@@ -20,9 +20,10 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
 - **Riksvalg leder lokalvalg (H5 snudd):** Med lagget avhengig variabel og reverstest
   er STV→KV-effekten (~+0,33) tre ganger sterkere enn KV→STV (~+0,11) — den
   opprinnelige «kommunevalg forutser stortingsvalg»-konklusjonen var persistens.
-- **Bygdelistene er den tredje protestkanalen:** left behind-graderte, høstet av Sp
-  i 1993, og i 2023 vokste de mest der Sp falt mest (r=−0,31). Lokal protest går
-  til bygdelista, nasjonal til Frp.
+- **Bygdelistene er den tredje protestkanalen:** left behind-graderte (−0,28***),
+  høstet av Sp i 1993 (+0,20***), og med bredt comeback i 2023 (+3,0 pp) mens Sp
+  kollapset. NB: kommune-korrelasjonen med Sp-fallet er mekanisk andelsskvis
+  (ikke sterkere enn for Ap/Høyre) — hvem listene tok velgere fra, krever individdata.
 - **Fire bølger, tre mekanismer:** 1993 var sak-mobilisering gradert etter *statisk*
   periferi (og kollapset innen 1997); 2017 var left behind-gradert — faktisk
   befolkningsforvitring bar effekten, og gevinsten varte; 2021 var nasjonal metning

@@ -416,10 +416,12 @@ andelen per kommune-år 1987–2023 — en egen, hittil umålt protestkanal.
    - Left behind-gradert: std-β(vekst→bygdelisteandel) = −0,28*** (m/ sentralitet).
    - 1993: Sp høstet mest der bygdelistene sto sterkt i KV 1991 (+0,20***) —
      lokallistevelgere trenger en rikskanal, og Sp var den.
-   - 2023: der Sp falt mest i KV, vokste bygdelistene mest (r=−0,31).
-     Sammen med §5/§5.1: protesten har to arenaer — lokalt går den til
-     bygdelista (2023), nasjonalt til Frp (2025). Ingen av dem tilbake til
-     de gamle kanalene.
+   - 2023: bygdelistene vokste bredt (+3,0 pp) mens Sp kollapset.
+     **Korrigert 2026-07-03:** kommune-korrelasjonen (r=−0,31) er i stor grad
+     mekanisk (andelsskvis) — benchmark viser Ap −0,40 og Høyre −0,35, så
+     Sp-koblingen er ikke distinkt. Bygdelistenes vekst og left behind-gradient
+     står; «lokal protest → bygdelista»-kanalbyttet på kommunenivå gjør det
+     ikke. Krever individdata.
 
 ## 6. Prioritert tiltaksliste
 

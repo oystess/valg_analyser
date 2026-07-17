@@ -275,8 +275,11 @@ def bygg_seksjon(h5, h4, byg, figs) -> str:
         <p class="text-xs text-amber-900/70 leading-relaxed">Lokallistene er left behind-
         graderte (std-β={byg["m_lb"].params["dpop"]:+.2f}***), og i 1993 høstet Sp mest
         nettopp der bygdelistene sto sterkt (+{byg["m_93"].params["andre"]:.2f}***) —
-        lokallistevelgere trenger en rikskanal. I 2023 gikk strømmen motsatt vei:
-        der Sp falt mest, vokste bygdelistene mest (r={byg["korr"]:+.2f}).</p>
+        lokallistevelgere trenger en rikskanal. I 2023 vokste bygdelistene bredt
+        (+{byg["dandre_snitt"]:.1f} pp) mens Sp kollapset — men kommune-koblingen til
+        Sp-fallet spesifikt (r={byg["korr"]:+.2f}) er ikke sterkere enn for andre
+        partier (Ap −0,40, Høyre −0,35): andels-regnskapet skviser alle når lista
+        vokser. Kanalbytte-tolkningen krever individdata.</p>
       </div>
     </div>
 
@@ -288,12 +291,13 @@ def bygg_seksjon(h5, h4, byg, figs) -> str:
     </p>
     <div class="plotly-chart">{plots["trend"]}</div>
 
-    <h3 class="font-semibold text-slate-800 mb-1 mt-6">2023: den lokale protesten fant bygdelista</h3>
+    <h3 class="font-semibold text-slate-800 mb-1 mt-6">2023: bygdelistenes comeback — men hvem de tok fra, er åpent</h3>
     <p class="text-slate-500 text-sm leading-relaxed mb-2">
-      Sp falt {byg["dsp_snitt"]:+.1f} pp i kommunevalget 2023; bygdelistene tok imot der
-      fallet var størst. Sammen med FrP-bølgen i 2025 tegner det protestens to arenaer:
-      lokalt går den til bygdelista, nasjonalt til Frp — og ingen av dem tilbake til de
-      gamle kanalene.
+      Sp falt {byg["dsp_snitt"]:+.1f} pp i kommunevalget 2023 mens bygdelistene vokste
+      {byg["dandre_snitt"]:+.1f} pp. Den negative samvariasjonen per kommune er imidlertid
+      i stor grad mekanisk (andeler summerer til hundre) og ikke sterkere for Sp enn for
+      Ap og Høyre — figuren viser mønsteret, men hvilke velgere bygdelistene faktisk tok,
+      kan bare individdata avgjøre.
     </p>
     <div class="plotly-chart">{plots["kanal"]}</div>
     <p class="text-xs text-slate-400 mt-2">
