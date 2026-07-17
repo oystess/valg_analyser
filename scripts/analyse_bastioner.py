@@ -20,7 +20,7 @@ Funn:
 
 Definisjoner: distriktsbastion = sentralitet 0–1 og Ap-andel ≥ periferimedianen
 i 2005 (referanseår fra prosjektets første analyse). Tilsvarende for sentrale.
-1989-baselinen korrigeres i minnet (Ap halvert) — se gjennomgang_analyse.md 1.1.
+1989-laget i kildedataene er permanent fikset (se hent_stv_fiks.py).
 Vang (3454) og Hamar (3403) utelates (mappingkollisjon).
 
 Injiserer seksjon i index.html mellom egne merker (idempotent):
@@ -53,11 +53,6 @@ SLUTT_M = "<!-- === SLUTT BASTIONER === -->"
 
 def last_data():
     sv = pd.read_csv(f"{PROCESSED}/stortingsvalg_2024.csv", dtype={"kom2024": str, "parti": str})
-    # Korriger 1989: Ap dobbelttalt
-    m89 = sv["aar"] == 1989
-    sv.loc[m89 & (sv["parti"] == "01"), "stemmer"] /= 2
-    tot89 = sv[m89].groupby("kom2024")["stemmer"].transform("sum")
-    sv.loc[m89, "prosent"] = sv.loc[m89, "stemmer"] / tot89 * 100
     sv = sv[~sv["kom2024"].isin(["3454", "3403"])]
 
     mapping = {r["gammelt_nr"]: r["nr_2024"]
@@ -151,7 +146,7 @@ def bygg_seksjon(df, stab, pers, deltas, gjen, figs) -> str:
     </div>
     <p class="text-slate-500 text-sm leading-relaxed mb-4">
       {n_bast} periferikommuner der Ap i 2005 lå over periferimedianen, fulgt 1989–2025
-      (korrigert 1989-baseline). Bastionene ble rystet før 2017 også — men forskjellen er hva som
+      (1989-data revidert mot fasit). Bastionene ble rystet før 2017 også — men forskjellen er hva som
       skjedde etterpå.
     </p>
 
@@ -197,7 +192,7 @@ def bygg_seksjon(df, stab, pers, deltas, gjen, figs) -> str:
     <div class="plotly-chart">{plots["kaskade"]}</div>
     <p class="text-xs text-slate-400 mt-2">
       Distriktsbastion = sentralitet 0–1 og Ap-andel ≥ periferimedianen i 2005. Stortingsvalgdata;
-      1989 korrigert for kjent datafeil. korr(ΔAp, ΔSp) 2021→25 i bastionene: r={gjen["korr2125"]:+.2f}
+      1989-laget revidert mot offisielle tall. korr(ΔAp, ΔSp) 2021→25 i bastionene: r={gjen["korr2125"]:+.2f}
       — noe direkte hjemvending, men marginal i nivå.
     </p>
   </section>

@@ -22,7 +22,23 @@ eller ikke testet.
 
 ## 1. Datakvalitet — funn fra revisjonen
 
-### 1.1 KRITISK: Ap 1989 er dobbelttalt
+### 1.1 KRITISK: Ap 1989 er dobbelttalt — ✅ PERMANENT FIKSET 2026-07-04
+
+**Status: løst.** Hele 1989-laget i `stortingsvalg_2024.csv` er erstattet med et
+ferskt SSB-uttrekk (se `scripts/hent_stv_fiks.py` for proveniens og validering).
+Fasit-sjekk etter fiks: 85/85 parti×år rene; nasjonal Sp-serie med korrigert
+nevner reproduserer offisielle tall eksakt (6,5 → 16,7 → … → 13,5 → 5,6).
+Vang/Hamar-kollisjonen er rettet i samme operasjon (Vang i Valdres: 1 039
+stemmer, før 10 900). Minne-korreksjonene i analyseskriptene er fjernet;
+rekjøring ga i praksis identiske resultater. RV-«mangelen» (pkt. 1.3) viste
+seg å være en misforståelse: RV stilte i 1989 som del av Fylkeslistene for
+miljø og solidaritet (kode 15, 22 139 stemmer) — kode 55 fantes ikke, null er
+korrekt. I tillegg: `stv_prosent_korrigert.csv` gir nå partiprosent med alle
+godkjente stemmer som nevner for alle år (Andre = 3,7 % i 2021, 4,5 % i 2025).
+Kjent resthull: 2009-mikropartier (3 692 stemmer, 0,14 %) finnes kun nasjonalt
+hos SSB. Opprinnelig feilbeskrivelse beholdes under for historikken.
+
+*(Opprinnelig funn, 2026-07-02:)*
 
 Nasjonale stemmesummer i `stortingsvalg_2024.csv` for 1989 mot offisielle tall:
 
@@ -427,8 +443,8 @@ andelen per kommune-år 1987–2023 — en egen, hittil umålt protestkanal.
 
 | # | Tiltak | Omfang |
 |---|--------|--------|
-| 1 | Fiks Ap-1989 (helst re-nedlasting via SSB MCP), legg til RV 1989, fiks Vang→Hamar | Middels |
-| 2 | Rekjør hele analysekjeden og oppdater rapporten; sjekk hvor mye β-ene flytter seg | Liten (når 1 er gjort) |
+| 1 | ~~Fiks Ap-1989, RV 1989, Vang→Hamar~~ **GJORT 2026-07-04** (hent_stv_fiks.py; RV-mangelen var en misforståelse — FMS-lista) | ✅ |
+| 2 | ~~Rekjør analysekjeden~~ **GJORT** — markør-seksjonene rekjørt, i praksis identiske tall. NB: rapportens GAMLE basisseksjoner (Senteropprøret β=−0,69 m.m.) er fortsatt beregnet på korrupt 1989 og venter på redaksjonell konsolidering (prioritet 2) | Delvis ✅ |
 | 3 | Fjern duplisert 2021-seksjon; legg injeksjonsmerker i `analyse.py`-malen | Liten |
 | 4 | H5: lagget avhengig variabel + reverstest | Liten |
 | 5 | H6: FrP-kontroll i bølgeregresjonene + interaksjonstest | Liten–middels |

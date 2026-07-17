@@ -11,9 +11,9 @@ Tester hypotesen om at bølgene har ulik karakter:
 Metode per bølge: standardisert OLS av ΔSp mot befolkningsvekst, med og uten
 sentralitetskontroll. Persistens: korrelasjon mellom bølgegevinst og påfølgende endring.
 
-NB: 1989-baselinen korrigeres i minnet (Ap-stemmer halveres, total/prosent
-rekonstrueres) pga. kjent dobbelttelling — se gjennomgang_analyse.md pkt. 1.1.
-Vang (3454) og Hamar (3403) utelates pga. mappingkollisjon.
+1989-laget i kildedataene er permanent fikset (se hent_stv_fiks.py); den
+tidligere minne-korreksjonen er fjernet. Vang/Hamar-utelatelsen beholdes for
+kontinuitet med tidligere kjøringer (kollisjonen er fikset i data).
 
 Del 2 — avterritorialiserings-testen (2025): tester om FrP-bølgen følger
 kjøpekraftsklemma (medianinntektsvekst 2021→2024) eller renteeksponering
@@ -53,13 +53,6 @@ SLUTT_M = "<!-- === SLUTT MEKANISMER === -->"
 def last_data():
     sv  = pd.read_csv(f"{PROCESSED}/stortingsvalg_2024.csv", dtype={"kom2024": str, "parti": str})
     bef = pd.read_csv(f"{PROCESSED}/befolkning_2024.csv", dtype={"kom2024": str})
-
-    # Korriger 1989: Ap dobbelttalt → halver, rekonstruer total og prosent
-    m89 = sv["aar"] == 1989
-    sv.loc[m89 & (sv["parti"] == "01"), "stemmer"] /= 2
-    tot89 = sv[m89].groupby("kom2024")["stemmer"].transform("sum")
-    sv.loc[m89, "total_stemmer"] = tot89
-    sv.loc[m89, "prosent"] = sv.loc[m89, "stemmer"] / tot89 * 100
 
     # Utelat mappingkollisjon Vang/Hamar
     sv = sv[~sv["kom2024"].isin(["3454", "3403"])]
@@ -151,7 +144,7 @@ def analyser_kanal_2025(sp, frp, bpiv, sent) -> dict:
 # ── FIGURER ──────────────────────────────────────────────────────────────────
 
 def fig_sp_niva(sp: pd.DataFrame, sent) -> go.Figure:
-    """Sp-nivå per sentralitetsgruppe 1989–2025 (korrigert 1989)."""
+    """Sp-nivå per sentralitetsgruppe 1989–2025."""
     niva = sp.join(sent).groupby("sent").mean()
     fig = go.Figure()
     for kode in [0, 1, 2, 3]:
@@ -260,7 +253,7 @@ def bygg_seksjon(bolger, pers_93, snitt_93_97, pers_17, snitt_17_21,
       Sps fire store bevegelser (1993, 2017, 2021, 2025) har ulik geografisk signatur.
       Sammenligningen under bruker standardiserte koeffisienter slik at bølgene kan måles mot hverandre,
       og skiller mellom <em>statisk periferi</em> (sentralitet) og <em>faktisk forvitring</em> (befolkningsnedgang).
-      1989-baselinen er korrigert for kjent datafeil (se metodenotat).
+      1989-dataene er revidert mot offisielle valgresultater (se metodenotat).
     </p>
 
     <div class="grid md:grid-cols-4 gap-3 text-sm mb-5">
