@@ -39,9 +39,8 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
   2013-nivå fortsatt i 2025). Da Sp kollapset i 2025 gikk bastionvelgerne videre
   til FrP (+13,5 pp), ikke hjem til Ap (+1,6). Kaskaden Ap → Sp → FrP.
 
-> ⚠️ **Kjent datafeil:** Ap-stemmene for 1989 i `stortingsvalg_2024.csv` er dobbelttalt
-> (se «Kjente feil» under). 1989-baserte tall (inkl. Senteropprøret-regresjonen β=−0,69)
-> må regnes på nytt etter datafiks. Se `gjennomgang_analyse.md` for detaljer.
+1989-laget i `stortingsvalg_2024.csv` ble revidert mot offisielle SSB-tall 2026-07-04
+(fasit-sjekk 85/85 parti×år; se `scripts/hent_stv_fiks.py` for proveniens).
 
 ## Repostruktur
 
@@ -62,6 +61,7 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
 │   ├── analyse_panel.py     # FE/between-panel 1987–2025 + timing-test (→ panel_plot.html)
 │   ├── grenser.py           # Kommunegrense-mapping 1987–1998 fra SSB-PDF (Claude API)
 │   ├── les_grenser_pdf.py   # PDF-ekstraksjon med Claude Haiku
+│   ├── hent_stv_fiks.py     # Proveniens/parser for den permanente 1989-fiksen + STV-nevnerkorreksjon (2026-07-04)
 │   └── *.R                  # Eldre R-arbeidsflyt (inaktiv)
 ├── data/
 │   ├── raw/                 # Kildedata: sentralitet, grensemappinger, rapp_9913.pdf, m.m.
@@ -74,6 +74,10 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
 │       ├── kjopekraft_2124.csv       # SSB 06944/07459: medianinntekt 2021/2024 + antall 25–44 år
 │       ├── akvakultur_syss_2017.csv  # SSB 13470: sysselsatte i akvakultur per kommune, 4. kv 2017
 │       ├── polls.csv                 # pollofpolls gallupsnitt — auto-oppdatert ukentlig
+│       ├── stv_fasit_nasjonal.csv    # SSB 08092 nasjonal fasit per parti/år (1989–2025), brukt til QA
+│       ├── stv_1989_ny.csv           # Ferskt SSB-uttrekk for 1989 per kommune (erstatter det korrupte laget)
+│       ├── stv_total_godkjente.csv   # Alle godkjente STV-stemmer per kommune-år (9-partisum + Andre)
+│       ├── stv_prosent_korrigert.csv # STV-partiprosent med alle godkjente stemmer som nevner
 │       └── *.html                    # Genererte figurfragmenter
 └── .github/workflows/       # update-polls (cron), deploy + jekyll-gh-pages (Pages)
 ```
@@ -121,18 +125,23 @@ kjent utestående oppgave.)
 
 Prioritert (detaljer og evidens i `gjennomgang_analyse.md`):
 
-1. **KRITISK — Ap 1989 dobbelttalt** i `stortingsvalg_2024.csv` (nasjonal sum 1,81 mill.
-   mot offisielt ~0,91 mill.; alle andre partier stemmer). Alle 1989-prosenter er feil
-   → Senteropprøret-regresjonene og nasjonalserien for 1989 må rekjøres etter fiks.
-2. **Vang-kollisjon:** Vang i Valdres (3454) har fått Vang i Hedmarks 1989-stemmer
-   (10 900 mot reelt ~950); Hamar mangler tilsvarende. Feil i grensemappingen.
-3. **Rødt/RV mangler i 1989** (offisielt ~21 000 stemmer).
-4. `total_stemmer` er summen av de 9 partiene, ikke alle godkjente stemmer —
-   prosentene er andel av 9-partisum og ligger systematisk litt over offisielle tall.
-5. **Duplisert «Senteropprøret 2021»-seksjon** i `index.html` (injeksjonsbug).
-6. Injeksjonsmerker mangler i `analyse.py`-malen (se advarsel over).
-7. To overlappende Pages-deploy-workflows (`deploy.yml` + `jekyll-gh-pages.yml`).
-8. `polls.csv` oppdateres ukentlig, men brukes ikke i rapporten ennå.
+1. **✅ Løst 2026-07-04:** Ap 1989-dobbeltellingen og Vang/Hamar-kollisjonen i
+   `stortingsvalg_2024.csv` er rettet med et ferskt SSB-uttrekk (fasit-sjekk 85/85);
+   den antatte «Rødt/RV mangler i 1989»-feilen viste seg å være en misforståelse
+   (RV stilte som Fylkeslistene for miljø og solidaritet, kode 15 — kode 55 fantes
+   ikke i 1989). Se `scripts/hent_stv_fiks.py`.
+2. `total_stemmer` i `stortingsvalg_2024.csv`/`kommunestyrevalg_2024.csv` er fortsatt
+   summen av de 9 partiene, ikke alle godkjente stemmer. Korrigerte partiprosenter med
+   alle godkjente stemmer som nevner finnes nå i `stv_prosent_korrigert.csv` (STV) og
+   `kv_prosent_korrigert.csv` (KV) — men rapportens eldre basisseksjoner bruker
+   fremdeles 9-partinevneren.
+3. **Duplisert «Senteropprøret 2021»-seksjon** i `index.html` (injeksjonsbug).
+4. Injeksjonsmerker mangler i `analyse.py`-malen (se advarsel over).
+5. To overlappende Pages-deploy-workflows (`deploy.yml` + `jekyll-gh-pages.yml`).
+6. `polls.csv` oppdateres ukentlig, men brukes ikke i rapporten ennå.
+7. **Kjent hull:** 2009-mikropartier (3 692 stemmer, 0,14 %) finnes kun på nasjonalt
+   nivå hos SSB, ikke per kommune — `stv_total_godkjente.csv` undervurderer
+   2009-totalen tilsvarende.
 
 ## GitHub Actions
 

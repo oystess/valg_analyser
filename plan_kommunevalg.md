@@ -92,5 +92,6 @@ variabel.
 | 3. Avviksretting (om nødvendig) | Fable | avhenger av funn |
 | 4. Kobling på analysene | Fable | én økt |
 
-NB: Den permanente STV-1989-fiksen (tiltak 1 i gjennomgangen) bør gjøres i
-samme runde — QA-skriptet fra del 2 gjenbrukes da direkte på stortingsvalgdataene.
+NB: Den permanente STV-1989-fiksen (tiltak 1 i gjennomgangen) er gjort
+2026-07-04 (se `scripts/hent_stv_fiks.py`) — QA-metodikken herfra kan
+gjenbrukes direkte på stortingsvalgdataene.
