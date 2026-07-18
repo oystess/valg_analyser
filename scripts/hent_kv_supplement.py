@@ -99,6 +99,15 @@ Produserer:
   data/processed/kv_fasit_nasjonal.csv
   data/processed/kv_deltakelse.csv
   data/processed/kv_andre_lister.csv
+
+PROVENIENS-ETTERNOTAT (2026-07-18): data/processed/kv_prosent_korrigert.csv
+  produseres IKKE av dette skriptet, men proveniensen manglet dokumentasjon
+  og noteres derfor her: filen ble avledet 2026-07-03 som
+  stemmer / total_stemmer_alle_partier, der total_stemmer_alle_partier per
+  kommune-år er summen av 9-partisummen i kommunestyrevalg_2024.csv OG
+  bygdeliste-/andre-liste-stemmene i kv_andre_lister.csv (dvs. samme
+  korreksjon som for STV i stv_prosent_korrigert.csv, se hent_stv_fiks.py).
+  Brukes av scripts/analyse_kv_revidert.py.
 """
 
 import csv

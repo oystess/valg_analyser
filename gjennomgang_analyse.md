@@ -189,11 +189,20 @@ Ap-dobbelttellingen (pkt. 1.1) forplantet seg rett inn i alle partiers nasjonale
 
 ### 4.2 Det som bør endres
 
-1. **Forsidefunnet må reberegnes** etter 1989-fiksen (pkt. 1.1). Inntil da bør
-   rapporten få en synlig fotnote/advarsel — den ligger offentlig på GitHub Pages.
-2. **Duplisert «Senteropprøret 2021»-seksjon** i `index.html`: overskriften og
-   inngangsteksten forekommer to ganger (én med markør, én uten) — en injeksjonsbug
-   fra `analyse_2021.py`. Fjern dubletten og sørg for at seksjonen har start/slutt-merker.
+1. **✅ Gjort 2026-07-04:** Forsidefunnet er reberegnet etter 1989-fiksen (pkt. 1.1):
+   β(ΔSp)=−0,60*** (R²=0,179, n=352), β(ΔAp)=+0,82*** (R²=0,348, n=352) — mot
+   β=−0,69/+0,87 på det korrupte grunnlaget. Fortegn og størrelsesorden består.
+   **✅ Redaksjonelt konsolidert 2026-07-18:** injeksjonsmerker lagt i
+   `analyse.py`-malen (pkt. 4 under) og hele rapporten regenerert fra bunn, slik
+   at basisseksjonene ikke lenger viser de gamle korrupte tallene.
+2. **✅ Gjort 2026-07-18:** Duplisert «Senteropprøret 2021»-seksjon i `index.html`
+   (overskriften og inngangsteksten forekom to ganger — én med markør, én uten,
+   en injeksjonsbug fra `analyse_2021.py`) er fjernet ved å legge kun
+   `<section id="analyse2021">`-åpningstaggen og de tomme markørene i
+   `analyse.py`-malen, uten egen duplikat-h2/intro. `analyse_2021.py`s egen
+   `</section>`-tagg (som tidligere var en løs, ubalansert lukketagg) lukker nå
+   riktig seksjon. Verifisert: «Senteropprøret 2021 — dybdeanalyse» forekommer
+   nøyaktig én gang, og `<section>`/`</section>` er i balanse (16/16).
 3. **H4-avkreftelsen bør sies eksplisitt** («effekten er IKKE sterkere i kommunevalg»)
    — nullfunn med god teoriforankring er et funn, ikke et hull.
 4. **H3/2021-avviket fortjener en tolkningsseksjon:** litteraturen (Nordregio,
@@ -238,8 +247,10 @@ bølgeregresjoner (korrigert 1989-baseline i minnet), implementert i
   protest. (Ikke direkte testet — krever f.eks. sammenligning med Sps fall etter
   regjeringsdeltakelsen 2005–2013.)
 
-NB: 1993-radene bygger på minne-korreksjonen av Ap-1989 (pkt. 1.1) og er robuste i
-fortegn og størrelsesorden, men skal reberegnes når datafiksen er gjort permanent.
+NB: 1993-radene bygde opprinnelig på minne-korreksjonen av Ap-1989 (pkt. 1.1).
+**✅ Reberegnet 2026-07-04** mot den permanente datafiksen — tallene i tabellen
+over er i praksis identiske (jf. pkt. 1.1: minne-korreksjonen ga samme resultat
+som den permanente fiksen).
 
 ### 5.1 Oppfølging (2026-07-02): Ble left behind-mekanismen avterritorialisert i 2025?
 
@@ -444,8 +455,8 @@ andelen per kommune-år 1987–2023 — en egen, hittil umålt protestkanal.
 | # | Tiltak | Omfang |
 |---|--------|--------|
 | 1 | ~~Fiks Ap-1989, RV 1989, Vang→Hamar~~ **GJORT 2026-07-04** (hent_stv_fiks.py; RV-mangelen var en misforståelse — FMS-lista) | ✅ |
-| 2 | ~~Rekjør analysekjeden~~ **GJORT** — markør-seksjonene rekjørt, i praksis identiske tall. NB: rapportens GAMLE basisseksjoner (Senteropprøret β=−0,69 m.m.) er fortsatt beregnet på korrupt 1989 og venter på redaksjonell konsolidering (prioritet 2) | Delvis ✅ |
-| 3 | Fjern duplisert 2021-seksjon; legg injeksjonsmerker i `analyse.py`-malen | Liten |
+| 2 | ~~Rekjør analysekjeden~~ **GJORT** — markør-seksjonene rekjørt, i praksis identiske tall. **✅ Redaksjonelt konsolidert 2026-07-18:** basisseksjonene er regenerert fra bunn (β(ΔSp)=−0,60***, β(ΔAp)=+0,82*** mot −0,69/+0,87 på korrupt grunnlag) | ✅ |
+| 3 | ~~Fjern duplisert 2021-seksjon; legg injeksjonsmerker i `analyse.py`-malen~~ **GJORT 2026-07-18** | ✅ |
 | 4 | H5: lagget avhengig variabel + reverstest | Liten |
 | 5 | H6: FrP-kontroll i bølgeregresjonene + interaksjonstest | Liten–middels |
 | 6 | Valider grensemappingen systematisk mot navnebror-kommuner | Liten |

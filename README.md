@@ -58,10 +58,12 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
 │   ├── analyse_mekanismer.py # Fire bølger, tre mekanismer: 1993/2017/2021/2025 (injiserer, idempotent)
 │   ├── analyse_havbruk.py   # Velstående periferi: akvakultur demper Sp-byks 2017 (fase 2 venter på Havbruksfond-data)
 │   ├── analyse_bastioner.py # Aps distriktsbastioner 1989–2025: elastiske til 2017, så kaskaden Ap→Sp→FrP (injiserer)
-│   ├── analyse_panel.py     # FE/between-panel 1987–2025 + timing-test (→ panel_plot.html)
+│   ├── analyse_kv_revidert.py # H5 revidert (lagget DV+reverstest), H4 m/korrigert nevner, bygdelistene (injiserer)
+│   ├── analyse_panel.py     # FE/between-panel 1987–2025 + timing-test (→ panel_plot.html, IKKE del av injeksjonskjeden)
 │   ├── grenser.py           # Kommunegrense-mapping 1987–1998 fra SSB-PDF (Claude API)
 │   ├── les_grenser_pdf.py   # PDF-ekstraksjon med Claude Haiku
 │   ├── hent_stv_fiks.py     # Proveniens/parser for den permanente 1989-fiksen + STV-nevnerkorreksjon (2026-07-04)
+│   ├── hent_kv_supplement.py # KV-fasit/deltakelse/andre-lister + proveniensnotat for kv_prosent_korrigert.csv
 │   └── *.R                  # Eldre R-arbeidsflyt (inaktiv)
 ├── data/
 │   ├── raw/                 # Kildedata: sentralitet, grensemappinger, rapp_9913.pdf, m.m.
@@ -86,30 +88,50 @@ En kritisk gjennomgang av analysen mot litteraturen ligger i **`gjennomgang_anal
 
 ```bash
 pip install numpy pandas statsmodels plotly linearmodels
-# Alle skript kjøres fra repo-roten:
-python scripts/analyse.py        # ⚠️ se advarsel under
+# Alle skript kjøres fra repo-roten, i DENNE rekkefølgen:
+python scripts/analyse.py              # bygger fersk basis — se merknad under
 python scripts/analyse_2017.py
 python scripts/analyse_2021.py
 python scripts/matrise.py
-python scripts/analyse_mekanismer.py  # injiserer m/ egne merker — trygg å rekjøre
+python scripts/analyse_mekanismer.py
+python scripts/analyse_bastioner.py
+python scripts/analyse_kv_revidert.py  # krever linearmodels
+
+# Frittstående (skriver IKKE til index.html, ikke del av kjeden over):
 python scripts/analyse_panel.py  # → panel_plot.html + panel_resultater.csv
 ```
 
 `grenser.py`/`les_grenser_pdf.py` krever i tillegg `anthropic`, `pymupdf`/`poppler-utils`
 og `ANTHROPIC_API_KEY` — de trengs bare for å gjenskape grensemappingene.
 
-### ⚠️ Regenererings-advarsel — les før du kjører `analyse.py`
+### Regenerering av `index.html`
 
 `index.html` bygges i **lag**: `analyse.py` skriver basissiden, deretter *injiserer*
-`analyse_2017.py`, `analyse_2021.py` og `matrise.py` sine seksjoner mellom
-HTML-kommentarmerker (`<!-- === SLUTT ... === -->`) i den eksisterende filen.
+de seks andre skriptene over sine seksjoner mellom HTML-kommentarmerker
+(`<!-- === START/SLUTT ... === -->`) i den eksisterende filen, i rekkefølgen de
+kjøres over.
 
-**Basis-malen i `analyse.py` inneholder ikke disse merkene.** Kjører du `analyse.py`
-alene, slettes alle injiserte seksjoner (~750 linjer), og delskriptene finner ikke
-igjen injeksjonspunktene sine. Den committede `index.html` er altså et akkumulert
-artefakt. Regenerer aldri rapporten uten å kjøre *hele* kjeden i rekkefølgen over —
-og verifiser at alle seksjoner overlevde. (Å legge merkene inn i basis-malen er en
-kjent utestående oppgave.)
+**Siden 2026-07-18 inneholder basis-malen i `analyse.py` alle nødvendige merker og
+ankere**, så full regenerering er trygg: kjør `analyse.py` først (den bygger en
+fersk basisside MED tomme injeksjonspunkter for `analyse_2021.py` og `matrise.py`,
+samt ankeret `<!-- === SLUTT PROTESTSTEMMEN === -->` som de tre nyeste skriptene
+(`analyse_mekanismer.py` → `analyse_bastioner.py` → `analyse_kv_revidert.py`)
+kjeder seg etter via egne fallback-ankere), og kjør deretter de seks andre
+skriptene i rekkefølgen over. Verifiser etterpå at alle forventede `<h2>`-
+seksjoner finnes nøyaktig én gang (se sjekklisten i `gjennomgang_analyse.md`).
+
+Tre seksjoner uten eget genererende skript (**«Panel-analyse 1987–2025»**,
+«Proteststemmen vandrer» og «Sp 2017→2021: alle 351 kommuner») er kopiert
+direkte inn i `analyse.py`-malen som statisk innhold,
+siden `analyse_panel.py` ikke er del av injeksjonskjeden. Disse tallene
+oppdateres derfor IKKE automatisk — kjør `analyse_panel.py` manuelt og
+oppdater malen for hånd om panelresultatene endres.
+
+**Kjent, akseptert tap ved regenerering:** en liten «Bonus: Periferi +
+fraflytting = dobbelt effekt»-avsnitt med egen figur lå tidligere håndskrevet
+inne i det markørbegrensede 2021-avsnittet (utenfor `analyse_2021.py`s egen
+mal) og forsvinner ved enhver kjøring av `analyse_2021.py`, uavhengig av
+merker i malen. Ikke del av de forventede seksjonene.
 
 ## Datapipeline
 
@@ -133,10 +155,15 @@ Prioritert (detaljer og evidens i `gjennomgang_analyse.md`):
 2. `total_stemmer` i `stortingsvalg_2024.csv`/`kommunestyrevalg_2024.csv` er fortsatt
    summen av de 9 partiene, ikke alle godkjente stemmer. Korrigerte partiprosenter med
    alle godkjente stemmer som nevner finnes nå i `stv_prosent_korrigert.csv` (STV) og
-   `kv_prosent_korrigert.csv` (KV) — men rapportens eldre basisseksjoner bruker
-   fremdeles 9-partinevneren.
-3. **Duplisert «Senteropprøret 2021»-seksjon** i `index.html` (injeksjonsbug).
-4. Injeksjonsmerker mangler i `analyse.py`-malen (se advarsel over).
+   `kv_prosent_korrigert.csv` (KV) — rapportens basisseksjoner bruker fremdeles
+   9-partinevneren, men har siden 2026-07-18 en metodefotnote i footeren som
+   forklarer avviket og lenker til de korrigerte filene (Andre = 3,7 % i 2021,
+   4,5 % i 2025).
+3. **✅ Løst 2026-07-18:** Duplisert «Senteropprøret 2021»-seksjon i `index.html`
+   (injeksjonsbug) er fjernet — se `gjennomgang_analyse.md` §4.2 pkt. 2.
+4. **✅ Løst 2026-07-18:** Injeksjonsmerker og -ankere ligger nå i `analyse.py`-
+   malen; full regenerering av `index.html` fra bunn er trygg (se «Regenerering
+   av index.html» over).
 5. To overlappende Pages-deploy-workflows (`deploy.yml` + `jekyll-gh-pages.yml`).
 6. `polls.csv` oppdateres ukentlig, men brukes ikke i rapporten ennå.
 7. **Kjent hull:** 2009-mikropartier (3 692 stemmer, 0,14 %) finnes kun på nasjonalt
