@@ -34,4 +34,5 @@
 | andel_offentlig_t0 | % | Tilsvarende for offentlig administrasjon, undervisning og helse- og sosialtjenester | SSB 07984 |
 
 **Lekkasjevern:** Andre partiers andeler i t1 og d_{annet parti} regnes som del av utfallet og kan **ikke** brukes som forklaringsvariabler for d_sp, fordi andelene summerer mekanisk til 100. Nivåer i t0 ({parti}_t0) er tillatt.
+**Nuller:** Rådatafilene i `data/raw/ssb/` er lagret uten rader med verdien 0. En næring som mangler for en kommune, betyr derfor 0 sysselsatte i næringen (for eksempel industri i Utsira og Leka), og andelen settes til 0.
 **Kjente begrensninger:** Utdanning har noen hundre personer per år med ukjent kommune fra 2003. Flyttetallene har under 300 personer per år med ukjent kommune. Små kommuner har store, støyete endringer: Andøy fikk Sp 72 % i 2021, og Træna og Utsira har få velgere.
