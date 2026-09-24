@@ -1,0 +1,71 @@
+{
+ "hypoteser": [
+  {
+   "id": "H14",
+   "status_din": "robust",
+   "status_fil": "robust",
+   "b_din": -0.19608210477014376,
+   "b_fil": -0.19608210477014376,
+   "avvik": [],
+   "merknader": "Mellomledd (gruppegjennomsnitt av vekst4_pst) er stabilt negativt og signifikant i alle uten_fylke- og uten_periode-kjøringer; ikke drevet av én periode eller få kommuner."
+  },
+  {
+   "id": "H31",
+   "status_din": "robust",
+   "status_fil": "robust",
+   "b_din": 0.18204259194462993,
+   "b_fil": 0.18204259194462993,
+   "avvik": [],
+   "merknader": "Nøkkelleddet sammenligner 2013/2017 mot alle andre perioder samlet, ikke spesifikt mot 1989-93 slik påstanden hevder. Låst.json sin egen falsifiseringssjekk (ap_t0-helning i 1989-93) dekker dette utenfor hovedkoeffisienten; ikke en motstrid, men en identifikasjonsbegrensning verdt å merke."
+  },
+  {
+   "id": "H24",
+   "status_din": "robust",
+   "status_fil": "robust",
+   "b_din": -0.5854021318464672,
+   "b_fil": -0.5854021318464672,
+   "avvik": [],
+   "merknader": "Utvalget har bare 2 perioder (1989-1993, 2013-2017), n=714/357 kommuner. uten_periode-/per_periode-kjøringene feiler nødvendigvis (leddet forsvinner når 1 periode gjenstår); dette teller ikke mot robusthet per protokoll, men periode-robusthet er reelt ikke testbar for denne hypotesen - kun fylkes-robusthet og uten_estimert er reelt sjekket."
+  },
+  {
+   "id": "H16",
+   "status_din": "robust",
+   "status_fil": "robust",
+   "b_din": -0.8180280293523748,
+   "b_fil": -0.8180280293523748,
+   "avvik": [],
+   "merknader": "Uvektet estimat er vesentlig større i absoluttverdi (-1.16 mot -0.82), og uten_fylke_Vestland gir klart svakere effekt (-0.51), men fortegn er konsistent negativt overalt der leddet er identifisert. Låst.json flagger selv rådata +1.0 i 2021-25 som kjent risiko; per_periode-tallene (utenfor krav) bekrefter at 2013-17 og 1993-97 driver mesteparten av effekten, mens 2021-25-bidraget er svakt."
+  },
+  {
+   "id": "H04",
+   "status_din": "ustabilt",
+   "status_fil": "ustabilt",
+   "b_din": 0.05948696404013954,
+   "b_fil": 0.05948696404013954,
+   "avvik": [],
+   "merknader": "Hoved og Holm-p er som forventet, men uvektet snur fortegn (negativt), derfor ustabilt jf. protokoll. Ingen avvik fra resultatfilen."
+  },
+  {
+   "id": "H32",
+   "status_din": "robust",
+   "status_fil": "robust",
+   "b_din": -0.5154606065434739,
+   "b_fil": -0.5154606065434739,
+   "avvik": [],
+   "merknader": "Interaksjonsleddet (vekst4_pst i 1989/2013) er konsistent negativt og signifikant i alle robusthetskjøringer. Dette er nesten identisk med den mobiliseringsdummyen hypotesen selv definerer, så resultatet er forventet mekanisk knyttet til 1989- og 2013-periodene - ikke en feil, men verdt å merke at 'robusthet' her delvis er en gjentagelse av definisjonen."
+  }
+ ],
+ "holm": {
+  "ok": true,
+  "avvik": []
+ },
+ "panel_hash_ok": true,
+ "motstrid": [],
+ "ikke_sjekket": [
+  "alt sjekket"
+ ],
+ "konklusjon": {
+  "status": "godkjent",
+  "avvik": 0
+ }
+}

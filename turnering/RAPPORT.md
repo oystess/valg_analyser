@@ -18,7 +18,7 @@
 ### Fem robuste mønstre
 
 1. **Befolkningsnedgang som varig kjennetegn, ikke som hendelse (H14).** Kommuner som over hele 1989–2025 har hatt lav befolkningsvekst, har i snitt sterkere Sp-utvikling. Når vi har tatt høyde for det varige nivået, betyr en ekstra dårlig periode for den enkelte kommunen lite. En kommune med ett standardavvik (3 prosentpoeng) lavere gjennomsnittlig fireårsvekst har i snitt ca. **0,6 pp mer Sp-framgang per periode**.
-2. **Sp-bølgen 2013–2021 gikk gjennom Ap-land (H31).** I 2013–17 og 2017–21 økte Sp mer i kommuner der Ap sto sterkt ved periodens start. Mønsteret fantes ikke i bølgen 1989–93. Ett standardavvik høyere Ap-andel (8,5 pp) følger med ca. **1,5 pp mer Sp-framgang** i disse to periodene.
+2. **Sp-bølgen 2013–2021 gikk gjennom Ap-land (H31).** I 2013–17 og 2017–21 økte Sp mer i kommuner der Ap sto sterkt ved periodens start, sammenlignet med de andre periodene samlet. Nøkkelleddet tester ikke 1989–93 spesifikt, så påstanden om at mønsteret manglet i den første bølgen er ikke testet. Ett standardavvik høyere Ap-andel (8,5 pp) følger med ca. **1,5 pp mer Sp-framgang** i disse to periodene.
 3. **Den kristne motkulturen snudde (H24).** I 1989–93 fulgte KrF-sterke kommuner med i Sp-bølgen. I 2013–17 fikk de klart *mindre* Sp-framgang. Forskjellen i helning er −0,59 pp per KrF-prosentpoeng, altså ca. **−3,7 pp for ett standardavvik** (6,4 pp).
 4. **Vestlandet falt fra i 2013–2021, men kom tilbake i 2021–25 (H16).** Vestlandskommuner hadde svakere Sp-utvikling i 2013–2021 enn Sp-nivå, sentralitet og KrF-styrke skulle tilsi (−0,8 pp per periode samlet). **Men mønsteret snudde i 2021–25** (+0,5 pp). Det er altså ikke en varig forskyvning, og det samlede estimatet skjuler dette skiftet.
 5. **Befolkningsnedgang betydde mest i bølgene som startet lavt (H32).** Sammenhengen mellom fireårsvekst og Sp-framgang var sterk i 1989–93 og 2013–17 (−0,52 pp per prosentpoeng vekst, i tillegg til den vanlige sammenhengen), men ikke i 2017–21. Den finnes ikke i kommunevalget.
@@ -47,7 +47,7 @@ Alle modellene har klyngerobuste standardfeil på kommune. Hovedspesifikasjonen 
 | Id | Elo (plass) | Påstand (kort) | b (95 % KI) | Holm-p | Uvektet | Uten estimerte | Uten fylke (min–maks) | KV | Status |
 |---|---|---|---|---|---|---|---|---|---|
 | H14 | 1119 (1) | Varig lav vekst ↔ Sp-framgang | −0,196 (−0,269; −0,123) | < 0,001 | −0,216 | −0,191 | −0,231 til −0,162 | −0,181 | **robust** |
-| H31 | 1094 (2) | Ap-land ↔ Sp-framgang 2013–21 | +0,182 (0,141; 0,224) | < 0,001 | +0,201 | +0,182 | 0,164 til 0,209 | +0,138 | **robust** |
+| H31 | 1094 (2) | Ap-land ↔ Sp-framgang 2013–21 (mot alle andre perioder) | +0,182 (0,141; 0,224) | < 0,001 | +0,201 | +0,182 | 0,164 til 0,209 | +0,138 | **robust** |
 | H24 | 1062 (3) | KrF-sammenhengen snudde fra 1989–93 til 2013–17 | −0,585 (−0,687; −0,484) | < 0,001 | −0,580 | −0,591 | −0,658 til −0,521 | −0,212 | **robust** |
 | H16 | 1033 (5) | Vestlandet svakere 2013–21 | −0,818 (−1,106; −0,530) | < 0,001 | −1,159 | −0,799 | −1,028 til −0,506 | −0,530 | **robust** (snur i 2021–25) |
 | H04 | 1033 (6) | Små kommuner med nedgang | +0,059 (0,043; 0,076) | < 0,001 | **−0,003** | +0,060 | 0,053 til 0,067 | +0,049 | **ustabilt** |
@@ -100,7 +100,14 @@ Elo-forskjellene fra ca. 5. plass og nedover er små (1031–1033 for plass 5–
 
 ## Uavhengig kontroll
 
-*(Fylles inn når kontroll 7K er ferdig.)*
+Kontroll 7K brukte en annen modell (Sonnet) og så verken koden eller resonnementet. Den gjenskapte alle 6 hovedkjøringene, hele robusthetsbatteriet, Holm-korreksjonen og statusene fra protokollen i `låst.json`. **Resultat: godkjent, 0 avvik, ingenting uten kontroll** (`kontroll/7K_kjoring.json`). Panelets hash stemmer med låsingen.
+
+Kontrollens merknader, som er tatt inn over:
+- H31 sammenligner 2013–21 med alle andre perioder, ikke med 1989–93.
+- H24 har bare to perioder, så robustheten over perioder kan ikke testes.
+- H16 spriker mye mellom vektet og uvektet og når Vestland utelates, men fortegnet holder overalt.
+
+Datakontroll 0K regnet hele panelet på nytt fra rådata og godkjente det (`kontroll/0K_data.json`).
 
 ## Dekningsrapport
 

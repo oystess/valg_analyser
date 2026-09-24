@@ -119,10 +119,10 @@ Fast overhead er ca. 9 × 70 000 ≈ 0,63 mill. tokens. Med ca. 150–250 parvis
 
 | # | Spørsmål | Svar |
 |---|---|---|
-| 1 | Utfall | *Foreslått, venter på svar:* Δ Sp i stortingsvalg. KV og Sp + FrP brukes som robusthet. |
+| 1 | Utfall | **OK (2026-09-24):** Δ Sp i stortingsvalg. KV og Sp + FrP brukes som robusthet. |
 | 2 | Holdout | **Dropp holdout.** Målet er beskrivende. Robusthetsbatteriet (§6) brukes i stedet. |
-| 3 | Tidsvindu | *Foreslått, venter på svar:* hele perioden for befolkning, alder, utdanning og sentralitet. Inntekt og næring bare i en undermodell 2005–2025. |
+| 3 | Tidsvindu | **OK (2026-09-24):** hele perioden for befolkning, alder, utdanning og sentralitet. Inntekt og næring bare i en undermodell 2005–2025. |
 | 4 | Sentralitet | **Løst.** SSBs indeks er levert av Øystein, se `data/raw/ssb/sentralitet_klass.csv`. |
-| 5 | Budsjett | *Foreslått, venter på svar:* 9 agentstarter, ca. 1,5–2,5 mill. tokens |
-| 6 | Nettsiden | *Foreslått, venter på svar:* oppdateres først etter at rapporten er godkjent |
-| 7 | Gamle skript | *Foreslått, venter på svar:* arkiveres i `arkiv/` |
+| 5 | Budsjett | **OK (2026-09-24):** 9 agentstarter, ca. 1,5–2,5 mill. tokens |
+| 6 | Nettsiden | **OK (2026-09-24):** oppdateres først etter at rapporten er godkjent |
+| 7 | Gamle skript | **OK (2026-09-24):** arkiveres i `arkiv/` |
