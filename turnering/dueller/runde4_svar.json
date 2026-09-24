@@ -1,0 +1,122 @@
+[
+ {
+  "oppgave": "R4-07a",
+  "vinner": "H23",
+  "begrunnelse": "Eksplorativ støtte og mekanisme: H23s interaksjon er sterk (p=1e-8) og konkretiserer tjenestetap-kanalen, mens H07 er moderat og svekkes uten primærkontroll; H23s skjørhet ved dikotom dummy trekker noe ned."
+ },
+ {
+  "oppgave": "R4-11a",
+  "vinner": "H27",
+  "begrunnelse": "Nyhetsverdi og støtte: H27 overlever sentralitet × periode-kontroll med et bølgespesifikt mønster, mens H30s egen sjekk peker direkte mot målefeil/regresjon mot middelverdien."
+ },
+ {
+  "oppgave": "R4-06a",
+  "vinner": "H20",
+  "begrunnelse": "Nyhetsverdi og mekanisme: H20 skiller komposisjon fra flytting substansielt og har støtte også uvektet, mens H22 er svak vektet og trolig drevet av støy fra små kommuner."
+ },
+ {
+  "oppgave": "R4-09b",
+  "vinner": "H10",
+  "begrunnelse": "Testbarhet: H10s spesifikasjon måler den episodiske FrP-påstanden direkte, mens H28s kv_d_sp overlapper i tid med utfallet og måler forløper-påstanden uklart."
+ },
+ {
+  "oppgave": "R4-05b",
+  "vinner": "H16",
+  "begrunnelse": "Nyhetsverdi: H16 viser en regional forskyvning i Sp-geografien med speilbilde i nord/innland, mens H02 delvis er proporsjonal sving/regresjon mot middelverdien."
+ },
+ {
+  "oppgave": "R4-11b",
+  "vinner": "H27",
+  "begrunnelse": "Mekanisme: begge er delvis mekaniske, men H27 har en bølgeasymmetri som ikke er ren regresjon, mens H30s samspill med oppgang er ≈ 0."
+ },
+ {
+  "oppgave": "R4-04a",
+  "vinner": "H04",
+  "begrunnelse": "Testbarhet: H04 kan spesifiseres uten skjønn og holder mot en robusthetssjekk, mens H06s oppgangsperioder er definert etter at tallene var sett."
+ },
+ {
+  "oppgave": "R4-00a",
+  "vinner": "H29",
+  "begrunnelse": "Eksplorativ støtte: H29s gradientskifte er sterkt og tallfestet per periode, mens H25s 2013–17-kobling nesten forsvinner med kontroll for partinivå."
+ },
+ {
+  "oppgave": "R4-08b",
+  "vinner": "H18",
+  "begrunnelse": "Eksplorativ støtte: H18s interaksjon er robust vektet og uvektet, mens H26s inntektsledd bare framkommer med sentralitetskontroll."
+ },
+ {
+  "oppgave": "R4-02a",
+  "vinner": "H31",
+  "begrunnelse": "Nyhetsverdi og eksplorativ støtte: H31s Ap-mønster er uventet og konsistent i begge bølgeperiodene (p=8e-18), mens H32s valg av utløserperioder er mer skjønnspreget."
+ },
+ {
+  "oppgave": "R4-08a",
+  "vinner": "H18",
+  "begrunnelse": "Testbarhet og støtte: H18 har en ren interaksjon som holder uvektet, mens H26s resultat er følsomt for kontrollvalget."
+ },
+ {
+  "oppgave": "R4-01a",
+  "vinner": "H14",
+  "begrunnelse": "Testbarhet og nyhetsverdi: H14s Mundlak-dekomponering gir et grunnleggende skille mellom kommunetype og utløser, mens H19s landbruksinteresse er mer forventet."
+ },
+ {
+  "oppgave": "R4-01b",
+  "vinner": "H14",
+  "begrunnelse": "Nyhetsverdi: H14 omformer lesningen av befolkningsnedgang, mens H19 bekrefter et forventet næringsmønster."
+ },
+ {
+  "oppgave": "R4-00b",
+  "vinner": "H29",
+  "begrunnelse": "Robusthet og presisjon: H29 har tydelige per-periode-helninger (p=9e-22), mens H25 svekkes betydelig med kontroll for partinivå ved t0."
+ },
+ {
+  "oppgave": "R4-06b",
+  "vinner": "H20",
+  "begrunnelse": "Nyhetsverdi: H20s skille mellom fødselsbalanse og utflytting er mer informativt enn H22s størrelsesledd, som domineres av sentralitet."
+ },
+ {
+  "oppgave": "R4-03b",
+  "vinner": "H24",
+  "begrunnelse": "Eksplorativ støtte: H24s fortegnsskifte for KrF er svært sterkt (p=2e-29), mens H01s innen-fylke-ledd er marginalt (p=0,041), selv om falsifiseringsregelen er presis."
+ },
+ {
+  "oppgave": "R4-10b",
+  "vinner": "H15",
+  "begrunnelse": "Testbarhet: H15 har en positiv, falsifiserbar påstand med en substansiell mekanisme, mens H17 er en nullhypotese med omvendt falsifiseringslogikk."
+ },
+ {
+  "oppgave": "R4-03a",
+  "vinner": "H24",
+  "begrunnelse": "Støtte og nyhetsverdi: H24 viser at ulike bølger mobiliserer ulike geografier med sterk støtte, mens H01 hviler på et svakt og grensenært ledd."
+ },
+ {
+  "oppgave": "R4-02b",
+  "vinner": "H31",
+  "begrunnelse": "Nyhetsverdi: at den andre Sp-bølgen hadde et annet partinedslagsfelt er mindre åpenbart enn H32s tidsavgrensning av nedgangseffekten, og støtten er sterkere."
+ },
+ {
+  "oppgave": "R4-05a",
+  "vinner": "H16",
+  "begrunnelse": "Nyhetsverdi og mekanisme: H16s Rokkan-baserte regionforskyvning er mindre åpenbar enn H02s tilbakeslagsasymmetri, som delvis er mekanisk."
+ },
+ {
+  "oppgave": "R4-04b",
+  "vinner": "H04",
+  "begrunnelse": "Testbarhet og mekanisme: H04s terskelmekanisme er forhåndsspesifiserbar, mens H06s periodevalg er ettertilpasset, til tross for sterk støtte."
+ },
+ {
+  "oppgave": "R4-09a",
+  "vinner": "H10",
+  "begrunnelse": "Testbarhet og nyhetsverdi: H10 er en ren bølge × nivå-test med klar kontrafaktisk logikk, mens H28 har erkjent sjokkoverlapp mellom forklaring og utfall."
+ },
+ {
+  "oppgave": "R4-10a",
+  "vinner": "H15",
+  "begrunnelse": "Presisjon og mekanisme: H15 skiller industriperiferien fra annen periferi, mens H17 tolker manglende signifikans som støtte."
+ },
+ {
+  "oppgave": "R4-07b",
+  "vinner": "H23",
+  "begrunnelse": "Eksplorativ støtte: H23 har klart sterkere støtte for en konkret mekanisme enn H07s offentlig sektor-ledd (p=0,005)."
+ }
+]
