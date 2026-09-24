@@ -1,1 +1,2 @@
 - Runde 1: dommeren ga én dom per par og brukte den for begge rekkefølger (opplyst av dommeren). Rekkefølgekontrollen i runde 1 er derfor ikke uavhengig. Fra runde 2 er hver oppgave dømt for seg, men av samme agent.
+- E1-03: kritikerens revisjon byttet C(fylke) med C(landsdel) i formelen uten å oppdatere påstanden. Dommeren påpekte avviket i runde 6 og trakk ned for testbarhet.
