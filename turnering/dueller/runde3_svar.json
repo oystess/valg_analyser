@@ -1,0 +1,122 @@
+[
+ {
+  "oppgave": "R3-11b",
+  "vinner": "H22",
+  "begrunnelse": "Testbarhet: H22 har en positiv, falsifiserbar påstand (om enn svak, p=0,042), mens H17 er en nullhypotese der manglende signifikans tolkes som støtte."
+ },
+ {
+  "oppgave": "R3-05a",
+  "vinner": "H32",
+  "begrunnelse": "Eksplorativ støtte og mekanisme: H32s nedgang × utløserperiode-ledd er sterkt (p=6e-10) med en tydelig tjenestetap-mekanisme, mens H07 er moderat og avhenger av primærkontrollen."
+ },
+ {
+  "oppgave": "R3-11a",
+  "vinner": "H22",
+  "begrunnelse": "Testbarhet og presisjon: H22 skiller størrelse fra sentralitet med en vanlig falsifiseringsregel, mens H17s omvendte logikk gjør testen mindre informativ."
+ },
+ {
+  "oppgave": "R3-08a",
+  "vinner": "H04",
+  "begrunnelse": "Testbarhet og mekanisme: H04s terskelmekanisme er konkret og holder mot sent_klasse-samspill, mens H10s resultat er følsomt og snur uten periodespesifikk sp_t0-kontroll."
+ },
+ {
+  "oppgave": "R3-03a",
+  "vinner": "H06",
+  "begrunnelse": "Nyhetsverdi og eksplorativ støtte: H06s asymmetri mellom oppgang og nedgang er sterk og ny, mens H26s inntektsledd bare framkommer med sentralitetskontroll."
+ },
+ {
+  "oppgave": "R3-08b",
+  "vinner": "H04",
+  "begrunnelse": "Mekanisme og robusthet: H04 har en konkret ikke-lineær tjenestemekanisme med sterk støtte, mens H10s fortegn avhenger kritisk av kontrollvalget."
+ },
+ {
+  "oppgave": "R3-09a",
+  "vinner": "H15",
+  "begrunnelse": "Mekanisme og nyhetsverdi: H15 skiller industriperiferien fra agrar periferi med en substansiell mekanisme, mens H30s egen sjekk peker mot regresjon mot middelverdien (åpenbart)."
+ },
+ {
+  "oppgave": "R3-07b",
+  "vinner": "H24",
+  "begrunnelse": "Nyhetsverdi og eksplorativ støtte: H24s fortegnsskifte for KrF mellom bølgene er sterkt og nytt, mens H23 blir null med en dikotom periferidummy."
+ },
+ {
+  "oppgave": "R3-07a",
+  "vinner": "H24",
+  "begrunnelse": "Testbarhet og støtte: H24 har en ren to-periode-kontrast med sterk støtte, mens H23s lineære sent_klasse-samspill er skjørt."
+ },
+ {
+  "oppgave": "R3-05b",
+  "vinner": "H32",
+  "begrunnelse": "Eksplorativ støtte: H32 har klart sterkere og mer innholdsrik støtte enn H07s offentlig sektor-ledd, som er svakere uten primærkontroll."
+ },
+ {
+  "oppgave": "R3-03b",
+  "vinner": "H06",
+  "begrunnelse": "Eksplorativ støtte: H06s samspill er svært sterkt (p=1e-46) og innsiktsfullt, mens H26 er moderat og avhengig av kontrollene; H06s etterhånds-definerte perioder trekker noe ned."
+ },
+ {
+  "oppgave": "R3-01a",
+  "vinner": "H14",
+  "begrunnelse": "Testbarhet og nyhetsverdi: H14s mellom/innen-dekomponering besvarer et grunnleggende spørsmål om hva befolkningsnedgang markerer, med to klare falsifiseringsvilkår; noe mer fundamentalt enn H31s partimønster."
+ },
+ {
+  "oppgave": "R3-00a",
+  "vinner": "H25",
+  "begrunnelse": "Nyhetsverdi og eksplorativ støtte: H25 motsier den forventede reform-timingen med sterk interaksjon, mens H19s primærnæringseffekt er mer forventet."
+ },
+ {
+  "oppgave": "R3-02b",
+  "vinner": "H29",
+  "begrunnelse": "Eksplorativ støtte og presisjon: H29 har sterke, tallfestede per-periode-helninger (p=9e-22), mens H01s nøkkelledd er marginalt (p=0,041)."
+ },
+ {
+  "oppgave": "R3-04b",
+  "vinner": "H16",
+  "begrunnelse": "Eksplorativ støtte og nyhetsverdi: H16 viser en regional forskyvning med speilbilde i nord/innland, mer nytt og sterkere enn H18s periferi × FrP-samspill."
+ },
+ {
+  "oppgave": "R3-04a",
+  "vinner": "H16",
+  "begrunnelse": "Nyhetsverdi: H16s forskyvning fra Vestlandet mot Innlandet/Nord-Norge er mindre åpenbar enn H18s FrP-konkurranse i periferien, og støtten er sterkere."
+ },
+ {
+  "oppgave": "R3-02a",
+  "vinner": "H29",
+  "begrunnelse": "Presisjon og støtte: H29 lokaliserer 2021-bølgen skarpt til semiperiferien med sterk støtte, mens H01s innen-fylke-ledd er svakt og nær grensen."
+ },
+ {
+  "oppgave": "R3-10a",
+  "vinner": "H20",
+  "begrunnelse": "Nyhetsverdi og mekanisme: H20 skiller komposisjon fra flytting substansielt, mens H27 selv innrømmer at forsterkningen delvis er mekanisk proporsjonal sving."
+ },
+ {
+  "oppgave": "R3-06a",
+  "vinner": "H02",
+  "begrunnelse": "Testbarhet: H02s spesifikasjon måler asymmetrien direkte uten overlappsproblemer, mens H28s kv_d_sp deler sjokk med utfallet og måler forløper-påstanden uklart."
+ },
+ {
+  "oppgave": "R3-10b",
+  "vinner": "H20",
+  "begrunnelse": "Nyhetsverdi: H27 er i stor grad proporsjonal sving (nær regresjon), mens H20 skiller fødselsbalanse fra utflytting og gir ny innsikt, om enn med svakere støtte."
+ },
+ {
+  "oppgave": "R3-09b",
+  "vinner": "H15",
+  "begrunnelse": "Nyhetsverdi: H30 er trolig målefeil/regresjon mot middelverdien ifølge egen sjekk, mens H15, selv om den er svakere støttet, gir en ikke-åpenbar avgrensning av left behind."
+ },
+ {
+  "oppgave": "R3-00b",
+  "vinner": "H25",
+  "begrunnelse": "Nyhetsverdi: H25s funn om at nedgangskoblingen hører til 2013–17 og ikke til reformperioden er mindre åpenbart enn H19s landbruksinteresse."
+ },
+ {
+  "oppgave": "R3-01b",
+  "vinner": "H14",
+  "begrunnelse": "Nyhetsverdi: H14 viser at nedgang er en kommunetype og ikke en utløser, noe som omformer hele left behind-lesningen, mens H31 er sterk, men mer avgrenset."
+ },
+ {
+  "oppgave": "R3-06b",
+  "vinner": "H02",
+  "begrunnelse": "Testbarhet og støtte: H02 er ren og svært sterkt støttet, mens H28s utfall og forklaring overlapper i tid; H02s delvis mekaniske preg trekker bare noe ned."
+ }
+]
