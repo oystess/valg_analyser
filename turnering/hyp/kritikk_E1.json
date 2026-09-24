@@ -1,0 +1,148 @@
+[
+ {
+  "id": "E1-01",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok - kjører feilfritt (b=-0.079, p=0.020, n=3213), matcher eksplorativ_evidens.",
+   "S2": "ok - Mundlak-dekomponering (mellom/innen), ikke triviell eller tautologisk.",
+   "S3": "ok - vekst4_pst, sp_t0, sent_indeks er tillatte t0-variabler.",
+   "S4": "ok - påstand om kommunetype, ikke individer.",
+   "S5": "ok - sp_t0×periode og sent_indeks×periode kontrollert.",
+   "S6": "ok - nøkkelledd er kommunegjennomsnittet av vekst4_pst, fortegn (-) stemmer med påstanden. Full rang (29/29 kolonner, ingen C(fylke):C(periode)).",
+   "S7": "ok - spisser H14 mot sentralitet×periode, ikke duplikat."
+  },
+  "begrunnelse": "Full-rangs modell, robust mellom WLS (b=-0.079) og OLS (b=-0.134), samme fortegn og signifikant i begge. Mellom-leddet halveres når sentralitetsgradienten får variere per periode (i tråd med hypotesens egen tolkning), men forsvinner ikke.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "E1-02",
+  "dom": "forkast",
+  "sjekkliste": {
+   "S1": "ok teknisk - modellen kjører feilfritt (b=0.057, p=0.00025, n=3213).",
+   "S2": "problem: mønsteret ser konstruert ut til å plukke opp en spesifikk vektingseffekt fra store kommuner, ikke en generell terskeleffekt i små kommuner slik påstanden hevder.",
+   "S3": "ok - vekst4_pst, ln_bef_t0, sent_klasse tillatte.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode og vekst4_pst×sent_klasse kontrollert.",
+   "S6": "problem: fortegn og nøkkelledd stemmer IKKE robust med påstanden. Uvektet (OLS) er leddet null (b=0.008, p=0.78, egen advarsel i hypotesen: 'mønsteret bæres av de store kommunene gjennom vektingen'). Enda mer alvorlig: en direkte terskeltest (vekst4_pst × I(bef_t0<5000)) gir MOTSATT fortegn (b=0.140, p=0.047) - altså at de minste kommunene IKKE har sterkere nedgangssammenheng, stikk i strid med selve påstanden om at 'små kommuner ... får sterkere Sp-vekst enn store'.",
+   "S7": "ok - ikke duplikat av H04, men tester samme mekanisme med sentralitet×vekst4_pst kontrollert."
+  },
+  "begrunnelse": "Hypotesens egen eksplorative evidens motsier påstanden: interaksjonsleddet vekst4_pst:ln_bef_t0 er bare til stede med stemmevekting (forsvinner i OLS) og en direkte terskeltest for små kommuner (bef_t0<5000) gir motsatt fortegn av det påstanden krever. Den lineære log-befolkningsinteraksjonen fanger trolig opp et vektingsartefakt fra store byer (der vekst4_pst er lite negativt korrelert med d_sp) heller enn en terskeleffekt i de minste kommunene. Siden både S2/S6 svikter og hypotesen ikke er robust til rimelige alternative spesifikasjoner den selv foreslår, forkastes den fremfor å revidere - en revidert versjon ville måtte snu hele påstandens retning eller innsnevre den til store byer, som er noe annet enn det som hevdes.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "E1-03",
+  "dom": "revider",
+  "sjekkliste": {
+   "S1": "ok - kjører feilfritt (b=0.142, p=5.3e-05, n=3213).",
+   "S2": "ok - ikke triviell.",
+   "S3": "ok - ap_t0, sp_t0, sent_indeks tillatte t0-variabler.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode, sent_indeks×periode og fylke×periode kontrollert.",
+   "S6": "problem: designmatrisen er rangmangelfull (155 av 156 kolonner, verifisert numerisk med matrix_rank). statsmodels/pinv gir likevel et resultat uten feilmelding, men det er teknisk usikkert om alle faste effekter er entydig identifisert selv om selve nøkkelleddet (en kontinuerlig variabel, ikke en av fylke×periode-dummyene) sannsynligvis ikke er del av den kollineære underrommet.",
+   "S7": "ok - kombinerer H31 med fylke×periode, ikke duplikat."
+  },
+  "begrunnelse": "Nøkkelleddet er trolig robust identifisert til tross for rangmangelen: koeffisienten er stabil på tvers av tre spesifikasjoner (fylke×periode b=0.142, landsdel×periode b=0.138, uten regional FE b=0.196; OLS uten vekt b=0.116), alle med samme fortegn og klar signifikans. Likevel bør spesifikasjonen ryddes opp før den brukes videre, siden en rangmangelfull designmatrise i prinsippet gjør de faste effektene ikke-entydige og kan skjule numerisk ustabilitet i andre kjøringer/utvalg. Konkret endring: bytt C(fylke):C(periode) til C(landsdel):C(periode), som reduserer antall celler og rangmangelen (fra 1/156 til 1/84 i test), eller identifiser og fjern den ene tomme/nesten-tomme fylke×periode-cellen eksplisitt.",
+  "revidert_testspesifikasjon": {
+   "formel": "d_sp ~ ap_t0*I(t0.isin([2013, 2017])) + sp_t0*C(periode) + I(sent_indeks/100)*C(periode) + C(landsdel):C(periode)",
+   "nøkkelledd": "ap_t0:I(t0.isin([2013, 2017]))[T.True]",
+   "forventet_fortegn": "+",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "revidert_påstand": null
+ },
+ {
+  "id": "E1-04",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok - kjører feilfritt (b=1.190, p=0.0054, n=662).",
+   "S2": "ok - ikke triviell.",
+   "S3": "ok - sent_indeks og sp_t0 tillatte.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode, sent_indeks×periode og fylke×periode kontrollert.",
+   "S6": "ok - full rang (32/32 kolonner, verifisert), fortegn (+) stemmer med påstanden om flatere gradient i 2017-21.",
+   "S7": "ok - forenkler H29 til én kontrast, ikke duplikat."
+  },
+  "begrunnelse": "Full-rangs modell (bekreftet numerisk), robust mellom WLS og OLS (begge signifikante, samme fortegn). Omtrent halvparten av utflatingen er mellom fylker, noe hypotesen selv rapporterer transparent - svekker ikke gyldigheten av testen.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "E1-05",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok - kjører feilfritt (b=-0.590, p=1.2e-11, n=714).",
+   "S2": "ok - ikke triviell.",
+   "S3": "ok - krf_t0, sp_t0, sent_indeks tillatte.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode og sent_indeks×periode kontrollert.",
+   "S6": "ok - full rang (36/36 kolonner, verifisert), fortegn (-) stemmer med påstanden.",
+   "S7": "ok - spisser H24 med fylke×periode, ikke duplikat."
+  },
+  "begrunnelse": "Full-rangs modell, robust mellom WLS (-0.590) og OLS (-0.583), og mot en alternativ landsdel×periode-FE (-0.546) samt den opprinnelige H24-spesifikasjonen uten regional FE (-0.585). Mønsteret ligger nesten helt innenfor fylker, som hypotesen selv konkluderer.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "E1-06",
+  "dom": "revider",
+  "sjekkliste": {
+   "S1": "ok - kjører feilfritt (b=-0.053, p=3.2e-09, n=2856).",
+   "S2": "ok - dette er nettopp en Mundlak-test av om H01s demping er regional eller lokal, ikke triviell.",
+   "S3": "ok - vekst10_pst og sent_indeks er tillatte.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode og sent_indeks×periode kontrollert.",
+   "S6": "problem: designmatrisen er rangmangelfull (26 av 29 kolonner, verifisert numerisk). Årsak identifisert: vekst10_pst mangler helt for perioden 1989-1993, så disse radene faller ut av modellen, men C(periode)-referansekategorien forblir '1989-1993' (bygget før radene fjernes), som dermed er tom. Det gjør intercept, sp_t0 (hovedledd) og sent_indeks (hovedledd) aliasert med sine periodeinteraksjoner - tre redundante kolonner. Nøkkelleddet vekst10_pst er selv ikke periodeinteragert og ligger trolig utenfor det kollineære underrommet.",
+   "S7": "ok - direkte spisser H01, ikke duplikat."
+  },
+  "begrunnelse": "Bekreftet ved test: å legge til 'utvalg': 't0 != 1989' fjerner rangmangelen fullstendig (26/26 kolonner, full rang) og gir et identisk resultat (b=-0.0528, p=3.1e-09, n=2856) som den opprinnelige rangmangelfulle kjøringen (b=-0.0528). Dette bekrefter at nøkkelleddet var korrekt identifisert også i den opprinnelige spesifikasjonen, men spesifikasjonen bør likevel ryddes opp for å fjerne tvetydigheten i de faste effektene.",
+  "revidert_testspesifikasjon": {
+   "formel": "d_sp ~ vekst10_pst + I(vekst10_pst.groupby([fylke, periode]).transform('mean')) + sp_t0*C(periode) + I(sent_indeks/100)*C(periode)",
+   "nøkkelledd": "vekst10_pst",
+   "forventet_fortegn": "-",
+   "utvalg": "t0 != 1989",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "revidert_påstand": null
+ },
+ {
+  "id": "E1-07",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok - kjører feilfritt (b=-0.373, p=3.4e-09, n=714).",
+   "S2": "ok - kombinerer to konkurrerende forklaringer i én modell for å vise at begge overlever samtidig, ikke triviell.",
+   "S3": "ok - krf_t0, ap_t0, sp_t0, sent_indeks tillatte.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode, sent_indeks×periode og ap_t0×periode kontrollert.",
+   "S6": "ok - full rang (10/10 kolonner, verifisert), fortegn (-) på krf-leddet stemmer; ap-sekundærleddet er positivt som forventet og rapportert eksplisitt.",
+   "S7": "ok - kombinerer H31 og H24, egen kombinasjonstest, ikke duplikat av noen av dem."
+  },
+  "begrunnelse": "Ingen fylke×periode-FE her, liten og full-rangs modell. KrF-leddet krymper noe (fra -0.585 i H24 til -0.373) når Ap-samspillet er med, men beholder fortegn og klar signifikans; Ap-samspillet er også signifikant positivt som ventet. Begge skiftene finnes altså samtidig, i tråd med påstanden.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "E1-08",
+  "dom": "revider",
+  "sjekkliste": {
+   "S1": "ok - kjører feilfritt (b=-0.048, p=0.004, n=2856).",
+   "S2": "ok - kombinerer H14 (mellom/innen) og H01 (fylke×periode), ikke triviell.",
+   "S3": "ok - vekst10_pst og sent_indeks tillatte.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode og sent_indeks×periode kontrollert i tillegg til fylke×periode.",
+   "S6": "problem: designmatrisen er sterkt rangmangelfull (138 av 155 kolonner, verifisert numerisk) - samme rotårsak som E1-06 (tom 1989-1993-referansekategori som alieserer intercept/sp_t0/sent_indeks med sine periodeledd), forsterket av at C(fylke):C(periode) også får tomme celler for den manglende perioden.",
+   "S7": "ok - kombinerer H14 og H01, ikke duplikat."
+  },
+  "begrunnelse": "Bekreftet ved test: å legge til 'utvalg': 't0 != 1989' fjerner rangmangelen fullstendig (138/138 kolonner, full rang) og gir praktisk talt samme resultat (b=-0.0479, p=0.0039) som den opprinnelige rangmangelfulle kjøringen (b=-0.0479). Mellom-leddet er dermed robust identifisert, men spesifikasjonen bør ryddes opp for å fjerne den unødvendige tvetydigheten i de faste effektene.",
+  "revidert_testspesifikasjon": {
+   "formel": "d_sp ~ vekst10_pst + I(vekst10_pst.groupby(kom2024).transform('mean')) + sp_t0*C(periode) + I(sent_indeks/100)*C(periode) + C(fylke):C(periode)",
+   "nøkkelledd": "I(vekst10_pst.groupby(kom2024).transform('mean'))",
+   "forventet_fortegn": "-",
+   "utvalg": "t0 != 1989",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "revidert_påstand": null
+ }
+]

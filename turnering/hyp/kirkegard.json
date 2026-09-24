@@ -1,0 +1,7 @@
+[
+ {
+  "id": "E1-02",
+  "påstand": "Blant kommuner med befolkningsnedgang får små kommuner sterkere Sp-vekst enn store, også når nedgangsmønsteret får variere med sentralitetsklasse.",
+  "grunn": "Hypotesens egen eksplorative evidens motsier påstanden: interaksjonsleddet vekst4_pst:ln_bef_t0 er bare til stede med stemmevekting (forsvinner i OLS) og en direkte terskeltest for små kommuner (bef_t0<5000) gir motsatt fortegn av det påstanden krever. Den lineære log-befolkningsinteraksjonen fanger trolig opp et vektingsartefakt fra store byer (der vekst4_pst er lite negativt korrelert med d_sp) heller enn en terskeleffekt i de minste kommunene. Siden både S2/S6 svikter og hypotesen ikke er robust til rimelige alternative spesifikasjoner den selv foreslår, forkastes den fremfor å revidere - en revidert versjon ville måtte snu hele påstandens retning eller innsnevre den til store byer, som er noe annet enn det som hevdes."
+ }
+]

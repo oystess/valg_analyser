@@ -1,0 +1,152 @@
+[
+ {
+  "oppgave": "R6-00b",
+  "første": "H04",
+  "andre": "H14"
+ },
+ {
+  "oppgave": "R6-04b",
+  "første": "H20",
+  "andre": "H25"
+ },
+ {
+  "oppgave": "R6-14a",
+  "første": "H30",
+  "andre": "H22"
+ },
+ {
+  "oppgave": "R6-07a",
+  "første": "E1-08",
+  "andre": "E1-03"
+ },
+ {
+  "oppgave": "R6-05a",
+  "første": "H18",
+  "andre": "E1-05"
+ },
+ {
+  "oppgave": "R6-11a",
+  "første": "H07",
+  "andre": "H02"
+ },
+ {
+  "oppgave": "R6-09a",
+  "første": "H19",
+  "andre": "H26"
+ },
+ {
+  "oppgave": "R6-07b",
+  "første": "E1-03",
+  "andre": "E1-08"
+ },
+ {
+  "oppgave": "R6-12b",
+  "første": "H10",
+  "andre": "H32"
+ },
+ {
+  "oppgave": "R6-03b",
+  "første": "H01",
+  "andre": "H06"
+ },
+ {
+  "oppgave": "R6-06a",
+  "første": "E1-04",
+  "andre": "E1-06"
+ },
+ {
+  "oppgave": "R6-13b",
+  "første": "H27",
+  "andre": "H15"
+ },
+ {
+  "oppgave": "R6-00a",
+  "første": "H14",
+  "andre": "H04"
+ },
+ {
+  "oppgave": "R6-01a",
+  "første": "H31",
+  "andre": "H29"
+ },
+ {
+  "oppgave": "R6-10a",
+  "første": "H23",
+  "andre": "H28"
+ },
+ {
+  "oppgave": "R6-02a",
+  "første": "H24",
+  "andre": "H16"
+ },
+ {
+  "oppgave": "R6-10b",
+  "første": "H28",
+  "andre": "H23"
+ },
+ {
+  "oppgave": "R6-08a",
+  "første": "E1-01",
+  "andre": "E1-07"
+ },
+ {
+  "oppgave": "R6-06b",
+  "første": "E1-06",
+  "andre": "E1-04"
+ },
+ {
+  "oppgave": "R6-13a",
+  "første": "H15",
+  "andre": "H27"
+ },
+ {
+  "oppgave": "R6-05b",
+  "første": "E1-05",
+  "andre": "H18"
+ },
+ {
+  "oppgave": "R6-04a",
+  "første": "H25",
+  "andre": "H20"
+ },
+ {
+  "oppgave": "R6-02b",
+  "første": "H16",
+  "andre": "H24"
+ },
+ {
+  "oppgave": "R6-14b",
+  "første": "H22",
+  "andre": "H30"
+ },
+ {
+  "oppgave": "R6-09b",
+  "første": "H26",
+  "andre": "H19"
+ },
+ {
+  "oppgave": "R6-12a",
+  "første": "H32",
+  "andre": "H10"
+ },
+ {
+  "oppgave": "R6-11b",
+  "første": "H02",
+  "andre": "H07"
+ },
+ {
+  "oppgave": "R6-03a",
+  "første": "H06",
+  "andre": "H01"
+ },
+ {
+  "oppgave": "R6-01b",
+  "første": "H29",
+  "andre": "H31"
+ },
+ {
+  "oppgave": "R6-08b",
+  "første": "E1-07",
+  "andre": "E1-01"
+ }
+]
