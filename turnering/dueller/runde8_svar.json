@@ -1,0 +1,142 @@
+[
+ {
+  "oppgave": "R8-00a",
+  "vinner": "H14",
+  "begrunnelse": "Nyhetsverdi og mekanisme: H14s skille mellom kommunetype og utløser omformer hovedfortellingen om befolkningsnedgang, mens E1-05 robustgjør et smalere KrF-funn; begge er godt testbare."
+ },
+ {
+  "oppgave": "R8-08a",
+  "vinner": "H19",
+  "begrunnelse": "Eksplorativ støtte: H19 er sterkt støttet både vektet og uvektet (p=1e-5), mens H01s nøkkelledd er marginalt (p=0,041)."
+ },
+ {
+  "oppgave": "R8-06b",
+  "vinner": "H02",
+  "begrunnelse": "Eksplorativ støtte og testbarhet: H02s asymmetri er svært sterkt støttet med en ren test, mens E1-01s mellom-ledd halveres og blir marginalt (p=0,02)."
+ },
+ {
+  "oppgave": "R8-04b",
+  "vinner": "H16",
+  "begrunnelse": "Eksplorativ støtte og nyhetsverdi: H16s regionforskyvning er sterk med speilbilde, mens H25s kobling nesten forsvinner med kontroll for partinivå."
+ },
+ {
+  "oppgave": "R8-13a",
+  "vinner": "H27",
+  "begrunnelse": "Eksplorativ støtte: H27 er sterkt støttet med sentralitet × periode-kontroll, mens H22 er svak vektet og trolig drevet av små kommuner; H27s mekaniske preg trekker ned."
+ },
+ {
+  "oppgave": "R8-01a",
+  "vinner": "H31",
+  "begrunnelse": "Nyhetsverdi: H31s Ap-nedslagsfelt i den andre bølgen er uventet og sterkt støttet, mens E1-06 i hovedsak bekrefter at den kjente nedgangseffekten finnes innen fylke."
+ },
+ {
+  "oppgave": "R8-05b",
+  "vinner": "H32",
+  "begrunnelse": "Testbarhet og mekanisme: H32 bruker hele utvalget med en konkret utløsermekanisme, mens H29 avgrenser utvalget etter å ha sett på tallene."
+ },
+ {
+  "oppgave": "R8-03a",
+  "vinner": "E1-07",
+  "begrunnelse": "Testbarhet: E1-07 tester to separate partiskifter samtidig med klare falsifiseringsvilkår, mens H06s oppgangsperioder er definert etter å ha sett på tallene."
+ },
+ {
+  "oppgave": "R8-05a",
+  "vinner": "H32",
+  "begrunnelse": "Testbarhet: H32 har en robusthetssjekk mot 2017 på hele panelet, mens H29s utvalg (klasse ≥ 3, tre perioder) er skjønnspreget."
+ },
+ {
+  "oppgave": "R8-06a",
+  "vinner": "H02",
+  "begrunnelse": "Støtte: H02 er entydig og konsistent på tvers av perioder, mens E1-01 er en svakere variant av H14."
+ },
+ {
+  "oppgave": "R8-08b",
+  "vinner": "H19",
+  "begrunnelse": "Støtte og mekanisme: H19 har en direkte interessemekanisme med robust støtte, mens H01 hviler på et grensenært ledd, selv om falsifiseringsregelen er presis."
+ },
+ {
+  "oppgave": "R8-13b",
+  "vinner": "H27",
+  "begrunnelse": "Testbarhet og støtte: H27s bølgeinteraksjon er robust, mens H22s størrelsesledd domineres av sentralitet og er marginalt."
+ },
+ {
+  "oppgave": "R8-12b",
+  "vinner": "H18",
+  "begrunnelse": "Testbarhet: H18s interaksjon måler påstanden direkte og er robust uvektet, mens H28s kv_d_sp overlapper i tid med utfallet og måler forløper-påstanden uklart."
+ },
+ {
+  "oppgave": "R8-07a",
+  "vinner": "E1-08",
+  "begrunnelse": "Nyhetsverdi: E1-08 kombinerer kommunetype og fylkes-FE i en informativ test (p=0,004), mens E1-04 er en forenklet variant av H29 med et utvalg valgt etter å ha sett på tallene; begge har ettertilpassede valg."
+ },
+ {
+  "oppgave": "R8-00b",
+  "vinner": "H14",
+  "begrunnelse": "Nyhetsverdi: H14 besvarer et mer grunnleggende spørsmål med klar falsifisering og sterk støtte, mens E1-05s fylkes-FE-spissing, om enn robust, er en variant av H24."
+ },
+ {
+  "oppgave": "R8-12a",
+  "vinner": "H18",
+  "begrunnelse": "Testbarhet og robusthet: H18 er ren og robust, mens H28 har erkjent sjokkoverlapp mellom forklaring og utfall."
+ },
+ {
+  "oppgave": "R8-09a",
+  "vinner": "H26",
+  "begrunnelse": "Eksplorativ støtte: H26 er sterkere støttet (p=5e-5) enn H07 (p=0,005), og begge avhenger av en kontroll."
+ },
+ {
+  "oppgave": "R8-04a",
+  "vinner": "H16",
+  "begrunnelse": "Robusthet: H16 holder med KrF-kontroll og har sterk støtte, mens H25 svekkes betydelig med tilleggskontroller."
+ },
+ {
+  "oppgave": "R8-07b",
+  "vinner": "E1-08",
+  "begrunnelse": "Nyhetsverdi og mekanisme: E1-08 forener H14 og H01 i én test, mens E1-04 i hovedsak gjentar H29 i et smalere utvalg."
+ },
+ {
+  "oppgave": "R8-02a",
+  "vinner": "H24",
+  "begrunnelse": "Nyhetsverdi og støtte: H24 viser at ulike bølger mobiliserer ulike geografier (p=2e-29), mer uventet enn H04s størrelse × nedgang-samspill."
+ },
+ {
+  "oppgave": "R8-10a",
+  "vinner": "H23",
+  "begrunnelse": "Eksplorativ støtte og mekanisme: H23s interaksjon er sterk og konkretiserer tjenestetap-kanalen, mens H10s fortegn snur uten periodespesifikk kontroll."
+ },
+ {
+  "oppgave": "R8-09b",
+  "vinner": "H26",
+  "begrunnelse": "Støtte: H26s relative deprivasjon-ledd er klarere enn H07s offentlig sektor-ledd, som svekkes uten primærkontroll."
+ },
+ {
+  "oppgave": "R8-01b",
+  "vinner": "H31",
+  "begrunnelse": "Nyhetsverdi og støtte: H31 avdekker et nytt partimønster (p=8e-18), mens E1-06, selv om det er godt designet, er en avklaring av H01 heller enn et nytt mønster."
+ },
+ {
+  "oppgave": "R8-03b",
+  "vinner": "E1-07",
+  "begrunnelse": "Presisjon og nyhetsverdi: E1-07 skiller KrF- og Ap-skiftet i én modell med sterk støtte, mens H06 hviler på en ettertilpasset periodegruppering."
+ },
+ {
+  "oppgave": "R8-02b",
+  "vinner": "H24",
+  "begrunnelse": "Nyhetsverdi: H24s fortegnsskifte for KrF er et mindre åpenbart mønster enn H04s terskeleffekt, og støtten er sterkere."
+ },
+ {
+  "oppgave": "R8-10b",
+  "vinner": "H23",
+  "begrunnelse": "Støtte: H23 er sterkere støttet (p=1e-8) enn H10 (p=3e-4), og begge har kjente følsomheter."
+ },
+ {
+  "oppgave": "R8-11a",
+  "vinner": "H20",
+  "begrunnelse": "Testbarhet: H20s formel samsvarer med påstanden, mens E1-03 bruker landsdel i formelen og fylke i påstanden, så testen måler ikke det som påstås."
+ },
+ {
+  "oppgave": "R8-11b",
+  "vinner": "H20",
+  "begrunnelse": "Testbarhet: E1-03s spesifikasjon er inkonsistent og rangmangelfull, mens H20 kan kjøres som angitt, om enn med svakere støtte."
+ }
+]

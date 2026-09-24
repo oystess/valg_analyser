@@ -1,2 +1,3 @@
 - Runde 1: dommeren ga én dom per par og brukte den for begge rekkefølger (opplyst av dommeren). Rekkefølgekontrollen i runde 1 er derfor ikke uavhengig. Fra runde 2 er hver oppgave dømt for seg, men av samme agent.
 - E1-03: kritikerens revisjon byttet C(fylke) med C(landsdel) i formelen uten å oppdatere påstanden. Dommeren påpekte avviket i runde 6 og trakk ned for testbarhet.
+- Låst 2026-09-24T18:07:53.540785Z: ['H14', 'H31', 'H24', 'H16', 'H04', 'H32']. sha256(låst.json)=6d999a9c49ec497a8757c847f0202b3e2d39dec4df02bdede0cf5fbddc90b70b, sha256(panel.csv)=59ec2ccf34eae12fde6b97cbdcd03bfc4e007c2db82dda75bb2106e5a4ad02c3

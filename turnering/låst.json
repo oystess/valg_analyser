@@ -1,0 +1,85 @@
+{
+ "låst_tidspunkt": "2026-09-24T18:07:53.540785Z",
+ "panel_sha256": "59ec2ccf34eae12fde6b97cbdcd03bfc4e007c2db82dda75bb2106e5a4ad02c3",
+ "utvalgsregel": "topp 6 etter Elo; E1-07 (4. plass) utelatt fordi den kombinerer H31 og H24, som begge er låst",
+ "hypoteser": [
+  {
+   "id": "H14",
+   "elo": 1119.1,
+   "påstand": "Sammenhengen mellom befolkningsnedgang og Sp-vekst er mellomkommunal: kommuner med vedvarende lav vekst over hele perioden har sterkere Sp-vekst, mens en kommunes perioder med lavere vekst enn eget snitt ikke følges av mer Sp-vekst.",
+   "testspesifikasjon": {
+    "formel": "d_sp ~ vekst4_pst + I(vekst4_pst.groupby(kom2024).transform('mean')) + sp_t0*C(periode) + C(sent_klasse)",
+    "nøkkelledd": "I(vekst4_pst.groupby(kom2024).transform('mean'))",
+    "forventet_fortegn": "-",
+    "utvalg": null,
+    "vekt": "vekt_stemmer_t0"
+   },
+   "falsifisering": "Mellom-leddet er ≥ 0 eller KI inkluderer 0; eller innen-leddet (vekst4_pst) er signifikant negativt og minst halvparten så stort som mellom-leddet."
+  },
+  {
+   "id": "H31",
+   "elo": 1093.7,
+   "påstand": "I Sp-bølgen 2013–2021 økte Sp mest i kommuner med høy Ap-andel ved t0, et mønster som ikke fantes i 1989–93-bølgen eller i andre perioder.",
+   "testspesifikasjon": {
+    "formel": "d_sp ~ ap_t0*I(t0.isin([2013, 2017])) + sp_t0*C(periode) + C(sent_klasse)",
+    "nøkkelledd": "ap_t0:I(t0.isin([2013, 2017]))[T.True]",
+    "forventet_fortegn": "+",
+    "utvalg": null,
+    "vekt": "vekt_stemmer_t0"
+   },
+   "falsifisering": "Interaksjonsleddet er ≤ 0 eller KI inkluderer 0; eller ap_t0-helningen i 1989–93 er like positiv som i 2013–21."
+  },
+  {
+   "id": "H24",
+   "elo": 1061.5,
+   "påstand": "Kommuner med sterk KrF i t0 fikk større Sp-økning enn andre i 1989–1993, men klart mindre i 2013–2017; den kristne motkulturen fulgte med i EU-bølgen, men ikke i distriktsbølgen.",
+   "testspesifikasjon": {
+    "formel": "d_sp ~ sp_t0*C(periode) + I(sent_indeks/100)*C(periode) + krf_t0*C(periode)",
+    "nøkkelledd": "krf_t0:C(periode)[T.2013-2017]",
+    "forventet_fortegn": "-",
+    "utvalg": "periode.isin(['1989-1993', '2013-2017'])",
+    "vekt": "vekt_stemmer_t0"
+   },
+   "falsifisering": "Samspillet er ≥ 0 eller KI dekker 0, altså at KrF-hellingen er lik i de to bølgene. Hypotesen svekkes også om krf_t0-hellingen i 1993 ikke er positiv."
+  },
+  {
+   "id": "H16",
+   "elo": 1033.2,
+   "påstand": "Vestlandskommuner har fra 2013 hatt svakere Sp-utvikling enn sp_t0, sentralitet og KrF-styrke tilsier. Tyngdepunktet i Sp-svingningene har flyttet seg fra Vestlandet mot Innlandet og Nord-Norge.",
+   "testspesifikasjon": {
+    "formel": "d_sp ~ sp_t0*C(periode) + I(sent_indeks/100)*C(periode) + krf_t0*C(periode) + I(landsdel == 'Vestlandet') + I((landsdel == 'Vestlandet') & (t0 >= 2013))",
+    "nøkkelledd": "I((landsdel == 'Vestlandet') & (t0 >= 2013))[T.True]",
+    "forventet_fortegn": "-",
+    "utvalg": null,
+    "vekt": "vekt_stemmer_t0"
+   },
+   "falsifisering": "Nøkkelleddet er ≥ 0 eller KI dekker 0. Det samme gjelder om effekten bare skyldes én periode: da er fortegnet for Vestlandet per periode ikke negativt i minst to av de tre periodene 2013–17, 2017–21 og 2021–25. Rådata viser +1.0 i 2021–25, og det er en kjent risiko."
+  },
+  {
+   "id": "H04",
+   "elo": 1033.1,
+   "påstand": "Små kommuner med befolkningsnedgang får sterkere Sp-vekst enn store kommuner med lik prosentvis nedgang.",
+   "testspesifikasjon": {
+    "formel": "d_sp ~ vekst4_pst*ln_bef_t0 + sent_klasse + sp_t0*C(periode)",
+    "nøkkelledd": "vekst4_pst:ln_bef_t0",
+    "forventet_fortegn": "+",
+    "utvalg": null,
+    "vekt": "vekt_stemmer_t0"
+   },
+   "falsifisering": "Interaksjonsleddet er ≤ 0 eller KI dekker 0; eller det forsvinner når vekst4_pst × sent_klasse legges til (sjekket: b = 0,048, KI [0,016; 0,079], holder)."
+  },
+  {
+   "id": "H32",
+   "elo": 1032.0,
+   "påstand": "Kommuner med befolkningsnedgang får sterkere Sp-vekst først og fremst i perioder med mobilisering mot sentralisering der Sp starter lavt (1989–1993 og 2013–2017), ikke i 2017–2021 slik H3 antar.",
+   "testspesifikasjon": {
+    "formel": "d_sp ~ vekst4_pst + I(vekst4_pst*t0.isin([1989, 2013])) + sent_klasse + sp_t0*C(periode)",
+    "nøkkelledd": "I(vekst4_pst * t0.isin([1989, 2013]))",
+    "forventet_fortegn": "-",
+    "utvalg": null,
+    "vekt": "vekt_stemmer_t0"
+   },
+   "falsifisering": "Interaksjonsleddet er ≥ 0 eller KI dekker 0 (sjekket: vekst4_pst × I(t0 ≥ 2017) er +0,081, KI [0,013; 0,149], dvs. svakere nedgangseffekt etter 2017); eller en tilsvarende dummy for t0 = 2017 gir et klart mer negativt ledd enn 1989/2013."
+  }
+ ]
+}
