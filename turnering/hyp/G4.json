@@ -1,0 +1,217 @@
+[
+ {
+  "id": "G4-01",
+  "påstand": "I periferikommuner (sentralitetsklasse 5–6) følger et høyere FrP-nivå ved t0 med klart svakere Sp-vekst enn i mer sentrale kommuner.",
+  "mekanisme": "Der FrP allerede har etablert seg som protestkanal i periferien, er en del av det frustrerte periferielektoratet allerede 'routet' bort fra Sp, og Sp har mindre å hente. I sentrale kommuner er FrP-velgere i mindre grad potensielle Sp-velgere, så FrP-nivået betyr lite der. Mønsteret er et beskrivende uttrykk for tilbudssiden (Auerbach 2024), ikke en påvist velgerflyt.",
+  "forhold_til_frø": "H6: spisser – konkurransen mellom Sp og FrP er geografisk avgrenset til periferien, ikke et generelt landsmønster.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "frp_t0",
+    "frp_t0 × I(sent_klasse >= 5)"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "C(sent_klasse)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ frp_t0*I(sent_klasse >= 5) + sp_t0*C(periode) + C(sent_klasse)",
+   "nøkkelledd": "frp_t0:I(sent_klasse >= 5)[T.True]",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Interaksjonsleddet er ≥ 0 eller KI inkluderer 0; eller FrP-hovedeffekten i sentrale kommuner er like negativ som i periferien.",
+  "eksplorativ_evidens": "Interaksjon: b = -0.062, 95 % KI [-0.093, -0.031], p = 0.00011, n = 3213 (modeller.py, WLS). Hovedledd frp_t0 (sent. klasse 1–4): b = -0.036, 95 % KI [-0.065, -0.008], p = 0.012, n = 3213. Uvektet interaksjon b = -0.060 [-0.087, -0.033]."
+ },
+ {
+  "id": "G4-02",
+  "påstand": "Den negative sammenhengen mellom FrP-nivå ved t0 og Sp-endring gjelder i normalperioder, men forsvinner (og snur svakt) i Sp-bølgeperiodene 1989–93, 2013–17 og 2017–21.",
+  "mekanisme": "Kontrafaktisk lesning av H6: hvis FrP-velgermassen var en fast sperre for Sp, skulle FrP-sterke kommuner også hengt etter i bølgene. At de ikke gjør det, tyder på at konkurransen er situasjonsbetinget: i bølger henter Sp tilsynelatende også i FrP-sterke kommuner, mens FrP-nivå ellers følger med svak Sp-utvikling. Routingen er altså episodisk, ikke strukturell.",
+  "forhold_til_frø": "H6: motsier den strukturelle versjonen (fast konkurranse); H1: avgrenser – det episodiske ligger i partikonkurransen, ikke bare i periferieffekten.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "frp_t0",
+    "frp_t0 × bølge (t0 ∈ {1989, 2013, 2017})"
+   ],
+   "retning": "+",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "C(sent_klasse)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ frp_t0*I(t0.isin([1989, 2013, 2017])) + sp_t0*C(periode) + C(sent_klasse)",
+   "nøkkelledd": "frp_t0:I(t0.isin([1989, 2013, 2017]))[T.True]",
+   "forventet_fortegn": "+",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Interaksjonsleddet er ≤ 0 eller KI inkluderer 0, dvs. FrP-nivået henger like negativt sammen med d_sp i bølgeperioder som ellers.",
+  "eksplorativ_evidens": "Interaksjon: b = 0.170, 95 % KI [0.077, 0.263], p = 0.00034, n = 3213. Hovedledd frp_t0 (ikke-bølge): b = -0.107, 95 % KI [-0.147, -0.067], p = 1.3e-07, n = 3213; implisert bølgehelning ≈ +0.063. Uten sp_t0 × periode-kontroll gir en ren 1989-dummy motsatt fortegn (b = -0.52), så periodespesifikk sp_t0-kontroll er avgjørende."
+ },
+ {
+  "id": "G4-03",
+  "påstand": "I Sp-bølgen 2013–2021 økte Sp mest i kommuner med høy Ap-andel ved t0, et mønster som ikke fantes i 1989–93-bølgen eller i andre perioder.",
+  "mekanisme": "Den andre Sp-bølgen synes å ha et annet partinedslagsfelt enn den første: der Ap sto sterkt, fantes et reservoar av sentrumsvenstre-periferivelgere som Sp kunne vinne (bl.a. under kommune- og regionreformen). I 1989–93 (EU-saken) var Ap-nivå tvert imot svakt negativt knyttet til Sp-vekst. En kontrafaktisk konsekvens: hvis bølgen bare var 'left behind', skulle Ap-nivået ikke bety noe når sentralitet og sp_t0 er kontrollert.",
+  "forhold_til_frø": "ny (partikonkurranse med Ap, ikke FrP; avgrenser samtidig H1 ved at utløserepisodene har ulik partiprofil)",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "ap_t0",
+    "ap_t0 × I(t0 ∈ {2013, 2017})"
+   ],
+   "retning": "+",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "C(sent_klasse)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ ap_t0*I(t0.isin([2013, 2017])) + sp_t0*C(periode) + C(sent_klasse)",
+   "nøkkelledd": "ap_t0:I(t0.isin([2013, 2017]))[T.True]",
+   "forventet_fortegn": "+",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Interaksjonsleddet er ≤ 0 eller KI inkluderer 0; eller ap_t0-helningen i 1989–93 er like positiv som i 2013–21.",
+  "eksplorativ_evidens": "Interaksjon: b = 0.182, 95 % KI [0.141, 0.224], p = 8.5e-18, n = 3213. Hovedledd ap_t0 (øvrige perioder): b = 0.018, 95 % KI [0.005, 0.031], p = 0.0074, n = 3213. Per periode (sp_t0 + sent_klasse, WLS): 2013–17 b = 0.228 [0.184, 0.272]; 2017–21 b = 0.164 [0.105, 0.223]; 1989–93 b = -0.065 [-0.106, -0.025]; n = 357 hver."
+ },
+ {
+  "id": "G4-04",
+  "påstand": "Sammenhengen mellom befolkningsnedgang og Sp-vekst er mellomkommunal: kommuner med vedvarende lav vekst over hele perioden har sterkere Sp-vekst, mens en kommunes perioder med lavere vekst enn eget snitt ikke følges av mer Sp-vekst.",
+  "mekanisme": "Hvis left behind-forklaringen virket som en løpende reaksjon på tap, skulle en kommune få mer Sp i perioder der den taper flere innbyggere enn vanlig. Finnes mønsteret bare mellom kommuner, er befolkningsnedgang heller en markør for en stabil kommunetype (periferi med sterk Sp-identitet og bølgesensitivitet) enn en utløser. Mundlak-oppsettet skiller de to komponentene.",
+  "forhold_til_frø": "H2: avgrenser/motsier – befolkningsnedgang som varig kjennetegn, ikke som løpende driver; H7 berøres ved at det er stabil sammensetning som bærer mønsteret.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "kommunesnitt av vekst4_pst (mellom)",
+    "vekst4_pst (innen, gitt snittet)"
+   ],
+   "retning": "- (mellom); ≈0 eller + (innen)",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "C(sent_klasse)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ vekst4_pst + I(vekst4_pst.groupby(kom2024).transform('mean')) + sp_t0*C(periode) + C(sent_klasse)",
+   "nøkkelledd": "I(vekst4_pst.groupby(kom2024).transform('mean'))",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Mellom-leddet er ≥ 0 eller KI inkluderer 0; eller innen-leddet (vekst4_pst) er signifikant negativt og minst halvparten så stort som mellom-leddet.",
+  "eksplorativ_evidens": "Mellom-ledd: b = -0.196, 95 % KI [-0.269, -0.123], p = 1.3e-07, n = 3213. Innen-ledd vekst4_pst: b = 0.058, 95 % KI [0.003, 0.112], p = 0.037, n = 3213. Kommune-FE-modell: b = 0.057, 95 % KI [-0.001, 0.115], p = 0.052, n = 3213. Samlet (pooled) vekst4_pst med samme kontroller: b = -0.034 [-0.077, 0.009]."
+ },
+ {
+  "id": "G4-05",
+  "påstand": "Befolkningsnedgang fulgte sterkt med Sp-vekst i 2013–17, men ikke i 2017–21, selv om 2017–21 er perioden med kommunereform og Sp-toppen.",
+  "mekanisme": "Hvis kommunereformen og sentraliseringsdebatten forsterket en left behind-reaksjon, skulle koblingen til befolkningsnedgang vært sterkest fram mot 2021. I stedet ser 2017–21-veksten ut til å ha vært bred og geografisk flat innenfor sentralitetsklasser (jf. G4-03: Ap-sterke kommuner), mens nedgangskoblingen hører til 2013–17. En del av 2013–17-koblingen forsvinner når partinivåene ved t0 kontrolleres.",
+  "forhold_til_frø": "H3: motsier timingen (2017–21 som topp for befolkningsnedgangseffekten); H1: spisser – utløseren 2017–21 virket ikke via befolkningsnedgang.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "vekst4_pst",
+    "vekst4_pst × I(t0 == 2017)"
+   ],
+   "retning": "+ (mindre negativ helning i 2017–21)",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "C(sent_klasse)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ vekst4_pst*I(t0 == 2017) + sp_t0*C(periode) + C(sent_klasse)",
+   "nøkkelledd": "vekst4_pst:I(t0 == 2017)[T.True]",
+   "forventet_fortegn": "+",
+   "utvalg": "t0 in [2013, 2017]",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Interaksjonsleddet er ≤ 0 eller KI inkluderer 0, dvs. vekst4-helningen i 2017–21 er minst like negativ som i 2013–17.",
+  "eksplorativ_evidens": "Interaksjon: b = 0.467, 95 % KI [0.293, 0.642], p = 1.5e-07, n = 714. Helning 2013–17: b = -0.404, 95 % KI [-0.584, -0.223], p = 1.1e-05, n = 714. Separat 2017–21 (sp_t0 + sent_klasse): b = -0.013, 95 % KI [-0.136, 0.110], p = 0.84, n = 357. 2013–17 separat: b = -0.358, 95 % KI [-0.536, -0.179], p = 8.5e-05, n = 357; med ap/frp/h/krf_t0: b = -0.125, 95 % KI [-0.256, 0.005], p = 0.06, n = 357."
+ },
+ {
+  "id": "G4-06",
+  "påstand": "Sp-tilbakeslag (1993–97, 2021–25) er proporsjonale – kommuner med høyest Sp-andel ved t0 taper mest – mens Sp-framgang i andre perioder er tilnærmet uavhengig av startnivået.",
+  "mekanisme": "Bølgene legger til et omtrent jevnt tillegg over kommunene, men tilbakeslagene tar tilbake en fast andel av toppnivået, som om bølgestemmene var lånte og løst forankret. Hvis periferioppslutningen var strukturelt forankret (left behind som varig tilstand), skulle de sterkeste Sp-kommunene holdt bedre på stemmene. Mønsteret er delvis mekanisk (regresjon mot middelverdien), men asymmetrien mellom opp- og nedturer er ikke det.",
+  "forhold_til_frø": "ny (asymmetri mellom bølge og tilbakeslag); avgrenser H1: det strukturelle ligger i grunnivået, ikke i bølgestemmene.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "sp_t0",
+    "sp_t0 × I(t0 ∈ {1993, 2021})"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "C(periode)",
+    "C(sent_klasse)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ sp_t0*I(t0.isin([1993, 2021])) + C(periode) + C(sent_klasse)",
+   "nøkkelledd": "sp_t0:I(t0.isin([1993, 2021]))[T.True]",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Interaksjonsleddet er ≥ 0 eller KI inkluderer 0; eller sp_t0-helningen i øvrige perioder er like negativ som i tilbakeslagsperiodene.",
+  "eksplorativ_evidens": "Interaksjon: b = -0.470, 95 % KI [-0.520, -0.420], p = 5.2e-75, n = 3213. sp_t0-helning i øvrige perioder: b = -0.030, 95 % KI [-0.064, 0.004], p = 0.086, n = 3213. Uvektet interaksjon b = -0.316 [-0.352, -0.281]. Per periode: 1993–97 b = -0.320, 2021–25 b = -0.451, 1989–93 b = -0.016, 2013–17 b = 0.075 (n = 357 hver)."
+ },
+ {
+  "id": "G4-07",
+  "påstand": "Kommuner der Sp står sterkere i kommunevalget (t0 − 2) enn i stortingsvalget t0 får større Sp-endring i stortingsvalget t0 → t1.",
+  "mekanisme": "Et lokalt Sp-overskudd er et latent reservoar: velgere som allerede stemmer Sp lokalt, er lettere å vinne nasjonalt. NB: kv_sp_t0 er målt to år før t0 og inneholder ikke utfallet, men det er et nivåmål på lokal Sp-styrke og ikke en ren forklaring; mønsteret er beskrivende.",
+  "forhold_til_frø": "H5: spisser – ikke at kommunevalget 'leder' endringen, men at gapet mellom lokal og nasjonal Sp-styrke følger med senere stortingsendring; H4 berøres ikke direkte.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "kv_sp_t0 − sp_t0"
+   ],
+   "retning": "+",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "C(sent_klasse)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ I(kv_sp_t0 - sp_t0) + sp_t0*C(periode) + C(sent_klasse)",
+   "nøkkelledd": "I(kv_sp_t0 - sp_t0)",
+   "forventet_fortegn": "+",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Koeffisienten er ≤ 0 eller KI inkluderer 0; eller den bare finnes i én periode.",
+  "eksplorativ_evidens": "b = 0.063, 95 % KI [0.036, 0.090], p = 3.5e-06, n = 3213. Uvektet b = 0.036 [0.016, 0.056]. Per periode (sp_t0 + sent_klasse): positiv i 1993–97 (0.149), 1997–01 (0.067), 2001–05 (0.054), 2017–21 (0.084); ≈0 i 2005–09, 2009–13, 2013–17."
+ },
+ {
+  "id": "G4-08",
+  "påstand": "I Sp-framgangen 2013–17 økte Sp klart mindre i KrF-sterke kommuner, mens KrF-nivå ellers har liten sammenheng med Sp-endring.",
+  "mekanisme": "I den kristne delen av periferien (særlig Sør- og Vestlandet) fantes en alternativ sentrumskanal for periferimisnøye, så Sp-bølgen 2013–17 fant færre ledige velgere der. Dette er en kontrafaktisk sjekk på en ren left behind-forklaring: hvis bare stedskjennetegn mattet, skulle KrF-nivå ikke betydd noe utover sentralitet. I EU-perioden 1989–93 var KrF-nivå tvert imot positivt knyttet til Sp-vekst.",
+  "forhold_til_frø": "ny (partikonkurranse med KrF i sentrum, ikke FrP); utvider H6 til flere konkurrenter.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "krf_t0",
+    "krf_t0 × I(t0 == 2013)"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "C(sent_klasse)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ krf_t0*I(t0 == 2013) + sp_t0*C(periode) + C(sent_klasse)",
+   "nøkkelledd": "krf_t0:I(t0 == 2013)[T.True]",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Interaksjonsleddet er ≥ 0 eller KI inkluderer 0; eller effekten forsvinner når landsdel kontrolleres (da er det region, ikke KrF).",
+  "eksplorativ_evidens": "Interaksjon: b = -0.282, 95 % KI [-0.388, -0.175], p = 2.2e-07, n = 3213. krf_t0 i øvrige perioder: b = -0.020, 95 % KI [-0.041, 0.001], p = 0.065, n = 3213. Med C(landsdel) i tillegg: b = -0.268 [-0.374, -0.162]. Uvektet: b = -0.404 [-0.492, -0.317]. 1989–93 separat: b = 0.154 [0.091, 0.216], n = 357."
+ }
+]
