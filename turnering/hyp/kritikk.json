@@ -1,0 +1,386 @@
+[
+ {
+  "id": "H01",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=-0.017, p=0.041, n=2856).",
+   "S2": "ok - dette er ikke mekanisk, testen isolerer nettopp hvor mye av sammenhengen som er fylkesdrevet.",
+   "S3": "ok - bruker vekst10_pst, sp_t0, sent_indeks, fylke, alle tillatte t0/kontekstvariabler.",
+   "S4": "ok - påstand gjelder kommuner/fylker.",
+   "S5": "ok - sp_t0×periode og sent_indeks×periode er kontrollert; egen falsifiseringsgrense (2/3-demping) gjør konfundering eksplisitt del av testen.",
+   "S6": "ok - kjørt uten feil, fortegn (-) stemmer med retning og faktisk resultat.",
+   "S7": "ok - beslektet med H14/H17/H23/H25/H32 (alle om vekst-Sp), men tester en annen dimensjon (fylke×periode-dekomponering) og er ikke duplikat."
+  },
+  "begrunnelse": "S1 ok (b=-0.017, p=0.041, n=2856). S2 ok - dette er ikke mekanisk, testen isolerer nettopp hvor mye av sammenhengen som er fylkesdrevet. S3 ok - bruker vekst10_pst, sp_t0, sent_indeks, fylke, alle tillatte t0/kontekstvariabler. S4 ok - påstand gjelder kommuner/fylker. S5 ok - sp_t0×periode og sent_indeks×periode er kontrollert; egen falsifiseringsgrense (2/3-demping) gjør konfundering eksplisitt del av testen. S6 ok - kjørt uten feil, fortegn (-) stemmer med retning og faktisk resultat. S7 ok - beslektet med H14/H17/H23/H25/H32 (alle om vekst-Sp), men tester en annen dimensjon (fylke×periode-dekomponering) og er ikke duplikat.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H02",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=-0.470, p≈5e-75, n=3213).",
+   "S2": "- forfatteren erkjenner selv at mønsteret delvis er mekanisk (regresjon mot middelverdien), men testen isolerer nettopp asymmetrien mellom bølge/tilbakeslag, som ikke er tautologisk.",
+   "S3": "ok - bruker kun sp_t0 (nivå, tillatt) og periodedummyer.",
+   "S4": "ok.",
+   "S5": "ok - C(periode) og sent_klasse kontrollert.",
+   "S6": "ok - kjører feilfritt, fortegn stemmer.",
+   "S7": "ok - komplementær til H27 (oppgangsperioder) og H06, men ulik variabel/partisjon, ikke duplikat."
+  },
+  "begrunnelse": "S1 ok (b=-0.470, p≈5e-75, n=3213). S2 - forfatteren erkjenner selv at mønsteret delvis er mekanisk (regresjon mot middelverdien), men testen isolerer nettopp asymmetrien mellom bølge/tilbakeslag, som ikke er tautologisk. S3 ok - bruker kun sp_t0 (nivå, tillatt) og periodedummyer. S4 ok. S5 ok - C(periode) og sent_klasse kontrollert. S6 ok - kjører feilfritt, fortegn stemmer. S7 ok - komplementær til H27 (oppgangsperioder) og H06, men ulik variabel/partisjon, ikke duplikat.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H04",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=0.060, p=4.2e-13, n=3213).",
+   "S2": "ok - ikke-lineær terskeltolkning, ikke triviell.",
+   "S3": "ok.",
+   "S4": "ok - påstand om kommuner.",
+   "S5": "ok - sp_t0×periode og sent_klasse kontrollert, falsifisering sjekket mot vekst4_pst×sent_klasse.",
+   "S6": "ok - kjører feilfritt, interaksjonsfortegn (+) er korrekt tolket som moderasjon av helningen (sterkere fall i d_sp ved nedgang jo mindre kommunen er).",
+   "S7": "ok - beslektet med H23 (sentralitet som moderator) men annen moderator (størrelse), ikke duplikat."
+  },
+  "begrunnelse": "S1 ok (b=0.060, p=4.2e-13, n=3213). S2 ok - ikke-lineær terskeltolkning, ikke triviell. S3 ok. S4 ok - påstand om kommuner. S5 ok - sp_t0×periode og sent_klasse kontrollert, falsifisering sjekket mot vekst4_pst×sent_klasse. S6 ok - kjører feilfritt, interaksjonsfortegn (+) er korrekt tolket som moderasjon av helningen (sterkere fall i d_sp ved nedgang jo mindre kommunen er). S7 ok - beslektet med H23 (sentralitet som moderator) men annen moderator (størrelse), ikke duplikat.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H06",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=-2.376 per 100 poeng, p≈1.5e-46, n=3213).",
+   "S2": "ok.",
+   "S3": "ok - sent_indeks og sp_t0 er tillatte t0/kontekstvariabler.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode kontrollert; hovedledd (ikke-oppgang) rapportert som ≈0, i tråd med påstanden.",
+   "S6": "ok - kjører feilfritt; merk at hovedleddet antar samme helning i ALLE ikke-oppgangsperioder (1993, 1997, 2005, 2009, 2021, 2025), en forenkling som bør nevnes i tolkningen, men den svekker ikke testens gyldighet.",
+   "S7": "ok - ikke duplikat av H02/H27 (annen variabel: sentralitet, ikke sp_t0)."
+  },
+  "begrunnelse": "S1 ok (b=-2.376 per 100 poeng, p≈1.5e-46, n=3213). S2 ok. S3 ok - sent_indeks og sp_t0 er tillatte t0/kontekstvariabler. S4 ok. S5 ok - sp_t0×periode kontrollert; hovedledd (ikke-oppgang) rapportert som ≈0, i tråd med påstanden. S6 ok - kjører feilfritt; merk at hovedleddet antar samme helning i ALLE ikke-oppgangsperioder (1993, 1997, 2005, 2009, 2021, 2025), en forenkling som bør nevnes i tolkningen, men den svekker ikke testens gyldighet. S7 ok - ikke duplikat av H02/H27 (annen variabel: sentralitet, ikke sp_t0).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H07",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=0.046, p=0.005, n=1428, utvalg t0≥2009 stemmer med datadictionary).",
+   "S2": "ok.",
+   "S3": "ok - andel_offentlig_t0/andel_primaer_t0 er t0-nivåer, tillatt.",
+   "S4": "ok.",
+   "S5": "ok - kontrollerer for primærnæring og sentralitet samt sp_t0×periode.",
+   "S6": "ok - kjører feilfritt, fortegn (+) stemmer.",
+   "S7": "ok - ikke duplikat av H15/H19 (andre næringsvariabler)."
+  },
+  "begrunnelse": "S1 ok (b=0.046, p=0.005, n=1428, utvalg t0≥2009 stemmer med datadictionary). S2 ok. S3 ok - andel_offentlig_t0/andel_primaer_t0 er t0-nivåer, tillatt. S4 ok. S5 ok - kontrollerer for primærnæring og sentralitet samt sp_t0×periode. S6 ok - kjører feilfritt, fortegn (+) stemmer. S7 ok - ikke duplikat av H15/H19 (andre næringsvariabler).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H10",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (interaksjon b=0.170, p=0.00034, n=3213).",
+   "S2": "ok.",
+   "S3": "ok - frp_t0 er t0-nivå, tillatt (ikke d_frp eller frp_t1).",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode og sent_klasse kontrollert; eget robusthetstjekk viser at periodespesifikk sp_t0-kontroll er avgjørende (uten den snur fortegnet) - dette er allerede identifisert og håndtert i spesifikasjonen.",
+   "S6": "ok - kjører feilfritt, fortegn (+) stemmer.",
+   "S7": "ok - ikke duplikat av H18 (der er moderator sentralitet, her er det tid/bølge)."
+  },
+  "begrunnelse": "S1 ok (interaksjon b=0.170, p=0.00034, n=3213). S2 ok. S3 ok - frp_t0 er t0-nivå, tillatt (ikke d_frp eller frp_t1). S4 ok. S5 ok - sp_t0×periode og sent_klasse kontrollert; eget robusthetstjekk viser at periodespesifikk sp_t0-kontroll er avgjørende (uten den snur fortegnet) - dette er allerede identifisert og håndtert i spesifikasjonen. S6 ok - kjører feilfritt, fortegn (+) stemmer. S7 ok - ikke duplikat av H18 (der er moderator sentralitet, her er det tid/bølge).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H14",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (mellom-ledd b=-0.196, p=1.3e-07; innen-ledd b=0.058, p=0.037; n=3213).",
+   "S2": "ok - Mundlak-dekomponering er ikke triviell.",
+   "S3": "ok - vekst4_pst er tillatt.",
+   "S4": "ok - eksplisitt formulert som mellomkommunalt mønster (kommunetype), ikke individpåstand.",
+   "S5": "ok - sp_t0×periode og sent_klasse kontrollert.",
+   "S6": "ok - kjører feilfritt; nøkkelledd er kommunegjennomsnittet av vekst4_pst, fortegn (-) stemmer med resultatet.",
+   "S7": "ok - beslektet med H17/H23/H25/H32, men tester en annen (mellom/innen) dekomponering - ikke duplikat."
+  },
+  "begrunnelse": "S1 ok (mellom-ledd b=-0.196, p=1.3e-07; innen-ledd b=0.058, p=0.037; n=3213). S2 ok - Mundlak-dekomponering er ikke triviell. S3 ok - vekst4_pst er tillatt. S4 ok - eksplisitt formulert som mellomkommunalt mønster (kommunetype), ikke individpåstand. S5 ok - sp_t0×periode og sent_klasse kontrollert. S6 ok - kjører feilfritt; nøkkelledd er kommunegjennomsnittet av vekst4_pst, fortegn (-) stemmer med resultatet. S7 ok - beslektet med H17/H23/H25/H32, men tester en annen (mellom/innen) dekomponering - ikke duplikat.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H15",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=-0.029, p=0.028, n=1428, utvalg t0≥2009).",
+   "S2": "ok.",
+   "S3": "ok - andel_industri_t0 og andel_primaer_t0 er t0-nivåer.",
+   "S4": "ok.",
+   "S5": "ok - kontrollert for primærnæring, sentralitet og sp_t0×periode; eget robusthetstjekk (uten kontroller snur fortegnet) er rapportert.",
+   "S6": "ok - kjører feilfritt, fortegn (-) stemmer.",
+   "S7": "ok - ikke duplikat av H07/H19."
+  },
+  "begrunnelse": "S1 ok (b=-0.029, p=0.028, n=1428, utvalg t0≥2009). S2 ok. S3 ok - andel_industri_t0 og andel_primaer_t0 er t0-nivåer. S4 ok. S5 ok - kontrollert for primærnæring, sentralitet og sp_t0×periode; eget robusthetstjekk (uten kontroller snur fortegnet) er rapportert. S6 ok - kjører feilfritt, fortegn (-) stemmer. S7 ok - ikke duplikat av H07/H19.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H16",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=-0.818, p=2.6e-08, n=3213).",
+   "S2": "ok.",
+   "S3": "ok - landsdel, sent_indeks, krf_t0, sp_t0 er alle tillatte kontekst-/t0-variabler.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode, sent_indeks×periode og krf_t0×periode kontrollert for å skille fra KrF-forklaring (G3-03).",
+   "S6": "ok - kjører feilfritt, fortegn (-) stemmer; egen falsifiseringsregel (≥2 av 3 perioder negative) er oppfylt (-2.99, -1.50, +1.01), men det bør fremgå tydelig i rapportering at siste periode snur (allerede nevnt i hypotesen selv).",
+   "S7": "ok - ikke duplikat."
+  },
+  "begrunnelse": "S1 ok (b=-0.818, p=2.6e-08, n=3213). S2 ok. S3 ok - landsdel, sent_indeks, krf_t0, sp_t0 er alle tillatte kontekst-/t0-variabler. S4 ok. S5 ok - sp_t0×periode, sent_indeks×periode og krf_t0×periode kontrollert for å skille fra KrF-forklaring (G3-03). S6 ok - kjører feilfritt, fortegn (-) stemmer; egen falsifiseringsregel (≥2 av 3 perioder negative) er oppfylt (-2.99, -1.50, +1.01), men det bør fremgå tydelig i rapportering at siste periode snur (allerede nevnt i hypotesen selv). S7 ok - ikke duplikat.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H17",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=0.008, p=0.77, n=3213 - modellen kjører feilfritt, og skeptikerutfallet - ingen sammenheng - er nettopp det som testes).",
+   "S2": "ok - eksplisitt konstruert som nullhypotesetest, ikke tautologi.",
+   "S3": "ok - vekst4_pst, sent_indeks, andel_hoyutd_t0, andel_67p_t0, ln_bef_t0 alle tillatte t0-variabler.",
+   "S4": "ok.",
+   "S5": "ok - full komposisjonskontroll er selve poenget med testen.",
+   "S6": "ok - forventet_fortegn er bevisst satt til H2s hypotese (-) med eksplisitt forklaring om at skeptikeren vinner når KI dekker 0, noe modeller.py håndterer korrekt (fortegn_som_forventet=False, som er ventet).",
+   "S7": "ok - ikke duplikat, dette er den eksplisitte skeptikerversjonen av H2/H14/H23/H25/H32."
+  },
+  "begrunnelse": "S1 ok (b=0.008, p=0.77, n=3213 - modellen kjører feilfritt, og skeptikerutfallet - ingen sammenheng - er nettopp det som testes). S2 ok - eksplisitt konstruert som nullhypotesetest, ikke tautologi. S3 ok - vekst4_pst, sent_indeks, andel_hoyutd_t0, andel_67p_t0, ln_bef_t0 alle tillatte t0-variabler. S4 ok. S5 ok - full komposisjonskontroll er selve poenget med testen. S6 ok - forventet_fortegn er bevisst satt til H2s hypotese (-) med eksplisitt forklaring om at skeptikeren vinner når KI dekker 0, noe modeller.py håndterer korrekt (fortegn_som_forventet=False, som er ventet). S7 ok - ikke duplikat, dette er den eksplisitte skeptikerversjonen av H2/H14/H23/H25/H32.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H18",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (interaksjon b=-0.062, p=0.00011, n=3213).",
+   "S2": "ok.",
+   "S3": "ok - frp_t0 og sent_klasse er tillatte.",
+   "S4": "ok - forfatteren presiserer selv at dette er beskrivende (tilbudsside), ikke påvist velgerflyt.",
+   "S5": "ok - sp_t0×periode og sent_klasse kontrollert.",
+   "S6": "ok - kjører feilfritt, fortegn (-) stemmer.",
+   "S7": "ok - ikke duplikat av H10 (annen moderator: geografi, ikke tid)."
+  },
+  "begrunnelse": "S1 ok (interaksjon b=-0.062, p=0.00011, n=3213). S2 ok. S3 ok - frp_t0 og sent_klasse er tillatte. S4 ok - forfatteren presiserer selv at dette er beskrivende (tilbudsside), ikke påvist velgerflyt. S5 ok - sp_t0×periode og sent_klasse kontrollert. S6 ok - kjører feilfritt, fortegn (-) stemmer. S7 ok - ikke duplikat av H10 (annen moderator: geografi, ikke tid).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H19",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=0.184, p=1.1e-05, n=1428, utvalg t0≥2009 stemmer med datadictionary).",
+   "S2": "ok.",
+   "S3": "ok - andel_primaer_t0 er t0-nivå.",
+   "S4": "ok.",
+   "S5": "ok - kontrollert for vekst, sentralitet, utdanning og sp_t0:periode.",
+   "S6": "ok - kjører feilfritt, fortegn (+) stemmer.",
+   "S7": "ok - ikke duplikat av H07/H15 (ulike næringsvariabler, testet for seg)."
+  },
+  "begrunnelse": "S1 ok (b=0.184, p=1.1e-05, n=1428, utvalg t0≥2009 stemmer med datadictionary). S2 ok. S3 ok - andel_primaer_t0 er t0-nivå. S4 ok. S5 ok - kontrollert for vekst, sentralitet, utdanning og sp_t0:periode. S6 ok - kjører feilfritt, fortegn (+) stemmer. S7 ok - ikke duplikat av H07/H15 (ulike næringsvariabler, testet for seg).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H20",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=-0.012, p=0.018, n=3209).",
+   "S2": "ok.",
+   "S3": "ok - fodselsovsk_per1000 og nettoinnfl_per1000 er tillatte demografiske t0/periode-variabler.",
+   "S4": "ok.",
+   "S5": "ok - kontrollert for sentralitet, utdanning og sp_t0:periode; alternativ mekanisme (nettoinnflytting) er kontrollert direkte i samme modell.",
+   "S6": "ok - kjører feilfritt, fortegn (-) stemmer.",
+   "S7": "ok - ikke duplikat av H07 (annen mekanisme: aldersbalanse vs. flytting)."
+  },
+  "begrunnelse": "S1 ok (b=-0.012, p=0.018, n=3209). S2 ok. S3 ok - fodselsovsk_per1000 og nettoinnfl_per1000 er tillatte demografiske t0/periode-variabler. S4 ok. S5 ok - kontrollert for sentralitet, utdanning og sp_t0:periode; alternativ mekanisme (nettoinnflytting) er kontrollert direkte i samme modell. S6 ok - kjører feilfritt, fortegn (-) stemmer. S7 ok - ikke duplikat av H07 (annen mekanisme: aldersbalanse vs. flytting).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H22",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=-0.159, p=0.042, n=3213).",
+   "S2": "ok.",
+   "S3": "ok - ln_bef_t0 og sent_indeks er tillatte t0-variabler.",
+   "S4": "ok.",
+   "S5": "ok - sentralitet kontrollert direkte for å skille størrelse fra sentralitet; egen sensitivitetssjekk (uvektet mye sterkere) er rapportert.",
+   "S6": "ok - kjører feilfritt, fortegn (-) stemmer, svakt signifikant vektet (p=0.042) som selv er nevnt som en svakhet.",
+   "S7": "ok - ikke duplikat av H04 (der er størrelse en moderator av vekst4_pst, her et selvstendig hovedledd)."
+  },
+  "begrunnelse": "S1 ok (b=-0.159, p=0.042, n=3213). S2 ok. S3 ok - ln_bef_t0 og sent_indeks er tillatte t0-variabler. S4 ok. S5 ok - sentralitet kontrollert direkte for å skille størrelse fra sentralitet; egen sensitivitetssjekk (uvektet mye sterkere) er rapportert. S6 ok - kjører feilfritt, fortegn (-) stemmer, svakt signifikant vektet (p=0.042) som selv er nevnt som en svakhet. S7 ok - ikke duplikat av H04 (der er størrelse en moderator av vekst4_pst, her et selvstendig hovedledd).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H23",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=-0.048, p=1.3e-08, n=3213).",
+   "S2": "ok.",
+   "S3": "ok - vekst4_pst og sent_klasse tillatte.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode kontrollert.",
+   "S6": "ok - kjører feilfritt, fortegn (-) stemmer; egen falsifiseringsnotat om at en dikotom periferidummy gir null bør rapporteres som robusthetsbegrensning, men svekker ikke selve spesifikasjonen.",
+   "S7": "ok - ikke duplikat av H04 (annen moderator)."
+  },
+  "begrunnelse": "S1 ok (b=-0.048, p=1.3e-08, n=3213). S2 ok. S3 ok - vekst4_pst og sent_klasse tillatte. S4 ok. S5 ok - sp_t0×periode kontrollert. S6 ok - kjører feilfritt, fortegn (-) stemmer; egen falsifiseringsnotat om at en dikotom periferidummy gir null bør rapporteres som robusthetsbegrensning, men svekker ikke selve spesifikasjonen. S7 ok - ikke duplikat av H04 (annen moderator).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H24",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=-0.585, p=2e-29, n=714, utvalg begrenset til 1989-1993/2013-2017 kjører feilfritt).",
+   "S2": "ok.",
+   "S3": "ok - krf_t0 og sp_t0 er t0-nivåer.",
+   "S4": "ok - eksplisitt merket som kommunenivå, ikke velgernivå.",
+   "S5": "ok - sp_t0×periode og sent_indeks×periode kontrollert.",
+   "S6": "ok - kjører feilfritt, fortegn (-) stemmer.",
+   "S7": "ok - ikke duplikat av H16 (der er krf_t0 kontrollvariabel, her er den selve nøkkelleddet)."
+  },
+  "begrunnelse": "S1 ok (b=-0.585, p=2e-29, n=714, utvalg begrenset til 1989-1993/2013-2017 kjører feilfritt). S2 ok. S3 ok - krf_t0 og sp_t0 er t0-nivåer. S4 ok - eksplisitt merket som kommunenivå, ikke velgernivå. S5 ok - sp_t0×periode og sent_indeks×periode kontrollert. S6 ok - kjører feilfritt, fortegn (-) stemmer. S7 ok - ikke duplikat av H16 (der er krf_t0 kontrollvariabel, her er den selve nøkkelleddet).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H25",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (interaksjon b=0.467, p=1.5e-07, n=714, utvalg 2013+2017 kjører feilfritt).",
+   "S2": "ok.",
+   "S3": "ok - vekst4_pst er tillatt.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode og sent_klasse kontrollert.",
+   "S6": "ok - kjører feilfritt, fortegn (+, dvs. mindre negativ helning i 2017-21) stemmer.",
+   "S7": "- beslektet med H32 (begge sier vekst-effekten er svak i 2017-21), men H25 sammenligner kun 2013-17 mot 2017-21 mens H32 grupperer 1989+2013 mot resten inkl. 2017-21; ulik partisjon og utvalg, derfor ikke duplikat, men bør leses sammen ved rapportering."
+  },
+  "begrunnelse": "S1 ok (interaksjon b=0.467, p=1.5e-07, n=714, utvalg 2013+2017 kjører feilfritt). S2 ok. S3 ok - vekst4_pst er tillatt. S4 ok. S5 ok - sp_t0×periode og sent_klasse kontrollert. S6 ok - kjører feilfritt, fortegn (+, dvs. mindre negativ helning i 2017-21) stemmer. S7 - beslektet med H32 (begge sier vekst-effekten er svak i 2017-21), men H25 sammenligner kun 2013-17 mot 2017-21 mens H32 grupperer 1989+2013 mot resten inkl. 2017-21; ulik partisjon og utvalg, derfor ikke duplikat, men bør leses sammen ved rapportering.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H26",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=-2.467, p=5.3e-05, n=1785, utvalg t0≥2005 stemmer med datadictionary for inntekt_median_t0).",
+   "S2": "ok.",
+   "S3": "ok - inntekt_median_t0 og sent_klasse er t0-nivåer.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode kontrollert; effekten er betinget av sentralitetskontroll (uten den er den null), noe hypotesen selv flagger som noe som må rapporteres - dette er en legitim suppresjonseffekt (relativ deprivasjon utover sentralitet), ikke et spesifikasjonsproblem.",
+   "S6": "ok - kjører feilfritt, fortegn (-) stemmer.",
+   "S7": "ok - ikke duplikat."
+  },
+  "begrunnelse": "S1 ok (b=-2.467, p=5.3e-05, n=1785, utvalg t0≥2005 stemmer med datadictionary for inntekt_median_t0). S2 ok. S3 ok - inntekt_median_t0 og sent_klasse er t0-nivåer. S4 ok. S5 ok - sp_t0×periode kontrollert; effekten er betinget av sentralitetskontroll (uten den er den null), noe hypotesen selv flagger som noe som må rapporteres - dette er en legitim suppresjonseffekt (relativ deprivasjon utover sentralitet), ikke et spesifikasjonsproblem. S6 ok - kjører feilfritt, fortegn (-) stemmer. S7 ok - ikke duplikat.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H27",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (interaksjon b=0.194, p=5.6e-07, n=3213).",
+   "S2": "ok - forfatteren erkjenner delvis mekanisk proporsjonal sving, men isolerer forsterkningsleddet utover dette.",
+   "S3": "ok - sp_t0 og sent_indeks er tillatte.",
+   "S4": "ok.",
+   "S5": "ok - sent_indeks×periode kontrollert for å utelukke at 'forsterkning' bare er periferi.",
+   "S6": "ok - kjører feilfritt, fortegn (+) stemmer.",
+   "S7": "ok - komplementær til H02 (tilbakeslag) og H06, men ulik partisjon og hovedledd, ikke duplikat."
+  },
+  "begrunnelse": "S1 ok (interaksjon b=0.194, p=5.6e-07, n=3213). S2 ok - forfatteren erkjenner delvis mekanisk proporsjonal sving, men isolerer forsterkningsleddet utover dette. S3 ok - sp_t0 og sent_indeks er tillatte. S4 ok. S5 ok - sent_indeks×periode kontrollert for å utelukke at 'forsterkning' bare er periferi. S6 ok - kjører feilfritt, fortegn (+) stemmer. S7 ok - komplementær til H02 (tilbakeslag) og H06, men ulik partisjon og hovedledd, ikke duplikat.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H28",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (interaksjon b=0.057 per 100 poeng, p=2.7e-12, n=2926, utvalg kv_sp_t0>0 kjører feilfritt).",
+   "S2": "ok.",
+   "S3": "ok - kv_d_sp er fra en separat datakilde (SSB 01180, kommunevalg) og ikke definisjonsmessig del av d_sp (stortingsvalg); dette er eksplisitt tillatt i datadictionary som robusthetsvariabel, ikke lekkasje selv om det er en viss delt tidsoverlapping som hypotesen selv påpeker.",
+   "S4": "ok - eksplisitt merket som beskrivende, ikke ledetest.",
+   "S5": "ok - sp_t0×periode og sent_indeks×periode kontrollert.",
+   "S6": "ok - kjører feilfritt, fortegn (+) stemmer.",
+   "S7": "ok - ikke duplikat av H30 (annen variabel: kv_d_sp endring, ikke kv_sp_t0 nivågap)."
+  },
+  "begrunnelse": "S1 ok (interaksjon b=0.057 per 100 poeng, p=2.7e-12, n=2926, utvalg kv_sp_t0>0 kjører feilfritt). S2 ok. S3 ok - kv_d_sp er fra en separat datakilde (SSB 01180, kommunevalg) og ikke definisjonsmessig del av d_sp (stortingsvalg); dette er eksplisitt tillatt i datadictionary som robusthetsvariabel, ikke lekkasje selv om det er en viss delt tidsoverlapping som hypotesen selv påpeker. S4 ok - eksplisitt merket som beskrivende, ikke ledetest. S5 ok - sp_t0×periode og sent_indeks×periode kontrollert. S6 ok - kjører feilfritt, fortegn (+) stemmer. S7 ok - ikke duplikat av H30 (annen variabel: kv_d_sp endring, ikke kv_sp_t0 nivågap).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H29",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=2.990, p=8.9e-22, n=993, utvalg sent_klasse≥3 og tre perioder kjører feilfritt).",
+   "S2": "ok.",
+   "S3": "ok - sent_indeks og sp_t0 tillatte.",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode og sent_indeks×periode kontrollert.",
+   "S6": "ok - kjører feilfritt, fortegn (+) stemmer.",
+   "S7": "ok - ikke duplikat av H16 (annen geografisk dimensjon: periferigrad innen sentralitetsklasser, ikke landsdel)."
+  },
+  "begrunnelse": "S1 ok (b=2.990, p=8.9e-22, n=993, utvalg sent_klasse≥3 og tre perioder kjører feilfritt). S2 ok. S3 ok - sent_indeks og sp_t0 tillatte. S4 ok. S5 ok - sp_t0×periode og sent_indeks×periode kontrollert. S6 ok - kjører feilfritt, fortegn (+) stemmer. S7 ok - ikke duplikat av H16 (annen geografisk dimensjon: periferigrad innen sentralitetsklasser, ikke landsdel).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H30",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=0.069, p=2.8e-06, n=2926, utvalg kv_sp_t0>0 kjører feilfritt).",
+   "S2": "ok.",
+   "S3": "ok - kv_sp_t0 er en t0-2-måling fra separat datakilde (kommunevalg), ikke utfallet selv, og eksplisitt en nivåvariabel (ikke endring i selve testperioden).",
+   "S4": "ok - alternative tolkninger (reserve vs. målefeil) diskutert eksplisitt.",
+   "S5": "ok - sp_t0×periode og sent_indeks×periode kontrollert.",
+   "S6": "ok - kjører feilfritt, fortegn (+) stemmer.",
+   "S7": "ok - ikke duplikat av H28."
+  },
+  "begrunnelse": "S1 ok (b=0.069, p=2.8e-06, n=2926, utvalg kv_sp_t0>0 kjører feilfritt). S2 ok. S3 ok - kv_sp_t0 er en t0-2-måling fra separat datakilde (kommunevalg), ikke utfallet selv, og eksplisitt en nivåvariabel (ikke endring i selve testperioden). S4 ok - alternative tolkninger (reserve vs. målefeil) diskutert eksplisitt. S5 ok - sp_t0×periode og sent_indeks×periode kontrollert. S6 ok - kjører feilfritt, fortegn (+) stemmer. S7 ok - ikke duplikat av H28.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H31",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (interaksjon b=0.182, p=8.5e-18, n=3213).",
+   "S2": "ok.",
+   "S3": "ok - ap_t0 er et t0-nivå for et annet parti, eksplisitt tillatt (kun d_annet/{annet}_t1 er forbudt).",
+   "S4": "ok.",
+   "S5": "ok - sp_t0×periode og sent_klasse kontrollert; kontrafaktisk sjekk mot 1989-93 er innebygget i spesifikasjonen selv.",
+   "S6": "ok - kjører feilfritt, fortegn (+) stemmer.",
+   "S7": "ok - ikke duplikat av H10/H18 (annet parti, annen mekanisme)."
+  },
+  "begrunnelse": "S1 ok (interaksjon b=0.182, p=8.5e-18, n=3213). S2 ok. S3 ok - ap_t0 er et t0-nivå for et annet parti, eksplisitt tillatt (kun d_annet/{annet}_t1 er forbudt). S4 ok. S5 ok - sp_t0×periode og sent_klasse kontrollert; kontrafaktisk sjekk mot 1989-93 er innebygget i spesifikasjonen selv. S6 ok - kjører feilfritt, fortegn (+) stemmer. S7 ok - ikke duplikat av H10/H18 (annet parti, annen mekanisme).",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ },
+ {
+  "id": "H32",
+  "dom": "godkjent",
+  "sjekkliste": {
+   "S1": "ok (b=-0.516, p=6e-10, n=3213).",
+   "S2": "ok.",
+   "S3": "ok - vekst4_pst er tillatt.",
+   "S4": "ok.",
+   "S5": "ok - sent_klasse og sp_t0×periode kontrollert.",
+   "S6": "ok - kjører feilfritt, fortegn (-) stemmer; interaksjonen slår sammen 1989 og 2013 uten å vise dem separat, så det bør rapporteres om begge periodene faktisk bidrar likt eller om ett driver resultatet - dette er en tolkningsbegrensning, ikke en spesifikasjonsfeil.",
+   "S7": "- beslektet med H25 (se der), men ulik gruppering av perioder og utvalg, ikke duplikat."
+  },
+  "begrunnelse": "S1 ok (b=-0.516, p=6e-10, n=3213). S2 ok. S3 ok - vekst4_pst er tillatt. S4 ok. S5 ok - sent_klasse og sp_t0×periode kontrollert. S6 ok - kjører feilfritt, fortegn (-) stemmer; interaksjonen slår sammen 1989 og 2013 uten å vise dem separat, så det bør rapporteres om begge periodene faktisk bidrar likt eller om ett driver resultatet - dette er en tolkningsbegrensning, ikke en spesifikasjonsfeil. S7 - beslektet med H25 (se der), men ulik gruppering av perioder og utvalg, ikke duplikat.",
+  "revidert_testspesifikasjon": null,
+  "revidert_påstand": null
+ }
+]
