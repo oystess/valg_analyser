@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Spredningsdiagram: endring i Ap og Sp 2013→2017 (pp) mot befolkningsvekst 2007–2017 (%), per 2024-kommune."""
+"""Spredningsdiagram: endring i Sp og ett annet parti 2013→2017 (pp) mot befolkningsvekst 2007–2017 (%),
+per 2024-kommune, med glattet trend (LOWESS).
+
+Bruk: python analyse/figur_parti_vs_befolkning.py ap|h|frp|krf|sv|v|mdg|rodt
+"""
+import sys
 from pathlib import Path
 
 import matplotlib
@@ -14,14 +19,23 @@ p = pd.read_csv(ROT / "turnering" / "data" / "panel.csv", dtype={"kom2024": str}
 d = p[p["periode"] == "2013-2017"]
 
 TEKST, GRÅ, RUTE = "#274247", "#909090", "#C3DCDC"
-serier = [("d_sp", "Senterpartiet", "#1A9D49", "o"), ("d_ap", "Arbeiderpartiet", "#1D9DE2", "^")]
+# Fast farge per parti på tvers av figurene (SSB-palett); Sp er alltid grønn
+PARTI = {"ap": ("Arbeiderpartiet", "#1D9DE2"), "h": ("Høyre", "#C78800"), "frp": ("Fremskrittspartiet", "#0F2080"),
+         "krf": ("Kristelig Folkeparti", "#C775A7"), "sv": ("SV", "#A3136C"), "v": ("Venstre", "#075745"),
+         "mdg": ("MDG", "#471F00"), "rodt": ("Rødt", "#909090")}
+TITTEL = {"ap": "Sp vokste og Ap falt mest der folketallet gikk ned (2013–2017)",
+          "h": "Sp vokste der folketallet falt – Høyre sto nesten stille (2013–2017)"}
+annet = sys.argv[1] if len(sys.argv) > 1 else "ap"
+navn2, farge2 = PARTI[annet]
+serier = [("d_sp", "Senterpartiet", "#1A9D49", "o"), (f"d_{annet}", navn2, farge2, "^")]
 
 plt.rcParams.update({"font.family": ["Open Sans", "Arial", "DejaVu Sans"], "axes.edgecolor": TEKST})
 fig, ax = plt.subplots(figsize=(10, 6.5), dpi=150)
 X_UT, Y_UT = (-12, 30), (-20, 30)   # utsnitt; kurvene regnes på alle kommuner
 x = d["vekst10_pst"]
+k2 = f"d_{annet}"
 utenfor = d[(x < X_UT[0]) | (x > X_UT[1]) | (d["d_sp"] > Y_UT[1]) | (d["d_sp"] < Y_UT[0])
-            | (d["d_ap"] > Y_UT[1]) | (d["d_ap"] < Y_UT[0])]
+            | (d[k2] > Y_UT[1]) | (d[k2] < Y_UT[0])]
 for kol, navn, farge, markør in serier:
     ax.scatter(x, d[kol], s=18, color=farge, marker=markør, alpha=0.55, linewidths=0, label=navn)
     kurve = lowess(d[kol], x, frac=0.4, return_sorted=True)
@@ -42,7 +56,7 @@ ax.set_ylabel("Endring i oppslutning, stortingsvalg 2013–2017 (prosentpoeng)",
 ax.tick_params(colors=TEKST, labelsize=11)
 ax.set_xlim(*X_UT)
 ax.set_ylim(*Y_UT)
-fig.suptitle("Sp vokste og Ap falt mest der folketallet gikk ned (2013–2017)",
+fig.suptitle(TITTEL.get(annet, f"Endring for Sp og {navn2} etter befolkningsutvikling (2013–2017)"),
              x=0.06, ha="left", fontsize=16, fontweight="bold", color=TEKST, family=["Roboto Condensed", "DejaVu Sans"])
 ax.set_title("357 kommuner (2024-inndeling). Kurvene er glattet trend (LOWESS), regnet på alle kommuner.",
              loc="left", fontsize=11, color=GRÅ)
@@ -51,6 +65,6 @@ fig.text(0.06, 0.015, "Kilde: SSB, tabell 08092 (stortingsvalg) og 07459 (befolk
          f"Utenfor utsnittet ({len(utenfor)}): " + ", ".join(utenfor["navn"].str.split(" - ").str[0]) + ".",
          fontsize=10, color=GRÅ)
 fig.tight_layout(rect=(0.03, 0.06, 1, 0.95))
-ut = ROT / "figurer" / "ap_sp_2013_2017_befolkning.png"
+ut = ROT / "figurer" / f"{annet}_sp_2013_2017_befolkning.png"
 fig.savefig(ut, facecolor="white")
 print(ut)
