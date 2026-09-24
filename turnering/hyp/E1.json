@@ -1,0 +1,246 @@
+[
+ {
+  "id": "E1-01",
+  "påstand": "Kommuner med vedvarende lav befolkningsvekst over hele perioden 1989–2025 har sterkere Sp-vekst enn andre kommuner, også når Sp-gradienten mot sentralitet får variere mellom periodene. En kommunes perioder med lavere vekst enn eget snitt følges ikke av mer Sp-vekst.",
+  "mekanisme": "Som i H14: befolkningsnedgang er en markør for en stabil kommunetype og ikke en løpende utløser. Denne versjonen spisser mot at mellom-mønsteret bare er sentralitet under et annet navn. Sentralitetsindeksen får egen helning i hver periode, slik at mellom-leddet må bære informasjon ut over periferigradienten i hver bølge.",
+  "forhold_til_frø": "H2: avgrenser – nedgang som varig kommunekjennetegn, ikke som løpende driver; H14 spisset mot sentralitet × periode.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "kommunesnitt av vekst4_pst (mellom)",
+    "vekst4_pst (innen, gitt snittet)"
+   ],
+   "retning": "- (mellom); ≈0 eller + (innen)",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "sent_indeks/100 × C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ vekst4_pst + I(vekst4_pst.groupby(kom2024).transform('mean')) + sp_t0*C(periode) + I(sent_indeks/100)*C(periode)",
+   "nøkkelledd": "I(vekst4_pst.groupby(kom2024).transform('mean'))",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Mellom-leddet er ≥ 0 eller KI inkluderer 0; eller innen-leddet vekst4_pst er signifikant negativt.",
+  "eksplorativ_evidens": "Mellom-ledd: b = -0.079, 95 % KI [-0.146, -0.013], p = 0.020, n = 3213 (357 kommuner); OLS b = -0.134, p = 0.0043. Med C(sent_klasse) i stedet (H14): b = -0.196. Mellom-leddet er altså omtrent halvert når sentralitetsgradienten får variere per periode, men det består.",
+  "forelder": [
+   "H14"
+  ]
+ },
+ {
+  "id": "E1-02",
+  "påstand": "Blant kommuner med befolkningsnedgang får små kommuner sterkere Sp-vekst enn store, også når nedgangsmønsteret får variere med sentralitetsklasse.",
+  "mekanisme": "Tjenester har faste terskler (som H04). Denne versjonen skiller kommunestørrelse fra sentralitet ved å la helningen for vekst4_pst variere med sentralitetsklasse. Da kan størrelsesleddet ikke bare være en periferimoderator under nytt navn.",
+  "forhold_til_frø": "H2: spisser tjenestemekanismen; H04 med vekst4_pst × C(sent_klasse) som kontroll.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "vekst4_pst × ln_bef_t0"
+   ],
+   "retning": "+",
+   "kontroller": [
+    "vekst4_pst × C(sent_klasse)",
+    "sp_t0 × C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ vekst4_pst*ln_bef_t0 + vekst4_pst*C(sent_klasse) + sp_t0*C(periode)",
+   "nøkkelledd": "vekst4_pst:ln_bef_t0",
+   "forventet_fortegn": "+",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Interaksjonsleddet er ≤ 0 eller KI dekker 0. Mønsteret svekkes sterkt om det bare finnes med stemmevekt (OLS ≈ 0).",
+  "eksplorativ_evidens": "b = 0.057, 95 % KI [0.026, 0.087], p = 0.00025, n = 3213 (357 kommuner). ADVARSEL: OLS b = 0.008, p = 0.78 (også for H04: OLS b = -0.003). Mønsteret bæres derfor av de store kommunene gjennom vektingen. Uten kommuner på 100 000 eller flere: b = 0.060 [0.019, 0.102]. En terskelversjon med vekst4_pst × I(bef_t0 < 5000) gir motsatt fortegn (b = 0.140, p = 0.047), altså ingen sterkere nedgangssammenheng i de minste kommunene.",
+  "forelder": [
+   "H04"
+  ]
+ },
+ {
+  "id": "E1-03",
+  "påstand": "I Sp-bølgen 2013–2021 økte Sp mest i kommuner med høy Ap-andel ved t0, også sammenlignet med andre kommuner i samme fylke og periode. Mønsteret fantes ikke i andre perioder.",
+  "mekanisme": "Som H31: den andre Sp-bølgen hadde et Ap-nært nedslagsfelt. Spissingen tar bort regionale forklaringer, som at Ap-sterke fylker i nord og i Innlandet hadde egne saker (regionreform, sykehus). Mønsteret må da finnes mellom kommuner i samme fylke. Sentralitet får egen helning per periode.",
+  "forhold_til_frø": "ny (partikonkurranse med Ap); H31 spisset med fylke × periode og sentralitet × periode.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "ap_t0",
+    "ap_t0 × I(t0 ∈ {2013, 2017})"
+   ],
+   "retning": "+",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "sent_indeks/100 × C(periode)",
+    "C(fylke):C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ ap_t0*I(t0.isin([2013, 2017])) + sp_t0*C(periode) + I(sent_indeks/100)*C(periode) + C(fylke):C(periode)",
+   "nøkkelledd": "ap_t0:I(t0.isin([2013, 2017]))[T.True]",
+   "forventet_fortegn": "+",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Interaksjonsleddet er ≤ 0 eller KI inkluderer 0 med fylke × periode-FE.",
+  "eksplorativ_evidens": "b = 0.142, 95 % KI [0.073, 0.210], p = 5.3e-05, n = 3213 (357 kommuner); OLS b = 0.116, p = 7e-05. Uten fylke-FE (sentralitet × periode): b = 0.196 [0.154, 0.237]. Designet er rangmangelfullt (fylke × periode overlapper periodeleddene), men nøkkelleddet er identifisert.",
+  "forelder": [
+   "H31"
+  ]
+ },
+ {
+  "id": "E1-04",
+  "påstand": "Blant perifere kommuner (sentralitetsklasse 3–6) var gradienten der Sp-økningen avtar med lavere sentralitet klart flatere i 2017–2021 enn i 2013–2017, også innenfor samme fylke.",
+  "mekanisme": "Som H29: utkantkommunene tok ut gevinsten i 2017, og i 2021 nådde Sp ut til regionsentre og mellomstore distriktskommuner. Versjonen er forenklet til én kontrast mellom de to nabobølgene og spisset med fylke × periode, slik at utflatingen ikke skyldes at 2021-veksten var særlig stor i enkelte fylker (for eksempel Nord-Norge).",
+  "forhold_til_frø": "H1: avgrenser – 2021 var ingen topp i periferiintensitet; H29 forenklet og spisset.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "sent_indeks/100 × periode 2017–2021 (ref. 2013–2017)"
+   ],
+   "retning": "+",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "sent_indeks/100 × C(periode)",
+    "C(fylke):C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ sp_t0*C(periode) + I(sent_indeks/100)*C(periode) + C(fylke):C(periode)",
+   "nøkkelledd": "I(sent_indeks / 100):C(periode)[T.2017-2021]",
+   "forventet_fortegn": "+",
+   "utvalg": "sent_klasse >= 3 and periode.isin(['2013-2017', '2017-2021'])",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Samspillet er ≤ 0 eller KI dekker 0, altså at gradienten innen fylke var like bratt i 2021 som i 2017.",
+  "eksplorativ_evidens": "b = 1.189, 95 % KI [0.352, 2.027], p = 0.0054, n = 662 (331 kommuner); OLS b = 0.891, p = 0.031. Uten fylke-FE: b = 2.239 [1.561, 2.917], p = 9.6e-11. Omtrent halvparten av utflatingen er altså mellom fylker.",
+  "forelder": [
+   "H29"
+  ]
+ },
+ {
+  "id": "E1-05",
+  "påstand": "Kommuner med sterk KrF ved t0 fikk større Sp-økning enn andre i 1989–1993, men klart mindre i 2013–2017, også sammenlignet med andre kommuner i samme fylke.",
+  "mekanisme": "Som H24 (Rokkans motkulturlinje). KrF-kommunene ligger samlet på Sør- og Vestlandet, så periodeforskjellen kan være en ren landsdelsforskjell i bølgene. Med fylke × periode sammenlignes KrF-sterke og KrF-svake kommuner i samme fylke og bølge.",
+  "forhold_til_frø": "ny (motkulturlinjen); H24 spisset med fylke × periode.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "krf_t0 × periode 2013–2017 (ref. 1989–1993)"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "sent_indeks/100 × C(periode)",
+    "C(fylke):C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ sp_t0*C(periode) + I(sent_indeks/100)*C(periode) + krf_t0*C(periode) + C(fylke):C(periode)",
+   "nøkkelledd": "krf_t0:C(periode)[T.2013-2017]",
+   "forventet_fortegn": "-",
+   "utvalg": "periode.isin(['1989-1993', '2013-2017'])",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Samspillet er ≥ 0 eller KI dekker 0 med fylke × periode-FE.",
+  "eksplorativ_evidens": "b = -0.590, 95 % KI [-0.761, -0.419], p = 1.2e-11, n = 714 (357 kommuner); OLS b = -0.583, p = 1.7e-16. Med landsdel × periode i stedet: b = -0.546 [-0.689, -0.404]. Uten slike FE (H24): b = -0.585. Mønsteret ligger altså nesten helt innenfor fylkene.",
+  "forelder": [
+   "H24"
+  ]
+ },
+ {
+  "id": "E1-06",
+  "påstand": "Innenfor samme fylke og periode følger kommuner med svakere tiårsvekst enn fylkessnittet med sterkere Sp-vekst, omtrent like sterkt som i landet som helhet. Fylkets gjennomsnittlige vekst tilfører ingenting ut over dette. Dempingen i H01 kommer altså ikke av at befolkningsnedgangen er regional.",
+  "mekanisme": "H01 viste at koeffisienten krymper med fylke × periode-FE. Men de faste effektene fjerner også forskjeller i sentralitet og sp_t0 mellom fylkene. Denne versjonen skiller befolkningsleddet i et fylke-periode-snitt og kommunens avvik fra det (Mundlak på fylke × periode), med de andre kontrollene uendret. Er nedgangsmønsteret regionalt, skal snittleddet bære det. Er det lokalt, skal avviksleddet bære det.",
+  "forhold_til_frø": "H2/H3: spisser og delvis motsier H01 – nedgangsmønsteret finnes innenfor fylker; dempingen med FE skyldes andre regionale forhold.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "vekst10_pst (gitt fylke × periode-snitt)",
+    "fylke × periode-snitt av vekst10_pst (kontekst)"
+   ],
+   "retning": "- (innen); ≈0 (kontekst)",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "sent_indeks/100 × C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ vekst10_pst + I(vekst10_pst.groupby([fylke, periode]).transform('mean')) + sp_t0*C(periode) + I(sent_indeks/100)*C(periode)",
+   "nøkkelledd": "vekst10_pst",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "vekst10_pst er ≥ 0 eller KI dekker 0; eller kontekstleddet (fylkessnittet) er signifikant negativt og minst like stort som vekst10_pst.",
+  "eksplorativ_evidens": "vekst10_pst (innen): b = -0.053, 95 % KI [-0.070, -0.035], p = 3.2e-09, n = 2856 (357 kommuner); OLS b = -0.055, p = 2.1e-05. Kontekstledd: b = 0.001 [-0.018, 0.019], p = 0.94 (OLS -0.010, p = 0.39). Til sammenligning H01 med fylke × periode-FE: b = -0.017.",
+  "forelder": [
+   "H01"
+  ]
+ },
+ {
+  "id": "E1-07",
+  "påstand": "Partilandskapet ved t0 følger Sp-bølgene ulikt: fra 1989–1993 til 2013–2017 snudde KrF-sammenhengen fra positiv til negativ og Ap-sammenhengen fra svak til positiv. Begge endringene gjelder når de estimeres samtidig.",
+  "mekanisme": "H31 og H24 beskriver samme skifte fra to sider: EU-bølgen mobiliserte den kristne motkulturen, distriktsbølgen sentrumsvenstre-periferien. Ap- og KrF-andelen er negativt korrelert mellom kommuner, så hver av dem kan fange opp den andre. Kombinasjonen viser at begge skiftene finnes hver for seg.",
+  "forhold_til_frø": "ny; kombinerer H31 (Ap) og H24 (KrF) i én modell.",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "krf_t0 × periode 2013–2017 (ref. 1989–1993)",
+    "ap_t0 × periode 2013–2017 (kontroll og sekundærledd)"
+   ],
+   "retning": "- (KrF); + (Ap)",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "sent_indeks/100 × C(periode)",
+    "ap_t0 × C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ sp_t0*C(periode) + I(sent_indeks/100)*C(periode) + ap_t0*C(periode) + krf_t0*C(periode)",
+   "nøkkelledd": "krf_t0:C(periode)[T.2013-2017]",
+   "forventet_fortegn": "-",
+   "utvalg": "periode.isin(['1989-1993', '2013-2017'])",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "KrF-samspillet er ≥ 0 eller KI dekker 0 når Ap-samspillet er med; det svekker også kombinasjonen om Ap-samspillet (ap_t0:C(periode)[T.2013-2017]) er ≤ 0 eller KI dekker 0.",
+  "eksplorativ_evidens": "KrF-samspill: b = -0.373, 95 % KI [-0.497, -0.249], p = 3.4e-09, n = 714 (357 kommuner); OLS b = -0.361, p = 1.5e-07. Ap-samspill i samme modell: b = 0.173 [0.108, 0.237], p = 1.5e-07 (OLS 0.187). KrF-leddet krymper fra -0.585 (H24) til -0.373 med Ap i modellen.",
+  "forelder": [
+   "H31",
+   "H24"
+  ]
+ },
+ {
+  "id": "E1-08",
+  "påstand": "Kommuner med vedvarende lav tiårsvekst har sterkere Sp-vekst enn andre kommuner i samme fylke og periode. Den varige kommunetypen fra H14 finnes altså innenfor fylker og er ikke bare en fylkeseffekt (H01).",
+  "mekanisme": "H14 plasserer nedgangsmønsteret i en stabil kommunetype, og H01 plasserer det i regionen. Kombinasjonen tester om kommunesnittet av tiårsveksten over alle perioder skiller kommuner i samme fylke og periode. Tiårsvekst brukes fordi den fanger varig utvikling bedre enn fireårsvekst.",
+  "forhold_til_frø": "H2/H3: kombinerer H14 (mellomkommunalt) og H01 (fylkes-FE).",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "kommunesnitt av vekst10_pst (mellom)",
+    "vekst10_pst (innen)"
+   ],
+   "retning": "- (mellom)",
+   "kontroller": [
+    "sp_t0 × C(periode)",
+    "sent_indeks/100 × C(periode)",
+    "C(fylke):C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ vekst10_pst + I(vekst10_pst.groupby(kom2024).transform('mean')) + sp_t0*C(periode) + I(sent_indeks/100)*C(periode) + C(fylke):C(periode)",
+   "nøkkelledd": "I(vekst10_pst.groupby(kom2024).transform('mean'))",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Mellom-leddet er ≥ 0 eller KI inkluderer 0 med fylke × periode-FE.",
+  "eksplorativ_evidens": "b = -0.048, 95 % KI [-0.081, -0.015], p = 0.004, n = 2856 (357 kommuner); OLS b = -0.057, p = 0.021. Tilsvarende med vekst4_pst: b = 0.040 [-0.028, 0.108], p = 0.25, altså holder det ikke. Tiårsmålet ser ut til å være nødvendig (vekst10_pst mangler for 1989–1993).",
+  "forelder": [
+   "H14",
+   "H01"
+  ]
+ }
+]
