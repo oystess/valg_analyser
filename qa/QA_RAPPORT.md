@@ -77,7 +77,7 @@ Anbefaling: bytt sentralitetskoblingen i analysene til `sentralitet_2024.csv`, o
 
 ## 5. Åpne spørsmål og begrensninger
 
-- **Kilden til `sentralitet.csv` er udokumentert.** Den har 4 klasser (0–3) og 428 koder, altså kommunestrukturen fra 2016–2017, og den er ikke SSBs offisielle 6-delte sentralitetsindeks. Den bør erstattes av SSBs sentralitetsindeks 2020 eller 2024 for 2024-kommunene, fra Klass eller SSB-tabell. Det er ikke gjort her, fordi Klass-API-et er sperret i dette miljøet.
+- **Sentralitet (løst 2026-09-24):** Den gamle `sentralitet.csv` (4 klasser, trolig SSBs eldre standard) er erstattet av SSBs sentralitetsindeks fra Klass (6 klasser og indeks 0–1000), lastet ned av Øystein. `sentralitet_2024.csv` har begge, og alle 357 kommuner er dekket.
 - **Estimerte delinger:** Snillfjord (ca. 1 000 innbyggere) og Tysfjord (ca. 1 900) er fordelt med andeler anslått fra befolkningsendringen. Ålesund og Haram 2020–2023 er fordelt etter befolkningen i 2024. Stemmemønstrene kan avvike fra befolkningsandelen.
 - **Stemmesteder utenfor kommunen:** SSB fører forhåndsstemmer på bostedskommunen, så dette krever ingen korrigering.
 - **Parti 99 Andre** omfatter lokale lister, som i noen kommunevalg er svært store. Analyser av endring i partioppslutning i kommunevalg bør ta hensyn til dette.

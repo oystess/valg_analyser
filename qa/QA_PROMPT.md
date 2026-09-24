@@ -99,7 +99,7 @@ Fullstendige briefer (etter malene i skillen) skrives til `qa/briefer/` når pla
 | 6 | Partier | Alle SSB-kategorier i rådata. Ferdigtabellen har 01–08, 55 (inkl. RV) og 99 Andre. |
 | 7 | Nettkilder | Ja, men Klass-API-et og valgresultat.no er sperret i miljøet. SSB-API-et via MCP ble brukt. |
 | 8 | Gamle filer (`data_valg_*`, `valg20*`, `distriktstall.xlsx`) | Rester fra R-skriptene. Ikke kvalitetssikret. |
-| 9 | Sentralitet | Sjekket i kode (F10), og ny koblingsfil er laget |
+| 9 | Sentralitet | Sjekket i kode (F10). Senere erstattet av SSBs indeks (`sentralitet_klass.csv`). |
 | 10 | Befolkningsår | 1.1. i valgåret (dokumentert) |
 | 11 | Leveranse | Markdown i repoet |
 | 12 | PR | Nei, bare push til branchen |

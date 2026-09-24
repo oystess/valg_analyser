@@ -25,3 +25,12 @@ Viktige egenskaper ved SSB-kildene:
   brukes som fasit for uendrede kommuner.
 - `agg_KommSummer` setter 0 for Heim, Hitra, Orkland, Narvik og Hamarøy før 2020 (delinger) og
   fører hele Ålesund 2020–2023 på nye Ålesund (1508).
+
+## Sentralitet
+
+`sentralitet_klass.csv`: SSBs sentralitetsindeks, lastet ned av Øystein fra SSBs klassifikasjonssider
+(Klass, fil `klassifikasjon-koder-2682-nb.csv`) 2026-09-24. Nivå 1 = klasse 01 (høy) – 06 (lav);
+nivå 2 = kommunekode med indeksverdi (0–1000) i feltet `notes`. Historiske koder har samme verdi
+som kommunen de gikk inn i. Dekker alle 357 kommuner i 2024-strukturen; indeksverdiene ligger
+innenfor klassegrensene for alle koder (kontrollert). Erstatter `data/raw/sentralitet.csv`
+(4 klasser, ukjent kilde, trolig SSBs eldre sentralitetsstandard) i nye analyser.

@@ -25,7 +25,8 @@ Utdata (data/processed/):
       (personvalg) i kommunevalget, eller manglet data.
     estimert = True hvis stemmer fra en delt kommune er fordelt etter befolkningsandel.
   befolkning_2024.csv   kom2024, navn, aar, befolkning (1.1. hvert år)
-  sentralitet_2024.csv  kom2024, sent_kode, sent_navn, n_kilder, konflikt
+  sentralitet_2024.csv  kom2024, sent_klasse (1 høy – 6 lav), sent_indeks (0–1000), sent_navn,
+                        sent_gammel_0_3, gammel_konflikt
   kom_mapping.csv       gammelt_nr, navn, start_yr, end_yr, nr_2024 (bakoverkompatibel:
                         for delte koder er største mottaker oppgitt)
 
@@ -158,26 +159,29 @@ def bygg_befolkning(mapping, pop, lab):
 
 
 def bygg_sentralitet(mapping, pop):
-    """sentralitet.csv har pre-2020-koder (428 kommuner). Til 2024-kommune: klassen til den
-    delen med flest innbyggere (1.1.2019). Konflikt markeres når delene har ulik klasse."""
-    rader = list(csv.reader(open(RAW / "sentralitet.csv", encoding="latin1"), delimiter=";"))[1:]
-    navn = {}
-    per_kom = defaultdict(list)
-    for kode_s, navn_s, kode, _ in rader:
-        navn[kode_s] = navn_s
+    """SSBs sentralitetsindeks (Klass, kodeliste lastet ned fra ssb.no, 2026-09-24):
+    klasse 1 (høy) – 6 (lav) og indeksverdi 0–1000 for hver 2024-kommune.
+    I tillegg den gamle 4-delte klassen (0 = minst sentral … 3 = sentral) fra
+    data/raw/sentralitet.csv (trolig SSBs eldre standard), satt fra den delen med flest
+    innbyggere (1.1.2016), med markering når delene hadde ulik klasse."""
+    rader = list(csv.DictReader(open(SSB / "sentralitet_klass.csv", encoding="utf-8-sig")))
+    klassenavn = {r["code"]: r["name"] for r in rader if r["level"] == "1"}
+    ny = {r["code"]: (int(r["parentCode"]), int(r["notes"]), klassenavn[r["parentCode"]])
+          for r in rader if r["level"] == "2"}
+    gammel = defaultdict(list)
+    for kode_s, _, kode, _ in list(csv.reader(open(RAW / "sentralitet.csv", encoding="latin1"),
+                                              delimiter=";"))[1:]:
         kode = kode.zfill(4)
-        for aar in (2019, 2017, 2016):
-            if (kode, aar) in mapping:
-                p = pop[aar].get(kode, 0)
-                for kom, andel in mapping[(kode, aar)].items():
-                    per_kom[kom].append((p * andel, kode_s, kode))
-                break
+        for kom, andel in mapping.get((kode, 2016), {}).items():
+            gammel[kom].append((pop[2016].get(kode, 0) * andel, kode_s))
     out = []
-    for kom, deler in sorted(per_kom.items()):
-        deler.sort(reverse=True)
-        klasser = {d[1] for d in deler}
-        out.append({"kom2024": kom, "sent_kode": deler[0][1], "sent_navn": navn[deler[0][1]],
-                    "n_kilder": len(deler), "konflikt": len(klasser) > 1})
+    for kom in sorted({k for (_, a), m in mapping.items() if a == 2024 for k in m}):
+        klasse, indeks, navn = ny[kom]
+        deler = sorted(gammel.get(kom, []), reverse=True)
+        out.append({"kom2024": kom, "sent_klasse": klasse, "sent_indeks": indeks,
+                    "sent_navn": navn,
+                    "sent_gammel_0_3": deler[0][1] if deler else "",
+                    "gammel_konflikt": len({d[1] for d in deler}) > 1})
     return out
 
 
@@ -217,7 +221,7 @@ def main():
     skriv(bygg_befolkning(mapping, pop, lab), "befolkning_2024.csv",
           ["kom2024", "navn", "aar", "befolkning"])
     skriv(bygg_sentralitet(mapping, pop), "sentralitet_2024.csv",
-          ["kom2024", "sent_kode", "sent_navn", "n_kilder", "konflikt"])
+          ["kom2024", "sent_klasse", "sent_indeks", "sent_navn", "sent_gammel_0_3", "gammel_konflikt"])
     skriv(bygg_kom_mapping(mapping, lab), "kom_mapping.csv",
           ["gammelt_nr", "navn", "start_yr", "end_yr", "nr_2024"])
 
