@@ -1,0 +1,1 @@
+- Runde 1: dommeren ga én dom per par og brukte den for begge rekkefølger (opplyst av dommeren). Rekkefølgekontrollen i runde 1 er derfor ikke uavhengig. Fra runde 2 er hver oppgave dømt for seg, men av samme agent.

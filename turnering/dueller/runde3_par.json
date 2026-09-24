@@ -1,0 +1,122 @@
+[
+ {
+  "oppgave": "R3-11b",
+  "første": "H17",
+  "andre": "H22"
+ },
+ {
+  "oppgave": "R3-05a",
+  "første": "H32",
+  "andre": "H07"
+ },
+ {
+  "oppgave": "R3-11a",
+  "første": "H22",
+  "andre": "H17"
+ },
+ {
+  "oppgave": "R3-08a",
+  "første": "H10",
+  "andre": "H04"
+ },
+ {
+  "oppgave": "R3-03a",
+  "første": "H26",
+  "andre": "H06"
+ },
+ {
+  "oppgave": "R3-08b",
+  "første": "H04",
+  "andre": "H10"
+ },
+ {
+  "oppgave": "R3-09a",
+  "første": "H30",
+  "andre": "H15"
+ },
+ {
+  "oppgave": "R3-07b",
+  "første": "H23",
+  "andre": "H24"
+ },
+ {
+  "oppgave": "R3-07a",
+  "første": "H24",
+  "andre": "H23"
+ },
+ {
+  "oppgave": "R3-05b",
+  "første": "H07",
+  "andre": "H32"
+ },
+ {
+  "oppgave": "R3-03b",
+  "første": "H06",
+  "andre": "H26"
+ },
+ {
+  "oppgave": "R3-01a",
+  "første": "H31",
+  "andre": "H14"
+ },
+ {
+  "oppgave": "R3-00a",
+  "første": "H19",
+  "andre": "H25"
+ },
+ {
+  "oppgave": "R3-02b",
+  "første": "H29",
+  "andre": "H01"
+ },
+ {
+  "oppgave": "R3-04b",
+  "første": "H18",
+  "andre": "H16"
+ },
+ {
+  "oppgave": "R3-04a",
+  "første": "H16",
+  "andre": "H18"
+ },
+ {
+  "oppgave": "R3-02a",
+  "første": "H01",
+  "andre": "H29"
+ },
+ {
+  "oppgave": "R3-10a",
+  "første": "H20",
+  "andre": "H27"
+ },
+ {
+  "oppgave": "R3-06a",
+  "første": "H02",
+  "andre": "H28"
+ },
+ {
+  "oppgave": "R3-10b",
+  "første": "H27",
+  "andre": "H20"
+ },
+ {
+  "oppgave": "R3-09b",
+  "første": "H15",
+  "andre": "H30"
+ },
+ {
+  "oppgave": "R3-00b",
+  "første": "H25",
+  "andre": "H19"
+ },
+ {
+  "oppgave": "R3-01b",
+  "første": "H14",
+  "andre": "H31"
+ },
+ {
+  "oppgave": "R3-06b",
+  "første": "H28",
+  "andre": "H02"
+ }
+]
