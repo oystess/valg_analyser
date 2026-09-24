@@ -97,7 +97,12 @@ def main():
         a["p_holm"] = p
         forv = a["res"]["hoved"]["fortegn_som_forventet"]
         sjekk = [k for k in a["res"] if k.startswith(("uvektet", "uten_"))]
-        snur = [k for k in sjekk if "feil" in a["res"][k] or not a["res"][k]["fortegn_som_forventet"]]
+        # En kjøring der nøkkelleddet ikke kan identifiseres (f.eks. periodeledd når perioden er
+        # utelatt), er «ikke anvendelig» og teller ikke som fortegnsskifte. Andre feil teller.
+        ikke_anv = [k for k in sjekk if "feil" in a["res"][k] and "Nøkkelledd" in a["res"][k]["feil"]]
+        snur = [k for k in sjekk if k not in ikke_anv and
+                ("feil" in a["res"][k] or not a["res"][k]["fortegn_som_forventet"])]
+        a["ikke_anvendelig"] = ikke_anv
         a["snur_fortegn_i"] = snur
         if forv and p < 0.05 and not snur:
             a["status"] = "robust"
