@@ -1,0 +1,122 @@
+[
+ {
+  "oppgave": "R1-06a",
+  "vinner": "H04",
+  "begrunnelse": "Testbarhet og eksplorativ støtte: H04 har en ikke-lineær terskelmekanisme med robust interaksjon (p=4e-13, holder med sent_klasse-samspill), mens H15s fortegn avhenger av kontrollene og er svakt (p=0,028)."
+ },
+ {
+  "oppgave": "R1-09a",
+  "vinner": "H10",
+  "begrunnelse": "Nyhetsverdi og mekanisme: H10 viser episodisk FrP-konkurranse med klar interaksjon, mens H30s egen sjekk (samspill med oppgang ≈ 0) peker mot målefeil/regresjon mot middelverdien, som er det åpenbare."
+ },
+ {
+  "oppgave": "R1-04a",
+  "vinner": "H31",
+  "begrunnelse": "Eksplorativ støtte og testbarhet: H31s Ap-interaksjon er konsistent i begge bølgeperiodene med motsatt fortegn i 1989–93, mens H16 har en kjent svakhet (Vestlandet +1,0 i 2021–25) som truer egen falsifiseringsregel."
+ },
+ {
+  "oppgave": "R1-05b",
+  "vinner": "H29",
+  "begrunnelse": "Nyhetsverdi og presisjon: H29 gir en skarp, avgrenset påstand om utflatet gradient innen periferien i 2021 med tydelige per-periode-tall, mens H06 hviler på oppgangsperioder definert etter å ha sett på tallene."
+ },
+ {
+  "oppgave": "R1-10a",
+  "vinner": "H28",
+  "begrunnelse": "Eksplorativ støtte og nyhetsverdi: H28s samspill er sterkt og robust for Sp-liste i begge KV (p=3e-12), mens H20s nøkkelledd er svakt vektet (p=0,018); overlappen mellom kv_d_sp og d_sp er erkjent og veier ikke opp for det."
+ },
+ {
+  "oppgave": "R1-01b",
+  "vinner": "H32",
+  "begrunnelse": "Nyhetsverdi og mekanisme: H32 gir en innholdsrik tidsavgrensning av nedgangseffekten med klar mekanisme, mens H02 i stor grad er proporsjonal sving/regresjon mot middelverdien (åpenbart), til tross for sterk statistikk."
+ },
+ {
+  "oppgave": "R1-00b",
+  "vinner": "H19",
+  "begrunnelse": "Nyhetsverdi og mekanisme: H19 tester en substansiell interesseforklaring med god støtte (p=1e-5), mens H27 selv innrømmer at forsterkningen delvis er mekanisk proporsjonal sving og halveres uten vekting."
+ },
+ {
+  "oppgave": "R1-02b",
+  "vinner": "H25",
+  "begrunnelse": "Nyhetsverdi og eksplorativ støtte: H25 utfordrer den forventede reform-timingen med sterk interaksjon (p=1,5e-7) og ren to-periode-spesifikasjon, mens H18s periferi×FrP-mønster er mer forventet og svakere."
+ },
+ {
+  "oppgave": "R1-03a",
+  "vinner": "H01",
+  "begrunnelse": "Testbarhet og nyhetsverdi: H01 har en presis, tallfestet falsifiseringsregel og skiller regional fra lokal variasjon, mens H22 er svak vektet (p=0,042) og trolig drevet av små støyete kommuner."
+ },
+ {
+  "oppgave": "R1-09b",
+  "vinner": "H10",
+  "begrunnelse": "Nyhetsverdi og mekanisme: H10 viser episodisk FrP-konkurranse med klar interaksjon, mens H30s egen sjekk (samspill med oppgang ≈ 0) peker mot målefeil/regresjon mot middelverdien, som er det åpenbare."
+ },
+ {
+  "oppgave": "R1-05a",
+  "vinner": "H29",
+  "begrunnelse": "Nyhetsverdi og presisjon: H29 gir en skarp, avgrenset påstand om utflatet gradient innen periferien i 2021 med tydelige per-periode-tall, mens H06 hviler på oppgangsperioder definert etter å ha sett på tallene."
+ },
+ {
+  "oppgave": "R1-10b",
+  "vinner": "H28",
+  "begrunnelse": "Eksplorativ støtte og nyhetsverdi: H28s samspill er sterkt og robust for Sp-liste i begge KV (p=3e-12), mens H20s nøkkelledd er svakt vektet (p=0,018); overlappen mellom kv_d_sp og d_sp er erkjent og veier ikke opp for det."
+ },
+ {
+  "oppgave": "R1-02a",
+  "vinner": "H25",
+  "begrunnelse": "Nyhetsverdi og eksplorativ støtte: H25 utfordrer den forventede reform-timingen med sterk interaksjon (p=1,5e-7) og ren to-periode-spesifikasjon, mens H18s periferi×FrP-mønster er mer forventet og svakere."
+ },
+ {
+  "oppgave": "R1-08a",
+  "vinner": "H14",
+  "begrunnelse": "Testbarhet og nyhetsverdi: H14s Mundlak-oppsett skiller mellom- og innen-kommune-variasjon med klar falsifisering og tydelig funn, mer grunnleggende enn H24s to-periode-kontrast for KrF."
+ },
+ {
+  "oppgave": "R1-11a",
+  "vinner": "H07",
+  "begrunnelse": "Testbarhet og presisjon: H07 har en positiv, falsifiserbar påstand med støtte (p=0,005), mens H17 er en nullhypotese med omvendt falsifiseringslogikk der fravær av signifikans tolkes som støtte."
+ },
+ {
+  "oppgave": "R1-04b",
+  "vinner": "H31",
+  "begrunnelse": "Eksplorativ støtte og testbarhet: H31s Ap-interaksjon er konsistent i begge bølgeperiodene med motsatt fortegn i 1989–93, mens H16 har en kjent svakhet (Vestlandet +1,0 i 2021–25) som truer egen falsifiseringsregel."
+ },
+ {
+  "oppgave": "R1-08b",
+  "vinner": "H14",
+  "begrunnelse": "Testbarhet og nyhetsverdi: H14s Mundlak-oppsett skiller mellom- og innen-kommune-variasjon med klar falsifisering og tydelig funn, mer grunnleggende enn H24s to-periode-kontrast for KrF."
+ },
+ {
+  "oppgave": "R1-01a",
+  "vinner": "H32",
+  "begrunnelse": "Nyhetsverdi og mekanisme: H32 gir en innholdsrik tidsavgrensning av nedgangseffekten med klar mekanisme, mens H02 i stor grad er proporsjonal sving/regresjon mot middelverdien (åpenbart), til tross for sterk statistikk."
+ },
+ {
+  "oppgave": "R1-00a",
+  "vinner": "H19",
+  "begrunnelse": "Nyhetsverdi og mekanisme: H19 tester en substansiell interesseforklaring med god støtte (p=1e-5), mens H27 selv innrømmer at forsterkningen delvis er mekanisk proporsjonal sving og halveres uten vekting."
+ },
+ {
+  "oppgave": "R1-07a",
+  "vinner": "H23",
+  "begrunnelse": "Eksplorativ støtte og mekanisme: H23s interaksjon er sterk (p=1e-8) og konkretiserer tjenestetap-kanalen, mens H26s inntektsledd bare framkommer når sentralitet holdes fast."
+ },
+ {
+  "oppgave": "R1-07b",
+  "vinner": "H23",
+  "begrunnelse": "Eksplorativ støtte og mekanisme: H23s interaksjon er sterk (p=1e-8) og konkretiserer tjenestetap-kanalen, mens H26s inntektsledd bare framkommer når sentralitet holdes fast."
+ },
+ {
+  "oppgave": "R1-06b",
+  "vinner": "H04",
+  "begrunnelse": "Testbarhet og eksplorativ støtte: H04 har en ikke-lineær terskelmekanisme med robust interaksjon (p=4e-13, holder med sent_klasse-samspill), mens H15s fortegn avhenger av kontrollene og er svakt (p=0,028)."
+ },
+ {
+  "oppgave": "R1-11b",
+  "vinner": "H07",
+  "begrunnelse": "Testbarhet og presisjon: H07 har en positiv, falsifiserbar påstand med støtte (p=0,005), mens H17 er en nullhypotese med omvendt falsifiseringslogikk der fravær av signifikans tolkes som støtte."
+ },
+ {
+  "oppgave": "R1-03b",
+  "vinner": "H01",
+  "begrunnelse": "Testbarhet og nyhetsverdi: H01 har en presis, tallfestet falsifiseringsregel og skiller regional fra lokal variasjon, mens H22 er svak vektet (p=0,042) og trolig drevet av små støyete kommuner."
+ }
+]
