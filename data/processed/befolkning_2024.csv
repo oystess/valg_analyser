@@ -1099,10 +1099,10 @@ kom2024,navn,aar,befolkning
 1508,Ålesund,2017,55408
 1508,Ålesund,2018,55720
 1508,Ålesund,2019,56250
-1508,Ålesund,2020,66258
-1508,Ålesund,2021,66670
-1508,Ålesund,2022,67114
-1508,Ålesund,2023,67520
+1508,Ålesund,2020,57123
+1508,Ålesund,2021,57478
+1508,Ålesund,2022,57861
+1508,Ålesund,2023,58211
 1508,Ålesund,2024,58509
 1508,Ålesund,2025,59198
 1508,Ålesund,2026,59663
@@ -1147,47 +1147,47 @@ kom2024,navn,aar,befolkning
 1511,Vanylven,2024,3026
 1511,Vanylven,2025,3048
 1511,Vanylven,2026,3029
-1514,Sande (Møre og Romsdal),1986,3415
-1514,Sande (Møre og Romsdal),1987,3437
-1514,Sande (Møre og Romsdal),1988,3389
-1514,Sande (Møre og Romsdal),1989,3371
-1514,Sande (Møre og Romsdal),1990,3337
-1514,Sande (Møre og Romsdal),1991,3301
-1514,Sande (Møre og Romsdal),1992,3293
-1514,Sande (Møre og Romsdal),1993,3267
-1514,Sande (Møre og Romsdal),1994,3249
-1514,Sande (Møre og Romsdal),1995,3199
-1514,Sande (Møre og Romsdal),1996,3190
-1514,Sande (Møre og Romsdal),1997,3136
-1514,Sande (Møre og Romsdal),1998,3108
-1514,Sande (Møre og Romsdal),1999,3092
-1514,Sande (Møre og Romsdal),2000,3081
-1514,Sande (Møre og Romsdal),2001,3038
-1514,Sande (Møre og Romsdal),2002,2633
-1514,Sande (Møre og Romsdal),2003,2599
-1514,Sande (Møre og Romsdal),2004,2605
-1514,Sande (Møre og Romsdal),2005,2576
-1514,Sande (Møre og Romsdal),2006,2539
-1514,Sande (Møre og Romsdal),2007,2526
-1514,Sande (Møre og Romsdal),2008,2502
-1514,Sande (Møre og Romsdal),2009,2541
-1514,Sande (Møre og Romsdal),2010,2518
-1514,Sande (Møre og Romsdal),2011,2625
-1514,Sande (Møre og Romsdal),2012,2588
-1514,Sande (Møre og Romsdal),2013,2628
-1514,Sande (Møre og Romsdal),2014,2636
-1514,Sande (Møre og Romsdal),2015,2635
-1514,Sande (Møre og Romsdal),2016,2559
-1514,Sande (Møre og Romsdal),2017,2540
-1514,Sande (Møre og Romsdal),2018,2522
-1514,Sande (Møre og Romsdal),2019,2493
-1514,Sande (Møre og Romsdal),2020,2461
-1514,Sande (Møre og Romsdal),2021,2445
-1514,Sande (Møre og Romsdal),2022,2422
-1514,Sande (Møre og Romsdal),2023,2442
-1514,Sande (Møre og Romsdal),2024,2438
-1514,Sande (Møre og Romsdal),2025,2435
-1514,Sande (Møre og Romsdal),2026,2437
+1514,Sande,1986,3415
+1514,Sande,1987,3437
+1514,Sande,1988,3389
+1514,Sande,1989,3371
+1514,Sande,1990,3337
+1514,Sande,1991,3301
+1514,Sande,1992,3293
+1514,Sande,1993,3267
+1514,Sande,1994,3249
+1514,Sande,1995,3199
+1514,Sande,1996,3190
+1514,Sande,1997,3136
+1514,Sande,1998,3108
+1514,Sande,1999,3092
+1514,Sande,2000,3081
+1514,Sande,2001,3038
+1514,Sande,2002,2633
+1514,Sande,2003,2599
+1514,Sande,2004,2605
+1514,Sande,2005,2576
+1514,Sande,2006,2539
+1514,Sande,2007,2526
+1514,Sande,2008,2502
+1514,Sande,2009,2541
+1514,Sande,2010,2518
+1514,Sande,2011,2625
+1514,Sande,2012,2588
+1514,Sande,2013,2628
+1514,Sande,2014,2636
+1514,Sande,2015,2635
+1514,Sande,2016,2559
+1514,Sande,2017,2540
+1514,Sande,2018,2522
+1514,Sande,2019,2493
+1514,Sande,2020,2461
+1514,Sande,2021,2445
+1514,Sande,2022,2422
+1514,Sande,2023,2442
+1514,Sande,2024,2438
+1514,Sande,2025,2435
+1514,Sande,2026,2437
 1515,Herøy (Møre og Romsdal),1986,8069
 1515,Herøy (Møre og Romsdal),1987,8035
 1515,Herøy (Møre og Romsdal),1988,8099
@@ -2083,10 +2083,10 @@ kom2024,navn,aar,befolkning
 1580,Haram,2017,9312
 1580,Haram,2018,9345
 1580,Haram,2019,9383
-1580,Haram,2020,0
-1580,Haram,2021,0
-1580,Haram,2022,0
-1580,Haram,2023,0
+1580,Haram,2020,9135
+1580,Haram,2021,9192
+1580,Haram,2022,9253
+1580,Haram,2023,9309
 1580,Haram,2024,9357
 1580,Haram,2025,9409
 1580,Haram,2026,9460
@@ -2131,40 +2131,40 @@ kom2024,navn,aar,befolkning
 1804,Bodø,2024,53712
 1804,Bodø,2025,53725
 1804,Bodø,2026,53638
-1806,Narvik,1986,0
-1806,Narvik,1987,0
-1806,Narvik,1988,0
-1806,Narvik,1989,0
-1806,Narvik,1990,0
-1806,Narvik,1991,0
-1806,Narvik,1992,0
-1806,Narvik,1993,0
-1806,Narvik,1994,0
-1806,Narvik,1995,0
-1806,Narvik,1996,0
-1806,Narvik,1997,0
-1806,Narvik,1998,0
-1806,Narvik,1999,0
-1806,Narvik,2000,0
-1806,Narvik,2001,0
-1806,Narvik,2002,0
-1806,Narvik,2003,0
-1806,Narvik,2004,0
-1806,Narvik,2005,0
-1806,Narvik,2006,0
-1806,Narvik,2007,0
-1806,Narvik,2008,0
-1806,Narvik,2009,0
-1806,Narvik,2010,0
-1806,Narvik,2011,0
-1806,Narvik,2012,0
-1806,Narvik,2013,0
-1806,Narvik,2014,0
-1806,Narvik,2015,0
-1806,Narvik,2016,0
-1806,Narvik,2017,0
-1806,Narvik,2018,0
-1806,Narvik,2019,0
+1806,Narvik,1986,23125
+1806,Narvik,1987,22973
+1806,Narvik,1988,22785
+1806,Narvik,1989,22835
+1806,Narvik,1990,22759
+1806,Narvik,1991,22807
+1806,Narvik,1992,22894
+1806,Narvik,1993,22962
+1806,Narvik,1994,23017
+1806,Narvik,1995,22892
+1806,Narvik,1996,22686
+1806,Narvik,1997,22510
+1806,Narvik,1998,22350
+1806,Narvik,1999,22332
+1806,Narvik,2000,22347
+1806,Narvik,2001,22265
+1806,Narvik,2002,22138
+1806,Narvik,2003,22096
+1806,Narvik,2004,22168
+1806,Narvik,2005,22156
+1806,Narvik,2006,21961
+1806,Narvik,2007,21852
+1806,Narvik,2008,21892
+1806,Narvik,2009,21835
+1806,Narvik,2010,21866
+1806,Narvik,2011,21846
+1806,Narvik,2012,21915
+1806,Narvik,2013,21943
+1806,Narvik,2014,22141
+1806,Narvik,2015,22277
+1806,Narvik,2016,22177
+1806,Narvik,2017,22138
+1806,Narvik,2018,21985
+1806,Narvik,2019,21913
 1806,Narvik,2020,21845
 1806,Narvik,2021,21661
 1806,Narvik,2022,21530
@@ -3730,40 +3730,40 @@ kom2024,navn,aar,befolkning
 1874,Moskenes,2024,954
 1874,Moskenes,2025,969
 1874,Moskenes,2026,976
-1875,Hábmer - Hamarøy,1986,0
-1875,Hábmer - Hamarøy,1987,0
-1875,Hábmer - Hamarøy,1988,0
-1875,Hábmer - Hamarøy,1989,0
-1875,Hábmer - Hamarøy,1990,0
-1875,Hábmer - Hamarøy,1991,0
-1875,Hábmer - Hamarøy,1992,0
-1875,Hábmer - Hamarøy,1993,0
-1875,Hábmer - Hamarøy,1994,0
-1875,Hábmer - Hamarøy,1995,0
-1875,Hábmer - Hamarøy,1996,0
-1875,Hábmer - Hamarøy,1997,0
-1875,Hábmer - Hamarøy,1998,0
-1875,Hábmer - Hamarøy,1999,0
-1875,Hábmer - Hamarøy,2000,0
-1875,Hábmer - Hamarøy,2001,0
-1875,Hábmer - Hamarøy,2002,0
-1875,Hábmer - Hamarøy,2003,0
-1875,Hábmer - Hamarøy,2004,0
-1875,Hábmer - Hamarøy,2005,0
-1875,Hábmer - Hamarøy,2006,0
-1875,Hábmer - Hamarøy,2007,0
-1875,Hábmer - Hamarøy,2008,0
-1875,Hábmer - Hamarøy,2009,0
-1875,Hábmer - Hamarøy,2010,0
-1875,Hábmer - Hamarøy,2011,0
-1875,Hábmer - Hamarøy,2012,0
-1875,Hábmer - Hamarøy,2013,0
-1875,Hábmer - Hamarøy,2014,0
-1875,Hábmer - Hamarøy,2015,0
-1875,Hábmer - Hamarøy,2016,0
-1875,Hábmer - Hamarøy,2017,0
-1875,Hábmer - Hamarøy,2018,0
-1875,Hábmer - Hamarøy,2019,0
+1875,Hábmer - Hamarøy,1986,3907
+1875,Hábmer - Hamarøy,1987,3929
+1875,Hábmer - Hamarøy,1988,3889
+1875,Hábmer - Hamarøy,1989,3900
+1875,Hábmer - Hamarøy,1990,3827
+1875,Hábmer - Hamarøy,1991,3746
+1875,Hábmer - Hamarøy,1992,3729
+1875,Hábmer - Hamarøy,1993,3721
+1875,Hábmer - Hamarøy,1994,3661
+1875,Hábmer - Hamarøy,1995,3639
+1875,Hábmer - Hamarøy,1996,3617
+1875,Hábmer - Hamarøy,1997,3544
+1875,Hábmer - Hamarøy,1998,3471
+1875,Hábmer - Hamarøy,1999,3397
+1875,Hábmer - Hamarøy,2000,3338
+1875,Hábmer - Hamarøy,2001,3269
+1875,Hábmer - Hamarøy,2002,3251
+1875,Hábmer - Hamarøy,2003,3221
+1875,Hábmer - Hamarøy,2004,3148
+1875,Hábmer - Hamarøy,2005,3078
+1875,Hábmer - Hamarøy,2006,3044
+1875,Hábmer - Hamarøy,2007,2956
+1875,Hábmer - Hamarøy,2008,2933
+1875,Hábmer - Hamarøy,2009,2936
+1875,Hábmer - Hamarøy,2010,2911
+1875,Hábmer - Hamarøy,2011,2927
+1875,Hábmer - Hamarøy,2012,2913
+1875,Hábmer - Hamarøy,2013,2934
+1875,Hábmer - Hamarøy,2014,2975
+1875,Hábmer - Hamarøy,2015,2964
+1875,Hábmer - Hamarøy,2016,2964
+1875,Hábmer - Hamarøy,2017,2942
+1875,Hábmer - Hamarøy,2018,2929
+1875,Hábmer - Hamarøy,2019,2859
 1875,Hábmer - Hamarøy,2020,2766
 1875,Hábmer - Hamarøy,2021,2701
 1875,Hábmer - Hamarøy,2022,2708
@@ -12750,40 +12750,40 @@ kom2024,navn,aar,befolkning
 5054,Indre Fosen,2024,10023
 5054,Indre Fosen,2025,10042
 5054,Indre Fosen,2026,10006
-5055,Heim,1986,0
-5055,Heim,1987,0
-5055,Heim,1988,0
-5055,Heim,1989,0
-5055,Heim,1990,0
-5055,Heim,1991,0
-5055,Heim,1992,0
-5055,Heim,1993,0
-5055,Heim,1994,0
-5055,Heim,1995,0
-5055,Heim,1996,0
-5055,Heim,1997,0
-5055,Heim,1998,0
-5055,Heim,1999,0
-5055,Heim,2000,0
-5055,Heim,2001,0
-5055,Heim,2002,0
-5055,Heim,2003,0
-5055,Heim,2004,0
-5055,Heim,2005,0
-5055,Heim,2006,0
-5055,Heim,2007,0
-5055,Heim,2008,0
-5055,Heim,2009,0
-5055,Heim,2010,0
-5055,Heim,2011,0
-5055,Heim,2012,0
-5055,Heim,2013,0
-5055,Heim,2014,0
-5055,Heim,2015,0
-5055,Heim,2016,0
-5055,Heim,2017,0
-5055,Heim,2018,0
-5055,Heim,2019,0
+5055,Heim,1986,6708
+5055,Heim,1987,6684
+5055,Heim,1988,6712
+5055,Heim,1989,6672
+5055,Heim,1990,6612
+5055,Heim,1991,6584
+5055,Heim,1992,6510
+5055,Heim,1993,6468
+5055,Heim,1994,6475
+5055,Heim,1995,6514
+5055,Heim,1996,6461
+5055,Heim,1997,6441
+5055,Heim,1998,6398
+5055,Heim,1999,6348
+5055,Heim,2000,6300
+5055,Heim,2001,6318
+5055,Heim,2002,6190
+5055,Heim,2003,6226
+5055,Heim,2004,6166
+5055,Heim,2005,6131
+5055,Heim,2006,6146
+5055,Heim,2007,6075
+5055,Heim,2008,6062
+5055,Heim,2009,6023
+5055,Heim,2010,6010
+5055,Heim,2011,6045
+5055,Heim,2012,6012
+5055,Heim,2013,5985
+5055,Heim,2014,5955
+5055,Heim,2015,5968
+5055,Heim,2016,5957
+5055,Heim,2017,6009
+5055,Heim,2018,5947
+5055,Heim,2019,5955
 5055,Heim,2020,5963
 5055,Heim,2021,5941
 5055,Heim,2022,5884
@@ -12791,40 +12791,40 @@ kom2024,navn,aar,befolkning
 5055,Heim,2024,6093
 5055,Heim,2025,6134
 5055,Heim,2026,6075
-5056,Hitra,1986,0
-5056,Hitra,1987,0
-5056,Hitra,1988,0
-5056,Hitra,1989,0
-5056,Hitra,1990,0
-5056,Hitra,1991,0
-5056,Hitra,1992,0
-5056,Hitra,1993,0
-5056,Hitra,1994,0
-5056,Hitra,1995,0
-5056,Hitra,1996,0
-5056,Hitra,1997,0
-5056,Hitra,1998,0
-5056,Hitra,1999,0
-5056,Hitra,2000,0
-5056,Hitra,2001,0
-5056,Hitra,2002,0
-5056,Hitra,2003,0
-5056,Hitra,2004,0
-5056,Hitra,2005,0
-5056,Hitra,2006,0
-5056,Hitra,2007,0
-5056,Hitra,2008,0
-5056,Hitra,2009,0
-5056,Hitra,2010,0
-5056,Hitra,2011,0
-5056,Hitra,2012,0
-5056,Hitra,2013,0
-5056,Hitra,2014,0
-5056,Hitra,2015,0
-5056,Hitra,2016,0
-5056,Hitra,2017,0
-5056,Hitra,2018,0
-5056,Hitra,2019,0
+5056,Hitra,1986,4830
+5056,Hitra,1987,4803
+5056,Hitra,1988,4732
+5056,Hitra,1989,4706
+5056,Hitra,1990,4704
+5056,Hitra,1991,4691
+5056,Hitra,1992,4668
+5056,Hitra,1993,4593
+5056,Hitra,1994,4562
+5056,Hitra,1995,4536
+5056,Hitra,1996,4501
+5056,Hitra,1997,4485
+5056,Hitra,1998,4446
+5056,Hitra,1999,4446
+5056,Hitra,2000,4409
+5056,Hitra,2001,4464
+5056,Hitra,2002,4409
+5056,Hitra,2003,4397
+5056,Hitra,2004,4440
+5056,Hitra,2005,4373
+5056,Hitra,2006,4376
+5056,Hitra,2007,4374
+5056,Hitra,2008,4479
+5056,Hitra,2009,4480
+5056,Hitra,2010,4594
+5056,Hitra,2011,4676
+5056,Hitra,2012,4732
+5056,Hitra,2013,4811
+5056,Hitra,2014,4854
+5056,Hitra,2015,4902
+5056,Hitra,2016,4954
+5056,Hitra,2017,4992
+5056,Hitra,2018,4983
+5056,Hitra,2019,5033
 5056,Hitra,2020,5050
 5056,Hitra,2021,5140
 5056,Hitra,2022,5156
@@ -12914,40 +12914,40 @@ kom2024,navn,aar,befolkning
 5058,Åfjord,2024,4339
 5058,Åfjord,2025,4342
 5058,Åfjord,2026,4340
-5059,Orkland,1986,0
-5059,Orkland,1987,0
-5059,Orkland,1988,0
-5059,Orkland,1989,0
-5059,Orkland,1990,0
-5059,Orkland,1991,0
-5059,Orkland,1992,0
-5059,Orkland,1993,0
-5059,Orkland,1994,0
-5059,Orkland,1995,0
-5059,Orkland,1996,0
-5059,Orkland,1997,0
-5059,Orkland,1998,0
-5059,Orkland,1999,0
-5059,Orkland,2000,0
-5059,Orkland,2001,0
-5059,Orkland,2002,0
-5059,Orkland,2003,0
-5059,Orkland,2004,0
-5059,Orkland,2005,0
-5059,Orkland,2006,0
-5059,Orkland,2007,0
-5059,Orkland,2008,0
-5059,Orkland,2009,0
-5059,Orkland,2010,0
-5059,Orkland,2011,0
-5059,Orkland,2012,0
-5059,Orkland,2013,0
-5059,Orkland,2014,0
-5059,Orkland,2015,0
-5059,Orkland,2016,0
-5059,Orkland,2017,0
-5059,Orkland,2018,0
-5059,Orkland,2019,0
+5059,Orkland,1986,17115
+5059,Orkland,1987,17088
+5059,Orkland,1988,17053
+5059,Orkland,1989,17111
+5059,Orkland,1990,17102
+5059,Orkland,1991,16981
+5059,Orkland,1992,16911
+5059,Orkland,1993,16804
+5059,Orkland,1994,16684
+5059,Orkland,1995,16699
+5059,Orkland,1996,16602
+5059,Orkland,1997,16594
+5059,Orkland,1998,16519
+5059,Orkland,1999,16520
+5059,Orkland,2000,16579
+5059,Orkland,2001,16687
+5059,Orkland,2002,16719
+5059,Orkland,2003,16712
+5059,Orkland,2004,16714
+5059,Orkland,2005,16766
+5059,Orkland,2006,16845
+5059,Orkland,2007,17005
+5059,Orkland,2008,17166
+5059,Orkland,2009,17293
+5059,Orkland,2010,17422
+5059,Orkland,2011,17517
+5059,Orkland,2012,17566
+5059,Orkland,2013,17698
+5059,Orkland,2014,17831
+5059,Orkland,2015,17957
+5059,Orkland,2016,17962
+5059,Orkland,2017,18060
+5059,Orkland,2018,18048
+5059,Orkland,2019,18191
 5059,Orkland,2020,18217
 5059,Orkland,2021,18300
 5059,Orkland,2022,18502

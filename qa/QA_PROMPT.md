@@ -87,6 +87,21 @@ Fullstendige briefer (etter malene i skillen) skrives til `qa/briefer/` når pla
 - Ikke endre filer utenfor `arbeid/`, `kontroll/` og `data/raw/ssb/`.
 - Kontrollørene starter fra «ikke godkjent». Svaret skal ha én rad per funn og per kriterium, og en IKKE SJEKKET-liste.
 
-## 7. Spørsmål til Øystein før oppstart
+## 7. Spørsmål til Øystein og svarene (2026-09-24: «ok til alle forslag»)
 
-Se samtalen. Svarene føres inn her.
+| # | Spørsmål | Svar |
+|---|---|---|
+| 1 | Plan og kostnad | Godkjent. Brukt: 2 agenter, se dekningsrapporten i `QA_RAPPORT.md`. |
+| 2 | Omfang | Bare datasettet, pluss en liste over hva som endres i analysene |
+| 3 | Kommunestruktur | 2024 (357 kommuner) |
+| 4 | Delte kommuner | Fordelt etter befolkning og merket `estimert`. Stabile enheter kan lages ved å slå sammen de berørte kommunene. |
+| 5 | Nevner | Alle godkjente stemmer (`prosent`). Summen for 9 partier beholdes (`prosent_9parti`). |
+| 6 | Partier | Alle SSB-kategorier i rådata. Ferdigtabellen har 01–08, 55 (inkl. RV) og 99 Andre. |
+| 7 | Nettkilder | Ja, men Klass-API-et og valgresultat.no er sperret i miljøet. SSB-API-et via MCP ble brukt. |
+| 8 | Gamle filer (`data_valg_*`, `valg20*`, `distriktstall.xlsx`) | Rester fra R-skriptene. Ikke kvalitetssikret. |
+| 9 | Sentralitet | Sjekket i kode (F10), og ny koblingsfil er laget |
+| 10 | Befolkningsår | 1.1. i valgåret (dokumentert) |
+| 11 | Leveranse | Markdown i repoet |
+| 12 | PR | Nei, bare push til branchen |
+
+Resultat: [`QA_RAPPORT.md`](QA_RAPPORT.md).

@@ -1,0 +1,372 @@
+{
+ "funn": [
+  {
+   "id": "A2-001",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med tabellen s.11 (Østfold, 1.1.1992 til 0105 Sarpsborg).",
+   "side": 11
+  },
+  {
+   "id": "A2-002",
+   "status": "ok",
+   "begrunnelse": "Varteig-raden har ingen folkemengde i kilden (tom celle bekreftet); korrekt flagget usikker=true.",
+   "side": 11
+  },
+  {
+   "id": "A2-003",
+   "status": "ok",
+   "begrunnelse": "Fotnote * s.11 gjengitt ordrett; folkemengde 12 stemmer med teksten «unntatt 12 pers.».",
+   "side": 11
+  },
+  {
+   "id": "A2-004",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med tabellen s.11.",
+   "side": 11
+  },
+  {
+   "id": "A2-005",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med tabellen s.11.",
+   "side": 11
+  },
+  {
+   "id": "A2-006",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med Fredrikstad-sammenslåingen s.11 (1.1.1994).",
+   "side": 11
+  },
+  {
+   "id": "A2-007",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med tabellen s.11.",
+   "side": 11
+  },
+  {
+   "id": "A2-008",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med tabellen s.11.",
+   "side": 11
+  },
+  {
+   "id": "A2-009",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med tabellen s.11.",
+   "side": 11
+  },
+  {
+   "id": "A2-010",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med tabellen s.11.",
+   "side": 11
+  },
+  {
+   "id": "A2-011",
+   "status": "ok",
+   "begrunnelse": "Sitat, «ca. 70» og dato 1.1.1996 stemmer med s.14; samme hendelse gjentas korrekt (ikke duplisert) også s.26 og s.89.",
+   "side": 14
+  },
+  {
+   "id": "A2-012",
+   "status": "ok",
+   "begrunnelse": "Sitat og gnr./bnr. stemmer med s.15 (ubebodde områder, 1.1.1990).",
+   "side": 15
+  },
+  {
+   "id": "A2-013",
+   "status": "ok",
+   "begrunnelse": "Sitat og gnr./bnr. stemmer med s.15 (ubebodde områder, 1.1.1990).",
+   "side": 15
+  },
+  {
+   "id": "A2-014",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med Hamar-sammenslåingen s.18 (1.1.1992).",
+   "side": 18
+  },
+  {
+   "id": "A2-015",
+   "status": "ok",
+   "begrunnelse": "Sitat og folketall 224 stemmer med s.18; tolkning om at Ringsaker fortsetter er rimelig.",
+   "side": 18
+  },
+  {
+   "id": "A2-016",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med s.18.",
+   "side": 18
+  },
+  {
+   "id": "A2-017",
+   "status": "ok",
+   "begrunnelse": "Sitatet finnes kun i fylkesdelen s.89, ikke i kommunelistene for 04/05; korrekt observert og flagget usikker.",
+   "side": 89
+  },
+  {
+   "id": "A2-018",
+   "status": "ok",
+   "begrunnelse": "Sitat, tall og fotnote ** stemmer ordrett med s.27.",
+   "side": 27
+  },
+  {
+   "id": "A2-019",
+   "status": "ok",
+   "begrunnelse": "Sitat, tall og fotnote ** stemmer ordrett med s.27.",
+   "side": 27
+  },
+  {
+   "id": "A2-020",
+   "status": "ok",
+   "begrunnelse": "Sitat og fotnote *** stemmer med s.27 (kilden skriver «704» uten ledende null, korrekt gjengitt).",
+   "side": 27
+  },
+  {
+   "id": "A2-021",
+   "status": "ok",
+   "begrunnelse": "Sitat og fotnote *** stemmer med s.27.",
+   "side": 27
+  },
+  {
+   "id": "A2-022",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med Larvik-sammenslåingen s.27 (1.1.1988).",
+   "side": 27
+  },
+  {
+   "id": "A2-023",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med s.27.",
+   "side": 27
+  },
+  {
+   "id": "A2-024",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med s.27.",
+   "side": 27
+  },
+  {
+   "id": "A2-025",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med s.27.",
+   "side": 27
+  },
+  {
+   "id": "A2-026",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med s.27.",
+   "side": 27
+  },
+  {
+   "id": "A2-027",
+   "status": "ok",
+   "begrunnelse": "Dato 9.1.1987 er visuelt bekreftet i kilden s.30 (ubebodde områder); tolkningsmerknad om mulig trykkfeil er rimelig og endrer ikke faktagrunnlaget.",
+   "side": 30
+  },
+  {
+   "id": "A2-028",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med Arendal-sammenslåingen s.35 (1.1.1992).",
+   "side": 35
+  },
+  {
+   "id": "A2-029",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med s.35.",
+   "side": 35
+  },
+  {
+   "id": "A2-030",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med s.35.",
+   "side": 35
+  },
+  {
+   "id": "A2-031",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med s.35.",
+   "side": 35
+  },
+  {
+   "id": "A2-032",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med s.35.",
+   "side": 35
+  },
+  {
+   "id": "A2-033",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 60 og dato 1.1.1991 stemmer med s.36.",
+   "side": 36
+  },
+  {
+   "id": "A2-034",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 41 og dato 1.1.1987 stemmer med s.41.",
+   "side": 41
+  },
+  {
+   "id": "A2-035",
+   "status": "ok",
+   "begrunnelse": "Sitat stemmer med s.41; kildens stavefeil «Kristansand» korrekt gjengitt og kommentert.",
+   "side": 41
+  },
+  {
+   "id": "A2-036",
+   "status": "ok",
+   "begrunnelse": "Sitat stemmer med s.46 (ubebodde områder, 1.1.1989).",
+   "side": 46
+  },
+  {
+   "id": "A2-037",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 225 og dato 1.1.1995 stemmer med s.52.",
+   "side": 52
+  },
+  {
+   "id": "A2-038",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 482 og dato 1.1.1990 stemmer med s.56.",
+   "side": 56
+  },
+  {
+   "id": "A2-039",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 731 og dato 1.1.1990 stemmer med s.56.",
+   "side": 56
+  },
+  {
+   "id": "A2-040",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 90 og dato 1.1.1990 stemmer med s.56.",
+   "side": 56
+  },
+  {
+   "id": "A2-041",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 572 og dato 1.1.1992 stemmer med s.56.",
+   "side": 56
+  },
+  {
+   "id": "A2-042",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 32 og dato 1.1.1992 stemmer med s.56.",
+   "side": 56
+  },
+  {
+   "id": "A2-043",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 158 og dato 1.1.1992 stemmer med s.56.",
+   "side": 56
+  },
+  {
+   "id": "A2-044",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 21 og dato 1.1.1995 stemmer med s.68.",
+   "side": 68
+  },
+  {
+   "id": "A2-045",
+   "status": "ok",
+   "begrunnelse": "Sitat og dato 21.4.1989 stemmer med s.69 (ubebodde områder).",
+   "side": 69
+  },
+  {
+   "id": "A2-046",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 70 og dato 1.1.1995 stemmer med s.79; usikkerheten om tegnsetting er reell og korrekt påpekt.",
+   "side": 79
+  },
+  {
+   "id": "A2-047",
+   "status": "ok",
+   "begrunnelse": "Sitat, folketall 38 og dato 1.1.1992 stemmer med s.83.",
+   "side": 83
+  },
+  {
+   "id": "A2-048",
+   "status": "ok",
+   "begrunnelse": "Sitat og dato 1.1.1992 stemmer med s.83 (ubebodde områder).",
+   "side": 83
+  },
+  {
+   "id": "A2-049",
+   "status": "ok",
+   "begrunnelse": "Sitat stemmer med s.83; korrekt flagget usikker fordi rapporten s.9 sier samisk navneform ikke regnes som navneendring.",
+   "side": 83
+  },
+  {
+   "id": "A2-050",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med Hammerfest-sammenslåingen s.85 (1.1.1992).",
+   "side": 85
+  },
+  {
+   "id": "A2-051",
+   "status": "ok",
+   "begrunnelse": "Sitat og tall stemmer med s.85.",
+   "side": 85
+  },
+  {
+   "id": "A2-052",
+   "status": "ok",
+   "begrunnelse": "Sitat stemmer med s.85; korrekt flagget usikker jf. s.9 om samiske navneformer.",
+   "side": 85
+  },
+  {
+   "id": "A2-053",
+   "status": "ok",
+   "begrunnelse": "Sitat stemmer med s.85; korrekt flagget usikker jf. s.9.",
+   "side": 85
+  },
+  {
+   "id": "A2-054",
+   "status": "ok",
+   "begrunnelse": "Sitat stemmer med s.85; korrekt flagget usikker jf. s.9.",
+   "side": 85
+  },
+  {
+   "id": "A2-055",
+   "status": "ok",
+   "begrunnelse": "Bekreftet at raden for Unjárga – Nesseby ikke har oppgitt dato i kilden s.85; korrekt flagget usikker.",
+   "side": 85
+  }
+ ],
+ "kriterier": [
+  {
+   "id": "K1",
+   "status": "komplett",
+   "mangler": []
+  },
+  {
+   "id": "K2",
+   "status": "komplett",
+   "mangler": []
+  },
+  {
+   "id": "K3",
+   "status": "komplett",
+   "mangler": []
+  },
+  {
+   "id": "K4",
+   "status": "komplett",
+   "mangler": []
+  },
+  {
+   "id": "K5",
+   "status": "komplett",
+   "mangler": []
+  }
+ ],
+ "falske_positiver": [],
+ "motstrid": [],
+ "ikke_sjekket": [
+  "alt sjekket"
+ ],
+ "konklusjon": {
+  "status": "godkjent",
+  "ok": 55,
+  "feil": 0,
+  "usikker": 0
+ }
+}
