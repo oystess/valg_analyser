@@ -1,0 +1,218 @@
+[
+ {
+  "id": "G1-01",
+  "påstand": "Kommuner med befolkningsnedgang får sterkere Sp-vekst først og fremst i perioder med mobilisering mot sentralisering der Sp starter lavt (1989–1993 og 2013–2017), ikke i 2017–2021 slik H3 antar.",
+  "mekanisme": "Befolkningsnedgang gir tjenestetap og en følelse av å bli forlatt, men dette omsettes til Sp-stemmer først når en synlig nasjonal sentraliseringsagenda gjør staten til adressat (EU/ 'Norge i Nord' 1993; kommune-, politi- og sykehusreformer vedtatt 2014–2017). Når Sp alt har høstet disse kommunene (2017–2021), er potensialet brukt opp, så nedgang skiller mindre.",
+  "forhold_til_frø": "H3: motsier timingen – toppen ligger i 1989–93 og 2013–17, mens 2017–21 og 2021–25 er svakere enn snittet",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "vekst4_pst",
+    "vekst4_pst × utløserperiode (t0 i 1989, 2013)"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "sent_klasse",
+    "sp_t0 × periode",
+    "periodefaste effekter"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ vekst4_pst + I(vekst4_pst*t0.isin([1989, 2013])) + sent_klasse + sp_t0*C(periode)",
+   "nøkkelledd": "I(vekst4_pst * t0.isin([1989, 2013]))",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Interaksjonsleddet er ≥ 0 eller KI dekker 0 (sjekket: vekst4_pst × I(t0 ≥ 2017) er +0,081, KI [0,013; 0,149], dvs. svakere nedgangseffekt etter 2017); eller en tilsvarende dummy for t0 = 2017 gir et klart mer negativt ledd enn 1989/2013.",
+  "eksplorativ_evidens": "b = -0.5155, 95 % KI [-0.6786, -0.3523], p = 6e-10, n = 3213 (357 kommuner), WLS vektet med stemmer, klyngerobuste SE (modeller.py)"
+ },
+ {
+  "id": "G1-02",
+  "påstand": "Sammenhengen mellom befolkningsnedgang og Sp-vekst er sterkere jo mindre sentral kommunen er.",
+  "mekanisme": "I sentrale kommuner betyr lav vekst sjelden tap av skole, legevakt eller butikk, fordi tilbudet finnes i pendleravstand. I perifere kommuner kan samme nedgang true kritiske tjenester og lokalsamfunnets levedyktighet, som gir direkte grunn til å velge et distriktsparti. Interaksjonen er altså et mål på tjenestetap-kanalen i H2.",
+  "forhold_til_frø": "H2: spisser – tester interaksjonen litteraturen etterlyser, med sentralitet som lineært ledd",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "vekst4_pst × sent_klasse"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "vekst4_pst",
+    "sent_klasse",
+    "sp_t0 × periode"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ vekst4_pst*sent_klasse + sp_t0*C(periode)",
+   "nøkkelledd": "vekst4_pst:sent_klasse",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Interaksjonsleddet er ≥ 0 eller ikke signifikant; NB: en dikotom periferidummy (sent_klasse ≥ 5) gir null (b = 0,011, p = 0,81), så effekten kan være drevet av midtklassene, og det bør rapporteres.",
+  "eksplorativ_evidens": "b = -0.0480, 95 % KI [-0.0645, -0.0314], p = 1.3e-08, n = 3213 (357 kommuner), WLS vektet med stemmer, klyngerobuste SE (modeller.py)"
+ },
+ {
+  "id": "G1-03",
+  "påstand": "Små kommuner med befolkningsnedgang får sterkere Sp-vekst enn store kommuner med lik prosentvis nedgang.",
+  "mekanisme": "Tjenester har faste terskler: i en kommune med 2 000 innbyggere kan en nedgang på 5 % bety at skolen eller sykehjemsavdelingen legges ned, mens samme prosent i en by på 50 000 knapt merkes. Tjenestetapet – og dermed opplevelsen av å bli forlatt – er derfor ikke-lineært i kommunestørrelse. Kontrollerer for sentralitet slik at det ikke bare er periferi under nytt navn.",
+  "forhold_til_frø": "H2: spisser tjenestemekanismen via terskeleffekt i kommunestørrelse (ny moderator)",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "vekst4_pst × ln_bef_t0"
+   ],
+   "retning": "+",
+   "kontroller": [
+    "vekst4_pst",
+    "ln_bef_t0",
+    "sent_klasse",
+    "sp_t0 × periode"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ vekst4_pst*ln_bef_t0 + sent_klasse + sp_t0*C(periode)",
+   "nøkkelledd": "vekst4_pst:ln_bef_t0",
+   "forventet_fortegn": "+",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Interaksjonsleddet er ≤ 0 eller KI dekker 0; eller det forsvinner når vekst4_pst × sent_klasse legges til (sjekket: b = 0,048, KI [0,016; 0,079], holder).",
+  "eksplorativ_evidens": "b = 0.0595, 95 % KI [0.0434, 0.0756], p = 4.2e-13, n = 3213 (357 kommuner), WLS vektet med stemmer, klyngerobuste SE (modeller.py)"
+ },
+ {
+  "id": "G1-04",
+  "påstand": "Kommuner med fødselsunderskudd får sterkere Sp-vekst enn kommuner med fødselsoverskudd, mens netto utflytting ikke har noen selvstendig sammenheng når sentralitet er kontrollert.",
+  "mekanisme": "Fødselsunderskudd er det demografiske sluttstadiet av langvarig fraflytting: det signaliserer at lokalsamfunnet ikke reproduserer seg selv (barnehager og skoler står tomme), og det gjør forfallet synlig for de som blir. Netto utflytting i én periode kan være forbigående og henger tett sammen med sentralitet. Frøet H7 (utflytting av unge) virker derfor, om noe, via den akkumulerte aldersstrukturen, ikke via selve flyttestrømmen.",
+  "forhold_til_frø": "H7: avgrenser – flytting i perioden er ikke kanalen; akkumulert naturlig nedgang er det. Skiller fraflytting fra fødselsunderskudd (H2)",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "fodselsovsk_per1000"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "nettoinnfl_per1000",
+    "sent_klasse",
+    "sp_t0 × periode"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ nettoinnfl_per1000 + fodselsovsk_per1000 + sent_klasse + sp_t0*C(periode)",
+   "nøkkelledd": "fodselsovsk_per1000",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "fodselsovsk_per1000 er ≥ 0 eller ikke signifikant, eller nettoinnfl_per1000 er like sterk. Merk: leddet forsvinner når andel_67p_t0 kontrolleres (b = −0,0001, p = 0,99), så mekanismen er aldersstruktur – om det skal leses som bekreftelse eller forkastelse må avgjøres før låsing.",
+  "eksplorativ_evidens": "b = -0.0143, 95 % KI [-0.0249, -0.0038], p = 0.0079, n = 3209 (357 kommuner), WLS vektet med stemmer, klyngerobuste SE (modeller.py)"
+ },
+ {
+  "id": "G1-05",
+  "påstand": "Kommuner med lav medianinntekt etter skatt (relativt til andre kommuner i samme valgår) får sterkere Sp-vekst, også når sentralitet er kontrollert.",
+  "mekanisme": "Relativ deprivasjon: det som betyr noe er inntektsnivået sammenlignet med resten av landet i samme år, ikke absolutt inntekt. Periodefaste effekter gjør log-inntekt til et relativt mål. Kommuner som ligger etter, oppfatter at vekstgevinstene havner i byregionene, og Sp har rammet dette inn som 'forskjeller mellom by og land'.",
+  "forhold_til_frø": "ny (relativ deprivasjon-kanalen fra H2 testet selvstendig)",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "log(inntekt_median_t0)"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "sent_klasse",
+    "sp_t0 × periode"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ np.log(inntekt_median_t0) + sent_klasse + sp_t0*C(periode)",
+   "nøkkelledd": "np.log(inntekt_median_t0)",
+   "forventet_fortegn": "-",
+   "utvalg": "t0 >= 2005",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Koeffisienten er ≥ 0 eller KI dekker 0. Uten sentralitetskontroll er leddet null (b = −1,71, p = 0,33); resultatet avhenger altså av at sentralitet holdes fast, og det bør rapporteres.",
+  "eksplorativ_evidens": "b = -2.4673, 95 % KI [-3.6632, -1.2714], p = 5.3e-05, n = 1785 (357 kommuner), WLS vektet med stemmer, klyngerobuste SE (modeller.py)"
+ },
+ {
+  "id": "G1-06",
+  "påstand": "Kommuner med høy andel sysselsatte i jordbruk, skogbruk og fiske får sterkere Sp-vekst, særlig i 2013–2017.",
+  "mekanisme": "I primærnæringskommuner er statlig næringspolitikk (jordbruksoppgjør, konsesjoner, kvoter) direkte levebrødspolitikk. Sp er primærnæringenes parti, og når regjeringen legger om landbrukspolitikken (Solberg-regjeringen fra 2013) eller fiskeripolitikken, mobiliserer disse kommunene. Mekanismen er økonomisk interessebasert, ikke bare identitet.",
+  "forhold_til_frø": "ny",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "andel_primaer_t0"
+   ],
+   "retning": "+",
+   "kontroller": [
+    "sent_klasse",
+    "sp_t0 × periode"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ andel_primaer_t0 + sent_klasse + sp_t0*C(periode)",
+   "nøkkelledd": "andel_primaer_t0",
+   "forventet_fortegn": "+",
+   "utvalg": "t0 >= 2009",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Koeffisienten er ≤ 0 eller KI dekker 0. Periodemønsteret: per-periode-ledd var 2009–13 −0,02 (ns), 2013–17 0,53, 2017–21 0,21, 2021–25 0,14; om 2013–17 ikke er størst, faller periodedelen av påstanden.",
+  "eksplorativ_evidens": "b = 0.1943, 95 % KI [0.1095, 0.2792], p = 7.1e-06, n = 1428 (357 kommuner), WLS vektet med stemmer, klyngerobuste SE (modeller.py)"
+ },
+ {
+  "id": "G1-07",
+  "påstand": "Kommuner med høy andel sysselsatte i offentlig sektor får sterkere Sp-vekst, gitt primærnæringsandel og sentralitet.",
+  "mekanisme": "Der kommunen, sykehjemmet og skolen er de største arbeidsplassene, er sentraliseringsreformer (kommunesammenslåing, sykehusstruktur, NAV- og politikontorer) en trussel mot sysselsettingen, ikke bare mot tjenestetilbudet. Sp har vært det tydeligste partiet mot slike reformer, så offentlig sysselsatte kommuner har interessebasert grunn til å øke Sp-stemmegivningen.",
+  "forhold_til_frø": "ny",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "andel_offentlig_t0"
+   ],
+   "retning": "+",
+   "kontroller": [
+    "andel_primaer_t0",
+    "sent_klasse",
+    "sp_t0 × periode"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ andel_offentlig_t0 + andel_primaer_t0 + sent_klasse + sp_t0*C(periode)",
+   "nøkkelledd": "andel_offentlig_t0",
+   "forventet_fortegn": "+",
+   "utvalg": "t0 >= 2009",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Koeffisienten er ≤ 0 eller KI dekker 0. Uten primærnæringskontroll er den svakere (b = 0,023, p = 0,15), noe som bør rapporteres.",
+  "eksplorativ_evidens": "b = 0.0458, 95 % KI [0.0138, 0.0778], p = 0.005, n = 1428 (357 kommuner), WLS vektet med stemmer, klyngerobuste SE (modeller.py)"
+ },
+ {
+  "id": "G1-08",
+  "påstand": "Kommuner med høy andel industrisysselsatte får svakere Sp-vekst enn andre kommuner med lik sentralitet og primærnæringsandel.",
+  "mekanisme": "Industrikommuner kan også være 'left behind', men misnøyen der er knyttet til arbeidsplasser, kraftpriser og fagbevegelse, og den har sine kanaler i Ap og partiene lenger til høyre, ikke i Sp. Dermed skiller 'left behind' seg etter næringsstruktur: agrar og offentlig periferi velger Sp, industriperiferien gjør det ikke. Dette motsier en ren sted-basert lesning av H1/H2.",
+  "forhold_til_frø": "ny (avgrenser H1/H2: periferieffekten gjelder ikke industriperiferien)",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "andel_industri_t0"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "andel_primaer_t0",
+    "sent_klasse",
+    "sp_t0 × periode"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ andel_industri_t0 + andel_primaer_t0 + sent_klasse + sp_t0*C(periode)",
+   "nøkkelledd": "andel_industri_t0",
+   "forventet_fortegn": "-",
+   "utvalg": "t0 >= 2009",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Koeffisienten er ≥ 0 eller KI dekker 0. Uten kontroller er den positiv (b = 0,036, p = 0,08), så fortegnet avhenger av kontrollene.",
+  "eksplorativ_evidens": "b = -0.0292, 95 % KI [-0.0553, -0.0032], p = 0.028, n = 1428 (357 kommuner), WLS vektet med stemmer, klyngerobuste SE (modeller.py)"
+ }
+]

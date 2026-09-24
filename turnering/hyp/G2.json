@@ -1,0 +1,224 @@
+[
+ {
+  "id": "G2-01",
+  "påstand": "I perioder med nasjonalt Sp-fall (1993–1997, 2021–2025) mister kommuner med høy sp_t0 mest, omtrent proporsjonalt med utgangsnivået, og sentralitet legger ikke til noe utover dette.",
+  "mekanisme": "Etter et toppvalg faller Sp tilbake omtrent proporsjonalt med det kommunen hadde (regresjon mot middelverdien pluss et multiplikativt nasjonalt tilbakeslag). Hvis dette holder, er tilbakegangen i perifere kommuner bare et speilbilde av at Sp sto sterkest der, og det trengs ingen egen «left behind»-forklaring for fallet.",
+  "forhold_til_frø": "H1: avgrenser – «utløser-toppene» følges av tilbakefall som er proporsjonale med nivået, ikke periferispesifikke",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "sp_t0"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "sent_indeks",
+    "C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ sp_t0 + sent_indeks + C(periode)",
+   "nøkkelledd": "sp_t0",
+   "forventet_fortegn": "-",
+   "utvalg": "periode in ['1993-1997','2021-2025']",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Avkreftes hvis sp_t0-koeffisienten i fallperiodene er ≥ −0,15 (langt fra proporsjonal), eller hvis sent_indeks i samme modell er signifikant (p < 0,05) med KI som utelukker 0, dvs. at perifere kommuner faller mer eller mindre enn sp_t0 tilsier.",
+  "eksplorativ_evidens": "b = -0.3976, 95 % KI [-0.4375, -0.3577], p = 4.5e-85, n = 714 (357 kommuner), vektet; uvektet: b = -0.3113, KI [-0.3573, -0.2654], p = 2.9e-40. Samme modell, sent_indeks: b = 0.0009, KI [−0.0022, 0.0040], p = 0.56. Nasjonalt (vektet) falt Sp 16.7→8.1 (1993–97) og 13.5→5.7 (2021–25), dvs. ca. −52 % og −57 %; helningen −0.40 tilsvarer omtrent proporsjonalt fall."
+ },
+ {
+  "id": "G2-02",
+  "påstand": "I perioder med nasjonal Sp-vekst (1989–1993, 2013–2017) vokser Sp mer i mindre sentrale kommuner, og den tilsynelatende multiplikative sammenhengen med sp_t0 forsvinner når sentralitet kontrolleres.",
+  "mekanisme": "Skillehypotese: En ren multiplikativ modell sier at gevinster fordeles proporsjonalt med sp_t0. Hvis veksten i stedet er additiv langs sentralitetsaksen, er det sentralitet (ikke nivået) som bærer oppgangene. Sammen med G2-01 gir det en asymmetri: oppganger er geografiske, nedganger er proporsjonale.",
+  "forhold_til_frø": "H1: spisser – periferieffekten er reell i oppgangsperioder, men ikke i nedgangsperioder",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "sent_indeks"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "sp_t0",
+    "C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ sent_indeks + sp_t0 + C(periode)",
+   "nøkkelledd": "sent_indeks",
+   "forventet_fortegn": "-",
+   "utvalg": "periode in ['1989-1993','2013-2017']",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Avkreftes hvis sent_indeks ikke er negativ med KI som utelukker 0, eller hvis sp_t0 i samme modell forblir klart positiv (KI over 0), dvs. at oppgangen er multiplikativ og ikke geografisk.",
+  "eksplorativ_evidens": "b = -0.0282, 95 % KI [-0.0311, -0.0253], p = 2.1e-80, n = 714 (357 kommuner), vektet; uvektet: b = -0.0255, KI [-0.0288, -0.0222], p = 1.2e-51. Samme modell, sp_t0: b = 0.0049, KI [−0.054, 0.064], p = 0.87 (uten sent_indeks: sp_t0 b = 0.41, KI [0.29, 0.52])."
+ },
+ {
+  "id": "G2-03",
+  "påstand": "Kommuner med befolkningsnedgang har ingen selvstendig tilleggsendring i Sp når sentralitet, størrelse, utdanning, alder og periodespesifikk sp_t0-helning er kontrollert (nullhypotese: skeptikerpåstanden støttes når KI dekker 0).",
+  "mekanisme": "Befolkningsnedgang er sterkt korrelert med lav sentralitet, liten størrelse, lav utdanning og eldre befolkning. Hvis vekst4-sammenhengen bare er et speil av disse faste kjennetegnene, er den dynamiske «left behind»-mekanismen (tjenestetap, relativ deprivasjon ved nedgang) overflødig for å beskrive mønsteret.",
+  "forhold_til_frø": "H2: motsier – sammenhengen med befolkningsnedgang forsvinner med komposisjonskontroller",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "vekst4_pst"
+   ],
+   "retning": "0 (skeptiker); H2 predikerer −",
+   "kontroller": [
+    "sent_indeks",
+    "andel_hoyutd_t0",
+    "andel_67p_t0",
+    "ln_bef_t0",
+    "sp_t0:C(periode)",
+    "C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ vekst4_pst + sent_indeks + andel_hoyutd_t0 + andel_67p_t0 + ln_bef_t0 + sp_t0:C(periode) + C(periode)",
+   "nøkkelledd": "vekst4_pst",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Skeptikerpåstanden avkreftes (og H2 styrkes) hvis vekst4_pst er negativ med 95 % KI helt under 0. Merk: forventet_fortegn er satt til H2s «−»; skeptikeren vinner når fortegn/signifikans IKKE bekreftes.",
+  "eksplorativ_evidens": "b = 0.0081, 95 % KI [-0.0470, 0.0633], p = 0.77, n = 3213 (357 kommuner), vektet; uvektet: b = 0.0090, KI [-0.0440, 0.0620], p = 0.74. Uten komposisjonskontroller (bare sp_t0:C(periode)): b = −0.182, KI [−0.227, −0.137]. Med 10-årsvekst i stedet: b = −0.023, KI [−0.041, −0.005], p = 0.011 – et svakt langtidssignal overlever."
+ },
+ {
+  "id": "G2-04",
+  "påstand": "Kommuner med fødselsunderskudd (naturlig aldring) har større Sp-økning, mens netto innflytting ikke har noen selvstendig sammenheng når sentralitet og utdanning er kontrollert.",
+  "mekanisme": "Hvis «left behind»-effekten virker gjennom utflytting (H7), burde nettoinnflytting bære signalet. Hvis den i stedet bare speiler en gammel befolkning med stabile, stedsbundne velgere, er det fødselsbalansen (alderssammensetning) som bærer det. Det skiller en komposisjonsforklaring fra en flyttingsforklaring.",
+  "forhold_til_frø": "H7: spisser/motsier – aldringssignalet går via fødselsbalanse, ikke via utflytting",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "fodselsovsk_per1000"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "nettoinnfl_per1000",
+    "sent_indeks",
+    "andel_hoyutd_t0",
+    "sp_t0:C(periode)",
+    "C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ fodselsovsk_per1000 + nettoinnfl_per1000 + sent_indeks + andel_hoyutd_t0 + sp_t0:C(periode) + C(periode)",
+   "nøkkelledd": "fodselsovsk_per1000",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Avkreftes hvis fodselsovsk_per1000 ikke er negativ med KI under 0, eller hvis nettoinnfl_per1000 i samme modell er klart negativ (KI under 0) og minst like stor per 1000 som fødselsoverskuddet.",
+  "eksplorativ_evidens": "b = -0.0117, 95 % KI [-0.0214, -0.0020], p = 0.018, n = 3209 (357 kommuner), vektet; uvektet: b = -0.0184, KI [-0.0275, -0.0093], p = 7e-05. Samme modell, nettoinnfl_per1000: b = 0.0010, KI [−0.0057, 0.0077], p = 0.76. Uten sentralitet/utdanning er begge negative (netto −0.014, fødsel −0.031)."
+ },
+ {
+  "id": "G2-05",
+  "påstand": "Kommuner der Sp sto sterkere i forrige kommunevalg (kv_sp_t0) enn sp_t0 tilsier, får mer positiv d_sp – stortingsandelen trekkes mot et lokalt likevektsnivå.",
+  "mekanisme": "Stortingsresultatet i t0 inneholder et forbigående element; kommunevalgandelen to år før er et uavhengig mål på kommunens underliggende Sp-nivå. Når sp_t0 holdes fast, betyr høy kv_sp_t0 at sp_t0 lå under likevekten, og regresjonen går oppover. Merk: kv_sp_t0 er fra t0−2 og inneholder ikke utfallet, men er et annet valg av samme parti.",
+  "forhold_til_frø": "ny (skeptisk alternativ til H5: ikke 'ledelse', men lokal regresjon mot likevekt)",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "kv_sp_t0"
+   ],
+   "retning": "+",
+   "kontroller": [
+    "sp_t0:C(periode)",
+    "sent_indeks",
+    "C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ kv_sp_t0 + sent_indeks + sp_t0:C(periode) + C(periode)",
+   "nøkkelledd": "kv_sp_t0",
+   "forventet_fortegn": "+",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Avkreftes hvis kv_sp_t0 ikke er positiv med KI over 0 gitt sp_t0:C(periode) og sent_indeks.",
+  "eksplorativ_evidens": "b = 0.0604, 95 % KI [0.0351, 0.0856], p = 2.8e-06, n = 3213 (357 kommuner), vektet; uvektet: b = 0.0408, KI [0.0214, 0.0603], p = 3.8e-05. Uten sent_indeks og med felles sp_t0: b = 0.092, KI [0.064, 0.120]."
+ },
+ {
+  "id": "G2-06",
+  "påstand": "Mindre kommuner (lav ln_bef_t0) har mer positiv d_sp enn like sentrale, større kommuner.",
+  "mekanisme": "Kommunestørrelse kan etterligne periferi: små kommuner har tettere lokale nettverk, flere personstemmer til lokale Sp-kandidater og større tilfeldige utslag. Hvis størrelse bærer mønsteret, er det ikke avstand til sentrum som betyr noe. Hypotesen skiller størrelse fra sentralitet.",
+  "forhold_til_frø": "ny",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "ln_bef_t0"
+   ],
+   "retning": "-",
+   "kontroller": [
+    "sent_indeks",
+    "sp_t0:C(periode)",
+    "C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ ln_bef_t0 + sent_indeks + sp_t0:C(periode) + C(periode)",
+   "nøkkelledd": "ln_bef_t0",
+   "forventet_fortegn": "-",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Avkreftes hvis ln_bef_t0 ikke er negativ med KI under 0 når sent_indeks er med. Hvis den bare holder uvektet, tyder det på at resultatet drives av små, støyete kommuner.",
+  "eksplorativ_evidens": "b = -0.1594, 95 % KI [-0.3127, -0.0060], p = 0.042, n = 3213 (357 kommuner), vektet; uvektet: b = -0.3974, KI [-0.5709, -0.2239], p = 7.2e-06. Samme modell, sent_indeks: b = −0.0078, KI [−0.0093, −0.0064] – sentralitet dominerer; størrelsen er svak vektet og sterkere uvektet."
+ },
+ {
+  "id": "G2-07",
+  "påstand": "Fra 2009 har kommuner med høy andel sysselsatte i primærnæringene mer positiv d_sp, også når befolkningsvekst, sentralitet og utdanning er kontrollert.",
+  "mekanisme": "En interessebasert forklaring (Sp som landbruks- og fiskeriparti, jordbruksoppgjør og rovdyrpolitikk) kan gi det samme geografiske mønsteret som «left behind», uten at nedgang eller misnøye er involvert. Hvis primærandelen bærer signalet, er det næringssammensetning, ikke deprivasjon, som beskriver mønsteret.",
+  "forhold_til_frø": "ny",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "andel_primaer_t0"
+   ],
+   "retning": "+",
+   "kontroller": [
+    "vekst4_pst",
+    "sent_indeks",
+    "andel_hoyutd_t0",
+    "sp_t0:C(periode)",
+    "C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ andel_primaer_t0 + vekst4_pst + sent_indeks + andel_hoyutd_t0 + sp_t0:C(periode) + C(periode)",
+   "nøkkelledd": "andel_primaer_t0",
+   "forventet_fortegn": "+",
+   "utvalg": "t0 >= 2009",
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Avkreftes hvis andel_primaer_t0 ikke er positiv med KI over 0 i utvalget t0 ≥ 2009.",
+  "eksplorativ_evidens": "b = 0.1841, 95 % KI [0.1021, 0.2660], p = 1.1e-05, n = 1428 (357 kommuner), vektet; uvektet: b = 0.0767, KI [0.0227, 0.1307], p = 0.0054. Samme modell, vekst4_pst: b = −0.09, KI [−0.16, −0.02] (uten utdanning) – begge overlever, så dette er et konkurrerende, ikke et fullt erstattende, mønster."
+ },
+ {
+  "id": "G2-08",
+  "påstand": "Sammenhengen mellom befolkningsnedgang og d_sp var ikke sterkere i 2017–2021 enn i andre perioder.",
+  "mekanisme": "H3 hevder episodisk forsterkning rundt kommunereformen. En skeptiker venter at den nasjonale Sp-oppgangen i 2017–2021 var bred og ikke særlig knyttet til nedgangskommuner, og at de sterkeste sammenhengene med vekst finnes i andre perioder (1993–97, 2013–17), der de delvis speiler nivå- og regresjonseffekter.",
+  "forhold_til_frø": "H3: motsier – ingen påviselig forsterkning i 2017–2021",
+  "operasjonalisering": {
+   "utfall": "d_sp",
+   "forklaring": [
+    "vekst4_pst × (periode == 2017–2021)"
+   ],
+   "retning": "+ eller 0 (ikke −)",
+   "kontroller": [
+    "vekst4_pst",
+    "sent_indeks",
+    "sp_t0:C(periode)",
+    "C(periode)"
+   ]
+  },
+  "testspesifikasjon": {
+   "formel": "d_sp ~ vekst4_pst + vekst4_pst:I(periode == '2017-2021') + sent_indeks + sp_t0:C(periode) + C(periode)",
+   "nøkkelledd": "vekst4_pst:I(periode == '2017-2021')[T.True]",
+   "forventet_fortegn": "+",
+   "utvalg": null,
+   "vekt": "vekt_stemmer_t0"
+  },
+  "falsifisering": "Avkreftes (H3 støttes) hvis interaksjonsleddet er negativt med KI helt under 0, dvs. at befolkningsnedgang hang sterkere sammen med Sp-vekst i 2017–2021 enn ellers.",
+  "eksplorativ_evidens": "b = 0.0485, 95 % KI [-0.0593, 0.1562], p = 0.38, n = 3213 (357 kommuner), vektet; uvektet: b = -0.0606, KI [-0.1849, 0.0636], p = 0.34. Hovedeffekt vekst4_pst i samme modell: b = −0.030, KI [−0.073, 0.013]. Periodevis, med sp_t0, sentralitet, utdanning og størrelse: 2017–21 b = −0.084 (KI [−0.19, 0.02]); 1993–97 b = −0.44 (KI [−0.55, −0.34])."
+ }
+]
