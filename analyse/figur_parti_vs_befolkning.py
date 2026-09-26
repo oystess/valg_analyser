@@ -29,7 +29,9 @@ PARTI = {"ap": ("Arbeiderpartiet", "#1D9DE2"), "h": ("Høyre", "#C78800"), "frp"
 TITTEL = {("ap", "2013-2017"): "Sp vokste og Ap falt mest der folketallet gikk ned (2013–2017)",
           ("h", "2013-2017"): "Sp vokste der folketallet falt – Høyre sto nesten stille (2013–2017)",
           ("ap", "2009-2013"): "Ingen tydelig sammenheng med folketallet for Sp og Ap (2009–2013)",
-          ("h", "2009-2013"): "Høyre vokste mest der folketallet vokste – Sp sto stille (2009–2013)"}
+          ("h", "2009-2013"): "Høyre vokste mest der folketallet vokste – Sp sto stille (2009–2013)",
+          ("h", "1997-2001"): "Høyre vokste mest der folketallet vokste – Sp falt minst der (1997–2001)",
+          ("h", "2001-2005"): "Høyre falt mest der det hadde vokst – Sp nesten flat (2001–2005)"}
 annet = sys.argv[1] if len(sys.argv) > 1 else "ap"
 navn2, farge2 = PARTI[annet]
 serier = [("d_sp", "Senterpartiet", "#1A9D49", "o"), (f"d_{annet}", navn2, farge2, "^")]
@@ -62,7 +64,7 @@ ax.grid(axis="y", color=RUTE, ls=":", lw=0.8)
 for s in ("top", "right"):
     ax.spines[s].set_visible(False)
 ax.set_xlabel(f"Befolkningsvekst 1.1.{T1 - 10}–1.1.{T1} (prosent)", fontsize=13, color=TEKST)
-ax.set_ylabel(f"Endring i oppslutning, stortingsvalg {T0}–{T1} (prosentpoeng)", fontsize=13, color=TEKST)
+ax.set_ylabel(f"Endring i oppslutning, stortingsvalg {T0}–{T1}\n(prosentpoeng)", fontsize=13, color=TEKST)
 ax.tick_params(colors=TEKST, labelsize=11)
 ax.set_xlim(*X_UT)
 ax.set_ylim(*Y_UT)
@@ -70,11 +72,12 @@ fig.suptitle(TITTEL.get((annet, PERIODE), f"Endring for Sp og {navn2} etter befo
              x=0.06, ha="left", fontsize=16, fontweight="bold", color=TEKST, family=["Roboto Condensed", "DejaVu Sans"])
 ax.set_title("357 kommuner (2024-inndeling). Kurvene er glattet trend (LOWESS), regnet på alle kommuner.",
              loc="left", fontsize=11, color=GRÅ)
-fig.text(0.11, 0.012, "Kilde: SSB, tabell 08092 (stortingsvalg) og 07459 (befolkning). Andel av alle godkjente stemmer, "
-         "harmonisert til 2024-kommuner.\n"
-         + textwrap.fill(f"Utenfor utsnittet ({len(utenfor)}): " + ", ".join(utenfor["navn"].str.split(" - ").str[0]) + ".", 115),
-         fontsize=9.5, color=GRÅ)
-fig.tight_layout(rect=(0.03, 0.10, 1, 0.95))
+fotnote = ("Kilde: SSB, tabell 08092 (stortingsvalg) og 07459 (befolkning). Andel av alle godkjente stemmer, "
+           "harmonisert til 2024-kommuner.\n"
+           + textwrap.fill(f"Utenfor utsnittet ({len(utenfor)}): " + ", ".join(utenfor["navn"].str.split(" - ").str[0]) + ".", 115))
+fig.text(0.11, 0.012, fotnote, fontsize=9.5, color=GRÅ)
+# plass til fotnoten: ca. 0,025 av høyden per linje
+fig.tight_layout(rect=(0.03, 0.04 + 0.025 * fotnote.count("\n"), 1, 0.95))
 ut = ROT / "figurer" / f"{annet}_sp_{T0}_{T1}_befolkning.png"
 fig.savefig(ut, facecolor="white")
 print(ut)
