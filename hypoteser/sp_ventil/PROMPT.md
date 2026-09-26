@@ -120,3 +120,5 @@ Tall regnes i kode. Tolkningen skal være ydmyk: «forenlig med», ikke «bevis 
 | 4 | Stortingsvalg som hovedvariant, kommunestyrevalg som parallell? | Ja |
 | 5 | Skal agent L (litteratur og individdata) være med? | Ja |
 | 6 | Kjøres i denne sesjonen eller i en ny (som motreaksjon-testen)? | Ny sesjon på egen gren `claude/sp-ventil` |
+
+**Svar 2026-09-26:** «Ok». Alle standardsvarene i tabellen over gjelder. Arbeidet kjøres i ny sesjon på grenen `claude/sp-ventil`.
