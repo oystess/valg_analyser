@@ -1,0 +1,2088 @@
+{
+ "rader": [
+  {
+   "id": "Pa-001",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 10
+  },
+  {
+   "id": "Pa-002",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 10
+  },
+  {
+   "id": "Pa-003",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-004",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-005",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-006",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-007",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-008",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-009",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-010",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-011",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-012",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-013",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-014",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-015",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 11
+  },
+  {
+   "id": "Pa-016",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 12
+  },
+  {
+   "id": "Pa-017",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 12
+  },
+  {
+   "id": "Pa-018",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 12
+  },
+  {
+   "id": "Pa-019",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 12
+  },
+  {
+   "id": "Pa-020",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 12
+  },
+  {
+   "id": "Pa-021",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 12
+  },
+  {
+   "id": "Pa-022",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-023",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-024",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-025",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-026",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-027",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-028",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-029",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-030",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-031",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-032",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-033",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-034",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-035",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 13
+  },
+  {
+   "id": "Pa-036",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 14
+  },
+  {
+   "id": "Pa-037",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 14
+  },
+  {
+   "id": "Pa-038",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 14
+  },
+  {
+   "id": "Pa-039",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 14
+  },
+  {
+   "id": "Pa-040",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 14
+  },
+  {
+   "id": "Pa-041",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 14
+  },
+  {
+   "id": "Pa-042",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 14
+  },
+  {
+   "id": "Pa-043",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 14
+  },
+  {
+   "id": "Pa-044",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 14
+  },
+  {
+   "id": "Pa-045",
+   "status": "usikker",
+   "feltfeil": {},
+   "begrunnelse": "Selvflagget av Pa: motstrid mellom kommunetabell (Akershus/Oslo s.14/16) og fylkesoversikt s.89 om hvorvidt overføringen er bebodd/ubebodd. Data (kode, dato, folketall 53) stemmer med kommunetabellen; motstriden ligger i kilden selv, korrekt videreformidlet.",
+   "side": 14
+  },
+  {
+   "id": "Pa-046",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 14
+  },
+  {
+   "id": "Pa-047",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 14
+  },
+  {
+   "id": "Pa-048",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 15
+  },
+  {
+   "id": "Pa-049",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 15
+  },
+  {
+   "id": "Pa-050",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-051",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-052",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-053",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-054",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-055",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-056",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-057",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-058",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-059",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-060",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-061",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-062",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 17
+  },
+  {
+   "id": "Pa-063",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 18
+  },
+  {
+   "id": "Pa-064",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 18
+  },
+  {
+   "id": "Pa-065",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 18
+  },
+  {
+   "id": "Pa-066",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 18
+  },
+  {
+   "id": "Pa-067",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 18
+  },
+  {
+   "id": "Pa-068",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 18
+  },
+  {
+   "id": "Pa-069",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 18
+  },
+  {
+   "id": "Pa-070",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 18
+  },
+  {
+   "id": "Pa-071",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 18
+  },
+  {
+   "id": "Pa-072",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 18
+  },
+  {
+   "id": "Pa-073",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 18
+  },
+  {
+   "id": "Pa-074",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 19
+  },
+  {
+   "id": "Pa-075",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 19
+  },
+  {
+   "id": "Pa-076",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 19
+  },
+  {
+   "id": "Pa-077",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 19
+  },
+  {
+   "id": "Pa-078",
+   "status": "usikker",
+   "feltfeil": {},
+   "begrunnelse": "Data (0511 Dovre -> 0439 Folldal, 11 personer, 1.1.1970) stemmer og finnes ordrett identisk på både s.19 (Hedmark, mottakende) og s.22 (Oppland, avgivende). Pa har plassert raden under 04 Hedmark/s.19 (mottakende fylke), mens Pa sin egen dokumenterte regel ('ført under avgivende fylke') tilsier 05 Oppland/s.22. Rent klassifiseringsspørsmål (samme hendelse, ingen dobbeltføring i datasettet), åpent notert av Pa selv i merknaden.",
+   "side": 19
+  },
+  {
+   "id": "Pa-079",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 19
+  },
+  {
+   "id": "Pa-080",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 19
+  },
+  {
+   "id": "Pa-081",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 19
+  },
+  {
+   "id": "Pa-082",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 19
+  },
+  {
+   "id": "Pa-083",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 19
+  },
+  {
+   "id": "Pa-084",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-085",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-086",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-087",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-088",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-089",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-090",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-091",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-092",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-093",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-094",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-095",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-096",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-097",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-098",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-099",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-100",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-101",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-102",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-103",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-104",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-105",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-106",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-107",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-108",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-109",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-110",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-111",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-112",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 21
+  },
+  {
+   "id": "Pa-113",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 22
+  },
+  {
+   "id": "Pa-114",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 22
+  },
+  {
+   "id": "Pa-115",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 22
+  },
+  {
+   "id": "Pa-116",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 23
+  },
+  {
+   "id": "Pa-117",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 23
+  },
+  {
+   "id": "Pa-118",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 23
+  },
+  {
+   "id": "Pa-119",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 24
+  },
+  {
+   "id": "Pa-120",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 24
+  },
+  {
+   "id": "Pa-121",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 24
+  },
+  {
+   "id": "Pa-122",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 24
+  },
+  {
+   "id": "Pa-123",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-124",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-125",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-126",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-127",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-128",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-129",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-130",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-131",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-132",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-133",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-134",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-135",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-136",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-137",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-138",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-139",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-140",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-141",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-142",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 25
+  },
+  {
+   "id": "Pa-143",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 26
+  },
+  {
+   "id": "Pa-144",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 26
+  },
+  {
+   "id": "Pa-145",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 26
+  },
+  {
+   "id": "Pa-146",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 26
+  },
+  {
+   "id": "Pa-147",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 27
+  },
+  {
+   "id": "Pa-148",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 27
+  },
+  {
+   "id": "Pa-149",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 27
+  },
+  {
+   "id": "Pa-150",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 27
+  },
+  {
+   "id": "Pa-151",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 27
+  },
+  {
+   "id": "Pa-152",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 27
+  },
+  {
+   "id": "Pa-153",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 27
+  },
+  {
+   "id": "Pa-154",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 27
+  },
+  {
+   "id": "Pa-155",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 27
+  },
+  {
+   "id": "Pa-156",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 28
+  },
+  {
+   "id": "Pa-157",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 28
+  },
+  {
+   "id": "Pa-158",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 28
+  },
+  {
+   "id": "Pa-159",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-160",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-161",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-162",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-163",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-164",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-165",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-166",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-167",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-168",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-169",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-170",
+   "status": "usikker",
+   "feltfeil": {},
+   "begrunnelse": "Selvflagget av Pa: motstrid mellom kommunetabell s.29/33 (ubebodd, uten folketall) og fylkesoversikt s.89 (bebodd, uten folketall oppgitt der heller). Kode, dato, retning stemmer; motstriden i kilden er korrekt videreformidlet.",
+   "side": 29
+  },
+  {
+   "id": "Pa-171",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 29
+  },
+  {
+   "id": "Pa-172",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 30
+  },
+  {
+   "id": "Pa-173",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 30
+  },
+  {
+   "id": "Pa-174",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 30
+  },
+  {
+   "id": "Pa-175",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-176",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-177",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-178",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-179",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-180",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-181",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-182",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-183",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-184",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-185",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-186",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-187",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-188",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-189",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-190",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-191",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-192",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-193",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-194",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-195",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-196",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-197",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-198",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-199",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 31
+  },
+  {
+   "id": "Pa-200",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 32
+  },
+  {
+   "id": "Pa-201",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 33
+  },
+  {
+   "id": "Pa-202",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 34
+  },
+  {
+   "id": "Pa-203",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 34
+  },
+  {
+   "id": "Pa-204",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 34
+  },
+  {
+   "id": "Pa-205",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 34
+  },
+  {
+   "id": "Pa-206",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 34
+  },
+  {
+   "id": "Pa-207",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-208",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-209",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-210",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-211",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-212",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-213",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-214",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-215",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-216",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-217",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-218",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-219",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-220",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-221",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-222",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-223",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-224",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-225",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-226",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-227",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-228",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-229",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-230",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-231",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-232",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-233",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 35
+  },
+  {
+   "id": "Pa-234",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 36
+  },
+  {
+   "id": "Pa-235",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 36
+  },
+  {
+   "id": "Pa-236",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 36
+  },
+  {
+   "id": "Pa-237",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 36
+  },
+  {
+   "id": "Pa-238",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 36
+  },
+  {
+   "id": "Pa-239",
+   "status": "usikker",
+   "feltfeil": {},
+   "begrunnelse": "Selvflagget av Pa, og bekreftet ved kontroll: s.36 (Aust-Agder, avgivende) fører overføringen 1.1.1965 under 'ubebodde områder' UTEN folketall, mens s.33 (Telemark, mottakende) fører identisk dato/områdebeskrivelse under 'bebodde områder' MED folketall 7 (identisk med tallet for 1.1.1962-overføringen). Folketallet 7 i raden er hentet fra Telemark-siden og kan være en feilkobling/dublett i kilden selv. Pa sin usikker-flagging og begrunnelse er dekkende.",
+   "side": 36
+  },
+  {
+   "id": "Pa-240",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 36
+  },
+  {
+   "id": "Pa-241",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 37
+  },
+  {
+   "id": "Pa-242",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 37
+  },
+  {
+   "id": "Pa-243",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 37
+  },
+  {
+   "id": "Pa-244",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-245",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-246",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-247",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-248",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-249",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-250",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-251",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-252",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-253",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-254",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-255",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-256",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-257",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-258",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-259",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-260",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-261",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-262",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-263",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-264",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-265",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-266",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-267",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-268",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 39
+  },
+  {
+   "id": "Pa-269",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-270",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-271",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-272",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-273",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-274",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-275",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-276",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-277",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-278",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-279",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-280",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-281",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-282",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-283",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-284",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-285",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-286",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-287",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-288",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-289",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-290",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 40
+  },
+  {
+   "id": "Pa-291",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 41
+  },
+  {
+   "id": "Pa-292",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 41
+  },
+  {
+   "id": "Pa-293",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 41
+  },
+  {
+   "id": "Pa-294",
+   "status": "ok",
+   "feltfeil": {},
+   "begrunnelse": "Sitat/nøkkelfelt (fra_kode, til_kode, dato, folketall) verifisert mot PDF-teksten på oppgitt side; kode+navn+folketall funnet som sammenhengende streng i riktig rekkefølge/kontekst (ingen radforskyvning). Retning, fylke og periode stemmer.",
+   "side": 41
+  }
+ ],
+ "mangler": [],
+ "falske_positiver": [],
+ "motstrid": [
+  {
+   "id": "Pa-045",
+   "beskrivelse": "Kommunetabell (bebodd, kode+folketall 53) vs. fylkesoversikt s.89 (ubebodd) for 0231->0301 1.1.1980 - kilden selv motsier seg, korrekt notert av Pa."
+  },
+  {
+   "id": "Pa-170",
+   "beskrivelse": "Kommunetabell (ubebodd) vs. fylkesoversikt s.89 (bebodd) for 0811->0727 1.1.1968 - kilden selv motsier seg, korrekt notert av Pa."
+  },
+  {
+   "id": "Pa-239",
+   "beskrivelse": "s.36 (Aust-Agder, ubebodd, uten folketall) vs. s.33 (Telemark, bebodd, folketall 7 - identisk med 1962-overføringen) for 0929->0830 1.1.1965. Mulig dublettfeil i selve kildedokumentet."
+  }
+ ],
+ "ikke_sjekket": [
+  "alt sjekket"
+ ],
+ "konklusjon": {
+  "status": "godkjent",
+  "ok": 290,
+  "feil": 0,
+  "usikker": 4,
+  "mangler": 0
+ }
+}

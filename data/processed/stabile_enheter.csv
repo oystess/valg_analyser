@@ -1,0 +1,358 @@
+kom2024,enhet,enhet_navn,n_kommuner
+0301,0301,Oslo - Oslove,1
+1106,1106,Haugesund,1
+1111,1111,Sokndal,1
+1114,1114,Bjerkreim,1
+1119,1119,Hå,1
+1120,1120,Klepp,1
+1121,1121,Time,1
+1124,1124,Sola,1
+1127,1127,Randaberg,1
+1135,1135,Sauda,1
+1144,1144,Kvitsøy,1
+1145,1145,Bokn,1
+1151,1151,Utsira,1
+1515,1515,Herøy (Møre og Romsdal),1
+1516,1516,Ulstein,1
+1517,1517,Hareid,1
+1520,1520,Ørsta,1
+1525,1525,Stranda,1
+1532,1532,Giske,1
+1535,1535,Vestnes,1
+1547,1547,Aukra,1
+1573,1573,Smøla,1
+1816,1816,Vevelstad,1
+1824,1824,Vefsn,1
+1825,1825,Grane,1
+1826,1826,Aarborte - Hattfjelldal,1
+1827,1827,Dønna,1
+1834,1834,Lurøy,1
+1835,1835,Træna,1
+1836,1836,Rødøy,1
+1837,1837,Meløy,1
+1838,1838,Gildeskål,1
+1839,1839,Beiarn,1
+1840,1840,Saltdal,1
+1841,1841,Fauske - Fuossko,1
+1853,1853,Evenes - Evenássi,1
+1856,1856,Røst,1
+1857,1857,Værøy,1
+1860,1860,Vestvågøy,1
+1865,1865,Vågan,1
+1867,1867,Bø,1
+1868,1868,Øksnes,1
+1871,1871,Andøy,1
+3101,3101,Halden,1
+3103,3103,Moss,1
+3105,3105,Sarpsborg,1
+3107,3107,Fredrikstad,1
+3110,3110,Hvaler,1
+3112,3112,Råde,1
+3114,3114,Våler (Østfold),1
+3116,3116,Skiptvet,1
+3118,3118,Indre Østfold,1
+3120,3120,Rakkestad,1
+3122,3122,Marker,1
+3124,3124,Aremark,1
+3201,3201,Bærum,1
+3203,3203,Asker,1
+3205,3205,Lillestrøm,1
+3207,3207,Nordre Follo,1
+3209,3209,Ullensaker,1
+3212,3212,Nesodden,1
+3214,3214,Frogn,1
+3216,3216,Vestby,1
+3218,3218,Ås,1
+3220,3220,Enebakk,1
+3222,3222,Lørenskog,1
+3224,3224,Rælingen,1
+3226,3226,Aurskog-Høland,1
+3228,3228,Nes,1
+3230,3230,Gjerdrum,1
+3232,3232,Nittedal,1
+3234,3234,Lunner,1
+3236,3236,Jevnaker,1
+3238,3238,Nannestad,1
+3240,3240,Eidsvoll,1
+3242,3242,Hurdal,1
+3314,3314,Øvre Eiker,1
+3316,3316,Modum,1
+3318,3318,Krødsherad,1
+3320,3320,Flå,1
+3322,3322,Nesbyen,1
+3324,3324,Gol,1
+3326,3326,Hemsedal,1
+3328,3328,Ål,1
+3330,3330,Hol,1
+3332,3332,Sigdal,1
+3334,3334,Flesberg,1
+3336,3336,Rollag,1
+3338,3338,Nore og Uvdal,1
+3401,3401,Kongsvinger,1
+3403,3403,Hamar,1
+3405,3405,Lillehammer,1
+3407,3407,Gjøvik,1
+3411,3411,Ringsaker,1
+3412,3412,Løten,1
+3413,3413,Stange,1
+3414,3414,Nord-Odal,1
+3415,3415,Sør-Odal,1
+3416,3416,Eidskog,1
+3417,3417,Grue,1
+3418,3418,Åsnes,1
+3419,3419,Våler (Innlandet),1
+3420,3420,Elverum,1
+3421,3421,Trysil,1
+3422,3422,Åmot,1
+3423,3423,Stor-Elvdal,1
+3424,3424,Rendalen,1
+3425,3425,Engerdal,1
+3428,3428,Alvdal,1
+3429,3429,Folldal,1
+3431,3431,Dovre,1
+3432,3432,Lesja,1
+3433,3433,Skjåk,1
+3434,3434,Lom,1
+3435,3435,Vågå,1
+3437,3437,Sel,1
+3439,3439,Ringebu,1
+3440,3440,Øyer,1
+3441,3441,Gausdal,1
+3442,3442,Østre Toten,1
+3443,3443,Vestre Toten,1
+3446,3446,Gran,1
+3449,3449,Sør-Aurdal,1
+3450,3450,Etnedal,1
+3451,3451,Nord-Aurdal,1
+3452,3452,Vestre Slidre,1
+3453,3453,Øystre Slidre,1
+3454,3454,Vang,1
+3901,3901,Horten,1
+3903,3903,Holmestrand,1
+3905,3905,Tønsberg,1
+3907,3907,Sandefjord,1
+3909,3909,Larvik,1
+3911,3911,Færder,1
+4001,4001,Porsgrunn,1
+4010,4010,Siljan,1
+4012,4012,Bamble,1
+4014,4014,Kragerø,1
+4016,4016,Drangedal,1
+4020,4020,Midt-Telemark,1
+4022,4022,Seljord,1
+4024,4024,Hjartdal,1
+4026,4026,Tinn,1
+4028,4028,Kviteseid,1
+4030,4030,Nissedal,1
+4032,4032,Fyresdal,1
+4034,4034,Tokke,1
+4036,4036,Vinje,1
+4201,4201,Risør,1
+4202,4202,Grimstad,1
+4203,4203,Arendal,1
+4204,4204,Kristiansand,1
+4206,4206,Farsund,1
+4211,4211,Gjerstad,1
+4212,4212,Vegårshei,1
+4213,4213,Tvedestrand,1
+4214,4214,Froland,1
+4215,4215,Lillesand,1
+4216,4216,Birkenes,1
+4217,4217,Åmli,1
+4218,4218,Iveland,1
+4219,4219,Evje og Hornnes,1
+4220,4220,Bygland,1
+4221,4221,Valle,1
+4222,4222,Bykle,1
+4223,4223,Vennesla,1
+4224,4224,Åseral,1
+4226,4226,Hægebostad,1
+4227,4227,Kvinesdal,1
+4613,4613,Bømlo,1
+4614,4614,Stord,1
+4616,4616,Tysnes,1
+4620,4620,Ulvik,1
+4623,4623,Samnanger,1
+4624,4624,Bjørnafjorden,1
+4632,4632,Austrheim,1
+4633,4633,Fedje,1
+4634,4634,Masfjorden,1
+4635,4635,Gulen,1
+4636,4636,Solund,1
+4637,4637,Hyllestad,1
+4638,4638,Høyanger,1
+4641,4641,Aurland,1
+4642,4642,Lærdal,1
+4643,4643,Årdal,1
+4644,4644,Luster,1
+4646,4646,Fjaler,1
+4650,4650,Gloppen,1
+5001,5001,Trondheim - Tråante,1
+5006,5006,Steinkjer - Stïentje,1
+5007,5007,Namsos - Nåavmesjenjaelmie,1
+5014,5014,Frøya,1
+5020,5020,Osen,1
+5021,5021,Oppdal,1
+5025,5025,Røros - Rosse,1
+5026,5026,Holtålen,1
+5027,5027,Midtre Gauldal,1
+5028,5028,Melhus,1
+5029,5029,Skaun,1
+5031,5031,Malvik,1
+5032,5032,Selbu,1
+5033,5033,Tydal,1
+5034,5034,Meråker,1
+5035,5035,Stjørdal,1
+5036,5036,Frosta,1
+5037,5037,Levanger - Levangke,1
+5038,5038,Verdal,1
+5041,5041,Snåase - Snåsa,1
+5042,5042,Lierne,1
+5043,5043,Raarvihke - Røyrvik,1
+5044,5044,Namsskogan,1
+5045,5045,Grong,1
+5047,5047,Overhalla,1
+5049,5049,Flatanger,1
+5052,5052,Leka,1
+5053,5053,Inderøy,1
+5058,5058,Åfjord,1
+5061,5061,Rindal,1
+5510,5510,Kvæfjord,1
+5512,5512,Dielddanuorri - Tjeldsund,1
+5514,5514,Ibestad,1
+5516,5516,Gratangen - Rivtták,1
+5520,5520,Bardu,1
+5526,5526,Sørreisa,1
+5538,5538,Storfjord - Omasvuotna - Omasvuono,1
+5540,5540,Gáivuotna - Kåfjord - Kaivuono,1
+5546,5546,Kvænangen,1
+5601,5601,Alta,1
+5603,5603,Hammerfest - Hámmerfeasta,1
+5605,5605,Sør-Varanger,1
+5607,5607,Vadsø,1
+5610,5610,Kárásjohka - Karasjok,1
+5612,5612,Guovdageaidnu - Kautokeino,1
+5614,5614,Loppa,1
+5616,5616,Hasvik,1
+5618,5618,Måsøy,1
+5620,5620,Nordkapp,1
+5622,5622,Porsanger - Porsángu - Porsanki,1
+5624,5624,Lebesby,1
+5626,5626,Gamvik,1
+5628,5628,Deatnu - Tana,1
+5630,5630,Berlevåg,1
+5636,5636,Unjárga - Nesseby,1
+1101,E1101,Eigersund + Lund,2
+1112,E1101,Eigersund + Lund,2
+1103,E1103,Stavanger + Sandnes + Gjesdal + Strand + Hjelmeland + Suldal + Tysvær + Karmøy + Vindafjord + Sveio,10
+1108,E1103,Stavanger + Sandnes + Gjesdal + Strand + Hjelmeland + Suldal + Tysvær + Karmøy + Vindafjord + Sveio,10
+1122,E1103,Stavanger + Sandnes + Gjesdal + Strand + Hjelmeland + Suldal + Tysvær + Karmøy + Vindafjord + Sveio,10
+1130,E1103,Stavanger + Sandnes + Gjesdal + Strand + Hjelmeland + Suldal + Tysvær + Karmøy + Vindafjord + Sveio,10
+1133,E1103,Stavanger + Sandnes + Gjesdal + Strand + Hjelmeland + Suldal + Tysvær + Karmøy + Vindafjord + Sveio,10
+1134,E1103,Stavanger + Sandnes + Gjesdal + Strand + Hjelmeland + Suldal + Tysvær + Karmøy + Vindafjord + Sveio,10
+1146,E1103,Stavanger + Sandnes + Gjesdal + Strand + Hjelmeland + Suldal + Tysvær + Karmøy + Vindafjord + Sveio,10
+1149,E1103,Stavanger + Sandnes + Gjesdal + Strand + Hjelmeland + Suldal + Tysvær + Karmøy + Vindafjord + Sveio,10
+1160,E1103,Stavanger + Sandnes + Gjesdal + Strand + Hjelmeland + Suldal + Tysvær + Karmøy + Vindafjord + Sveio,10
+4612,E1103,Stavanger + Sandnes + Gjesdal + Strand + Hjelmeland + Suldal + Tysvær + Karmøy + Vindafjord + Sveio,10
+1505,E1505,Kristiansund + Averøy + Hustadvika,3
+1554,E1505,Kristiansund + Averøy + Hustadvika,3
+1579,E1505,Kristiansund + Averøy + Hustadvika,3
+1506,E1506,Molde + Ålesund + Sykkylven + Sula + Rauma + Fjord + Haram,7
+1508,E1506,Molde + Ålesund + Sykkylven + Sula + Rauma + Fjord + Haram,7
+1528,E1506,Molde + Ålesund + Sykkylven + Sula + Rauma + Fjord + Haram,7
+1531,E1506,Molde + Ålesund + Sykkylven + Sula + Rauma + Fjord + Haram,7
+1539,E1506,Molde + Ålesund + Sykkylven + Sula + Rauma + Fjord + Haram,7
+1578,E1506,Molde + Ålesund + Sykkylven + Sula + Rauma + Fjord + Haram,7
+1580,E1506,Molde + Ålesund + Sykkylven + Sula + Rauma + Fjord + Haram,7
+1511,E1511,Vanylven + Sande,2
+1514,E1511,Vanylven + Sande,2
+1557,E1557,Gjemnes + Tingvoll,2
+1560,E1557,Gjemnes + Tingvoll,2
+1563,E1563,Sunndal + Surnadal,2
+1566,E1563,Sunndal + Surnadal,2
+1576,E1576,Aure + Indre Fosen + Heim + Hitra + Ørland + Orkland,6
+5054,E1576,Aure + Indre Fosen + Heim + Hitra + Ørland + Orkland,6
+5055,E1576,Aure + Indre Fosen + Heim + Hitra + Ørland + Orkland,6
+5056,E1576,Aure + Indre Fosen + Heim + Hitra + Ørland + Orkland,6
+5057,E1576,Aure + Indre Fosen + Heim + Hitra + Ørland + Orkland,6
+5059,E1576,Aure + Indre Fosen + Heim + Hitra + Ørland + Orkland,6
+1577,E1577,Volda + Kinn + Askvoll + Sunnfjord + Bremanger + Stad + Stryn,7
+4602,E1577,Volda + Kinn + Askvoll + Sunnfjord + Bremanger + Stad + Stryn,7
+4645,E1577,Volda + Kinn + Askvoll + Sunnfjord + Bremanger + Stad + Stryn,7
+4647,E1577,Volda + Kinn + Askvoll + Sunnfjord + Bremanger + Stad + Stryn,7
+4648,E1577,Volda + Kinn + Askvoll + Sunnfjord + Bremanger + Stad + Stryn,7
+4649,E1577,Volda + Kinn + Askvoll + Sunnfjord + Bremanger + Stad + Stryn,7
+4651,E1577,Volda + Kinn + Askvoll + Sunnfjord + Bremanger + Stad + Stryn,7
+1804,E1804,Bodø + Sørfold - Fuolldá + Steigen,3
+1845,E1804,Bodø + Sørfold - Fuolldá + Steigen,3
+1848,E1804,Bodø + Sørfold - Fuolldá + Steigen,3
+1806,E1806,Narvik + Lødingen + Hábmer - Hamarøy,3
+1851,E1806,Narvik + Lødingen + Hábmer - Hamarøy,3
+1875,E1806,Narvik + Lødingen + Hábmer - Hamarøy,3
+1811,E1811,Bindal + Sømna + Brønnøy,3
+1812,E1811,Bindal + Sømna + Brønnøy,3
+1813,E1811,Bindal + Sømna + Brønnøy,3
+1815,E1815,Vega + Herøy (Nordland) + Alstahaug,3
+1818,E1815,Vega + Herøy (Nordland) + Alstahaug,3
+1820,E1815,Vega + Herøy (Nordland) + Alstahaug,3
+1822,E1822,Leirfjord + Nesna + Hemnes + Rana - Raane,4
+1828,E1822,Leirfjord + Nesna + Hemnes + Rana - Raane,4
+1832,E1822,Leirfjord + Nesna + Hemnes + Rana - Raane,4
+1833,E1822,Leirfjord + Nesna + Hemnes + Rana - Raane,4
+1859,E1859,Flakstad + Moskenes,2
+1874,E1859,Flakstad + Moskenes,2
+1866,E1866,Hadsel + Sortland - Suortá,2
+1870,E1866,Hadsel + Sortland - Suortá,2
+3301,E3301,Drammen + Lier,2
+3312,E3301,Drammen + Lier,2
+3303,E3303,Kongsberg + Notodden,2
+4005,E3303,Kongsberg + Notodden,2
+3305,E3305,Ringerike + Hole,2
+3310,E3305,Ringerike + Hole,2
+3426,E3426,Tolga + Os,2
+3430,E3426,Tolga + Os,2
+3427,E3427,Tynset + Rennebu,2
+5022,E3427,Tynset + Rennebu,2
+3436,E3436,Nord-Fron + Sør-Fron,2
+3438,E3436,Nord-Fron + Sør-Fron,2
+3447,E3447,Søndre Land + Nordre Land,2
+3448,E3447,Søndre Land + Nordre Land,2
+4003,E4003,Skien + Nome,2
+4018,E4003,Skien + Nome,2
+4205,E4205,Lindesnes + Lyngdal,2
+4225,E4205,Lindesnes + Lyngdal,2
+4207,E4207,Flekkefjord + Sirdal,2
+4228,E4207,Flekkefjord + Sirdal,2
+4601,E4601,Bergen + Voss + Øygarden + Askøy + Vaksdal + Modalen + Osterøy + Alver,8
+4621,E4601,Bergen + Voss + Øygarden + Askøy + Vaksdal + Modalen + Osterøy + Alver,8
+4626,E4601,Bergen + Voss + Øygarden + Askøy + Vaksdal + Modalen + Osterøy + Alver,8
+4627,E4601,Bergen + Voss + Øygarden + Askøy + Vaksdal + Modalen + Osterøy + Alver,8
+4628,E4601,Bergen + Voss + Øygarden + Askøy + Vaksdal + Modalen + Osterøy + Alver,8
+4629,E4601,Bergen + Voss + Øygarden + Askøy + Vaksdal + Modalen + Osterøy + Alver,8
+4630,E4601,Bergen + Voss + Øygarden + Askøy + Vaksdal + Modalen + Osterøy + Alver,8
+4631,E4601,Bergen + Voss + Øygarden + Askøy + Vaksdal + Modalen + Osterøy + Alver,8
+4611,E4611,Etne + Kvinnherad + Ullensvang + Eidfjord + Kvam,5
+4617,E4611,Etne + Kvinnherad + Ullensvang + Eidfjord + Kvam,5
+4618,E4611,Etne + Kvinnherad + Ullensvang + Eidfjord + Kvam,5
+4619,E4611,Etne + Kvinnherad + Ullensvang + Eidfjord + Kvam,5
+4622,E4611,Etne + Kvinnherad + Ullensvang + Eidfjord + Kvam,5
+4615,E4615,Fitjar + Austevoll,2
+4625,E4615,Fitjar + Austevoll,2
+4639,E4639,Vik + Sogndal,2
+4640,E4639,Vik + Sogndal,2
+5046,E5046,Høylandet + Nærøysund,2
+5060,E5046,Høylandet + Nærøysund,2
+5501,E5501,Tromsø + Harstad - Hárstták + Dyrøy + Senja + Karlsøy + Lyngen - Ivgu - Yykeä,6
+5503,E5501,Tromsø + Harstad - Hárstták + Dyrøy + Senja + Karlsøy + Lyngen - Ivgu - Yykeä,6
+5528,E5501,Tromsø + Harstad - Hárstták + Dyrøy + Senja + Karlsøy + Lyngen - Ivgu - Yykeä,6
+5530,E5501,Tromsø + Harstad - Hárstták + Dyrøy + Senja + Karlsøy + Lyngen - Ivgu - Yykeä,6
+5534,E5501,Tromsø + Harstad - Hárstták + Dyrøy + Senja + Karlsøy + Lyngen - Ivgu - Yykeä,6
+5536,E5501,Tromsø + Harstad - Hárstták + Dyrøy + Senja + Karlsøy + Lyngen - Ivgu - Yykeä,6
+5518,E5518,Loabák - Lavangen + Salangen,2
+5522,E5518,Loabák - Lavangen + Salangen,2
+5524,E5524,Målselv + Balsfjord,2
+5532,E5524,Målselv + Balsfjord,2
+5542,E5542,Skjervøy + Nordreisa - Ráisa - Raisi,2
+5544,E5542,Skjervøy + Nordreisa - Ráisa - Raisi,2
+5632,E5632,Båtsfjord + Vardø,2
+5634,E5632,Båtsfjord + Vardø,2
