@@ -34,3 +34,15 @@ nivå 2 = kommunekode med indeksverdi (0–1000) i feltet `notes`. Historiske ko
 som kommunen de gikk inn i. Dekker alle 357 kommuner i 2024-strukturen; indeksverdiene ligger
 innenfor klassegrensene for alle koder (kontrollert). Erstatter `data/raw/sentralitet.csv`
 (4 klasser, ukjent kilde, trolig SSBs eldre sentralitetsstandard) i nye analyser.
+
+## Utvidelse 1945–1986 (hentet 2026-09-26)
+
+| Fil | Tabell | Utvalg |
+|---|---|---|
+| `st08092_<år>.csv`, år 1945–1985 | 08092 | Som over, `vs_KommunValg`, alle partier. «.» og 0 fjernet |
+| `kv01180_<år>.csv`, år 1945–1983 | 01180 | Som over, `vs_KommunerV`, alle partier. «.» og 0 fjernet |
+| `bef06913_kommuner.csv` | 06913 Befolkning 1.1. | Region `vs_Kommuner1951` (alle koder fra 1951, med suffiks som «0119u» for gjenbrukte koder), `Folkemengde`, 1951–1990 |
+| `bef06913_agg2024.csv` | 06913 | Region `agg_KommSummerHist` («Kommuner 2024, sammenslåtte tidsserier»), 1951–1990. SSB setter 0 for 26 kommuner i minst ett år og fører delte områder på «Rest» |
+| `koder_06913.csv` | 06913 | Kodeliste med etiketter og gyldighetsperiode |
+
+Merk: Valgtabellene gjenbruker kommunenumre (f.eks. 0119 = Øymark før 1964, Marker fra 1964). 06913 skiller dem med suffiks. Kodens identitet et gitt år avgjøres derfor av hvilken kode som har befolkning det året.

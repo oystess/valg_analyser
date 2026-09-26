@@ -69,6 +69,15 @@ Stortingsvalg 1945–2025 og kommunestyrevalg 1945–2023 på fast kommunestrukt
 - Ikke lag pull request.
 - Hent ikke nye datakilder utover SSB-tabellene og PDF-en i repoet uten å spørre.
 
-## 8. Spørsmål til Øystein
+## 8. Spørsmål til Øystein og svarene (2026-09-26: «Ja, kjør i denne sesjonen hvis det ikke blir mye dyrere»)
 
-Se samtalen. Svarene føres inn her.
+| # | Spørsmål | Svar |
+|---|---|---|
+| 1 | Kommunestruktur | 2024-kommuner (delinger estimert og merket) som hovedfil, pluss stabile enheter som alternativ |
+| 2 | Felleslister | Egen kategori som standard. Fordeling etter forrige valg som robusthetsvariant. |
+| 3 | Partikontinuitet | Bondepartiet → Sp, SF → SV, ALP → FrP, RV → Rødt. NKP står for seg selv. |
+| 4 | Valgene før 1951 | 1951-strukturen med endringene 1945–1950, merket som mindre sikre |
+| 5 | Filer | Egne `*_1945.csv`-filer. 1987+ uendret, med test av overlappen. |
+| 6 | Tilleggsvariabler | Bare folketall, fødselsoverskudd og flytting før 1986 |
+| 7 | Plan og kostnad | Godkjent (5 agenter) |
+| 8 | Hvor | Denne sesjonen |
