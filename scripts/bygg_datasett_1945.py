@@ -49,6 +49,10 @@ GRUPPE = {"01": "01", "02": "02", "75": "02", "03": "03", "04": "04", "05": "05"
           "09": "09"}
 GRUPPER = ["01", "02", "03", "04", "05", "06", "07", "08", "55", "09", "90", "99"]
 ALIAS_06913 = {"0903": "0906", "2001": "2004"}
+# Feil i SSB-kilden: i 01180 for KV 1955 er fire Aust-Agder-byer forskjøvet én kode. Partiprofil og
+# stemmetall mot KV 1951/1959 og folketall viser at 0902 er Arendal, 0903 Grimstad, 0904 Lillesand
+# og 0905 Tvedestrand (oppdaget ved stemmer/folketall-kontroll etter KD, 2026-09-26).
+KILDERETTELSER = {("kv01180", 1955): {"0902": "0903", "0903": "0904", "0904": "0905", "0905": "0902"}}
 
 
 def gruppe(p):
@@ -127,9 +131,10 @@ def main():
                                  ("kv01180", KV_AAR, "kommunestyrevalg_1945.csv")):
         rows, logg = [], []
         for aar in aarliste:
-            data = [(r["Region"], r["PolitParti"], int(r[f"Godkjente1 {aar}"]))
+            rett = KILDERETTELSER.get((prefix, aar), {})
+            data = [(rett.get(r["Region"], r["Region"]), r["PolitParti"], int(r[f"Godkjente1 {aar}"]))
                     for r in csv.DictReader(open(SSB / f"{prefix}_{aar}.csv", encoding="utf-8"))]
-            koder = {k for k, _, _ in data}
+            koder = {k for k, _, v in data if v > 0}  # SSB fører nuller for nedlagte kommuner
             # strukturår: valgåret eller året etter, det som flest koder passer i
             kandidater = [aar, aar + 1] if prefix == "kv01180" else [aar]
             treff = {s: sum(1 for k in koder if oppslag(k, s)) for s in kandidater}

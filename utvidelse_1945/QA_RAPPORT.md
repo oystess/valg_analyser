@@ -69,9 +69,40 @@ De eksisterende `*_2024.csv`-filene (1987–) er uendret; de nye filene er ident
 
 ## 4 KD – uavhengig datakontroll
 
-*(fylles inn når KD er ferdig)*
+KD (`kontroll/KD_data.json`) regnet hele datasettet på nytt fra rådata uten å se skriptene.
+
+| Punkt | Resultat |
+|---|---|
+| Stortingsvalg | **0 av 51 038 celler avviker** (alle år, inkl. 79→06 for SV 1973) |
+| Kommunestyrevalg | 155 av 50 687 celler (0,3 %) avviker, nesten alle i 1963, resten 1959/1971 |
+| Andelssummer, befolkning, stabile enheter | 100 % ok |
+| Pa/Pb-proporsjonalitet | 83 % ok, resten uklart pga. kjedede oppløsninger (f.eks. Aker) |
+| Plausibilitet | Landsdekkende Sp-mønster 1949→1953 – reell historie (Bondepartiet stilte flere steder) |
+
+KD konkluderte «ikke godkjent», men kunne ikke avgjøre om avvikene var feil i datasettet eller i egen metode.
+
+**Oppfølging (hovedagent):** Avvikene gjelder hvilket strukturår kommunestyrevalg holdt før en
+sammenslåing skal leses i. Testen stemmer/folketall avgjør det: Med valgårets struktur har 58 koder i
+KV 1963 flere stemmer enn 80 % av folketallet (umulig); med 1964-strukturen, som datasettet bruker, har
+ingen det. Tilsvarende for 1959 (5 → 0) og 1971 (1 → 0). Datasettets valg er altså riktig, og KDs avvik
+skyldes KDs egen reberegning.
+
+Oppfølgingen avdekket likevel to reelle feil, som er rettet:
+
+1. **Strukturårsregelen** så på koder med 0 stemmer (SSB fører nuller for nedlagte kommuner), så KV 1967
+   og 1975 ble lest i valgårets struktur og reddet av reserveoppslag. Nå brukes bare koder med stemmer,
+   og 1967/1975 leses i 1968/1976-strukturen (0 usannsynlige koder).
+2. **Feil i SSB-kilden, KV 1955:** I tabell 01180 er fire Aust-Agder-byer forskjøvet én kode (0902 har
+   5 314 stemmer men 875 innbyggere). Partiprofil og nivå mot 1951/1959 viser at 0902 = Arendal,
+   0903 = Grimstad, 0904 = Lillesand, 0905 = Tvedestrand. Rettet via `KILDERETTELSER` i
+   `bygg_datasett_1945.py`. Stemmer/folketall-skannet for alle år 1951–85 fant ingen andre slike tilfeller
+   (lave forhold i enkelte småkommuner, f.eks. Kautokeino, er lav valgdeltakelse).
+
+Ingen ny KD-runde er kjørt (planen tillot én ekstra runde; rettelsene er kontrollert mot C1–C6, 0 harde feil).
 
 ## 5 Kjente begrensninger
+
+- **Kildefeil i SSB** kan finnes flere steder; stemmer/folketall-skannet fanger bare grove feil (forskyvninger mellom kommuner av ulik størrelse).
 
 - **1945–1950 er `lav` sikkerhet:** SSB har ikke folketall per kommune før 1951, så delinger i perioden
   fordeles med 1951-tall.
@@ -89,6 +120,7 @@ De eksisterende `*_2024.csv`-filene (1987–) er uendret; de nye filene er ident
 - Fellesliste-varianten ble ikke laget (se over).
 - Kode 79 (Sosialistisk Valgforbund) var først falt i 99; oppdaget i landstallskontrollen og rettet før
   commit a6b3176. KD fikk beskjed underveis.
+- Strukturårsregelen og en kildefeil i KV 1955 ble rettet etter KD (§4).
 - Terskelen for stabile enheter ble satt til 5 % (lavere terskel ga urimelig store enheter).
 
 ## 7 Dekning

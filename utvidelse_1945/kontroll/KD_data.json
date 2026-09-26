@@ -1,0 +1,75 @@
+{
+  "kontroller": [
+    {
+      "id": "1",
+      "status": "usikker",
+      "n_sjekket": 101725,
+      "n_avvik": 155,
+      "eksempler": [
+        {"tabell": "stortingsvalg_1945.csv", "resultat": "0 avvik av 51038 celler (alle 11 valgår 1945-1985), inkl. protokolloppdatering 79->06 (SV 1973)"},
+        {"kom2024": "4601", "aar": "1963", "parti": "01", "stemmer_ferdig": 45255.0, "stemmer_reberegnet": 44786.08, "diff": 468.92, "tabell": "kommunestyrevalg_1945.csv"},
+        {"kom2024": "4631", "aar": "1963", "parti": "01", "diff": 277.39},
+        {"kom2024": "5542", "aar": "1971", "parti": "01", "diff": 210.38},
+        {"merknad": "176 av 198 gjenstående avvik i kommunestyrevalg ligger i 1963 (Schei-komiteens sammenslåingsbølge 1.1.1964), resten i 1971 og 1959; alle andre 9 kv-år og alle 11 st-år er fullstendig avvikfrie."}
+      ],
+      "begrunnelse": "Reberegnet begge tabeller fra rådata + kodemapping_1945.csv + bef06913 + Pa/Pb (grunnkode+strukturår-regelen), med partigruppering per protokoll (inkl. korrigert 79->06 for ST 1973, jf. commit a6b3176 - stikkprøve bekreftet at datasettet faktisk er bygget om). stortingsvalg_1945.csv stemmer PERFEKT (0 av 51038 celler avviker, toleranse 0,5) for alle 11 valgår. kommunestyrevalg_1945.csv stemmer for 50532 av 50687 celler (99,7 %); resten (155, i praksis 122 rad-avvik + 33 total_stemmer-avvik) er konsentrert i 1963 og 1971 - år med store/kjeded kommunesammenslåinger der strukturårsregelen for kommunevalg er vanskelig å etterprøve fullt ut uten den opprinnelige koden (som jeg ikke fikk lese). Jeg fant og rettet flere metodefeil underveis i egen reberegning (bl.a. at 'grunnkode' må sammenlignes uten suffiks på begge sider, og at befolkningstabellens kode med data i strukturåret må slås opp via bef06913 der grunnkode ikke er nok) - de gjenstående 155 avvikene kan derfor skyldes enten en gjenværende svakhet i min egen metode for kjedede/1964-sammenslåinger, eller en reell mangel i kommunestyrevalg_1945.csv. Kan ikke skille sikkert med tilgjengelige ressurser."
+    },
+    {
+      "id": "2",
+      "status": "ok",
+      "n_sjekket": 24030,
+      "n_avvik": 0,
+      "eksempler": [],
+      "begrunnelse": "Andelene i kodemapping_1945.csv summerer til nøyaktig 1,0 for alle 24030 (kode,aar)-par (toleranse 0,001, 0 avvik). Sum rådata vs. sum ferdigtabell stemmer for alle 22 valgår (11 storting + 11 kommune), maks avvik 0,12 stemmer (avrunding), dvs. ingen stemmer fra rådata mangler oversetting i aggregert forstand."
+    },
+    {
+      "id": "3",
+      "status": "usikker",
+      "n_sjekket": 394,
+      "n_avvik": 64,
+      "eksempler": [
+        {"kode": "0601u/0611/0612", "aar": "1963", "kom2024": ["3305","3310"], "andel": [0.8709,0.1291], "merknad": "andel virker skjevt mot folketall i mitt Pa/Pb-oppslag, men kan skyldes at jeg matchet feil delhendelse"},
+        {"kode": "0218", "aar": "1946", "merknad": "Aker (0218) ble oppløst gradvis 1946-1948 via flere separate Pa-hendelser (K3, delvis udaterte 'kun år'); min automatiske matching mot riktig enkelthendelse per år er ikke pålitelig for slike flertrinns oppløsninger"}
+      ],
+      "begrunnelse": "For alle 394 (kode,aar)-rader med metode som inneholder 'rapport' fant jeg en tilhørende Pa/Pb-endring nær samme år. 327 av 394 (83 %) har andeler proporsjonale med folkemengde i Pa/Pb (toleranse 3 prosentpoeng, med unntak tillatt for del uten oppgitt folketall). De resterende 64 avvikene stammer i hovedsak fra kommuner som ble oppløst via FLERE separate Pa/Pb-hendelser i ulike/udaterte år (f.eks. Aker 0218, delt til Oslo og nabokommuner 1946-1948) - min enkle årstall-matching mot Pa/Pb kan ikke skille disse pålitelig fra hverandre. Jeg kan ikke avgjøre om dette er reelle feil i kodemapping_1945.csv eller bare min kontrolls begrensning uten å gå gjennom hver sak manuelt mot rapport 99/13."
+    },
+    {
+      "id": "4",
+      "status": "ok",
+      "n_sjekket": 12495,
+      "n_avvik": 0,
+      "eksempler": [
+        {"merknad": "bef06913_kommuner.csv x kodemapping-andeler reberegnet for 1951-1985, sammenlignet mot befolkning_1951.csv: 0 avvik av 12495 (kom2024,aar)-celler, toleranse 0,5. Alle 19563 bef-rader 1951-85 var dekket av kodemapping (0 udekkede)."},
+        {"merknad": "Mot SSBs eget 2024-aggregat (bef06913_agg2024.csv) der aggregatet er >0: 10512 av 11983 celler (87,7 %) er eksakt like; resten avviker med SSBs egen avrunding/aggregeringsmetode, ikke med denne reberegningen."}
+      ],
+      "begrunnelse": "Full reberegning stemmer perfekt med befolkning_1951.csv. Sammenligning mot SSBs uavhengige 2024-aggregat viser 87,7 % eksakt likhet der SSB har tall > 0 - naturlig avvik pga. ulik aggregeringsmetodikk, ikke en feil i denne tabellen."
+    },
+    {
+      "id": "5",
+      "status": "ok",
+      "n_sjekket": 396,
+      "n_avvik": 396,
+      "eksempler": [
+        {"parti": "05 (Sp/Bondepartiet)", "aar_par": "1949->1953", "antall_kommuner": ">50", "merknad": "Mange (særlig Rogaland 11xx) kommuner går fra 0% til 25-48% Sp mellom 1949 og 1953 storting"},
+        {"kom2024": "1811", "parti": "01 (Ap)", "aar_par": "1947->1951"}
+      ],
+      "begrunnelse": "Listet 396 tilfeller (253 storting, 143 kommune) med >25 prosentpoengs endring for Ap/H/Sp mellom to påfølgende valg av samme type før 1985. Mønsteret er dominert av parti 05 (Sp, inkl. Bondepartiet-kode 71) som hopper fra 0% til 25-50% mellom 1949 og 1953 i svært mange, spredte smådistrikts-kommuner samtidig - dette ser IKKE ut som en oversettingsfeil (ville da rammet spesifikke kommuner med kodeendringer, ikke et helt landsdekkende partimønster ett bestemt valgpar), men samsvarer med kjent historie: Bondepartiet/Sp stilte ikke liste i mange småkommuner i 1949 og gjorde det i 1953. Jeg har ikke kunnet verifisere dette mot en uavhengig historisk kilde, så jeg regner denne vurderingen som sannsynlig, ikke sikker."
+    },
+    {
+      "id": "6",
+      "status": "ok",
+      "n_sjekket": 140340,
+      "n_avvik": 0,
+      "eksempler": [],
+      "begrunnelse": "Hver kom2024 (357 stk) finnes i nøyaktig én enhet i stabile_enheter.csv (0 dupliserte). Stemmene i stortingsvalg_1945.csv og kommunestyrevalg_1945.csv summert til enhetsnivå stemmer eksakt (0 avvik av hhv. 70296 og 70044 (enhet,aar,parti)-celler) med *_1945_stabil.csv."
+    }
+  ],
+  "ikke_sjekket": [
+    "Har ikke lest /home/user/valg_analyser/scripts/ (forbudt av protokoll), så jeg kan ikke bekrefte om avvikene i punkt 1 og 3 skyldes reelle feil i datasettet eller begrensninger i min egen uavhengige reberegning.",
+    "Har ikke krysskoblet punkt 5-funnene mot en uavhengig historisk kilde (f.eks. NSDs valghistorie) for å bekrefte at Bondepartiet/Sp faktisk ikke stilte liste i de aktuelle kommunene i 1949."
+  ],
+  "konklusjon": {
+    "status": "ikke godkjent",
+    "avvik": 219
+  }
+}
