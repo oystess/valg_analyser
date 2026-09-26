@@ -6,9 +6,11 @@ Bygger videre på bygg_datasett.py (1987–2025) og bygg_kodemapping_1945.py (19
 Hele tidsserien regnes med samme partigrupper, slik at 1945 og 2025 er sammenlignbare:
 
   01 Ap, 02 FrP (inkl. Anders Langes parti 1973), 03 H, 04 KrF,
-  05 Sp (inkl. Bondepartiet), 06 SV (inkl. Sosialistisk Folkeparti 1961–69), 07 V,
+  05 Sp (inkl. Bondepartiet), 06 SV (inkl. Sosialistisk Folkeparti 1961–69 og
+  Sosialistisk Valgforbund 1973, der også NKP inngikk), 07 V,
   08 MDG, 55 Rødt (inkl. RV og FMS), 09 NKP, 90 Felleslister (90a–90h, og 90 i KV),
-  99 Andre
+  99 Andre (bl.a. Det nye Folkepartiet 1973–77, Det Liberale Folkepartiet, Pensjonistpartiet,
+  lokale lister)
 
 Kodeidentitet før 1986: grunnkoden (fire sifre) + året avgjør hvilken kommune koden var.
 Kommunestyrevalg før en strukturendring ble holdt for den nye strukturen (f.eks. KV 1963 for
@@ -43,7 +45,7 @@ ST_AAR = [1945, 1949, 1953, 1957, 1961, 1965, 1969, 1973, 1977, 1981, 1985,
 KV_AAR = [1945, 1947, 1951, 1955, 1959, 1963, 1967, 1971, 1975, 1979, 1983,
           1987, 1991, 1995, 1999, 2003, 2007, 2011, 2015, 2019, 2023]
 GRUPPE = {"01": "01", "02": "02", "75": "02", "03": "03", "04": "04", "05": "05", "71": "05",
-          "06": "06", "70": "06", "07": "07", "08": "08", "55": "55", "11": "55", "15": "55",
+          "06": "06", "70": "06", "79": "06", "07": "07", "08": "08", "55": "55", "11": "55", "15": "55",
           "09": "09"}
 GRUPPER = ["01", "02", "03", "04", "05", "06", "07", "08", "55", "09", "90", "99"]
 ALIAS_06913 = {"0903": "0906", "2001": "2004"}
