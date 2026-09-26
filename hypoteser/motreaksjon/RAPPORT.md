@@ -68,4 +68,14 @@ Dette er det eneste testparet der Høyre robust mobiliserte i vekstkommuner (P1:
 
 ## Kontroll og dekning
 
-KONTROLL_PLASSHOLDER
+Tre agentstarter, alle på en annen modell (sonnet) enn hovedtråden, i tråd med `agent-orkestrering`. Hovedarbeidet ble gjort i hovedtråden, siden materialet er under terskelen.
+
+| Kontroll | Fil | Resultat |
+|---|---|---|
+| Uavhengig omregning av KV-panelet fra rådata, uten å se koden | `kontroll/kv_panel_kontroll.md` | **Godkjent.** 0 avvik i 3 213 rader × alle kolonner i spesifikasjonen. Ikke sjekket: `landsdel` og kvaliteten i kildefilene. |
+| Uavhengig omregning av de låste kjøringene | `kontroll/kjoring_kontroll.md` | **Godkjent.** 0 numeriske avvik (toleranse 1e-4) i 28 tester med fullt batteri, Holm over 26 tester, P3, P5 og regjeringsandeler. Regjeringstabellen er riktig i 16 av 16 rader. **Merknad:** For P3 og P5 sier `låst.json` ikke eksplisitt hvilken status som gjelder når kriteriet ikke er oppfylt. Kjørekoden bruker «ikke støttet» for P3 og «delvis/ikke støttet» for P5. Kontrollen vurderer dette som rimelig og uten betydning for konklusjonen. Ikke sjekket: fullt batteri for konkurrenttestene og vekst4-sensitiviteten. |
+| Djevelens advokat | `kontroll/djevelens_advokat.md` | Enkleste alternative forklaring: 2013–17 var en uvanlig sterk Sp-bølge med bratt nedgangsgradient, uavhengig av Høyre. Leave-one-out viser at den positive P3-korrelasjonen ikke skyldes ett enkelt par (ST 0,64–0,94, KV 0,83–0,99). Kontrollene er ikke det som fjerner mønsteret: bivariat og kontrollert Sp-gradient har samme fortegn i 8 av 12 testpar. Ett tall i notatet er feil: Sp-gradienten i 2001–05 er +0,019, ikke +0,014. Tallet 0,014 er estimatet med Ap-kontroll. |
+
+Ingen uenighet mellom hovedtråden og kontrollene om tallene. P4-regelen er for raus («delvis» ved samme fortegn uten robusthet). Det står åpent over, og den bærer ingen konklusjon.
+
+**Avvik fra PROMPT.md:** ingen vesentlige. KV-panelet ligger i `hypoteser/motreaksjon/data/kv_panel.csv` og ikke i `turnering/data/`, for å la turneringen stå urørt. Sensitiviteten med fireårsvekst er lagt til fordi de første parene mangler tiårsvekst. I `figur_parti_vs_befolkning.py` er aksetittelen brutt på to linjer og fotnoteplassen gjort dynamisk. De fire eksisterende figurene er ikke laget på nytt.
