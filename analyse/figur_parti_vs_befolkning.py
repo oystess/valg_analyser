@@ -70,10 +70,10 @@ fig.suptitle(TITTEL.get((annet, PERIODE), f"Endring for Sp og {navn2} etter befo
              x=0.06, ha="left", fontsize=16, fontweight="bold", color=TEKST, family=["Roboto Condensed", "DejaVu Sans"])
 ax.set_title("357 kommuner (2024-inndeling). Kurvene er glattet trend (LOWESS), regnet på alle kommuner.",
              loc="left", fontsize=11, color=GRÅ)
-fig.text(0.11, 0.012, "Kilde: SSB, tabell 08092 (stortingsvalg) og 07459 (befolkning). Andel av alle godkjente stemmer. "
-         "Harmonisert til 2024-kommuner.\n"
-         + textwrap.fill(f"Utenfor utsnittet ({len(utenfor)}): " + ", ".join(utenfor["navn"].str.split(" - ").str[0]) + ".", 125),
-         fontsize=10, color=GRÅ)
+fig.text(0.11, 0.012, "Kilde: SSB, tabell 08092 (stortingsvalg) og 07459 (befolkning). Andel av alle godkjente stemmer, "
+         "harmonisert til 2024-kommuner.\n"
+         + textwrap.fill(f"Utenfor utsnittet ({len(utenfor)}): " + ", ".join(utenfor["navn"].str.split(" - ").str[0]) + ".", 115),
+         fontsize=9.5, color=GRÅ)
 fig.tight_layout(rect=(0.03, 0.10, 1, 0.95))
 ut = ROT / "figurer" / f"{annet}_sp_{T0}_{T1}_befolkning.png"
 fig.savefig(ut, facecolor="white")
