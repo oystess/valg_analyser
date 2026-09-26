@@ -77,7 +77,7 @@ KD (`kontroll/KD_data.json`) regnet hele datasettet på nytt fra rådata uten å
 | Kommunestyrevalg | 155 av 50 687 celler (0,3 %) avviker, nesten alle i 1963, resten 1959/1971 |
 | Andelssummer, befolkning, stabile enheter | 100 % ok |
 | Pa/Pb-proporsjonalitet | 83 % ok, resten uklart pga. kjedede oppløsninger (f.eks. Aker) |
-| Plausibilitet | Landsdekkende Sp-mønster 1949→1953 – reell historie (Bondepartiet stilte flere steder) |
+| Plausibilitet | Landsdekkende Sp-mønster 1949→1953; landstallene stemmer med SSB (C2), så trolig reelle endringer i hvor Bondepartiet stilte liste – ikke kryssjekket mot historisk kilde |
 
 KD konkluderte «ikke godkjent», men kunne ikke avgjøre om avvikene var feil i datasettet eller i egen metode.
 
