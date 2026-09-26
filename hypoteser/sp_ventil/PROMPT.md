@@ -37,9 +37,14 @@ individdata (Valgundersøkelsen), skal de brukes som kontroll (§5, agent L).
 ## 3 Operasjonalisering (endres bare etter svar i §9)
 
 - **Distriktskommune:** sentralitetsklasse 5–6 (2024).
-- **Ap-bastion:** Ap ≥ 50 % i gjennomsnitt ved stortingsvalgene 1953–1969. Som robusthet brukes i tillegg øvre kvartil av Ap-andelen i samme periode.
-- **Sp-bølge:** et valg der Sp nasjonalt går fram ≥ 3 prosentpoeng fra forrige valg. Hvilke valg det gjelder, beregnes i kode og rapporteres.
-  Forventet er 1993 og 2017–2021. Muligens også 1953 og 1965/1973 (EU). **Tilbakefall** er det neste valget der Sp nasjonalt går tilbake.
+- **Ap-bastion:** defineres *rullerende*: Ap ≥ 50 % i snitt ved de to stortingsvalgene før valget som testes.
+  Da kan bølger fra 1950-tallet og framover testes uten at bastionen er definert i samme periode som den testes i.
+  Som robusthet brukes i tillegg en fast definisjon (snitt 1953–69) og øvre kvartil.
+- **Sp-bølge, nasjonal:** Sp (inkl. felleslister) går fram ≥ 3 pp nasjonalt. Med Sp + felleslister gjelder det bare 1993 og 2017–21.
+  «Bølgen» i 1953 (+4,0 pp for Sp alene) skyldes at Bondepartiet i 1949 stilte på felleslister (6,1 %).
+- **Sp-bølge, lokal:** Sp (inkl. felleslister) går fram ≥ 10 pp i kommunen fra forrige valg. Denne definisjonen gjelder alle valg fra 1953,
+  og fanger lokale bølger som ikke synes nasjonalt (f.eks. EU-valget 1973 og kraft- og landbrukssaker).
+  **Tilbakefall** er neste valg der Sp går tilbake, nasjonalt eller lokalt.
 - **Sammenligningsgrupper:** (a) distrikts-Ap-bastioner med liten lokal Sp-økning i bølgen, (b) distriktskommuner som ikke er bastioner,
   (c) sentrale kommuner.
 
@@ -56,6 +61,7 @@ Endringene måles i prosentpoeng. Nasjonale svingninger fjernes med periodefaste
 | T4 Hendelsesstudie | P1–P2 | Ap og Sp relativt til landet, fra −3 til +4 valg rundt 1993 (og 2021), bastioner med høy og lav dose | Ap faller ved bølgen og kommer ikke tilbake til nivået før bølgen |
 | T5 Volatilitet | P3 | Pedersen-indeks per kommune per valgpar; før og etter første store bølge, mot sammenligningsgrupper (diff-in-diff) | Volatiliteten øker mer i bastioner som ble rammet |
 | T6 Hvor går de? | P3 | Når Sp faller tilbake: hvilke partier går fram (Ap, FrP, H, andre)? | Tilbakefallet går i hovedsak til andre partier enn Ap |
+| T8 Langsom drift 1953–89 | P1 | Sp vokste langsomt i mange distriktskommuner fram til 1980-tallet (Sømna: 8 → 24 %). Hvem tapte: Ap, eller H/V/KrF? Kommune-FE-regresjon av ΔAp og Δ(H+V+KrF) mot ΔSp 1953–89 | Hvis Ap tapte lite i denne perioden, er 1993 et brudd og ikke en fortsettelse. Det er en viktig nyanse |
 | T7 Sømna og tilsvarende | Case | Tidsserie 1945–2025 for Sømna og 5–10 kommuner med samme mønster, valgt etter regel i kode | Illustrasjon, ikke bevis |
 
 **Alternative forklaringer som skal testes eller drøftes:** Aps nasjonale fall (håndteres med periode-FE),
@@ -110,7 +116,7 @@ Tall regnes i kode. Tolkningen skal være ydmyk: «forenlig med», ikke «bevis 
 |---|---|---|
 | 1 | Distrikt = sentralitet 5–6? (Alternativ: 4–6, eller befolkningsnedgang) | 5–6 |
 | 2 | Bastion = Ap ≥ 50 % ved ST 1953–69? | Ja, med øvre kvartil som robusthet |
-| 3 | Hvilke Sp-bølger? Datastyrt (≥ 3 pp nasjonalt), eller fast 1993 og 2021? | Datastyrt, med 1993 og 2021 som hovedcase |
+| 3 | Sp-bølger: både nasjonale (1993, 2017–21) og lokale (≥ 10 pp i kommunen, fra 1953)? | Ja, begge |
 | 4 | Stortingsvalg som hovedvariant, kommunestyrevalg som parallell? | Ja |
 | 5 | Skal agent L (litteratur og individdata) være med? | Ja |
 | 6 | Kjøres i denne sesjonen eller i en ny (som motreaksjon-testen)? | Ny sesjon på egen gren `claude/sp-ventil` |
