@@ -197,10 +197,20 @@ def pynt(ax, ygrid=True):
     ax.tick_params(labelsize=10)
 
 
-def overskrift(fig, tittel, undertittel=None, kilde=None, x=0.06):
-    fig.suptitle(tittel, x=x, ha="left", fontsize=15, fontweight="bold", color=TEKST,
-                 family=["Roboto Condensed", "DejaVu Sans"])
+def overskrift(fig, tittel, undertittel=None, kilde=None, x=0.06, bredde=None):
+    """Tittel og undertittel øverst (med linjebryting), kilde nederst. Returnerer y for toppen av plottområdet."""
+    import textwrap
+    h = fig.get_size_inches()[1]
+    bredde = bredde or int(fig.get_size_inches()[0] * 11.5)
+    linje = 0.26 / h          # ca. én tekstlinje i figurbrøk
+    y = 1 - 0.18 / h
+    fig.text(x, y, tittel, ha="left", va="top", fontsize=15, fontweight="bold", color=TEKST,
+             family=["Roboto Condensed", "DejaVu Sans"])
+    y -= 1.35 * linje
     if undertittel:
-        fig.text(x, 0.915, undertittel, ha="left", fontsize=10.5, color=GRÅ)
+        linjer = [l for avsnitt in undertittel.split("\n") for l in textwrap.wrap(avsnitt, bredde)]
+        fig.text(x, y, "\n".join(linjer), ha="left", va="top", fontsize=10.5, color=GRÅ, linespacing=1.35)
+        y -= len(linjer) * 0.95 * linje
     if kilde:
         fig.text(x, 0.012, kilde, fontsize=9, color=GRÅ)
+    return y - 0.3 * linje
