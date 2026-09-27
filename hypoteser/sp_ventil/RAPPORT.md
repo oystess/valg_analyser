@@ -12,8 +12,8 @@ Tallene viser nettoendringer per kommune, ikke at det er *de samme velgerne* som
 
 | Ledd | Konklusjon | Kjernen i én setning |
 |---|---|---|
-| **P1 Erosjon** | **Delvis støttet** | I 1993 kom ca. 57 % av Sps framgang i distriktet fra Ap, i bastionene ca. 75 %. Der var helningen nær −1 (−0,84 med rullerende definisjon). I 2017–21 tok Sp mindre fra Ap (ca. 30–43 %), og bastionene skilte seg ikke ut. |
-| **P2 Sperrehake** | **Delvis støttet** | Etter 1993 kom Ap ikke tilbake der Sp-dosen var størst: forskjellen mellom bastioner med høy og lav dose holdt seg på 5–8 pp til 2009. Bare 16–19 % av Sps tilbakegang i 1997 gikk til Ap. Etter 2021 var mønsteret ikke der: i 2025 gikk 39–52 % av Sps tilbakegang til Ap. Asymmetrien i panelet gjelder hele landet etter 1989, ikke særlig bastionene, og kommunevalgene gjentar den ikke. |
+| **P1 Erosjon** | **Delvis støttet** | I 1993 kom ca. 57 % av Sps framgang i distriktet fra Ap, i bastionene ca. 75 %. Der var helningen nær −1 (−0,84 med rullerende definisjon) og signifikant brattere enn i andre distriktskommuner (−0,31). I 2017–21 tok Sp mindre fra Ap (ca. 30–43 %), og bastionene skilte seg ikke ut. |
+| **P2 Sperrehake** | **Delvis støttet** | Etter 1993 kom Ap ikke tilbake der Sp-dosen var størst: forskjellen mellom bastioner med høy og lav dose holdt seg på 5–8 pp til 2009. Bare 16–19 % av Sps tilbakegang i 1997 gikk til Ap. Etter 2021 var mønsteret ikke der: i 2025 gikk 39–52 % av Sps tilbakegang til Ap. Asymmetrien i panelet gjelder hele landet etter 1989, ikke særlig bastionene. Den forsvinner med Sp alene, og kommunevalgene gjentar den ikke. |
 | **P3 Løsere velgere** | **Svakt / delvis støttet** | Velgerne ble noe mer flyktige i bastionene med høy dose (Pedersen +2 til +3 pp mot sammenligningsgruppene). Resultatet avhenger av hvordan gruppene deles, og FrP- og H-utslagene ble ikke større. Kommuner med stor bølge i 1993 fikk også noe større bølge i 2017–21. |
 
 **T8-nyansen (1953–89):** Sps langsomme vekst før 1989 kom i hovedsak fra H, V og KrF. I kommune-par uten felleslister svarte endringen i H + V + KrF til ca. 2/3 av Sps endring (helning −0,68), og Ap til ca. 1/3 (helning −0,31). Ap tok også raskt igjen det lille tapet etter tidlige lokale Sp-bølger.
@@ -59,9 +59,10 @@ Testene av 2017–21-bølgen bruker derfor den faste definisjonen (1953–69). D
 | 2013–17 | (n = 5) | −0,41 (−0,45; −0,37) | −0,43 (−0,49; −0,36) | −0,64 (−0,74; −0,54) |
 | 2017–21 | (n = 1) | −0,31 (−0,43; −0,19) | −0,35 (−0,45; −0,25) | −0,28 (−0,46; −0,09) |
 
-- **1993:** Helningen er brattere i bastionene enn ellers i distriktet. Interaksjonen er −0,21 (KI −0,43 til 0,02) med rullerende definisjon og −0,14 (KI −0,31 til 0,03) med fast. Forskjellen er altså ikke sikker på 5 %-nivå.
+- **1993:** Helningen er brattere i bastionene enn ellers i distriktet. Innen distriktet (bastion mot ikke-bastion) er interaksjonen **−0,31** (KI −0,55 til −0,07, p = 0,01) med rullerende definisjon og **−0,31** (KI −0,49 til −0,12) med fast.
+  Målt mot alle andre kommuner, sentrale inkludert, er den svakere: −0,21 (KI −0,43 til 0,02) og −0,14 (ns). K påpekte denne forskjellen, og innen-distrikt-målet er lagt til etter kontrollen.
   Dekomponeringen i distriktet viser hvor gevinsten kom fra: Ap 57 %, H 18 %, FrP 12 %, KrF 8 %. I de faste bastionene kom 75 % fra Ap.
-- **2013–17 og 2017–21:** Ap-tapet var 43 % og 35 % av Sp-gevinsten i distriktet. Bastionene skilte seg ikke ut: interaksjonen er +0,08 og +0,05, altså *slakere*, men ikke signifikant.
+- **2013–17 og 2017–21:** Ap-tapet var 43 % og 35 % av Sp-gevinsten i distriktet. Bastionene skilte seg ikke ut: interaksjonen innen distriktet er +0,02 og +0,08, altså ikke brattere.
   H (29–30 %) og FrP (15–24 %) bidro mer enn i 1993.
 - **Lokale bølger 1953–2025** (Sp ≥ 10 pp i kommunen), relativt til landet: I rullerende distrikts-bastioner svarte Aps tap til 49 % av Sps gevinst (n = 89). I andre distriktskommuner var andelen 41 %, og i sentrale 20 %.
 - **Kommunestyrevalg (parallell):** Helningen i faste distrikts-bastioner var −0,21 i 1967–71, −0,05 (ikke signifikant) i 1987–91 og −0,38 i 2015–19. P1 er altså svakere i kommunevalgene.
@@ -95,7 +96,7 @@ Testene av 2017–21-bølgen bruker derfor den faste definisjonen (1953–69). D
   **Sperrehaken er altså et trekk ved perioden etter 1989 i hele landet, ikke særlig for distrikts-bastionene.**
 - **Placeboen** (Ap-svake kommuner, der regresjon mot gjennomsnittet ikke kan gi fall i Ap) viser ingen asymmetri. Det taler mot at funnet bare skyldes regresjon mot gjennomsnittet.
 - **Kommune-FE:** Resultatet er det samme i fast definisjon (asym 0,17, p = 0,002). I rullerende bastioner er asym 0,11 (p = 0,20).
-- **Sp alene** (uten felleslister): Her er det ingen asymmetri (−0,01). Før 1989 blandes Sp-endringen med overganger mellom egen liste og felleslister. Blant par uten felleslister 1953–89 er asym 0,15 (p = 0,28) i bastionene.
+- **Sp alene** (uten felleslister): **Her forsvinner asymmetrien i distrikts-bastionene** (−0,01, p = 0,78). K flagget dette som det viktigste grensevalget. Konklusjonen om sperrehake *i distrikts-bastionene over hele perioden* holder bare med Sp + felleslister. Før 1989 blandes Sp-endringen med overganger mellom egen liste og felleslister. Blant par uten felleslister 1953–89 er asym 0,15 (p = 0,28) i bastionene.
 - **Kommunestyrevalg:** Rullerende bastioner har asym 0,20 (p = 0,02), men faste bastioner (fra ST) bare 0,03 (p = 0,46). For 1987–2023 er asym −0,02 i faste bastioner. **KV gjentar ikke sperrehaken.**
 
 **T3 Dose–respons (1989–93).** Tverrsnittet måler effekten av Sp-økningen 1989–93 på Aps endring fra 1989 til et senere år, kontrollert for Ap i 1989 og befolkningsendring.
@@ -133,6 +134,8 @@ For bølger før 1989 var det bare −1,6 pp ved bølgen, og forskjellen var bor
 | 2021–25, alle distrikt | **39 %** | 12 % | 23 % | 2 % | 4 % (Rødt 14 %) |
 | 2021–25, faste bastioner | **52 %** | 11 % | 12 % | 1 % | 8 % (Rødt 17 %) |
 | Lokale tilbakefall 1957–89, distrikt | 3 % | – | 48 % | 17 % | V 37 % |
+
+Merk: Forholdstallet «andel_tilbake» (b⁻/b⁺) i `resultater.json` er ustabilt når b⁺ er nær null, for eksempel i sentrale kommuner 1953–89. Det bør ikke tolkes der (K).
 
 **Symmetrien direkte:** I 1993 kom 75 % av Sps framgang i de faste bastionene fra Ap, men bare 19 % av tilbakegangen i 1997 gikk til Ap.
 Etter 2021 var mønsteret motsatt: i 2017–21 kom 31 % fra Ap, og i 2025 gikk 52 % tilbake.
@@ -242,7 +245,28 @@ Agent L fant primærtall fra SSBs Valgundersøkelse (tabell 11666 og 11659) for 
 
 ## Kontroll (agent K)
 
-*Fylles inn etter kontrollen.*
+K (modell sonnet) fikk data, operasjonaliseringen og `resultater.json`, men ikke koden. K regnet T1–T6 på nytt fra `data/processed/`.
+Resultatet ligger i [`kontroll/K_kontroll.json`](kontroll/K_kontroll.json), med skript i `kontroll/K_skript.py`.
+
+- **Konklusjon: godkjent.** 460 tall og kriterier er kontrollert: 454 ok, 0 feil, 6 usikre.
+- **De 6 usikre** gjelder interaksjonsleddet i T1 og tomme celler:
+  - For 4 av dem hadde K en annen sammenligningsgruppe: innen distriktet, mot vår sammenligning mot alle kommuner. **Vi er enige med K** om at innen-distrikt er det riktige målet for «brattere i bastioner». Det er lagt til i koden og brukt i rapporten.
+    Det styrker P1 for 1993: −0,31, p = 0,01, mot −0,21, p = 0,07 før.
+  - De 2 andre gjelder rullerende bastion i 2013–17 med n = 5, der vi ikke rapporterer helning. K fikk −1,20, men er enig i at cellen er for liten til å rapporteres.
+- **Grensevalg:**
+  - Bastiongrensene 40, 45 og 55 %, distrikt = klasse 4–6, og lokal dose 5/15 pp i T5 snur ingen konklusjoner. Ved 60 % er det bare 3 kommuner.
+  - **Sp alene snur T2-asymmetrien i distrikts-bastionene** (+0,13 → −0,01). Dette var med i robusthetstabellen, men var ikke tydelig nok flagget i P2-teksten. Det er nå flagget.
+- **Placebo:** K bekreftet at placeboen med Ap-svake kommuner er riktig konstruert. K kjørte også en egen placebo med «falskt bølgeår», der Sp-endringen i neste valgpar brukes som forklaringsvariabel. Den ga ingen asymmetri (−0,05, p = 0,57).
+- **Ikke sjekket av K:**
+  - T7, T8, KV og figurene
+  - Sp alene-varianten tall for tall
+  - T2 med fast bastion
+  - T4-seriene for Sp, FrP og H, og den stablede hendelsesstudien
+  - T5-feltene utenom DiD
+  - T6 for lokale tilbakefall
+  - Robusthetsvariantene stabile enheter, sikkerhet og ett fylke ute. De er bare stikkprøvekontrollert.
+- **Uenighet som står igjen:** ingen om tallene. Om tolkningen understreker K at sperrehaken i distrikts-bastionene avhenger av Sp-målet. Det er tatt inn i konklusjonen for P2.
+- Det ble ikke kjørt en ny kontrollrunde. Ingen feil ble funnet, og endringen etter K er et tillegg (innen-distrikt-interaksjon) som K selv hadde regnet og som stemmer eksakt.
 
 ## Hva aggregerte data ikke kan vise
 
@@ -265,7 +289,7 @@ Agent L fant primærtall fra SSBs Valgundersøkelse (tabell 11666 og 11659) for 
   - T8 er utvidet med varianten «uten felleslister» etter at felleslistene viste seg å drive resultatet. Dette var heller ikke låst på forhånd.
   - T3 bruker kontroll for Ap-nivå og befolkningsendring. Resultatet uten kontroll er også rapportert i `resultater.json`.
 - **Agenter:** Hovedagenten (standardmodell) gjorde all analyse. **L** (standardmodell) sto for litteratur og individdata. Første start stoppet på kvotegrense, og andre start fullførte.
-  L kunne bare lese SSB-API-et direkte. Resten er søkemotorsammendrag. **K** (sonnet) sto for uavhengig kontroll av T1–T6 (se over).
+  L kunne bare lese SSB-API-et direkte. Resten er søkemotorsammendrag. **K** (sonnet) sto for uavhengig kontroll av T1–T6: godkjent, 0 feil og 6 usikre (se over). Én kontrollrunde.
 - **Ikke kontrollert av K:** T7, T8, figurene og sammenstillingen med individdata. De er sjekket av hovedagenten.
 - **Kode:** `analyse/sp_ventil/steg1_panel_laas.py` → `steg3_tester.py` → `steg4_figurer.py` → `steg5_sammenstill.py`. Alt kjøres på nytt fra `data/processed/`.
   Panelets sha256 er låst i `låst.json` og er bekreftet uendret etter testene.

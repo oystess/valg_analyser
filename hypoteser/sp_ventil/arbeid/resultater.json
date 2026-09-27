@@ -63,6 +63,15 @@
      ],
      "p": 0.0699
     },
+    "interaksjon_innen_distrikt|bastion": {
+     "b": -0.312,
+     "se": 0.122,
+     "ki95": [
+      -0.552,
+      -0.073
+     ],
+     "p": 0.0105
+    },
     "distrikt_bastion|bastion_fast": {
      "b": -0.753,
      "se": 0.079,
@@ -91,6 +100,15 @@
       0.028
      ],
      "p": 0.1021
+    },
+    "interaksjon_innen_distrikt|bastion_fast": {
+     "b": -0.305,
+     "se": 0.095,
+     "ki95": [
+      -0.492,
+      -0.119
+     ],
+     "p": 0.0013
     },
     "dekomponering_distrikt": {
      "ap": -0.57,
@@ -172,6 +190,10 @@
      "b": null,
      "merknad": "bare 5 distrikts-bastioner"
     },
+    "interaksjon_innen_distrikt|bastion": {
+     "b": null,
+     "merknad": "bare 5 distrikts-bastioner"
+    },
     "distrikt_bastion|bastion_fast": {
      "b": -0.41,
      "se": 0.022,
@@ -200,6 +222,15 @@
       0.178
      ],
      "p": 0.1583
+    },
+    "interaksjon_innen_distrikt|bastion_fast": {
+     "b": 0.023,
+     "se": 0.076,
+     "ki95": [
+      -0.125,
+      0.172
+     ],
+     "p": 0.7602
     },
     "dekomponering_distrikt": {
      "ap": -0.429,
@@ -281,6 +312,10 @@
      "b": null,
      "merknad": "bare 1 distrikts-bastioner"
     },
+    "interaksjon_innen_distrikt|bastion": {
+     "b": null,
+     "merknad": "bare 1 distrikts-bastioner"
+    },
     "distrikt_bastion|bastion_fast": {
      "b": -0.309,
      "se": 0.061,
@@ -309,6 +344,15 @@
       0.214
      ],
      "p": 0.5954
+    },
+    "interaksjon_innen_distrikt|bastion_fast": {
+     "b": 0.075,
+     "se": 0.096,
+     "ki95": [
+      -0.114,
+      0.263
+     ],
+     "p": 0.4375
     },
     "dekomponering_distrikt": {
      "ap": -0.349,
@@ -572,6 +616,15 @@
      ],
      "p": 0.0699
     },
+    "interaksjon_innen_distrikt|bastion": {
+     "b": -0.312,
+     "se": 0.122,
+     "ki95": [
+      -0.552,
+      -0.073
+     ],
+     "p": 0.0105
+    },
     "distrikt_bastion|bastion_fast": {
      "b": -0.753,
      "se": 0.079,
@@ -600,6 +653,15 @@
       0.028
      ],
      "p": 0.1021
+    },
+    "interaksjon_innen_distrikt|bastion_fast": {
+     "b": -0.305,
+     "se": 0.095,
+     "ki95": [
+      -0.492,
+      -0.119
+     ],
+     "p": 0.0013
     },
     "dekomponering_distrikt": {
      "ap": -0.57,
@@ -683,6 +745,10 @@
      "b": null,
      "merknad": "bare 5 distrikts-bastioner"
     },
+    "interaksjon_innen_distrikt|bastion": {
+     "b": null,
+     "merknad": "bare 5 distrikts-bastioner"
+    },
     "distrikt_bastion|bastion_fast": {
      "b": -0.41,
      "se": 0.022,
@@ -711,6 +777,15 @@
       0.178
      ],
      "p": 0.1583
+    },
+    "interaksjon_innen_distrikt|bastion_fast": {
+     "b": 0.023,
+     "se": 0.076,
+     "ki95": [
+      -0.125,
+      0.172
+     ],
+     "p": 0.7602
     },
     "dekomponering_distrikt": {
      "ap": -0.429,
@@ -794,6 +869,10 @@
      "b": null,
      "merknad": "bare 1 distrikts-bastioner"
     },
+    "interaksjon_innen_distrikt|bastion": {
+     "b": null,
+     "merknad": "bare 1 distrikts-bastioner"
+    },
     "distrikt_bastion|bastion_fast": {
      "b": -0.309,
      "se": 0.061,
@@ -822,6 +901,15 @@
       0.214
      ],
      "p": 0.5954
+    },
+    "interaksjon_innen_distrikt|bastion_fast": {
+     "b": 0.075,
+     "se": 0.096,
+     "ki95": [
+      -0.114,
+      0.263
+     ],
+     "p": 0.4375
     },
     "dekomponering_distrikt": {
      "ap": -0.349,

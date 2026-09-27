@@ -89,6 +89,12 @@ def t1(p, spk="sp90"):
                 rad[f"interaksjon|{bk}"] = koef(fit, f"{x}:db")
             else:
                 rad[f"interaksjon|{bk}"] = {"b": None, "merknad": f"bare {int(dd.db.sum())} distrikts-bastioner"}
+            # innen distriktet: bastion mot ikke-bastion (sammenligningsgruppe b); lagt til etter kontroll K
+            di = d[d.distrikt].assign(db=lambda x: x[bk].astype(int))
+            if di.db.sum() >= 10:
+                rad[f"interaksjon_innen_distrikt|{bk}"] = koef(ols(di, f"d_ap ~ {x} * db", klynge=None), f"{x}:db")
+            else:
+                rad[f"interaksjon_innen_distrikt|{bk}"] = {"b": None, "merknad": f"bare {int(di.db.sum())} distrikts-bastioner"}
         # dekomponering i distriktet: hvor kom Sp-gevinsten fra (helning per parti; summerer til −1)
         dist = d[d.distrikt]
         rad["dekomponering_distrikt"] = {q: r(ols(dist, f"d_{q} ~ {x}", klynge=None).params[x])

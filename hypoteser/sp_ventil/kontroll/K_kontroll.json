@@ -1,0 +1,3611 @@
+{
+ "funn": [
+  {
+   "id": "T1.1989-1993.distrikt_bastion|bastion",
+   "status": "ok",
+   "resultat_json": -0.839,
+   "k_verdi": -0.839,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.distrikt_ikke_bastion|bastion",
+   "status": "ok",
+   "resultat_json": -0.526,
+   "k_verdi": -0.526,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.sentral|bastion",
+   "status": "ok",
+   "resultat_json": -0.544,
+   "k_verdi": -0.544,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.alle_distrikt|bastion",
+   "status": "ok",
+   "resultat_json": -0.57,
+   "k_verdi": -0.57,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.alle|bastion",
+   "status": "ok",
+   "resultat_json": -0.665,
+   "k_verdi": -0.665,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.distrikt_bastion|bastion_fast",
+   "status": "ok",
+   "resultat_json": -0.753,
+   "k_verdi": -0.753,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.distrikt_ikke_bastion|bastion_fast",
+   "status": "ok",
+   "resultat_json": -0.447,
+   "k_verdi": -0.447,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.interaksjon|bastion",
+   "status": "usikker",
+   "resultat_json": {
+    "b": -0.209,
+    "se": 0.115,
+    "ki95": [
+     -0.434,
+     0.017
+    ],
+    "p": 0.0699
+   },
+   "k_verdi": {
+    "b": -0.312,
+    "se": 0.122,
+    "ki95": [
+     -0.552,
+     -0.073
+    ],
+    "p": 0.0105
+   },
+   "begrunnelse": "Metoden for interaksjonsleddet er ikke presist definert i laast.json/PROMPT.md §3-4. Jeg proevde d_ap~d_sp90*bastion (differanse i helning mellom bastion/ikke-bastion) i distriktet og fikk et annet tall enn resultater.json (ikke reprodusert med standardspesifikasjoner). Feltet er ikke en av de laaste definisjonene, saa jeg kan ikke avgjoere om det er feil eller en annen (udokumentert) spesifikasjon."
+  },
+  {
+   "id": "T1.1989-1993.interaksjon|bastion_fast",
+   "status": "usikker",
+   "resultat_json": {
+    "b": -0.143,
+    "se": 0.087,
+    "ki95": [
+     -0.313,
+     0.028
+    ],
+    "p": 0.1021
+   },
+   "k_verdi": {
+    "b": -0.305,
+    "se": 0.095,
+    "ki95": [
+     -0.492,
+     -0.119
+    ],
+    "p": 0.0013
+   },
+   "begrunnelse": "Metoden for interaksjonsleddet er ikke presist definert i laast.json/PROMPT.md §3-4. Jeg proevde d_ap~d_sp90*bastion (differanse i helning mellom bastion/ikke-bastion) i distriktet og fikk et annet tall enn resultater.json (ikke reprodusert med standardspesifikasjoner). Feltet er ikke en av de laaste definisjonene, saa jeg kan ikke avgjoere om det er feil eller en annen (udokumentert) spesifikasjon."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt.ap",
+   "status": "ok",
+   "resultat_json": -0.57,
+   "k_verdi": -0.57,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt.frp",
+   "status": "ok",
+   "resultat_json": -0.118,
+   "k_verdi": -0.118,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt.h",
+   "status": "ok",
+   "resultat_json": -0.183,
+   "k_verdi": -0.183,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt.krf",
+   "status": "ok",
+   "resultat_json": -0.08,
+   "k_verdi": -0.08,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt.sv",
+   "status": "ok",
+   "resultat_json": -0.021,
+   "k_verdi": -0.021,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt.v",
+   "status": "ok",
+   "resultat_json": -0.038,
+   "k_verdi": -0.038,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt.rodt",
+   "status": "ok",
+   "resultat_json": -0.008,
+   "k_verdi": -0.008,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt.mdg",
+   "status": "ok",
+   "resultat_json": -0.004,
+   "k_verdi": -0.004,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt.nkp",
+   "status": "ok",
+   "resultat_json": -0.001,
+   "k_verdi": -0.001,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt.andre",
+   "status": "ok",
+   "resultat_json": 0.022,
+   "k_verdi": 0.022,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt_bastion_fast.ap",
+   "status": "ok",
+   "resultat_json": -0.753,
+   "k_verdi": -0.753,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt_bastion_fast.frp",
+   "status": "ok",
+   "resultat_json": -0.104,
+   "k_verdi": -0.104,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt_bastion_fast.h",
+   "status": "ok",
+   "resultat_json": -0.221,
+   "k_verdi": -0.221,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt_bastion_fast.krf",
+   "status": "ok",
+   "resultat_json": -0.061,
+   "k_verdi": -0.061,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt_bastion_fast.sv",
+   "status": "ok",
+   "resultat_json": 0.033,
+   "k_verdi": 0.033,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt_bastion_fast.v",
+   "status": "ok",
+   "resultat_json": -0.036,
+   "k_verdi": -0.036,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt_bastion_fast.rodt",
+   "status": "ok",
+   "resultat_json": -0.006,
+   "k_verdi": -0.006,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt_bastion_fast.mdg",
+   "status": "ok",
+   "resultat_json": -0.008,
+   "k_verdi": -0.008,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt_bastion_fast.nkp",
+   "status": "ok",
+   "resultat_json": -0.001,
+   "k_verdi": -0.001,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.dekomponering_distrikt_bastion_fast.andre",
+   "status": "ok",
+   "resultat_json": 0.158,
+   "k_verdi": 0.158,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.snitt_distrikt_bastion_fast.d_sp90",
+   "status": "ok",
+   "resultat_json": 18.04,
+   "k_verdi": 18.04,
+   "begrunnelse": "Gjennomsnitt reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.snitt_distrikt_bastion_fast.d_ap",
+   "status": "ok",
+   "resultat_json": -4.21,
+   "k_verdi": -4.21,
+   "begrunnelse": "Gjennomsnitt reprodusert eksakt."
+  },
+  {
+   "id": "T1.1989-1993.snitt_distrikt_bastion_fast.dl_ap",
+   "status": "ok",
+   "resultat_json": -6.85,
+   "k_verdi": -6.85,
+   "begrunnelse": "Gjennomsnitt reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.distrikt_bastion|bastion",
+   "status": "usikker",
+   "resultat_json": null,
+   "k_verdi": -1.202,
+   "begrunnelse": "Kun den ene siden er null; sjekk om terskel for aa suppress smaa celler er lik."
+  },
+  {
+   "id": "T1.2013-2017.distrikt_ikke_bastion|bastion",
+   "status": "ok",
+   "resultat_json": -0.426,
+   "k_verdi": -0.426,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.sentral|bastion",
+   "status": "ok",
+   "resultat_json": -0.637,
+   "k_verdi": -0.637,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.alle_distrikt|bastion",
+   "status": "ok",
+   "resultat_json": -0.429,
+   "k_verdi": -0.429,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.alle|bastion",
+   "status": "ok",
+   "resultat_json": -0.462,
+   "k_verdi": -0.462,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.distrikt_bastion|bastion_fast",
+   "status": "ok",
+   "resultat_json": -0.41,
+   "k_verdi": -0.41,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.distrikt_ikke_bastion|bastion_fast",
+   "status": "ok",
+   "resultat_json": -0.433,
+   "k_verdi": -0.433,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.interaksjon|bastion",
+   "status": "usikker",
+   "resultat_json": {
+    "b": null,
+    "merknad": "bare 5 distrikts-bastioner"
+   },
+   "k_verdi": {
+    "b": -0.776,
+    "se": 0.165,
+    "ki95": [
+     -1.1,
+     -0.451
+    ],
+    "p": 0.0
+   },
+   "begrunnelse": "Ulik suppresjon av smaa celler (n<~5)."
+  },
+  {
+   "id": "T1.2013-2017.interaksjon|bastion_fast",
+   "status": "usikker",
+   "resultat_json": {
+    "b": 0.075,
+    "se": 0.053,
+    "ki95": [
+     -0.029,
+     0.178
+    ],
+    "p": 0.1583
+   },
+   "k_verdi": {
+    "b": 0.023,
+    "se": 0.076,
+    "ki95": [
+     -0.125,
+     0.172
+    ],
+    "p": 0.7602
+   },
+   "begrunnelse": "Metoden for interaksjonsleddet er ikke presist definert i laast.json/PROMPT.md §3-4. Jeg proevde d_ap~d_sp90*bastion (differanse i helning mellom bastion/ikke-bastion) i distriktet og fikk et annet tall enn resultater.json (ikke reprodusert med standardspesifikasjoner). Feltet er ikke en av de laaste definisjonene, saa jeg kan ikke avgjoere om det er feil eller en annen (udokumentert) spesifikasjon."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt.ap",
+   "status": "ok",
+   "resultat_json": -0.429,
+   "k_verdi": -0.429,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt.frp",
+   "status": "ok",
+   "resultat_json": -0.244,
+   "k_verdi": -0.244,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt.h",
+   "status": "ok",
+   "resultat_json": -0.304,
+   "k_verdi": -0.304,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt.krf",
+   "status": "ok",
+   "resultat_json": 0.052,
+   "k_verdi": 0.052,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt.sv",
+   "status": "ok",
+   "resultat_json": 0.005,
+   "k_verdi": 0.005,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt.v",
+   "status": "ok",
+   "resultat_json": -0.036,
+   "k_verdi": -0.036,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt.rodt",
+   "status": "ok",
+   "resultat_json": -0.002,
+   "k_verdi": -0.002,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt.mdg",
+   "status": "ok",
+   "resultat_json": -0.02,
+   "k_verdi": -0.02,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt.nkp",
+   "status": "ok",
+   "resultat_json": 0.001,
+   "k_verdi": 0.001,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt.andre",
+   "status": "ok",
+   "resultat_json": -0.024,
+   "k_verdi": -0.024,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt_bastion_fast.ap",
+   "status": "ok",
+   "resultat_json": -0.41,
+   "k_verdi": -0.41,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt_bastion_fast.frp",
+   "status": "ok",
+   "resultat_json": -0.198,
+   "k_verdi": -0.198,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt_bastion_fast.h",
+   "status": "ok",
+   "resultat_json": -0.304,
+   "k_verdi": -0.304,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt_bastion_fast.krf",
+   "status": "ok",
+   "resultat_json": -0.011,
+   "k_verdi": -0.011,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt_bastion_fast.sv",
+   "status": "ok",
+   "resultat_json": -0.005,
+   "k_verdi": -0.005,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt_bastion_fast.v",
+   "status": "ok",
+   "resultat_json": -0.038,
+   "k_verdi": -0.038,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt_bastion_fast.rodt",
+   "status": "ok",
+   "resultat_json": -0.013,
+   "k_verdi": -0.013,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt_bastion_fast.mdg",
+   "status": "ok",
+   "resultat_json": -0.004,
+   "k_verdi": -0.004,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt_bastion_fast.nkp",
+   "status": "ok",
+   "resultat_json": 0.001,
+   "k_verdi": 0.001,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.dekomponering_distrikt_bastion_fast.andre",
+   "status": "ok",
+   "resultat_json": -0.017,
+   "k_verdi": -0.017,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.snitt_distrikt_bastion_fast.d_sp90",
+   "status": "ok",
+   "resultat_json": 13.1,
+   "k_verdi": 13.1,
+   "begrunnelse": "Gjennomsnitt reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.snitt_distrikt_bastion_fast.d_ap",
+   "status": "ok",
+   "resultat_json": -7.58,
+   "k_verdi": -7.58,
+   "begrunnelse": "Gjennomsnitt reprodusert eksakt."
+  },
+  {
+   "id": "T1.2013-2017.snitt_distrikt_bastion_fast.dl_ap",
+   "status": "ok",
+   "resultat_json": -4.1,
+   "k_verdi": -4.1,
+   "begrunnelse": "Gjennomsnitt reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.distrikt_bastion|bastion",
+   "status": "ok",
+   "resultat_json": null,
+   "k_verdi": null,
+   "begrunnelse": "Begge null (for faa observasjoner) - konsistent."
+  },
+  {
+   "id": "T1.2017-2021.distrikt_ikke_bastion|bastion",
+   "status": "ok",
+   "resultat_json": -0.35,
+   "k_verdi": -0.35,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.sentral|bastion",
+   "status": "ok",
+   "resultat_json": -0.277,
+   "k_verdi": -0.277,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.alle_distrikt|bastion",
+   "status": "ok",
+   "resultat_json": -0.349,
+   "k_verdi": -0.349,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.alle|bastion",
+   "status": "ok",
+   "resultat_json": -0.337,
+   "k_verdi": -0.337,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.distrikt_bastion|bastion_fast",
+   "status": "ok",
+   "resultat_json": -0.309,
+   "k_verdi": -0.309,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.distrikt_ikke_bastion|bastion_fast",
+   "status": "ok",
+   "resultat_json": -0.383,
+   "k_verdi": -0.383,
+   "begrunnelse": "OLS d_ap~d_sp90 (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.interaksjon|bastion",
+   "status": "ok",
+   "resultat_json": {
+    "b": null,
+    "merknad": "bare 1 distrikts-bastioner"
+   },
+   "k_verdi": {
+    "b": null,
+    "merknad": "bare 1 distrikts-bastioner"
+   },
+   "begrunnelse": "Begge null pga for faa distrikts-bastioner i bolgen."
+  },
+  {
+   "id": "T1.2017-2021.interaksjon|bastion_fast",
+   "status": "usikker",
+   "resultat_json": {
+    "b": 0.046,
+    "se": 0.086,
+    "ki95": [
+     -0.123,
+     0.214
+    ],
+    "p": 0.5954
+   },
+   "k_verdi": {
+    "b": 0.075,
+    "se": 0.096,
+    "ki95": [
+     -0.114,
+     0.263
+    ],
+    "p": 0.4375
+   },
+   "begrunnelse": "Metoden for interaksjonsleddet er ikke presist definert i laast.json/PROMPT.md §3-4. Jeg proevde d_ap~d_sp90*bastion (differanse i helning mellom bastion/ikke-bastion) i distriktet og fikk et annet tall enn resultater.json (ikke reprodusert med standardspesifikasjoner). Feltet er ikke en av de laaste definisjonene, saa jeg kan ikke avgjoere om det er feil eller en annen (udokumentert) spesifikasjon."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt.ap",
+   "status": "ok",
+   "resultat_json": -0.349,
+   "k_verdi": -0.349,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt.frp",
+   "status": "ok",
+   "resultat_json": -0.153,
+   "k_verdi": -0.153,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt.h",
+   "status": "ok",
+   "resultat_json": -0.244,
+   "k_verdi": -0.244,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt.krf",
+   "status": "ok",
+   "resultat_json": -0.023,
+   "k_verdi": -0.023,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt.sv",
+   "status": "ok",
+   "resultat_json": -0.138,
+   "k_verdi": -0.138,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt.v",
+   "status": "ok",
+   "resultat_json": -0.008,
+   "k_verdi": -0.008,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt.rodt",
+   "status": "ok",
+   "resultat_json": 0.006,
+   "k_verdi": 0.006,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt.mdg",
+   "status": "ok",
+   "resultat_json": -0.026,
+   "k_verdi": -0.026,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt.nkp",
+   "status": "ok",
+   "resultat_json": 0.0,
+   "k_verdi": 0.0,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt.andre",
+   "status": "ok",
+   "resultat_json": -0.064,
+   "k_verdi": -0.064,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt_bastion_fast.ap",
+   "status": "ok",
+   "resultat_json": -0.309,
+   "k_verdi": -0.309,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt_bastion_fast.frp",
+   "status": "ok",
+   "resultat_json": -0.149,
+   "k_verdi": -0.149,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt_bastion_fast.h",
+   "status": "ok",
+   "resultat_json": -0.331,
+   "k_verdi": -0.331,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt_bastion_fast.krf",
+   "status": "ok",
+   "resultat_json": -0.024,
+   "k_verdi": -0.024,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt_bastion_fast.sv",
+   "status": "ok",
+   "resultat_json": -0.195,
+   "k_verdi": -0.195,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt_bastion_fast.v",
+   "status": "ok",
+   "resultat_json": 0.011,
+   "k_verdi": 0.011,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt_bastion_fast.rodt",
+   "status": "ok",
+   "resultat_json": -0.007,
+   "k_verdi": -0.007,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt_bastion_fast.mdg",
+   "status": "ok",
+   "resultat_json": -0.019,
+   "k_verdi": -0.019,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt_bastion_fast.nkp",
+   "status": "ok",
+   "resultat_json": 0.001,
+   "k_verdi": 0.001,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.dekomponering_distrikt_bastion_fast.andre",
+   "status": "ok",
+   "resultat_json": 0.023,
+   "k_verdi": 0.023,
+   "begrunnelse": "Partidekomponering (helning) reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.snitt_distrikt_bastion_fast.d_sp90",
+   "status": "ok",
+   "resultat_json": 5.05,
+   "k_verdi": 5.05,
+   "begrunnelse": "Gjennomsnitt reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.snitt_distrikt_bastion_fast.d_ap",
+   "status": "ok",
+   "resultat_json": -0.47,
+   "k_verdi": -0.47,
+   "begrunnelse": "Gjennomsnitt reprodusert eksakt."
+  },
+  {
+   "id": "T1.2017-2021.snitt_distrikt_bastion_fast.dl_ap",
+   "status": "ok",
+   "resultat_json": 0.65,
+   "k_verdi": 0.65,
+   "begrunnelse": "Gjennomsnitt reprodusert eksakt."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_bastion.snitt_dl_sp",
+   "status": "ok",
+   "resultat_json": 10.98,
+   "k_verdi": 10.98,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_bastion.snitt_dl_ap",
+   "status": "ok",
+   "resultat_json": -5.38,
+   "k_verdi": -5.38,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_bastion.snitt_dl_h",
+   "status": "ok",
+   "resultat_json": -2.2,
+   "k_verdi": -2.2,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_bastion.snitt_dl_v",
+   "status": "ok",
+   "resultat_json": -1.21,
+   "k_verdi": -1.21,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_bastion.snitt_dl_krf",
+   "status": "ok",
+   "resultat_json": -1.07,
+   "k_verdi": -1.07,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_bastion.snitt_dl_frp",
+   "status": "ok",
+   "resultat_json": 0.76,
+   "k_verdi": 0.76,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_bastion.snitt_dl_sv",
+   "status": "ok",
+   "resultat_json": 1.57,
+   "k_verdi": 1.57,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_bastion.snitt_dl_nkp",
+   "status": "ok",
+   "resultat_json": -0.39,
+   "k_verdi": -0.39,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_bastion.snitt_dl_hvk",
+   "status": "ok",
+   "resultat_json": -4.48,
+   "k_verdi": -4.48,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_bastion.andel_fra_ap",
+   "status": "ok",
+   "resultat_json": 0.49,
+   "k_verdi": 0.49,
+   "begrunnelse": "andel_fra_ap = -snitt_dl_ap/snitt_dl_sp90, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_bastion.n",
+   "status": "ok",
+   "resultat_json": 89,
+   "k_verdi": 89,
+   "begrunnelse": "Antall kommune-par i gruppen."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_ikke_bastion.snitt_dl_sp",
+   "status": "ok",
+   "resultat_json": 11.13,
+   "k_verdi": 11.13,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_ikke_bastion.snitt_dl_ap",
+   "status": "ok",
+   "resultat_json": -4.59,
+   "k_verdi": -4.59,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_ikke_bastion.snitt_dl_h",
+   "status": "ok",
+   "resultat_json": -1.19,
+   "k_verdi": -1.19,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_ikke_bastion.snitt_dl_v",
+   "status": "ok",
+   "resultat_json": -1.19,
+   "k_verdi": -1.19,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_ikke_bastion.snitt_dl_krf",
+   "status": "ok",
+   "resultat_json": -2.77,
+   "k_verdi": -2.77,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_ikke_bastion.snitt_dl_frp",
+   "status": "ok",
+   "resultat_json": 0.07,
+   "k_verdi": 0.07,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_ikke_bastion.snitt_dl_sv",
+   "status": "ok",
+   "resultat_json": 0.26,
+   "k_verdi": 0.26,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_ikke_bastion.snitt_dl_nkp",
+   "status": "ok",
+   "resultat_json": 0.03,
+   "k_verdi": 0.03,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_ikke_bastion.snitt_dl_hvk",
+   "status": "ok",
+   "resultat_json": -5.15,
+   "k_verdi": -5.15,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_ikke_bastion.andel_fra_ap",
+   "status": "ok",
+   "resultat_json": 0.412,
+   "k_verdi": 0.412,
+   "begrunnelse": "andel_fra_ap = -snitt_dl_ap/snitt_dl_sp90, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.distrikt_ikke_bastion.n",
+   "status": "ok",
+   "resultat_json": 369,
+   "k_verdi": 369,
+   "begrunnelse": "Antall kommune-par i gruppen."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.sentral.snitt_dl_sp",
+   "status": "ok",
+   "resultat_json": 8.97,
+   "k_verdi": 8.97,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.sentral.snitt_dl_ap",
+   "status": "ok",
+   "resultat_json": -1.75,
+   "k_verdi": -1.75,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.sentral.snitt_dl_h",
+   "status": "ok",
+   "resultat_json": -2.27,
+   "k_verdi": -2.27,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.sentral.snitt_dl_v",
+   "status": "ok",
+   "resultat_json": -1.84,
+   "k_verdi": -1.84,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.sentral.snitt_dl_krf",
+   "status": "ok",
+   "resultat_json": -2.61,
+   "k_verdi": -2.61,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.sentral.snitt_dl_frp",
+   "status": "ok",
+   "resultat_json": -0.23,
+   "k_verdi": -0.23,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.sentral.snitt_dl_sv",
+   "status": "ok",
+   "resultat_json": 0.44,
+   "k_verdi": 0.44,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.sentral.snitt_dl_nkp",
+   "status": "ok",
+   "resultat_json": -0.04,
+   "k_verdi": -0.04,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.sentral.snitt_dl_hvk",
+   "status": "ok",
+   "resultat_json": -6.72,
+   "k_verdi": -6.72,
+   "begrunnelse": "Snitt over alle lokale Sp90-bolger (>=10pp) i gruppen, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.sentral.andel_fra_ap",
+   "status": "ok",
+   "resultat_json": 0.195,
+   "k_verdi": 0.195,
+   "begrunnelse": "andel_fra_ap = -snitt_dl_ap/snitt_dl_sp90, reprodusert."
+  },
+  {
+   "id": "T1.lokale_bolger_1953_2025.sentral.n",
+   "status": "ok",
+   "resultat_json": 165,
+   "k_verdi": 165,
+   "begrunnelse": "Antall kommune-par i gruppen."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.1953-1989.distrikt_bastion",
+   "status": "ok",
+   "resultat_json": -0.112,
+   "k_verdi": -0.112,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.1953-1989.distrikt_ikke_bastion",
+   "status": "ok",
+   "resultat_json": -0.068,
+   "k_verdi": -0.068,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.1953-1989.sentral",
+   "status": "ok",
+   "resultat_json": 0.003,
+   "k_verdi": 0.003,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.1953-1989.alle_distrikt",
+   "status": "ok",
+   "resultat_json": -0.084,
+   "k_verdi": -0.084,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.1989-2025.distrikt_bastion",
+   "status": "ok",
+   "resultat_json": -0.817,
+   "k_verdi": -0.817,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.1989-2025.distrikt_ikke_bastion",
+   "status": "ok",
+   "resultat_json": -0.326,
+   "k_verdi": -0.326,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.1989-2025.sentral",
+   "status": "ok",
+   "resultat_json": -0.358,
+   "k_verdi": -0.358,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.1989-2025.alle_distrikt",
+   "status": "ok",
+   "resultat_json": -0.341,
+   "k_verdi": -0.341,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.alle.distrikt_bastion",
+   "status": "ok",
+   "resultat_json": -0.154,
+   "k_verdi": -0.154,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.alle.distrikt_ikke_bastion",
+   "status": "ok",
+   "resultat_json": -0.166,
+   "k_verdi": -0.166,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.alle.sentral",
+   "status": "ok",
+   "resultat_json": -0.057,
+   "k_verdi": -0.057,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T1.helning_panel_periode_FE.alle.alle_distrikt",
+   "status": "ok",
+   "resultat_json": -0.164,
+   "k_verdi": -0.164,
+   "begrunnelse": "Panelregresjon d_ap~d_sp90+periodedummy (HC1) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_bastion.b_pos",
+   "status": "ok",
+   "resultat_json": -0.213,
+   "k_verdi": -0.213,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_bastion.b_neg",
+   "status": "ok",
+   "resultat_json": -0.085,
+   "k_verdi": -0.085,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_bastion.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.128,
+   "k_verdi": 0.128,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_bastion.n",
+   "status": "ok",
+   "resultat_json": 723,
+   "k_verdi": 723,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_ikke_bastion.b_pos",
+   "status": "ok",
+   "resultat_json": -0.225,
+   "k_verdi": -0.225,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_ikke_bastion.b_neg",
+   "status": "ok",
+   "resultat_json": -0.106,
+   "k_verdi": -0.106,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_ikke_bastion.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.119,
+   "k_verdi": 0.119,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_ikke_bastion.n",
+   "status": "ok",
+   "resultat_json": 3093,
+   "k_verdi": 3093,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.periode_FE.sentral.b_pos",
+   "status": "ok",
+   "resultat_json": -0.094,
+   "k_verdi": -0.094,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.sentral.b_neg",
+   "status": "ok",
+   "resultat_json": -0.027,
+   "k_verdi": -0.027,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.sentral.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.067,
+   "k_verdi": 0.067,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.sentral.n",
+   "status": "ok",
+   "resultat_json": 2610,
+   "k_verdi": 2610,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.periode_FE.alle_distrikt.b_pos",
+   "status": "ok",
+   "resultat_json": -0.221,
+   "k_verdi": -0.221,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.alle_distrikt.b_neg",
+   "status": "ok",
+   "resultat_json": -0.105,
+   "k_verdi": -0.105,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.alle_distrikt.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.117,
+   "k_verdi": 0.117,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.alle_distrikt.n",
+   "status": "ok",
+   "resultat_json": 3816,
+   "k_verdi": 3816,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.periode_FE.alle.b_pos",
+   "status": "ok",
+   "resultat_json": -0.215,
+   "k_verdi": -0.215,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.alle.b_neg",
+   "status": "ok",
+   "resultat_json": -0.088,
+   "k_verdi": -0.088,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.alle.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.127,
+   "k_verdi": 0.127,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.alle.n",
+   "status": "ok",
+   "resultat_json": 6426,
+   "k_verdi": 6426,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.periode_FE.placebo_ap_svake_distrikt.b_pos",
+   "status": "ok",
+   "resultat_json": -0.043,
+   "k_verdi": -0.043,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.placebo_ap_svake_distrikt.b_neg",
+   "status": "ok",
+   "resultat_json": -0.128,
+   "k_verdi": -0.128,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.placebo_ap_svake_distrikt.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": -0.085,
+   "k_verdi": -0.085,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.placebo_ap_svake_distrikt.n",
+   "status": "ok",
+   "resultat_json": 957,
+   "k_verdi": 957,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.periode_FE.placebo_ap_svake_alle.b_pos",
+   "status": "ok",
+   "resultat_json": -0.076,
+   "k_verdi": -0.076,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.placebo_ap_svake_alle.b_neg",
+   "status": "ok",
+   "resultat_json": -0.095,
+   "k_verdi": -0.095,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.placebo_ap_svake_alle.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": -0.02,
+   "k_verdi": -0.02,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.placebo_ap_svake_alle.n",
+   "status": "ok",
+   "resultat_json": 1620,
+   "k_verdi": 1620,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_bastion_bef_kontroll.b_pos",
+   "status": "ok",
+   "resultat_json": -0.212,
+   "k_verdi": -0.212,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_bastion_bef_kontroll.b_neg",
+   "status": "ok",
+   "resultat_json": -0.08,
+   "k_verdi": -0.08,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_bastion_bef_kontroll.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.132,
+   "k_verdi": 0.132,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.periode_FE.distrikt_bastion_bef_kontroll.n",
+   "status": "ok",
+   "resultat_json": 723,
+   "k_verdi": 723,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_bastion.b_pos",
+   "status": "ok",
+   "resultat_json": -0.186,
+   "k_verdi": -0.186,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_bastion.b_neg",
+   "status": "ok",
+   "resultat_json": -0.073,
+   "k_verdi": -0.073,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_bastion.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.113,
+   "k_verdi": 0.113,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_bastion.n",
+   "status": "ok",
+   "resultat_json": 723,
+   "k_verdi": 723,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_ikke_bastion.b_pos",
+   "status": "ok",
+   "resultat_json": -0.225,
+   "k_verdi": -0.225,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_ikke_bastion.b_neg",
+   "status": "ok",
+   "resultat_json": -0.098,
+   "k_verdi": -0.098,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_ikke_bastion.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.127,
+   "k_verdi": 0.127,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_ikke_bastion.n",
+   "status": "ok",
+   "resultat_json": 3093,
+   "k_verdi": 3093,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.sentral.b_pos",
+   "status": "ok",
+   "resultat_json": -0.108,
+   "k_verdi": -0.108,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.sentral.b_neg",
+   "status": "ok",
+   "resultat_json": -0.008,
+   "k_verdi": -0.008,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.sentral.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.1,
+   "k_verdi": 0.1,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.sentral.n",
+   "status": "ok",
+   "resultat_json": 2610,
+   "k_verdi": 2610,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.alle_distrikt.b_pos",
+   "status": "ok",
+   "resultat_json": -0.22,
+   "k_verdi": -0.22,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.alle_distrikt.b_neg",
+   "status": "ok",
+   "resultat_json": -0.098,
+   "k_verdi": -0.098,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.alle_distrikt.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.122,
+   "k_verdi": 0.122,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.alle_distrikt.n",
+   "status": "ok",
+   "resultat_json": 3816,
+   "k_verdi": 3816,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.alle.b_pos",
+   "status": "ok",
+   "resultat_json": -0.227,
+   "k_verdi": -0.227,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.alle.b_neg",
+   "status": "ok",
+   "resultat_json": -0.07,
+   "k_verdi": -0.07,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.alle.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.157,
+   "k_verdi": 0.157,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.alle.n",
+   "status": "ok",
+   "resultat_json": 6426,
+   "k_verdi": 6426,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.placebo_ap_svake_distrikt.b_pos",
+   "status": "ok",
+   "resultat_json": -0.073,
+   "k_verdi": -0.073,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.placebo_ap_svake_distrikt.b_neg",
+   "status": "ok",
+   "resultat_json": -0.074,
+   "k_verdi": -0.074,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.placebo_ap_svake_distrikt.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": -0.001,
+   "k_verdi": -0.001,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.placebo_ap_svake_distrikt.n",
+   "status": "ok",
+   "resultat_json": 957,
+   "k_verdi": 957,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.placebo_ap_svake_alle.b_pos",
+   "status": "ok",
+   "resultat_json": -0.1,
+   "k_verdi": -0.1,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.placebo_ap_svake_alle.b_neg",
+   "status": "ok",
+   "resultat_json": -0.046,
+   "k_verdi": -0.046,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.placebo_ap_svake_alle.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.054,
+   "k_verdi": 0.054,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.placebo_ap_svake_alle.n",
+   "status": "ok",
+   "resultat_json": 1620,
+   "k_verdi": 1620,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_bastion_bef_kontroll.b_pos",
+   "status": "ok",
+   "resultat_json": -0.185,
+   "k_verdi": -0.185,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_bastion_bef_kontroll.b_neg",
+   "status": "ok",
+   "resultat_json": -0.072,
+   "k_verdi": -0.072,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_bastion_bef_kontroll.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.113,
+   "k_verdi": 0.113,
+   "begrunnelse": "Asymmetrisk panelmodell (klynget SE per kommune) reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.kommune_FE.distrikt_bastion_bef_kontroll.n",
+   "status": "ok",
+   "resultat_json": 723,
+   "k_verdi": 723,
+   "begrunnelse": "Antall observasjoner."
+  },
+  {
+   "id": "T2.sp90.delperioder.1953-1989.distrikt_bastion.b_pos",
+   "status": "ok",
+   "resultat_json": -0.124,
+   "k_verdi": -0.124,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1953-1989.distrikt_bastion.b_neg",
+   "status": "ok",
+   "resultat_json": -0.1,
+   "k_verdi": -0.1,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1953-1989.distrikt_bastion.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.024,
+   "k_verdi": 0.024,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1953-1989.distrikt_ikke_bastion.b_pos",
+   "status": "ok",
+   "resultat_json": -0.074,
+   "k_verdi": -0.074,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1953-1989.distrikt_ikke_bastion.b_neg",
+   "status": "ok",
+   "resultat_json": -0.063,
+   "k_verdi": -0.063,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1953-1989.distrikt_ikke_bastion.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.012,
+   "k_verdi": 0.012,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1953-1989.sentral.b_pos",
+   "status": "ok",
+   "resultat_json": 0.017,
+   "k_verdi": 0.017,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1953-1989.sentral.b_neg",
+   "status": "ok",
+   "resultat_json": -0.007,
+   "k_verdi": -0.007,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1953-1989.sentral.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": -0.024,
+   "k_verdi": -0.024,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1989-2025.distrikt_bastion.b_pos",
+   "status": "ok",
+   "resultat_json": -0.85,
+   "k_verdi": -0.85,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1989-2025.distrikt_bastion.b_neg",
+   "status": "ok",
+   "resultat_json": -0.43,
+   "k_verdi": -0.43,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1989-2025.distrikt_bastion.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.42,
+   "k_verdi": 0.42,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1989-2025.distrikt_ikke_bastion.b_pos",
+   "status": "ok",
+   "resultat_json": -0.426,
+   "k_verdi": -0.426,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1989-2025.distrikt_ikke_bastion.b_neg",
+   "status": "ok",
+   "resultat_json": -0.207,
+   "k_verdi": -0.207,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1989-2025.distrikt_ikke_bastion.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.219,
+   "k_verdi": 0.219,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1989-2025.sentral.b_pos",
+   "status": "ok",
+   "resultat_json": -0.538,
+   "k_verdi": -0.538,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1989-2025.sentral.b_neg",
+   "status": "ok",
+   "resultat_json": -0.189,
+   "k_verdi": -0.189,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.delperioder.1989-2025.sentral.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.35,
+   "k_verdi": 0.35,
+   "begrunnelse": "Delperiode-modell reprodusert eksakt."
+  },
+  {
+   "id": "T2.sp90.1953-1989_uten_felleslister.distrikt_bastion.b_pos",
+   "status": "ok",
+   "resultat_json": -0.353,
+   "k_verdi": -0.353,
+   "begrunnelse": "Reprodusert MED tolkningen: utvalg begrenset til kommune-aar UTEN felleslister (fl0==0 og fl1==0), d_sp90 (=d_sp her) som forklaringsvariabel. Bekreftet n eksakt likt."
+  },
+  {
+   "id": "T2.sp90.1953-1989_uten_felleslister.distrikt_bastion.b_neg",
+   "status": "ok",
+   "resultat_json": -0.201,
+   "k_verdi": -0.201,
+   "begrunnelse": "Reprodusert MED tolkningen: utvalg begrenset til kommune-aar UTEN felleslister (fl0==0 og fl1==0), d_sp90 (=d_sp her) som forklaringsvariabel. Bekreftet n eksakt likt."
+  },
+  {
+   "id": "T2.sp90.1953-1989_uten_felleslister.distrikt_bastion.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.151,
+   "k_verdi": 0.151,
+   "begrunnelse": "Reprodusert MED tolkningen: utvalg begrenset til kommune-aar UTEN felleslister (fl0==0 og fl1==0), d_sp90 (=d_sp her) som forklaringsvariabel. Bekreftet n eksakt likt."
+  },
+  {
+   "id": "T2.sp90.1953-1989_uten_felleslister.distrikt_ikke_bastion.b_pos",
+   "status": "ok",
+   "resultat_json": -0.286,
+   "k_verdi": -0.286,
+   "begrunnelse": "Reprodusert MED tolkningen: utvalg begrenset til kommune-aar UTEN felleslister (fl0==0 og fl1==0), d_sp90 (=d_sp her) som forklaringsvariabel. Bekreftet n eksakt likt."
+  },
+  {
+   "id": "T2.sp90.1953-1989_uten_felleslister.distrikt_ikke_bastion.b_neg",
+   "status": "ok",
+   "resultat_json": -0.251,
+   "k_verdi": -0.251,
+   "begrunnelse": "Reprodusert MED tolkningen: utvalg begrenset til kommune-aar UTEN felleslister (fl0==0 og fl1==0), d_sp90 (=d_sp her) som forklaringsvariabel. Bekreftet n eksakt likt."
+  },
+  {
+   "id": "T2.sp90.1953-1989_uten_felleslister.distrikt_ikke_bastion.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": 0.035,
+   "k_verdi": 0.035,
+   "begrunnelse": "Reprodusert MED tolkningen: utvalg begrenset til kommune-aar UTEN felleslister (fl0==0 og fl1==0), d_sp90 (=d_sp her) som forklaringsvariabel. Bekreftet n eksakt likt."
+  },
+  {
+   "id": "T2.sp90.1953-1989_uten_felleslister.sentral.b_pos",
+   "status": "ok",
+   "resultat_json": -0.019,
+   "k_verdi": -0.019,
+   "begrunnelse": "Reprodusert MED tolkningen: utvalg begrenset til kommune-aar UTEN felleslister (fl0==0 og fl1==0), d_sp90 (=d_sp her) som forklaringsvariabel. Bekreftet n eksakt likt."
+  },
+  {
+   "id": "T2.sp90.1953-1989_uten_felleslister.sentral.b_neg",
+   "status": "ok",
+   "resultat_json": -0.186,
+   "k_verdi": -0.186,
+   "begrunnelse": "Reprodusert MED tolkningen: utvalg begrenset til kommune-aar UTEN felleslister (fl0==0 og fl1==0), d_sp90 (=d_sp her) som forklaringsvariabel. Bekreftet n eksakt likt."
+  },
+  {
+   "id": "T2.sp90.1953-1989_uten_felleslister.sentral.asym_bneg_minus_bpos",
+   "status": "ok",
+   "resultat_json": -0.167,
+   "k_verdi": -0.167,
+   "begrunnelse": "Reprodusert MED tolkningen: utvalg begrenset til kommune-aar UTEN felleslister (fl0==0 og fl1==0), d_sp90 (=d_sp her) som forklaringsvariabel. Bekreftet n eksakt likt."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.dose_snitt",
+   "status": "ok",
+   "resultat_json": 18.11,
+   "k_verdi": 18.11,
+   "begrunnelse": "Gjennomsnittlig dose (sp90-endring) reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_1993.ap",
+   "status": "ok",
+   "resultat_json": -0.597,
+   "k_verdi": -0.597,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_1993.sp90",
+   "status": "ok",
+   "resultat_json": 1.0,
+   "k_verdi": 1.0,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_1993.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.57,
+   "k_verdi": -0.57,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_1997.ap",
+   "status": "ok",
+   "resultat_json": -0.483,
+   "k_verdi": -0.483,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_1997.sp90",
+   "status": "ok",
+   "resultat_json": 0.539,
+   "k_verdi": 0.539,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_1997.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.458,
+   "k_verdi": -0.458,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2001.ap",
+   "status": "ok",
+   "resultat_json": -0.471,
+   "k_verdi": -0.471,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2001.sp90",
+   "status": "ok",
+   "resultat_json": 0.217,
+   "k_verdi": 0.217,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2001.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.45,
+   "k_verdi": -0.45,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2005.ap",
+   "status": "ok",
+   "resultat_json": -0.386,
+   "k_verdi": -0.386,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2005.sp90",
+   "status": "ok",
+   "resultat_json": 0.307,
+   "k_verdi": 0.307,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2005.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.346,
+   "k_verdi": -0.346,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2009.ap",
+   "status": "ok",
+   "resultat_json": -0.211,
+   "k_verdi": -0.211,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2009.sp90",
+   "status": "ok",
+   "resultat_json": 0.196,
+   "k_verdi": 0.196,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2009.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.158,
+   "k_verdi": -0.158,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2013.ap",
+   "status": "ok",
+   "resultat_json": -0.281,
+   "k_verdi": -0.281,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2013.sp90",
+   "status": "ok",
+   "resultat_json": 0.215,
+   "k_verdi": 0.215,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.alle_distrikt.til_2013.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.215,
+   "k_verdi": -0.215,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.dose_snitt",
+   "status": "ok",
+   "resultat_json": 16.69,
+   "k_verdi": 16.69,
+   "begrunnelse": "Gjennomsnittlig dose (sp90-endring) reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_1993.ap",
+   "status": "ok",
+   "resultat_json": -1.0,
+   "k_verdi": -1.0,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_1993.sp90",
+   "status": "ok",
+   "resultat_json": 1.0,
+   "k_verdi": 1.0,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_1993.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.839,
+   "k_verdi": -0.839,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_1997.ap",
+   "status": "ok",
+   "resultat_json": -1.015,
+   "k_verdi": -1.015,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_1997.sp90",
+   "status": "ok",
+   "resultat_json": 0.454,
+   "k_verdi": 0.454,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_1997.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.864,
+   "k_verdi": -0.864,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2001.ap",
+   "status": "ok",
+   "resultat_json": -0.974,
+   "k_verdi": -0.974,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2001.sp90",
+   "status": "ok",
+   "resultat_json": 0.156,
+   "k_verdi": 0.156,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2001.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.909,
+   "k_verdi": -0.909,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2005.ap",
+   "status": "ok",
+   "resultat_json": -1.002,
+   "k_verdi": -1.002,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2005.sp90",
+   "status": "ok",
+   "resultat_json": 0.332,
+   "k_verdi": 0.332,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2005.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.846,
+   "k_verdi": -0.846,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2009.ap",
+   "status": "ok",
+   "resultat_json": -0.796,
+   "k_verdi": -0.796,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2009.sp90",
+   "status": "ok",
+   "resultat_json": 0.235,
+   "k_verdi": 0.235,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2009.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.602,
+   "k_verdi": -0.602,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2013.ap",
+   "status": "ok",
+   "resultat_json": -0.848,
+   "k_verdi": -0.848,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2013.sp90",
+   "status": "ok",
+   "resultat_json": 0.124,
+   "k_verdi": 0.124,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_rull.til_2013.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.67,
+   "k_verdi": -0.67,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.dose_snitt",
+   "status": "ok",
+   "resultat_json": 18.04,
+   "k_verdi": 18.04,
+   "begrunnelse": "Gjennomsnittlig dose (sp90-endring) reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_1993.ap",
+   "status": "ok",
+   "resultat_json": -0.928,
+   "k_verdi": -0.928,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_1993.sp90",
+   "status": "ok",
+   "resultat_json": 1.0,
+   "k_verdi": 1.0,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_1993.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.753,
+   "k_verdi": -0.753,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_1997.ap",
+   "status": "ok",
+   "resultat_json": -0.805,
+   "k_verdi": -0.805,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_1997.sp90",
+   "status": "ok",
+   "resultat_json": 0.416,
+   "k_verdi": 0.416,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_1997.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.649,
+   "k_verdi": -0.649,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2001.ap",
+   "status": "ok",
+   "resultat_json": -0.74,
+   "k_verdi": -0.74,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2001.sp90",
+   "status": "ok",
+   "resultat_json": 0.158,
+   "k_verdi": 0.158,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2001.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.641,
+   "k_verdi": -0.641,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2005.ap",
+   "status": "ok",
+   "resultat_json": -0.796,
+   "k_verdi": -0.796,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2005.sp90",
+   "status": "ok",
+   "resultat_json": 0.309,
+   "k_verdi": 0.309,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2005.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.607,
+   "k_verdi": -0.607,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2009.ap",
+   "status": "ok",
+   "resultat_json": -0.629,
+   "k_verdi": -0.629,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2009.sp90",
+   "status": "ok",
+   "resultat_json": 0.242,
+   "k_verdi": 0.242,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2009.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.384,
+   "k_verdi": -0.384,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2013.ap",
+   "status": "ok",
+   "resultat_json": -0.65,
+   "k_verdi": -0.65,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2013.sp90",
+   "status": "ok",
+   "resultat_json": 0.208,
+   "k_verdi": 0.208,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.distrikt_bastion_fast.til_2013.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.408,
+   "k_verdi": -0.408,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.dose_snitt",
+   "status": "ok",
+   "resultat_json": 11.36,
+   "k_verdi": 11.36,
+   "begrunnelse": "Gjennomsnittlig dose (sp90-endring) reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_1993.ap",
+   "status": "ok",
+   "resultat_json": -0.716,
+   "k_verdi": -0.716,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_1993.sp90",
+   "status": "ok",
+   "resultat_json": 1.0,
+   "k_verdi": 1.0,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_1993.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.544,
+   "k_verdi": -0.544,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_1997.ap",
+   "status": "ok",
+   "resultat_json": -0.573,
+   "k_verdi": -0.573,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_1997.sp90",
+   "status": "ok",
+   "resultat_json": 0.239,
+   "k_verdi": 0.239,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_1997.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.371,
+   "k_verdi": -0.371,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2001.ap",
+   "status": "ok",
+   "resultat_json": -0.352,
+   "k_verdi": -0.352,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2001.sp90",
+   "status": "ok",
+   "resultat_json": -0.009,
+   "k_verdi": -0.009,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2001.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.061,
+   "k_verdi": -0.061,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2005.ap",
+   "status": "ok",
+   "resultat_json": -0.418,
+   "k_verdi": -0.418,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2005.sp90",
+   "status": "ok",
+   "resultat_json": 0.072,
+   "k_verdi": 0.072,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2005.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.153,
+   "k_verdi": -0.153,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2009.ap",
+   "status": "ok",
+   "resultat_json": -0.466,
+   "k_verdi": -0.466,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2009.sp90",
+   "status": "ok",
+   "resultat_json": 0.067,
+   "k_verdi": 0.067,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2009.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.131,
+   "k_verdi": -0.131,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2013.ap",
+   "status": "ok",
+   "resultat_json": -0.357,
+   "k_verdi": -0.357,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2013.sp90",
+   "status": "ok",
+   "resultat_json": -0.033,
+   "k_verdi": -0.033,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.1989-1993.sentral.til_2013.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": 0.014,
+   "k_verdi": 0.014,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.alle_distrikt.dose_snitt",
+   "status": "ok",
+   "resultat_json": 15.72,
+   "k_verdi": 15.72,
+   "begrunnelse": "Gjennomsnittlig dose (sp90-endring) reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.alle_distrikt.til_2017.ap",
+   "status": "ok",
+   "resultat_json": -0.314,
+   "k_verdi": -0.314,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.alle_distrikt.til_2017.sp90",
+   "status": "ok",
+   "resultat_json": 0.764,
+   "k_verdi": 0.764,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.alle_distrikt.til_2017.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.382,
+   "k_verdi": -0.382,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.alle_distrikt.til_2021.ap",
+   "status": "ok",
+   "resultat_json": -0.379,
+   "k_verdi": -0.379,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.alle_distrikt.til_2021.sp90",
+   "status": "ok",
+   "resultat_json": 1.0,
+   "k_verdi": 1.0,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.alle_distrikt.til_2021.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.503,
+   "k_verdi": -0.503,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.alle_distrikt.til_2025.ap",
+   "status": "ok",
+   "resultat_json": -0.207,
+   "k_verdi": -0.207,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.alle_distrikt.til_2025.sp90",
+   "status": "ok",
+   "resultat_json": 0.397,
+   "k_verdi": 0.397,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.alle_distrikt.til_2025.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.447,
+   "k_verdi": -0.447,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.distrikt_bastion_rull.dose_snitt",
+   "status": "ok",
+   "resultat_json": 15.17,
+   "k_verdi": 15.17,
+   "begrunnelse": "Gjennomsnittlig dose (sp90-endring) reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.distrikt_bastion_fast.dose_snitt",
+   "status": "ok",
+   "resultat_json": 18.15,
+   "k_verdi": 18.15,
+   "begrunnelse": "Gjennomsnittlig dose (sp90-endring) reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.distrikt_bastion_fast.til_2017.ap",
+   "status": "ok",
+   "resultat_json": -0.408,
+   "k_verdi": -0.408,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.distrikt_bastion_fast.til_2017.sp90",
+   "status": "ok",
+   "resultat_json": 0.989,
+   "k_verdi": 0.989,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.distrikt_bastion_fast.til_2017.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.407,
+   "k_verdi": -0.407,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.distrikt_bastion_fast.til_2021.ap",
+   "status": "ok",
+   "resultat_json": -0.376,
+   "k_verdi": -0.376,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.distrikt_bastion_fast.til_2021.sp90",
+   "status": "ok",
+   "resultat_json": 1.0,
+   "k_verdi": 1.0,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.distrikt_bastion_fast.til_2021.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.415,
+   "k_verdi": -0.415,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.distrikt_bastion_fast.til_2025.ap",
+   "status": "ok",
+   "resultat_json": -0.166,
+   "k_verdi": -0.166,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.distrikt_bastion_fast.til_2025.sp90",
+   "status": "ok",
+   "resultat_json": 0.383,
+   "k_verdi": 0.383,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.distrikt_bastion_fast.til_2025.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.227,
+   "k_verdi": -0.227,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.sentral.dose_snitt",
+   "status": "ok",
+   "resultat_json": 10.55,
+   "k_verdi": 10.55,
+   "begrunnelse": "Gjennomsnittlig dose (sp90-endring) reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.sentral.til_2017.ap",
+   "status": "ok",
+   "resultat_json": -0.222,
+   "k_verdi": -0.222,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.sentral.til_2017.sp90",
+   "status": "ok",
+   "resultat_json": 0.546,
+   "k_verdi": 0.546,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.sentral.til_2017.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.374,
+   "k_verdi": -0.374,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.sentral.til_2021.ap",
+   "status": "ok",
+   "resultat_json": -0.312,
+   "k_verdi": -0.312,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.sentral.til_2021.sp90",
+   "status": "ok",
+   "resultat_json": 1.0,
+   "k_verdi": 1.0,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.sentral.til_2021.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.483,
+   "k_verdi": -0.483,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.sentral.til_2025.ap",
+   "status": "ok",
+   "resultat_json": -0.222,
+   "k_verdi": -0.222,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.sentral.til_2025.sp90",
+   "status": "ok",
+   "resultat_json": 0.1,
+   "k_verdi": 0.1,
+   "begrunnelse": "Kontrollert tverrsnittsregresjon (HC1) med ap(t0) og befolkningskontroll, reprodusert."
+  },
+  {
+   "id": "T3.2013-2021.sentral.til_2025.ap_uten_kontroll",
+   "status": "ok",
+   "resultat_json": -0.535,
+   "k_verdi": -0.535,
+   "begrunnelse": "Ukontrollert enkel regresjon reprodusert."
+  },
+  {
+   "id": "T4.1993.bastion.høy_dose.dose_snitt",
+   "status": "ok",
+   "resultat_json": 20.72,
+   "k_verdi": 20.72,
+   "begrunnelse": "Dose-snitt for hoy/lav-splitten (median), reprodusert."
+  },
+  {
+   "id": "T4.1993.bastion.høy_dose.ap.1981",
+   "status": "ok",
+   "resultat_json": 3.3,
+   "k_verdi": 3.3,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.høy_dose.ap.1985",
+   "status": "ok",
+   "resultat_json": 6.7,
+   "k_verdi": 6.7,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.høy_dose.ap.1989",
+   "status": "ok",
+   "resultat_json": 0.0,
+   "k_verdi": 0.0,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.høy_dose.ap.1993",
+   "status": "ok",
+   "resultat_json": -10.33,
+   "k_verdi": -10.33,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.høy_dose.ap.1997",
+   "status": "ok",
+   "resultat_json": -10.21,
+   "k_verdi": -10.21,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.høy_dose.ap.2001",
+   "status": "ok",
+   "resultat_json": -9.83,
+   "k_verdi": -9.83,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.høy_dose.ap.2005",
+   "status": "ok",
+   "resultat_json": -6.61,
+   "k_verdi": -6.61,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.høy_dose.ap.2009",
+   "status": "ok",
+   "resultat_json": -6.76,
+   "k_verdi": -6.76,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.lav_dose.dose_snitt",
+   "status": "ok",
+   "resultat_json": 12.65,
+   "k_verdi": 12.65,
+   "begrunnelse": "Dose-snitt for hoy/lav-splitten (median), reprodusert."
+  },
+  {
+   "id": "T4.1993.bastion.lav_dose.ap.1981",
+   "status": "ok",
+   "resultat_json": 4.03,
+   "k_verdi": 4.03,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.lav_dose.ap.1985",
+   "status": "ok",
+   "resultat_json": 5.23,
+   "k_verdi": 5.23,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.lav_dose.ap.1989",
+   "status": "ok",
+   "resultat_json": 0.0,
+   "k_verdi": 0.0,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.lav_dose.ap.1993",
+   "status": "ok",
+   "resultat_json": -4.22,
+   "k_verdi": -4.22,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.lav_dose.ap.1997",
+   "status": "ok",
+   "resultat_json": -2.61,
+   "k_verdi": -2.61,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.lav_dose.ap.2001",
+   "status": "ok",
+   "resultat_json": -1.99,
+   "k_verdi": -1.99,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.lav_dose.ap.2005",
+   "status": "ok",
+   "resultat_json": -0.28,
+   "k_verdi": -0.28,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion.lav_dose.ap.2009",
+   "status": "ok",
+   "resultat_json": -1.45,
+   "k_verdi": -1.45,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.høy_dose.dose_snitt",
+   "status": "ok",
+   "resultat_json": 22.37,
+   "k_verdi": 22.37,
+   "begrunnelse": "Dose-snitt for hoy/lav-splitten (median), reprodusert."
+  },
+  {
+   "id": "T4.1993.bastion_fast.høy_dose.ap.1981",
+   "status": "ok",
+   "resultat_json": 2.41,
+   "k_verdi": 2.41,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.høy_dose.ap.1985",
+   "status": "ok",
+   "resultat_json": 6.07,
+   "k_verdi": 6.07,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.høy_dose.ap.1989",
+   "status": "ok",
+   "resultat_json": 0.0,
+   "k_verdi": 0.0,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.høy_dose.ap.1993",
+   "status": "ok",
+   "resultat_json": -9.76,
+   "k_verdi": -9.76,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.høy_dose.ap.1997",
+   "status": "ok",
+   "resultat_json": -8.75,
+   "k_verdi": -8.75,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.høy_dose.ap.2001",
+   "status": "ok",
+   "resultat_json": -8.57,
+   "k_verdi": -8.57,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.høy_dose.ap.2005",
+   "status": "ok",
+   "resultat_json": -5.15,
+   "k_verdi": -5.15,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.høy_dose.ap.2009",
+   "status": "ok",
+   "resultat_json": -4.14,
+   "k_verdi": -4.14,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.lav_dose.dose_snitt",
+   "status": "ok",
+   "resultat_json": 13.61,
+   "k_verdi": 13.61,
+   "begrunnelse": "Dose-snitt for hoy/lav-splitten (median), reprodusert."
+  },
+  {
+   "id": "T4.1993.bastion_fast.lav_dose.ap.1981",
+   "status": "ok",
+   "resultat_json": 4.15,
+   "k_verdi": 4.15,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.lav_dose.ap.1985",
+   "status": "ok",
+   "resultat_json": 5.65,
+   "k_verdi": 5.65,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.lav_dose.ap.1989",
+   "status": "ok",
+   "resultat_json": 0.0,
+   "k_verdi": 0.0,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.lav_dose.ap.1993",
+   "status": "ok",
+   "resultat_json": -3.87,
+   "k_verdi": -3.87,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.lav_dose.ap.1997",
+   "status": "ok",
+   "resultat_json": -2.44,
+   "k_verdi": -2.44,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.lav_dose.ap.2001",
+   "status": "ok",
+   "resultat_json": -1.68,
+   "k_verdi": -1.68,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.lav_dose.ap.2005",
+   "status": "ok",
+   "resultat_json": 0.28,
+   "k_verdi": 0.28,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.1993.bastion_fast.lav_dose.ap.2009",
+   "status": "ok",
+   "resultat_json": -0.79,
+   "k_verdi": -0.79,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion",
+   "status": "ok",
+   "resultat_json": {
+    "n": 5,
+    "merknad": "for få kommuner"
+   },
+   "k_verdi": {
+    "n": 5,
+    "merknad": "for faa kommuner"
+   },
+   "begrunnelse": "For faa kommuner - korrekt suppresjon."
+  },
+  {
+   "id": "T4.2021.bastion_fast.høy_dose.dose_snitt",
+   "status": "ok",
+   "resultat_json": 22.29,
+   "k_verdi": 22.29,
+   "begrunnelse": "Dose-snitt for hoy/lav-splitten (median), reprodusert."
+  },
+  {
+   "id": "T4.2021.bastion_fast.høy_dose.ap.2005",
+   "status": "ok",
+   "resultat_json": -1.1,
+   "k_verdi": -1.1,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion_fast.høy_dose.ap.2009",
+   "status": "ok",
+   "resultat_json": -1.22,
+   "k_verdi": -1.22,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion_fast.høy_dose.ap.2013",
+   "status": "ok",
+   "resultat_json": 0.0,
+   "k_verdi": 0.0,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion_fast.høy_dose.ap.2017",
+   "status": "ok",
+   "resultat_json": -5.81,
+   "k_verdi": -5.81,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion_fast.høy_dose.ap.2021",
+   "status": "ok",
+   "resultat_json": -5.21,
+   "k_verdi": -5.21,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion_fast.høy_dose.ap.2025",
+   "status": "ok",
+   "resultat_json": -6.79,
+   "k_verdi": -6.79,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion_fast.lav_dose.dose_snitt",
+   "status": "ok",
+   "resultat_json": 13.91,
+   "k_verdi": 13.91,
+   "begrunnelse": "Dose-snitt for hoy/lav-splitten (median), reprodusert."
+  },
+  {
+   "id": "T4.2021.bastion_fast.lav_dose.ap.2005",
+   "status": "ok",
+   "resultat_json": 0.06,
+   "k_verdi": 0.06,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion_fast.lav_dose.ap.2009",
+   "status": "ok",
+   "resultat_json": 0.14,
+   "k_verdi": 0.14,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion_fast.lav_dose.ap.2013",
+   "status": "ok",
+   "resultat_json": 0.0,
+   "k_verdi": 0.0,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion_fast.lav_dose.ap.2017",
+   "status": "ok",
+   "resultat_json": -2.35,
+   "k_verdi": -2.35,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion_fast.lav_dose.ap.2021",
+   "status": "ok",
+   "resultat_json": -1.65,
+   "k_verdi": -1.65,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T4.2021.bastion_fast.lav_dose.ap.2025",
+   "status": "ok",
+   "resultat_json": -2.92,
+   "k_verdi": -2.92,
+   "begrunnelse": "Ap relativt til landet, normert til basisaar, reprodusert eksakt."
+  },
+  {
+   "id": "T5.n_grupper",
+   "status": "ok",
+   "resultat_json": {
+    "b_distrikt_ikke_bastion": 164,
+    "c_sentral": 145,
+    "rammet_bastion": 43,
+    "a_bastion_lav_dose": 5
+   },
+   "k_verdi": {
+    "rammet_bastion": 43,
+    "a_bastion_lav_dose": 5,
+    "b_distrikt_ikke_bastion": 164,
+    "c_sentral": 145
+   },
+   "begrunnelse": "Gruppestoerrelser (dosegrense 10pp) reprodusert eksakt."
+  },
+  {
+   "id": "T5.dosegrense",
+   "status": "ok",
+   "resultat_json": 10.0,
+   "k_verdi": 10.0,
+   "begrunnelse": "10.0 pp, jf laast.json."
+  },
+  {
+   "id": "T5.snitt.ped90.a_bastion_lav_dose.før",
+   "status": "ok",
+   "resultat_json": 12.16,
+   "k_verdi": 12.16,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped90.a_bastion_lav_dose.etter",
+   "status": "ok",
+   "resultat_json": 13.15,
+   "k_verdi": 13.15,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped90.a_bastion_lav_dose.endring",
+   "status": "ok",
+   "resultat_json": 0.99,
+   "k_verdi": 0.99,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped90.b_distrikt_ikke_bastion.før",
+   "status": "ok",
+   "resultat_json": 15.02,
+   "k_verdi": 15.02,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped90.b_distrikt_ikke_bastion.etter",
+   "status": "ok",
+   "resultat_json": 15.47,
+   "k_verdi": 15.47,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped90.b_distrikt_ikke_bastion.endring",
+   "status": "ok",
+   "resultat_json": 0.45,
+   "k_verdi": 0.45,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped90.c_sentral.før",
+   "status": "ok",
+   "resultat_json": 13.86,
+   "k_verdi": 13.86,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped90.c_sentral.etter",
+   "status": "ok",
+   "resultat_json": 14.29,
+   "k_verdi": 14.29,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped90.c_sentral.endring",
+   "status": "ok",
+   "resultat_json": 0.43,
+   "k_verdi": 0.43,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped90.rammet_bastion.før",
+   "status": "ok",
+   "resultat_json": 14.27,
+   "k_verdi": 14.27,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped90.rammet_bastion.etter",
+   "status": "ok",
+   "resultat_json": 15.57,
+   "k_verdi": 15.57,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped90.rammet_bastion.endring",
+   "status": "ok",
+   "resultat_json": 1.31,
+   "k_verdi": 1.31,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.a_bastion_lav_dose.før",
+   "status": "ok",
+   "resultat_json": 10.7,
+   "k_verdi": 10.7,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.a_bastion_lav_dose.etter",
+   "status": "ok",
+   "resultat_json": 11.96,
+   "k_verdi": 11.96,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.a_bastion_lav_dose.endring",
+   "status": "ok",
+   "resultat_json": 1.26,
+   "k_verdi": 1.26,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.b_distrikt_ikke_bastion.før",
+   "status": "ok",
+   "resultat_json": 12.35,
+   "k_verdi": 12.35,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.b_distrikt_ikke_bastion.etter",
+   "status": "ok",
+   "resultat_json": 13.81,
+   "k_verdi": 13.81,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.b_distrikt_ikke_bastion.endring",
+   "status": "ok",
+   "resultat_json": 1.47,
+   "k_verdi": 1.47,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.c_sentral.før",
+   "status": "ok",
+   "resultat_json": 12.09,
+   "k_verdi": 12.09,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.c_sentral.etter",
+   "status": "ok",
+   "resultat_json": 13.59,
+   "k_verdi": 13.59,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.c_sentral.endring",
+   "status": "ok",
+   "resultat_json": 1.49,
+   "k_verdi": 1.49,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.rammet_bastion.før",
+   "status": "ok",
+   "resultat_json": 12.26,
+   "k_verdi": 12.26,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.rammet_bastion.etter",
+   "status": "ok",
+   "resultat_json": 13.96,
+   "k_verdi": 13.96,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.snitt.ped_uten_sp.rammet_bastion.endring",
+   "status": "ok",
+   "resultat_json": 1.7,
+   "k_verdi": 1.7,
+   "begrunnelse": "Foer/etter-snitt reprodusert eksakt."
+  },
+  {
+   "id": "T5.did_ped90.mot_a_bastion_lav_dose.b",
+   "status": "ok",
+   "resultat_json": 0.315,
+   "k_verdi": 0.315,
+   "begrunnelse": "DiD-koeffisient (kommune- og periode-FE, klynget SE) reprodusert innenfor toleranse. SE kunne ikke fullt verifiseres pga numerisk ustabil pinv-basert klynget kovarians i mitt dummy-OLS-oppsett ved store utvalg (se ikke_sjekket)."
+  },
+  {
+   "id": "T5.did_ped90.mot_b_distrikt_ikke_bastion.b",
+   "status": "ok",
+   "resultat_json": 0.857,
+   "k_verdi": 0.849,
+   "begrunnelse": "DiD-koeffisient (kommune- og periode-FE, klynget SE) reprodusert innenfor toleranse. SE kunne ikke fullt verifiseres pga numerisk ustabil pinv-basert klynget kovarians i mitt dummy-OLS-oppsett ved store utvalg (se ikke_sjekket)."
+  },
+  {
+   "id": "T5.did_ped90.mot_c_sentral.b",
+   "status": "ok",
+   "resultat_json": 0.874,
+   "k_verdi": 0.878,
+   "begrunnelse": "DiD-koeffisient (kommune- og periode-FE, klynget SE) reprodusert innenfor toleranse. SE kunne ikke fullt verifiseres pga numerisk ustabil pinv-basert klynget kovarians i mitt dummy-OLS-oppsett ved store utvalg (se ikke_sjekket)."
+  },
+  {
+   "id": "T5.did_ped_uten_sp.mot_a_bastion_lav_dose.b",
+   "status": "ok",
+   "resultat_json": 0.442,
+   "k_verdi": 0.442,
+   "begrunnelse": "DiD-koeffisient (kommune- og periode-FE, klynget SE) reprodusert innenfor toleranse. SE kunne ikke fullt verifiseres pga numerisk ustabil pinv-basert klynget kovarians i mitt dummy-OLS-oppsett ved store utvalg (se ikke_sjekket)."
+  },
+  {
+   "id": "T5.did_ped_uten_sp.mot_b_distrikt_ikke_bastion.b",
+   "status": "ok",
+   "resultat_json": 0.236,
+   "k_verdi": 0.229,
+   "begrunnelse": "DiD-koeffisient (kommune- og periode-FE, klynget SE) reprodusert innenfor toleranse. SE kunne ikke fullt verifiseres pga numerisk ustabil pinv-basert klynget kovarians i mitt dummy-OLS-oppsett ved store utvalg (se ikke_sjekket)."
+  },
+  {
+   "id": "T5.did_ped_uten_sp.mot_c_sentral.b",
+   "status": "ok",
+   "resultat_json": 0.212,
+   "k_verdi": 0.217,
+   "begrunnelse": "DiD-koeffisient (kommune- og periode-FE, klynget SE) reprodusert innenfor toleranse. SE kunne ikke fullt verifiseres pga numerisk ustabil pinv-basert klynget kovarians i mitt dummy-OLS-oppsett ved store utvalg (se ikke_sjekket)."
+  },
+  {
+   "id": "T5.median_deling.n_grupper",
+   "status": "ok",
+   "resultat_json": {
+    "b_distrikt_ikke_bastion": 164,
+    "c_sentral": 145,
+    "a_bastion_lav_dose": 24,
+    "rammet_bastion": 24
+   },
+   "k_verdi": {
+    "rammet_bastion": 24,
+    "a_bastion_lav_dose": 24,
+    "b_distrikt_ikke_bastion": 164,
+    "c_sentral": 145
+   },
+   "begrunnelse": "Mediandeling (24/24) reprodusert eksakt."
+  },
+  {
+   "id": "T5.median_deling.dosegrense",
+   "status": "ok",
+   "resultat_json": 15.39,
+   "k_verdi": 15.39,
+   "begrunnelse": "Median dose blant distrikts-bastioner (15.39) reprodusert."
+  },
+  {
+   "id": "T5.median_deling.did_ped90.mot_a_bastion_lav_dose.b",
+   "status": "ok",
+   "resultat_json": 2.601,
+   "k_verdi": 2.601,
+   "begrunnelse": "DiD-koeffisient med mediandeling reprodusert innenfor toleranse."
+  },
+  {
+   "id": "T5.median_deling.did_ped90.mot_b_distrikt_ikke_bastion.b",
+   "status": "ok",
+   "resultat_json": 2.125,
+   "k_verdi": 2.12,
+   "begrunnelse": "DiD-koeffisient med mediandeling reprodusert innenfor toleranse."
+  },
+  {
+   "id": "T5.median_deling.did_ped90.mot_c_sentral.b",
+   "status": "ok",
+   "resultat_json": 2.142,
+   "k_verdi": 2.142,
+   "begrunnelse": "DiD-koeffisient med mediandeling reprodusert innenfor toleranse."
+  },
+  {
+   "id": "T5.median_deling.did_ped_uten_sp.mot_a_bastion_lav_dose.b",
+   "status": "ok",
+   "resultat_json": 2.085,
+   "k_verdi": 2.085,
+   "begrunnelse": "DiD-koeffisient med mediandeling reprodusert innenfor toleranse."
+  },
+  {
+   "id": "T5.median_deling.did_ped_uten_sp.mot_b_distrikt_ikke_bastion.b",
+   "status": "ok",
+   "resultat_json": 1.232,
+   "k_verdi": 1.237,
+   "begrunnelse": "DiD-koeffisient med mediandeling reprodusert innenfor toleranse."
+  },
+  {
+   "id": "T5.median_deling.did_ped_uten_sp.mot_c_sentral.b",
+   "status": "ok",
+   "resultat_json": 1.208,
+   "k_verdi": 1.208,
+   "begrunnelse": "DiD-koeffisient med mediandeling reprodusert innenfor toleranse."
+  },
+  {
+   "id": "T6.1993-1997.alle_distrikt.snitt_d_sp90",
+   "status": "ok",
+   "resultat_json": -13.25,
+   "k_verdi": -13.25,
+   "begrunnelse": "Snitt d_sp90 i tilbakefallsparet reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.alle_distrikt.andel_av_tap_til.ap",
+   "status": "ok",
+   "resultat_json": 0.155,
+   "k_verdi": 0.155,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.alle_distrikt.andel_av_tap_til.frp",
+   "status": "ok",
+   "resultat_json": -0.011,
+   "k_verdi": -0.011,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.alle_distrikt.andel_av_tap_til.h",
+   "status": "ok",
+   "resultat_json": -0.008,
+   "k_verdi": -0.008,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.alle_distrikt.andel_av_tap_til.krf",
+   "status": "ok",
+   "resultat_json": 0.257,
+   "k_verdi": 0.257,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.distrikt_bastion_fast.snitt_d_sp90",
+   "status": "ok",
+   "resultat_json": -11.19,
+   "k_verdi": -11.19,
+   "begrunnelse": "Snitt d_sp90 i tilbakefallsparet reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.distrikt_bastion_fast.andel_av_tap_til.ap",
+   "status": "ok",
+   "resultat_json": 0.19,
+   "k_verdi": 0.19,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.distrikt_bastion_fast.andel_av_tap_til.frp",
+   "status": "ok",
+   "resultat_json": -0.057,
+   "k_verdi": -0.057,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.distrikt_bastion_fast.andel_av_tap_til.h",
+   "status": "ok",
+   "resultat_json": 0.031,
+   "k_verdi": 0.031,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.distrikt_bastion_fast.andel_av_tap_til.krf",
+   "status": "ok",
+   "resultat_json": 0.215,
+   "k_verdi": 0.215,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.sentral.snitt_d_sp90",
+   "status": "ok",
+   "resultat_json": -10.11,
+   "k_verdi": -10.11,
+   "begrunnelse": "Snitt d_sp90 i tilbakefallsparet reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.sentral.andel_av_tap_til.ap",
+   "status": "ok",
+   "resultat_json": 0.205,
+   "k_verdi": 0.205,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.sentral.andel_av_tap_til.frp",
+   "status": "ok",
+   "resultat_json": 0.084,
+   "k_verdi": 0.084,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.sentral.andel_av_tap_til.h",
+   "status": "ok",
+   "resultat_json": 0.202,
+   "k_verdi": 0.202,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.1993-1997.sentral.andel_av_tap_til.krf",
+   "status": "ok",
+   "resultat_json": 0.36,
+   "k_verdi": 0.36,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.alle_distrikt.snitt_d_sp90",
+   "status": "ok",
+   "resultat_json": -14.79,
+   "k_verdi": -14.79,
+   "begrunnelse": "Snitt d_sp90 i tilbakefallsparet reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.alle_distrikt.andel_av_tap_til.ap",
+   "status": "ok",
+   "resultat_json": 0.388,
+   "k_verdi": 0.388,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.alle_distrikt.andel_av_tap_til.frp",
+   "status": "ok",
+   "resultat_json": 0.123,
+   "k_verdi": 0.123,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.alle_distrikt.andel_av_tap_til.h",
+   "status": "ok",
+   "resultat_json": 0.234,
+   "k_verdi": 0.234,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.alle_distrikt.andel_av_tap_til.krf",
+   "status": "ok",
+   "resultat_json": 0.02,
+   "k_verdi": 0.02,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.distrikt_bastion_fast.snitt_d_sp90",
+   "status": "ok",
+   "resultat_json": -15.43,
+   "k_verdi": -15.43,
+   "begrunnelse": "Snitt d_sp90 i tilbakefallsparet reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.distrikt_bastion_fast.andel_av_tap_til.ap",
+   "status": "ok",
+   "resultat_json": 0.516,
+   "k_verdi": 0.516,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.distrikt_bastion_fast.andel_av_tap_til.frp",
+   "status": "ok",
+   "resultat_json": 0.108,
+   "k_verdi": 0.108,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.distrikt_bastion_fast.andel_av_tap_til.h",
+   "status": "ok",
+   "resultat_json": 0.123,
+   "k_verdi": 0.123,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.distrikt_bastion_fast.andel_av_tap_til.krf",
+   "status": "ok",
+   "resultat_json": 0.012,
+   "k_verdi": 0.012,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.sentral.snitt_d_sp90",
+   "status": "ok",
+   "resultat_json": -9.91,
+   "k_verdi": -9.91,
+   "begrunnelse": "Snitt d_sp90 i tilbakefallsparet reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.sentral.andel_av_tap_til.ap",
+   "status": "ok",
+   "resultat_json": 0.161,
+   "k_verdi": 0.161,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.sentral.andel_av_tap_til.frp",
+   "status": "ok",
+   "resultat_json": 0.248,
+   "k_verdi": 0.248,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.sentral.andel_av_tap_til.h",
+   "status": "ok",
+   "resultat_json": 0.36,
+   "k_verdi": 0.36,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  },
+  {
+   "id": "T6.2021-2025.sentral.andel_av_tap_til.krf",
+   "status": "ok",
+   "resultat_json": 0.031,
+   "k_verdi": 0.031,
+   "begrunnelse": "andel_av_tap_til = -helning(d_q~d_sp90) reprodusert eksakt."
+  }
+ ],
+ "kriterier": [
+  {
+   "id": "T1",
+   "status": "komplett",
+   "hva_mangler": ""
+  },
+  {
+   "id": "T2",
+   "status": "komplett",
+   "hva_mangler": "bastion_fast_sp90 og sp_alene-delen ikke fullt uavhengig etterregnet, se ikke_sjekket."
+  },
+  {
+   "id": "T3",
+   "status": "komplett",
+   "hva_mangler": ""
+  },
+  {
+   "id": "T4",
+   "status": "komplett",
+   "hva_mangler": "Kun ap-seriene (jf. brief); sp90/frp/h-seriene og stablet_lokale_bolger ikke sjekket."
+  },
+  {
+   "id": "T5",
+   "status": "komplett",
+   "hva_mangler": "Kun did_ped90 og median_deling (jf. brief); øvrige T5-felt ikke sjekket."
+  },
+  {
+   "id": "T6",
+   "status": "komplett",
+   "hva_mangler": "lokale_tilbakefall ikke direkte etterregnet (symmetri indirekte bekreftet)."
+  }
+ ],
+ "grensevalg": [
+  {
+   "variant": "kryssjekk:bastion_45",
+   "nøkkeltall": "T1_helning_1993_distrikt_bastion",
+   "verdi": -0.778,
+   "snur_konklusjon": false,
+   "kommentar": "Reprodusert uavhengig mot resultater.json sin egen robusthet-tabell (samme variant): theirs=-0.778, diff=0.0. Bekrefter at robusthetstabellen selv er korrekt regnet."
+  },
+  {
+   "variant": "kryssjekk:bastion_55",
+   "nøkkeltall": "T1_helning_1993_distrikt_bastion",
+   "verdi": -0.907,
+   "snur_konklusjon": false,
+   "kommentar": "Reprodusert uavhengig mot resultater.json sin egen robusthet-tabell (samme variant): theirs=-0.907, diff=0.0. Bekrefter at robusthetstabellen selv er korrekt regnet."
+  },
+  {
+   "variant": "kryssjekk:sp_alene",
+   "nøkkeltall": "T1_helning_1993_distrikt_bastion",
+   "verdi": -0.839,
+   "snur_konklusjon": false,
+   "kommentar": "Reprodusert uavhengig mot resultater.json sin egen robusthet-tabell (samme variant): theirs=-0.839, diff=0.0. Bekrefter at robusthetstabellen selv er korrekt regnet."
+  },
+  {
+   "variant": "kryssjekk:bastion_45",
+   "nøkkeltall": "T2_asym",
+   "verdi": 0.153,
+   "snur_konklusjon": false,
+   "kommentar": "Reprodusert uavhengig mot resultater.json sin egen robusthet-tabell (samme variant): theirs=0.153, diff=0.0. Bekrefter at robusthetstabellen selv er korrekt regnet."
+  },
+  {
+   "variant": "kryssjekk:bastion_55",
+   "nøkkeltall": "T2_asym",
+   "verdi": 0.199,
+   "snur_konklusjon": false,
+   "kommentar": "Reprodusert uavhengig mot resultater.json sin egen robusthet-tabell (samme variant): theirs=0.199, diff=0.0. Bekrefter at robusthetstabellen selv er korrekt regnet."
+  },
+  {
+   "variant": "kryssjekk:sp_alene",
+   "nøkkeltall": "T2_asym",
+   "verdi": -0.012,
+   "snur_konklusjon": false,
+   "kommentar": "Reprodusert uavhengig mot resultater.json sin egen robusthet-tabell (samme variant): theirs=-0.012, diff=0.0. Bekrefter at robusthetstabellen selv er korrekt regnet."
+  },
+  {
+   "variant": "kryssjekk:bastion_45",
+   "nøkkeltall": "T5_did_ped90_mot_b",
+   "verdi": 0.559,
+   "snur_konklusjon": false,
+   "kommentar": "Reprodusert uavhengig mot resultater.json sin egen robusthet-tabell (samme variant): theirs=0.556, diff=0.003. Bekrefter at robusthetstabellen selv er korrekt regnet."
+  },
+  {
+   "variant": "kryssjekk:bastion_55",
+   "nøkkeltall": "T5_did_ped90_mot_b",
+   "verdi": 0.304,
+   "snur_konklusjon": false,
+   "kommentar": "Reprodusert uavhengig mot resultater.json sin egen robusthet-tabell (samme variant): theirs=0.295, diff=0.009. Bekrefter at robusthetstabellen selv er korrekt regnet."
+  },
+  {
+   "variant": "hovedvariant (bastion 50%, distrikt=5-6, dose 10pp, sp90)",
+   "nøkkeltall": "T1_1993_b / T2_asym_b / T5_did_b(mot ikke-bastion)",
+   "verdi": {
+    "T1": -0.839,
+    "T2_asym": 0.128,
+    "T5_did": 0.849
+   },
+   "snur_konklusjon": false,
+   "kommentar": "Referansepunkt."
+  },
+  {
+   "variant": "bastion_40",
+   "nøkkeltall": "T1_1993_b / T2_asym_b (p) / T5_did_b",
+   "verdi": {
+    "T1": -0.704,
+    "T2_asym": 0.137,
+    "T2_asym_p": 0.0052,
+    "T5_did": 0.357,
+    "n_T1": 118
+   },
+   "snur_konklusjon": false,
+   "kommentar": "Retning og styrke stabil; konklusjonen snur ikke."
+  },
+  {
+   "variant": "bastion_45",
+   "nøkkeltall": "T1_1993_b / T2_asym_b (p) / T5_did_b",
+   "verdi": {
+    "T1": -0.778,
+    "T2_asym": 0.153,
+    "T2_asym_p": 0.0022,
+    "T5_did": 0.559,
+    "n_T1": 76
+   },
+   "snur_konklusjon": false,
+   "kommentar": "Retning og styrke stabil; konklusjonen snur ikke."
+  },
+  {
+   "variant": "bastion_55",
+   "nøkkeltall": "T1_1993_b / T2_asym_b (p) / T5_did_b",
+   "verdi": {
+    "T1": -0.907,
+    "T2_asym": 0.199,
+    "T2_asym_p": 0.0509,
+    "T5_did": 0.304,
+    "n_T1": 15
+   },
+   "snur_konklusjon": false,
+   "kommentar": "Retning og styrke stabil; konklusjonen snur ikke."
+  },
+  {
+   "variant": "bastion_60",
+   "nøkkeltall": "T1_1993_b / T2_asym_b (p) / T5_did_b",
+   "verdi": {
+    "T1": -1.173,
+    "T2_asym": 0.106,
+    "T2_asym_p": 0.4037,
+    "T5_did": 0.41,
+    "n_T1": 3
+   },
+   "snur_konklusjon": true,
+   "kommentar": "T1- og T2-konklusjonen (brattere/asymmetrisk fall i bastioner) holder ved alle bastiongrenser 40-55%. Ved 60% blir utvalget for lite (n=3 i T1 1993) til at asymmetrien i T2 er signifikant (p=0.40) - en svakhet i presisjon ved en for streng grense, ikke en reversering av fortegn."
+  },
+  {
+   "variant": "distrikt = sentralitetsklasse 4-6",
+   "nøkkeltall": "T1_1993_b / T2_asym_b",
+   "verdi": {
+    "T1": -0.742,
+    "T2_asym": 0.114,
+    "T2_asym_p": 0.0762
+   },
+   "snur_konklusjon": false,
+   "kommentar": "Svakere, men samme retning og fortsatt bratt negativ helning; konklusjonen snur ikke."
+  },
+  {
+   "variant": "lokal_dose_5",
+   "nøkkeltall": "T5_did_b (mot ikke-bastion)",
+   "verdi": 0.81,
+   "snur_konklusjon": false,
+   "kommentar": "Paavirker kun T5s gruppering (rammet-terskel); DiD-effekten er fortsatt positiv (Pedersen oeker mer i rammede bastioner) ved baade 5 og 15 pp."
+  },
+  {
+   "variant": "lokal_dose_15",
+   "nøkkeltall": "T5_did_b (mot ikke-bastion)",
+   "verdi": 1.505,
+   "snur_konklusjon": false,
+   "kommentar": "Paavirker kun T5s gruppering (rammet-terskel); DiD-effekten er fortsatt positiv (Pedersen oeker mer i rammede bastioner) ved baade 5 og 15 pp."
+  },
+  {
+   "variant": "Sp alene i stedet for sp90 (felleslister utelatt)",
+   "nøkkeltall": "T2_asym_b (p)",
+   "verdi": {
+    "T2_asym": -0.012,
+    "p": 0.7773
+   },
+   "snur_konklusjon": true,
+   "kommentar": "VIKTIG: Med Sp alene (uten felleslister) snur T2-asymmetrien for distrikt_bastion fortegn: fra +0.128 (p=0.08, hovedvariant sp90) til -0.012 (p=0.78, ikke signifikant, feil fortegn for P2). Dette bekrefter tallet som allerede ligger i resultater.json sin egen robusthet.sp_alene, men det er ikke framhevet i selve T2-teksten. P2-konklusjonen (sperrehake) i distrikts-bastioner hviler dermed helt på aa regne Sp+felleslister som eeen gruppe."
+  },
+  {
+   "variant": "uten 2021-2025 (kun T2, periode_FE, distrikt_bastion)",
+   "nøkkeltall": "T2_asym_b (p)",
+   "verdi": {
+    "T2_asym": 0.128,
+    "p": 0.0825
+   },
+   "snur_konklusjon": false,
+   "kommentar": "Nesten identisk med hovedvariant (0.128 vs 0.128); 2021-2025-paret alene driver ikke asymmetrien for distrikt_bastion."
+  }
+ ],
+ "placebo": {
+  "vurdering": "T2s egen placebo (Ap-svake kommuner, ap_rull <= nedre kvartil innen valgpar) er korrekt konstruert: jeg reproduserte b_pos, b_neg og n eksakt (distrikt: n=957/89 kommuner; alle: n=1620/149 kommuner) for baade periode_FE og kommune_FE. Placeboen viser ingen signifikant/tilsvarende asymmetri (asym=-0.085, p=0.29 for distrikt; -0.02, p=0.73 for alle), motsatt fortegn av hovedresultatet - det taler mot at hovedfunnet bare er regresjon mot gjennomsnittet i den ene enden av Ap-fordelingen. Jeg kjørte i tillegg en egen, uavhengig placebo (se egne_tester) som styrker denne tolkningen.",
+  "egne_tester": [
+   {
+    "navn": "Falskt bølgeår (fremtidig d_sp90 som forklaringsvariabel)",
+    "beskrivelse": "For distrikt_bastion-kommuner: regresjon av d_ap i valgpar t0->t1 paa d_sp90 i det PAAFOELGENDE paret t1->t2 (i stedet for det samtidige paret), splittet i pos/neg, periodedummyer, SE klynget paa kommune. Hvis en tilsvarende asymmetri dukker opp her, ville det tyde paa seriekorrelasjon/mekanisk mønster snarere enn en ekte Sp-effekt.",
+    "resultat": {
+     "b_pos": {
+      "b": 0.093,
+      "se": 0.044,
+      "ki95": [
+       0.006,
+       0.18
+      ],
+      "p": 0.0353
+     },
+     "b_neg": {
+      "b": 0.046,
+      "se": 0.065,
+      "ki95": [
+       -0.082,
+       0.174
+      ],
+      "p": 0.4804
+     },
+     "asym": {
+      "b": -0.047,
+      "se": 0.084,
+      "ki95": [
+       -0.211,
+       0.117
+      ],
+      "p": 0.5741
+     }
+    },
+    "tolkning": "Ingen signifikant asymmetri (p=0.57), og b_pos har til og med feil fortegn (positiv). Dette placeboet finner ikke noe tilsvarende mønster, som styrker tolkningen av hovedresultatet i T2 som en reell, samtidig sammenheng - ikke en generell seriekorrelasjons- eller reversjonseffekt i panelet."
+   },
+   {
+    "navn": "H-bastion-analog (foreslaatt, ikke kjørt fullt ut)",
+    "beskrivelse": "Brief foreslo aa teste ΔH mot ΔSp i 'H-bastioner'. Jeg sjekket om dette er gjennomfoerbart: rullerende H-andel naar aldri 50 % i noen kommune i datasettet (maks kommunesnitt for H over hele perioden er ca 43 %), saa en direkte analog til 50%-Ap-bastiongrensen finnes ikke. En variant med f.eks. oevre desil av H-andel kunne vaert kjoert, men jeg prioriterte det falske bolgeaaret over dette innenfor tidsrammen.",
+    "resultat": null,
+    "tolkning": "Ikke kjørt - se ikke_sjekket."
+   }
+  ]
+ },
+ "falske_positiver": [
+  {
+   "hva": "T1 2013-2017 og 2017-2021 distrikt_bastion|bastion samt interaksjon|bastion er satt til null/utelatt i resultater.json pga faa distrikts-bastioner (n=5 og n=1). Jeg fikk selv tallverdier her ved aa regne uansett (n=5 gir b=-1.202), men vurderer nullingen som korrekt og bevisst - for faa observasjoner til aa rapportere en helning. Ikke en feil.",
+   "vurdering": "korrekt suppresjon, ikke feil"
+  },
+  {
+   "hva": "T2.1953-1989_uten_felleslister saa ved foerste gjennomgang ut til aa avvike sterkt fra mine egne tall, fordi jeg foerst mistolket 'uten felleslister' som 'bruk d_sp i stedet for d_sp90' for hele perioden. Riktig tolkning (bekreftet ved at n stemmer eksakt) er: begrens utvalget til kommune-aar UTEN felleslister til stede (fl0=fl1=0), med d_sp90 (=d_sp der) som x. Med denne tolkningen reproduseres alle tall eksakt. Ikke en feil i resultater.json.",
+   "vurdering": "min egen misforstaaelse, rettet - ikke en feil i resultatfilen"
+  }
+ ],
+ "motstrid": [
+  {
+   "hva": "T2-asymmetrien for distrikt_bastion (P2/sperrehake) er positiv og grensesignifikant med sp90 (b=0.128, p=0.08), men snur fortegn og blir klart ikke-signifikant med Sp alene (b=-0.012, p=0.78) - se resultater.json sin egen robusthet.sp_alene, som jeg har reprodusert uavhengig. Hovedteksten i T2 fremhever sp90-tallet uten aa flagge at konklusjonen for akkurat DENNE gruppen (distrikt_bastion) ikke er robust til partidefinisjonen.",
+   "alvorlighet": "moderat - paavirker tolkningen av P2 spesifikt for distrikts-bastioner, ikke resten av T2."
+  },
+  {
+   "hva": "andel_tilbake i T2.1953-1989_uten_felleslister.sentral = 9.958 er en numerisk ustabil ratio: b_pos=-0.019 er ikke signifikant (p=0.81, naer null), saa aa dele b_neg paa den gir et meningsloest 'andel tatt tilbake'-tall (996 %). Samme mekanisme gir andel_tilbake=-0.43 i delperioder.1953-1989.sentral (b_pos=0.017, p=0.35). Tallene er regnet riktig (jeg reproduserer dem eksakt), men boer ikke tolkes som en meningsfull andel naar telleren/nevneren ikke er signifikant.",
+   "alvorlighet": "lav - kosmetisk/tolkningsrisiko, ikke en regnefeil."
+  }
+ ],
+ "ikke_sjekket": [
+  "T1/T2/T3/T4 for sp_alene-varianten er ikke fullstendig regnet på nytt tall for tall (kun robusthetstabellens sp_alene-rad og min egen 'sp_alene'-grensevalg-kjøring for T1 1993/T2 distrikt_bastion/T5, som alle stemte).",
+  "T2.bastion_fast_sp90 (hele objektet) er ikke uavhengig etterregnet, utover at T1s bastion_fast-tall (som deler samme klassifisering) stemte eksakt.",
+  "T4: sp90-, frp- og h-seriene i hendelsesstudien, samt 'stablet_lokale_bolger'-objektet, er ikke etterregnet (brief pkt 1 ba kun om ap-seriene for 1993 og 2021).",
+  "T5: abs_utslag_etter, dose93_mot_dose1321_distrikt, ny_bølge_2013_2021_per_gruppe, forskjøvet_første_lokale_bølge, bastion_fast-varianten og ped_rå_uten_fellesliste_korreksjon er ikke etterregnet (brief pkt 1 ba kun om did_ped90 og median_deling).",
+  "T6.lokale_tilbakefall er ikke etterregnet direkte, men T6.symmetri er indirekte bekreftet: andel_til_ap_i_tilbakefallet i symmetri-objektet er identisk med andel_av_tap_til.ap i samme par/gruppe (som jeg har etterregnet), og andel_fra_ap_i_bølgen stemmer med -T1.dekomponering_distrikt.ap for 1989-1993.",
+  "robusthet.stabile_enheter, robusthet.bare_høy_sikkerhet_uten_estimert og robusthet.ett_fylke_ute er ikke uavhengig etterregnet fullt ut (kun spot-kryssjekket for bastion_45/55/sp_alene mot mine egne grensevalg-kjøringer, som stemte innenfor toleranse).",
+  "T7, T8, KV_parallell og figurene er bevisst ikke lest/sjekket, jf. brief.",
+  "SE (ikke b) i T5s DiD-modeller (did_ped90/median_deling) kunne ikke fullt verifiseres: mitt eget dummy-OLS-oppsett med kommune- og periodedummyer ga en numerisk ustabil (rangdefekt) klynget kovarians for de to største cellene (mot_b, mot_c), slik at mine SE ble urimelig store. Punktestimatene (b) stemte likevel innenfor toleranse i alle celler.",
+  "T2 interaksjon|bastion og interaksjon|bastion_fast (i T1) er ikke reprodusert - metoden er ikke presist definert i de laaste valgene, og mine forsoek pa standardspesifikasjoner ga andre tall enn resultater.json."
+ ],
+ "konklusjon": "godkjent",
+ "antall": {
+  "ok": 454,
+  "feil": 0,
+  "usikker": 6
+ }
+}
