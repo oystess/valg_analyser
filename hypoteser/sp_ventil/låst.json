@@ -1,0 +1,281 @@
+{
+ "dato": "2026-09-27",
+ "beskrivelse": "Definisjoner låst før T1–T8 ble kjørt (PROMPT.md §3, standardsvar §9).",
+ "panel_sha256": {
+  "panel.csv": "0e549799fe682f531840fc8d8ea2618c7d61a4a08077f3e9737080c2ba472578",
+  "panel_kv.csv": "c2c844aa1ea90b896d831490f030c2d6cb3b31337611a6bcd262702071f68f14",
+  "panel_stabil.csv": "e3522c4e663865fffc1b4a4e379b5def2c2047285f6546eca2271d32f2a47aed"
+ },
+ "kildefiler_sha256": {
+  "stortingsvalg_1945.csv": "63198316f8962e27ca60ebf7a488fc0f58d59c8eafa8954c36d6d2675d9e1d66",
+  "kommunestyrevalg_1945.csv": "dcc6ca90a2834456f6497e2206d2a75a808c14ebab2548bf8c72f4538d664cf5",
+  "stortingsvalg_1945_stabil.csv": "69a555f4e44d74d67512bb9da035e0cd6e0b98b163729f273f1f8a02d5c3c32b",
+  "befolkning_1951.csv": "496a766d2c66dd45db3fc4a95a882849c646c8373facb4966c9e37c7230c5028",
+  "sentralitet_2024.csv": "047ba7ab3a629c876a2d859e5363eec75075674d3ee4052f092f13882ef8d540",
+  "stabile_enheter.csv": "e989f77159085a71661af510637a180e97e2cb3393c99403da8ea38c67a33ad0"
+ },
+ "distrikt_sentralitetsklasser": [
+  5,
+  6
+ ],
+ "bastion": {
+  "hoved": "rullerende: Ap-snitt ved t0 og valget før >= 50.0 %",
+  "robusthet": [
+   "fast: Ap-snitt ST 1953–1969 >= 50.0 %",
+   "fast øvre kvartil (snitt 1953–69)",
+   "rullerende grense 45 og 55 %"
+  ]
+ },
+ "forste_testpar_t0": 1953,
+ "lokal_bolge_pp": 10.0,
+ "nasjonal_bolge_pp": 3.0,
+ "nasjonale_endringer": [
+  {
+   "par": "1945-1949",
+   "d_sp": -3.18,
+   "d_sp90": 2.96,
+   "d_ap": 4.67
+  },
+  {
+   "par": "1949-1953",
+   "d_sp": 3.96,
+   "d_sp90": -1.63,
+   "d_ap": 0.96
+  },
+  {
+   "par": "1953-1957",
+   "d_sp": -0.18,
+   "d_sp90": 2.14,
+   "d_ap": 1.67
+  },
+  {
+   "par": "1957-1961",
+   "d_sp": -1.81,
+   "d_sp90": 0.49,
+   "d_ap": -1.57
+  },
+  {
+   "par": "1961-1965",
+   "d_sp": 2.54,
+   "d_sp90": -0.81,
+   "d_ap": -3.62
+  },
+  {
+   "par": "1965-1969",
+   "d_sp": -0.37,
+   "d_sp90": 1.79,
+   "d_ap": 3.38
+  },
+  {
+   "par": "1969-1973",
+   "d_sp": -2.19,
+   "d_sp90": -0.24,
+   "d_ap": -11.24
+  },
+  {
+   "par": "1973-1977",
+   "d_sp": 1.2,
+   "d_sp90": 0.09,
+   "d_ap": 6.97
+  },
+  {
+   "par": "1977-1981",
+   "d_sp": -3.75,
+   "d_sp90": -5.1,
+   "d_ap": -5.18
+  },
+  {
+   "par": "1981-1985",
+   "d_sp": 2.36,
+   "d_sp90": -1.14,
+   "d_ap": 3.73
+  },
+  {
+   "par": "1985-1989",
+   "d_sp": -0.13,
+   "d_sp90": -0.13,
+   "d_ap": -6.53
+  },
+  {
+   "par": "1989-1993",
+   "d_sp": 10.27,
+   "d_sp90": 10.27,
+   "d_ap": 2.64
+  },
+  {
+   "par": "1993-1997",
+   "d_sp": -8.82,
+   "d_sp90": -8.82,
+   "d_ap": -1.91
+  },
+  {
+   "par": "1997-2001",
+   "d_sp": -2.36,
+   "d_sp90": -2.36,
+   "d_ap": -10.7
+  },
+  {
+   "par": "2001-2005",
+   "d_sp": 0.92,
+   "d_sp90": 0.92,
+   "d_ap": 8.4
+  },
+  {
+   "par": "2005-2009",
+   "d_sp": -0.33,
+   "d_sp90": -0.33,
+   "d_ap": 2.68
+  },
+  {
+   "par": "2009-2013",
+   "d_sp": -0.67,
+   "d_sp90": -0.67,
+   "d_ap": -4.53
+  },
+  {
+   "par": "2013-2017",
+   "d_sp": 4.84,
+   "d_sp90": 4.84,
+   "d_ap": -3.48
+  },
+  {
+   "par": "2017-2021",
+   "d_sp": 3.18,
+   "d_sp90": 3.18,
+   "d_ap": -1.11
+  },
+  {
+   "par": "2021-2025",
+   "d_sp": -7.91,
+   "d_sp90": -7.91,
+   "d_ap": 1.77
+  }
+ ],
+ "nasjonale_bolger_sp90": [
+  "1989-1993",
+  "2013-2017",
+  "2017-2021"
+ ],
+ "nasjonale_bolger_sp_alene": [
+  "1989-1993",
+  "2013-2017",
+  "2017-2021"
+ ],
+ "tilbakefall_sp90": {
+  "1989-1993": "1993-1997",
+  "2013-2017": "2021-2025",
+  "2017-2021": "2021-2025"
+ },
+ "tilbakefall_sp_alene": {
+  "1989-1993": "1993-1997",
+  "2013-2017": "2021-2025",
+  "2017-2021": "2021-2025"
+ },
+ "antall_kommuner_med_lokal_bolge_sp90": 308,
+ "antall_kommuner_med_lokal_bolge_sp_alene": 310,
+ "forste_lokale_bolge_fordeling_sp90": {
+  "1953-1957": 41,
+  "1957-1961": 23,
+  "1961-1965": 3,
+  "1965-1969": 14,
+  "1969-1973": 31,
+  "1973-1977": 28,
+  "1981-1985": 1,
+  "1989-1993": 164,
+  "2013-2017": 3
+ },
+ "gruppestørrelser_per_par": {
+  "1953-1957": {
+   "distrikt_bastion": 91,
+   "distrikt_ikke_bastion": 121,
+   "sentral": 145
+  },
+  "1957-1961": {
+   "distrikt_bastion": 99,
+   "distrikt_ikke_bastion": 113,
+   "sentral": 145
+  },
+  "1961-1965": {
+   "distrikt_bastion": 89,
+   "distrikt_ikke_bastion": 123,
+   "sentral": 145
+  },
+  "1965-1969": {
+   "distrikt_bastion": 73,
+   "distrikt_ikke_bastion": 139,
+   "sentral": 145
+  },
+  "1969-1973": {
+   "distrikt_bastion": 72,
+   "distrikt_ikke_bastion": 140,
+   "sentral": 145
+  },
+  "1973-1977": {
+   "distrikt_bastion": 55,
+   "distrikt_ikke_bastion": 157,
+   "sentral": 145
+  },
+  "1977-1981": {
+   "distrikt_bastion": 43,
+   "distrikt_ikke_bastion": 169,
+   "sentral": 145
+  },
+  "1981-1985": {
+   "distrikt_bastion": 58,
+   "distrikt_ikke_bastion": 154,
+   "sentral": 145
+  },
+  "1985-1989": {
+   "distrikt_bastion": 65,
+   "distrikt_ikke_bastion": 147,
+   "sentral": 145
+  },
+  "1989-1993": {
+   "distrikt_bastion": 48,
+   "distrikt_ikke_bastion": 164,
+   "sentral": 145
+  },
+  "1993-1997": {
+   "distrikt_bastion": 7,
+   "distrikt_ikke_bastion": 205,
+   "sentral": 145
+  },
+  "1997-2001": {
+   "distrikt_bastion": 6,
+   "distrikt_ikke_bastion": 206,
+   "sentral": 145
+  },
+  "2001-2005": {
+   "distrikt_bastion": 1,
+   "distrikt_ikke_bastion": 211,
+   "sentral": 145
+  },
+  "2005-2009": {
+   "distrikt_bastion": 1,
+   "distrikt_ikke_bastion": 211,
+   "sentral": 145
+  },
+  "2009-2013": {
+   "distrikt_bastion": 8,
+   "distrikt_ikke_bastion": 204,
+   "sentral": 145
+  },
+  "2013-2017": {
+   "distrikt_bastion": 5,
+   "distrikt_ikke_bastion": 207,
+   "sentral": 145
+  },
+  "2017-2021": {
+   "distrikt_bastion": 1,
+   "distrikt_ikke_bastion": 211,
+   "sentral": 145
+  },
+  "2021-2025": {
+   "distrikt_bastion": 1,
+   "distrikt_ikke_bastion": 211,
+   "sentral": 145
+  }
+ },
+ "hovedvariant": "stortingsvalg; kommunestyrevalg parallelt; Sp + felleslister (sp90) og Sp alene begge rapportert",
+ "sikkerhet": "valgpar med t0 < 1953 (sikkerhet «lav») brukes ikke i testene; rullerende bastion for par 1953–57 bruker 1949 som bakgrunn"
+}
