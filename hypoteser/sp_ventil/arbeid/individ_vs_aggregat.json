@@ -1,0 +1,63 @@
+{
+ "metode": [
+  "Overgangsandelene (andel av avgiverpartiets velgere) gjøres om til prosentpoeng av velgerne ved å gange med partiets",
+  "landsoppslutning ved forrige valg. Dette er en tilnærming: ikke-stemmere, erindringsfeil og utvalgsusikkerhet er ikke tatt med."
+ ],
+ "valg": {
+  "2017-2021": {
+   "kilder": [
+    "L02",
+    "L08",
+    "L14"
+   ],
+   "ap_til_sp_andel_av_ap": 0.07,
+   "sp_til_ap_andel_av_sp": 0.12,
+   "sp_til_frp_andel_av_sp": 0.01,
+   "brutto_ap_til_sp_pp": 1.92,
+   "brutto_sp_til_ap_pp": 1.24,
+   "brutto_sp_til_frp_pp": 0.1,
+   "netto_ap_til_sp_pp": 0.68,
+   "landsendring_sp_pp": 3.18,
+   "individ_netto_andel_av_sp_endring_fra_eller_til_ap": 0.213,
+   "aggregat_andel_fra_ap_distrikt": 0.349,
+   "aggregat_andel_fra_ap_alle": 0.337
+  },
+  "2021-2025": {
+   "kilder": [
+    "L18",
+    "L24",
+    "L30"
+   ],
+   "ap_til_sp_andel_av_ap": 0.02,
+   "sp_til_ap_andel_av_sp": 0.24,
+   "sp_til_frp_andel_av_sp": 0.15,
+   "brutto_ap_til_sp_pp": 0.53,
+   "brutto_sp_til_ap_pp": 3.24,
+   "brutto_sp_til_frp_pp": 2.03,
+   "netto_ap_til_sp_pp": -2.72,
+   "landsendring_sp_pp": -7.91,
+   "individ_netto_andel_av_sp_endring_fra_eller_til_ap": 0.343,
+   "aggregat_andel_til_ap_alle_distrikt": 0.388,
+   "aggregat_andel_til_frp_alle_distrikt": 0.123,
+   "aggregat_andel_til_ap_distrikt_bastion_fast": 0.516,
+   "aggregat_andel_til_frp_distrikt_bastion_fast": 0.108,
+   "aggregat_andel_til_ap_sentral": 0.161,
+   "aggregat_andel_til_frp_sentral": 0.248
+  }
+ },
+ "partibyttere_nasjonalt_11665": [
+  "19 % 1977-1981",
+  "20 % 1981-1985",
+  "30 % 1985-1989",
+  "32 % 1989-1993",
+  "33 % 1993-1997",
+  "37 % 1997-2001",
+  "40 % 2001-2005",
+  "31 % 2005-2009",
+  "33 % 2009-2013",
+  "32 % 2013-2017",
+  "37 % 2017-2021",
+  "39 % 2021-2025",
+  "37 % vs 40 %; 50 % vs 51 % 2013-2017 / 2017-2021"
+ ]
+}
