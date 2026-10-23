@@ -36,6 +36,17 @@ SENTRALITET_NAVN = {0: "Minst sentrale", 1: "Mindre sentrale",
                     2: "Noe sentrale",   3: "Sentrale"}
 SENT_FARGER = {0: "#d62728", 1: "#ff7f0e", 2: "#2ca02c", 3: "#1f77b4"}
 
+# "Periferi" vs "Sentral" for 2×2-bonusanalysen (bekreftet mot tapt HTML-innhold i
+# commit 69dd3af: gap periferi nedgang−vekst 1993≈0,4pp / 2021≈7,3pp reproduseres
+# eksakt med denne inndelingen).
+PERIFERI_KODER = {0, 1}
+SENTRAL_KODER  = {2, 3}
+
+# Historiske gap-tall fra den tapte håndskrevne seksjonen (commit 69dd3af, før
+# den permanente 1989/1993-datafiksen). Brukes kun til sammenligning/rapportering.
+HIST_GAP_1993 = 0.4
+HIST_GAP_2021 = 7.3
+
 
 # ── DATAHENTING ───────────────────────────────────────────────────────────────
 
@@ -260,6 +271,68 @@ def frp_konkurranse(sv):
     return df
 
 
+# ── BONUS: PERIFERI + FRAFLYTTING (2×2 Sp-NIVÅ) ──────────────────────────────
+
+def periferi_fraflytting_bonus(sv, bef, sent,
+                               aar_liste=(1993, 2017, 2021)) -> pd.DataFrame:
+    """
+    2×2-analyse av gjennomsnittlig Sp-NIVÅ (ikke ΔSp) i fire grupper:
+    sentralitet (Periferi=kode 0–1 / Sentral=kode 2–3) × befolkningsretning
+    (Nedgang/Vekst siste 10 år, 7 år for 1993 der 10-årsdata ikke finnes ennå).
+
+    Reproduserer analysen som opprinnelig var håndskrevet inn i index.html og
+    gikk tapt ved full regenerering (commit 69dd3af): gapet mellom periferi
+    med befolkningsnedgang vs. periferi med vekst vokste fra ~0,4pp (1993) til
+    ~7,3pp (2021) — befolkningsnedgang ble en stadig sterkere Sp-prediktor.
+    """
+    print("\n=== BONUS: PERIFERI + FRAFLYTTING (2×2 Sp-nivå) ===")
+    bef_min_aar = bef["aar"].min()
+    rader = []
+
+    for aar in aar_liste:
+        lag = 10 if (aar - 10) >= bef_min_aar else max(1, aar - bef_min_aar)
+        vekst = pop_vekst(bef, aar - lag, aar, "v")
+        sp = sv[(sv["aar"] == aar) & (sv["parti"] == "Sp")][["kom2024", "prosent"]]
+        df = sp.merge(vekst, on="kom2024").merge(sent, on="kom2024", how="left")
+        df = df.replace([np.inf, -np.inf], np.nan).dropna(
+            subset=["prosent", "v", "sent_kode"])
+        df["periferi"] = df["sent_kode"].isin(PERIFERI_KODER)
+        df["nedgang"]  = df["v"] < 0
+
+        grupper = {}
+        for periferi, pnavn in [(True, "periferi"), (False, "sentral")]:
+            for nedgang, nnavn in [(True, "nedgang"), (False, "vekst")]:
+                sub = df[(df["periferi"] == periferi) & (df["nedgang"] == nedgang)]
+                grupper[f"{pnavn}_{nnavn}"] = {"sp": sub["prosent"].mean(), "n": len(sub)}
+
+        gap = grupper["periferi_nedgang"]["sp"] - grupper["periferi_vekst"]["sp"]
+        rader.append({
+            "aar": aar, "lag": lag,
+            "periferi_nedgang": grupper["periferi_nedgang"]["sp"],
+            "periferi_vekst":   grupper["periferi_vekst"]["sp"],
+            "sentral_nedgang":  grupper["sentral_nedgang"]["sp"],
+            "sentral_vekst":    grupper["sentral_vekst"]["sp"],
+            "n_periferi_nedgang": grupper["periferi_nedgang"]["n"],
+            "n_periferi_vekst":   grupper["periferi_vekst"]["n"],
+            "gap_periferi": gap,
+        })
+        print(f"  {aar} (lag {lag} år): "
+              f"Periferi+Nedgang={grupper['periferi_nedgang']['sp']:.1f}% (n={grupper['periferi_nedgang']['n']}), "
+              f"Periferi+Vekst={grupper['periferi_vekst']['sp']:.1f}% (n={grupper['periferi_vekst']['n']}), "
+              f"gap={gap:+.1f}pp | "
+              f"Sentral+Nedgang={grupper['sentral_nedgang']['sp']:.1f}%, "
+              f"Sentral+Vekst={grupper['sentral_vekst']['sp']:.1f}%")
+
+    bonus_df = pd.DataFrame(rader)
+    g93  = bonus_df.loc[bonus_df["aar"] == 1993, "gap_periferi"]
+    g21  = bonus_df.loc[bonus_df["aar"] == 2021, "gap_periferi"]
+    if len(g93) and len(g21):
+        print(f"\n  Gap periferi (nedgang−vekst): 1993={g93.iloc[0]:+.2f}pp "
+              f"(historisk {HIST_GAP_1993:+.1f}pp) → 2021={g21.iloc[0]:+.2f}pp "
+              f"(historisk {HIST_GAP_2021:+.1f}pp)")
+    return bonus_df
+
+
 # ── PLOTLY FIGURER ────────────────────────────────────────────────────────────
 
 def fig_scatter_2021(data: pd.DataFrame, r_tot: dict, r_sent: dict) -> go.Figure:
@@ -397,11 +470,41 @@ def fig_beta_tabell(beta_df: pd.DataFrame) -> go.Figure:
     return fig
 
 
+def fig_periferi_bonus(bonus_df: pd.DataFrame) -> go.Figure:
+    aartall = [str(int(a)) for a in bonus_df["aar"]]
+    fig = go.Figure()
+    grupper = [
+        ("periferi_nedgang", "Periferi + Nedgang", "#d62728"),
+        ("periferi_vekst",   "Periferi + Vekst",   "#ff7f0e"),
+        ("sentral_nedgang",  "Sentral + Nedgang",  "#1f77b4"),
+        ("sentral_vekst",    "Sentral + Vekst",    "#aec7e8"),
+    ]
+    for col, navn, farge in grupper:
+        fig.add_trace(go.Bar(
+            x=aartall, y=bonus_df[col],
+            name=navn, marker_color=farge,
+            text=[f"{v:.1f}%" for v in bonus_df[col]],
+            textposition="outside", textfont=dict(size=9),
+            hovertemplate=f"<b>{navn}</b><br>Sp%%: %{{y:.1f}}%%<extra></extra>",
+        ))
+    fig.update_layout(
+        title="Sp% nivå i fire kvadranter: Periferi/Sentral × Vekst/Nedgang",
+        xaxis_title="Stortingsvalgår",
+        yaxis_title="Gjennomsnittlig Sp% (%)",
+        yaxis_ticksuffix="%",
+        template="plotly_white",
+        barmode="group",
+        height=480,
+        legend=dict(x=0.01, y=0.99, font_size=11),
+    )
+    return fig
+
+
 # ── HTML ──────────────────────────────────────────────────────────────────────
 
 def lag_html_seksjon(data21, r_tot, r_sent, top20, felles, korr,
-                     beta_df, spfrp,
-                     fig_scatter, fig_komp, fig_top, fig_beta) -> str:
+                     beta_df, spfrp, bonus_df,
+                     fig_scatter, fig_komp, fig_top, fig_beta, fig_bonus) -> str:
     """Produserer komplett HTML-seksjon for innliming i index.html."""
 
     def pct(v):
@@ -442,6 +545,15 @@ def lag_html_seksjon(data21, r_tot, r_sent, top20, felles, korr,
     komp_html  = fig_komp.to_html(full_html=False, include_plotlyjs=False)
     top_p_html = fig_top.to_html(full_html=False, include_plotlyjs=False)
     beta_html  = fig_beta.to_html(full_html=False, include_plotlyjs=False)
+    bonus_html = fig_bonus.to_html(full_html=False, include_plotlyjs=False)
+
+    # --- Bonus-seksjon: gap periferi nedgang−vekst, første/siste år ---
+    b_first = bonus_df.iloc[0]
+    b_last  = bonus_df.iloc[-1]
+    aar_first, aar_last = int(b_first["aar"]), int(b_last["aar"])
+    gap_first, gap_last = b_first["gap_periferi"], b_last["gap_periferi"]
+    avvik_first = gap_first - HIST_GAP_1993
+    avvik_last  = gap_last - HIST_GAP_2021
 
     # Sp vs FrP rows
     sfrows = "".join(
@@ -522,6 +634,26 @@ tilnærmet doblet seg (β ≈ −0,82) og holdt seg der i 2021.</p>
 <tbody>{sfrows}</tbody>
 </table>
 
+<h3>Bonus: Periferi + fraflytting = dobbelt effekt</h3>
+<p>Gjennomsnittlig Sp-<strong>nivå</strong> (ikke ΔSp) i fire grupper (2×2: sentralitet ×
+befolkningsretning). Periferi = kommuner med sentralitetskode 0–1 (minst/mindre sentrale),
+Sentral = kode 2–3. Nedgang/vekst avgjøres av befolkningsendringen de foregående
+{int(b_first['lag'])} år ({aar_first}) / 10 år ({', '.join(str(int(a)) for a in bonus_df['aar'][1:])}).</p>
+<p><strong>{aar_first}:</strong> Periferi-kommuner hadde nesten likt Sp-nivå uansett
+befolkningsretning (gap {gap_first:+.1f} pp) — EU-motstanden samlet hele periferien uniformt.
+<strong>2017–{aar_last}:</strong> Et nytt mønster vokser frem: periferi+nedgang skiller seg
+klart ut ({gap_last:+.1f} pp over periferi+vekst i {aar_last}). Befolkningsnedgang predikerer nå
+Sp sterkere enn i {aar_first}, spesielt innen periferien.</p>
+{bonus_html}
+<p class="text-xs text-slate-400 mt-2">
+Denne delseksjonen gikk tapt ved en tidligere full regenerering av siden og er
+rekonstruert som beregnet seksjon i analyse_2021.py (bekreftet mot historisk innhold,
+commit 69dd3af). Historisk rapportert gap: {HIST_GAP_1993:+.1f} pp ({aar_first}) →
+{HIST_GAP_2021:+.1f} pp ({aar_last}). Gjenberegnet på dagens (permanent fiksede)
+1989/1993-datagrunnlag: {gap_first:+.2f} pp → {gap_last:+.2f} pp
+(avvik {avvik_first:+.2f} / {avvik_last:+.2f} pp — marginalt, mønsteret er uendret).
+</p>
+
 </section>
 </div>
 <!-- === SLUTT 2021-ANALYSE === -->
@@ -548,18 +680,22 @@ def main():
     # 4. FrP-konkurranse
     spfrp = frp_konkurranse(sv)
 
+    # 4b. Bonus: periferi + fraflytting (2×2 Sp-nivå)
+    bonus_df = periferi_fraflytting_bonus(sv, bef, sent)
+
     # 5. Figurer
     print("\nLager figurer…")
     fig_scatter = fig_scatter_2021(data21, r_tot, r_sent)
     fig_komp    = fig_sammenlign_1993_2021(felles, d93, data21, korr, sv)
     fig_top     = fig_top20(top20)
     fig_beta    = fig_beta_tabell(beta_df)
+    fig_bonus   = fig_periferi_bonus(bonus_df)
 
     # 6. Lagre HTML-seksjon
     html_seksjon = lag_html_seksjon(
         data21, r_tot, r_sent, top20, felles, korr,
-        beta_df, spfrp,
-        fig_scatter, fig_komp, fig_top, fig_beta,
+        beta_df, spfrp, bonus_df,
+        fig_scatter, fig_komp, fig_top, fig_beta, fig_bonus,
     )
 
     with open("data/processed/seksjon_2021.html", "w", encoding="utf-8") as f:
